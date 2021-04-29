@@ -1,2 +1,2 @@
 # Gamedog
-The definitve game. Do you want play it?
+The definitive game. Do you want to play?
