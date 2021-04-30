@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bonus.h" />
     <ClInclude Include="enemigo.h" />
     <ClInclude Include="jugador.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bonus.cpp" />
     <ClCompile Include="enemigo.cpp" />
     <ClCompile Include="jugador.cpp" />
   </ItemGroup>
