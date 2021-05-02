@@ -142,15 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bonus.h" />
-    <ClInclude Include="enemigo.h" />
-    <ClInclude Include="jugador.h" />
+    <ClCompile Include="src\bonus.cpp" />
+    <ClCompile Include="src\enemigo.cpp" />
+    <ClCompile Include="src\jugador.cpp" />
+    <ClCompile Include="src\LaAbuelaContraataca.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bonus.cpp" />
-    <ClCompile Include="enemigo.cpp" />
-    <ClCompile Include="jugador.cpp" />
-    <ClCompile Include="LaAbuelaContraataca.cpp" />
+    <ClInclude Include="src\bonus.h" />
+    <ClInclude Include="src\enemigo.h" />
+    <ClInclude Include="src\jugador.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
