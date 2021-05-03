@@ -1,8 +1,0 @@
-﻿  Mundo.cpp
-C:\Users\abelb\Documents\GitHub\Gamedog\tema4inicial_VS19x64\src\Mundo.cpp(7,12): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\abelb\Documents\GitHub\Gamedog\tema4inicial_VS19x64\src\Mundo.cpp(8,11): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\abelb\Documents\GitHub\Gamedog\tema4inicial_VS19x64\src\Mundo.cpp(10,12): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\abelb\Documents\GitHub\Gamedog\tema4inicial_VS19x64\src\Mundo.cpp(11,12): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-  Pang.cpp
-  Generando código...
-  Pang.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\tema4inicial_VS19x64\bin\Pang.exe
