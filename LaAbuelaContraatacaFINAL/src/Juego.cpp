@@ -30,16 +30,25 @@ void Juego::dibuja()
 
 	escenario.dibuja();
 	jugador.dibuja();
-	disparogel.dibuja();
 	plataforma.dibuja();
 	bonus.dibuja();
+	enemigos.dibuja();
+	disparos.dibuja();
 }
 
 void Juego::mueve()
 {
 	jugador.mueve(0.025f);
 	bonus.mueve(0.025f);
-	disparogel.mueve(0.025f);
+	enemigos.mueve(0.025f);
+	disparos.mueve(0.025f);
+	enemigos.rebote(escenario);
+	Enemigo* aux = enemigos.colision(jugador);
+	if (aux != 0)//si alguna esfera ha chocado
+		enemigos.eliminar(aux);
+
+	disparos.colision(escenario);
+	disparos.colision(plataforma);
 	Interaccion::rebote(jugador, escenario);
 }
 
@@ -47,17 +56,43 @@ void Juego::teclaEspecial(unsigned char key)
 {
 	switch (key)
 	{
-	case GLUT_KEY_LEFT:
+	/*case GLUT_KEY_LEFT:
 		jugador.setVel(-5.0f, 0.0f);
 		break;
 	case GLUT_KEY_RIGHT:
 		jugador.setVel(5.0f, 0.0f);
-		break;
+		break;*/
 	}
 }
 
 void Juego::tecla(unsigned char key)
 {
-	if (key == ' ')
+	switch (key)
+	{
+	case ' ':
+	{
+		DisparoGel* d = new DisparoGel();
+		Vector2D pos = jugador.getPos();
+		d->setPos(pos.x, pos.y);
+		disparos.agregar(d);
+		break;
+	}
+	case 'w':
 		jugador.salto();
+		break;
+	case 'a':
+		jugador.setPos(-0.5f, 0.0f);
+		break;
+	case 'd':
+		jugador.setPos(0.5f, 0.0f);
+		break;
+	case '1':
+		enemigos.agregar(new Enemigo(2.0f, 0.0f, 10.0f, -1.0f));
+		break;
+	}
+}
+Juego::~Juego()
+{
+	enemigos.destruirContenido();
+	disparos.destruirContenido();
 }

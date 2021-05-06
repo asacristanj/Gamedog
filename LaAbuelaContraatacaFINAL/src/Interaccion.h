@@ -1,14 +1,17 @@
 #pragma once
 #include "Jugador.h"
+#include "Enemigo.h"
+#include "DisparoGel.h"
 #include "Escenario.h"
 #include "Plataforma.h"
 class Interaccion
 {
 public:
 	static void rebote(Jugador& j, Escenario e);
-	//static bool rebote(Esfera& e, Pared p);
-	//static void rebote(Esfera& e, Caja c);
-	//static void rebote(Esfera& e1, Esfera& e2);
+	static void rebote(Enemigo& enem, Escenario e);
+	static bool colision(Enemigo enem, Jugador j);
+	static bool colision(DisparoGel d, Plataforma p);
+	static bool colision(DisparoGel d, Escenario e);
 };
 
 

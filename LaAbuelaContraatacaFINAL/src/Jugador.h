@@ -14,11 +14,13 @@ public:
 	virtual ~Jugador();
 	void dibuja();
 	void mueve(float t);
+	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
+	void setAcel(float ax);
 	void salto();
-	void movLateral(float ix);
+	Vector2D getPos() { return posicion; }
+	float getAltura() { return altura; }
 
 	friend class Interaccion;
-	friend class Juego;
 };
 

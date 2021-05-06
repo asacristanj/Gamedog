@@ -12,41 +12,36 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 	float ymin = e.suelo.limite1.y;
 	if ((j.posicion.y - j.altura) < ymin) j.posicion.y = ymin + j.altura;
 }
-
-/*bool Interaccion::rebote(Esfera& e, Pared p)
+void Interaccion::rebote(Enemigo& enem, Escenario e)
 {
-	Vector2D dir;
-	float dif = p.distancia(e.posicion, &dir) - e.radio;
-	if (dif <= 0.0f)
-	{
-		Vector2D v_inicial = e.velocidad;
-		e.velocidad = v_inicial - dir * 2.0 * (v_inicial * dir);
-		e.posicion = e.posicion - dir * dif;
+	float xmax = e.suelo.limite2.x;
+	float xmin = e.suelo.limite1.x;
+	if (enem.posicion.x > xmax)enem.posicion.x = xmax;
+	if (enem.posicion.x < xmin)enem.posicion.x = xmin;
+
+	float ymin = e.suelo.limite1.y;
+	if ((enem.posicion.y - enem.altura) < ymin) enem.posicion.y = ymin + enem.altura;
+}
+bool Interaccion::colision(Enemigo enem, Jugador j)
+{
+	Vector2D pos = j.getPos(); //la posicion de la base del hombre
+	pos.y += j.getAltura() / 2.0f; //posicion del centro
+	float distancia = (enem.posicion - pos).modulo();
+	if (distancia < (enem.altura/2))
 		return true;
-	}
 	return false;
 }
-
-void Interaccion::rebote(Esfera& e, Caja c)
+bool Interaccion::colision(DisparoGel d, Plataforma p)
 {
-	Interaccion::rebote(e, c.suelo);
-	Interaccion::rebote(e, c.techo);
-	Interaccion::rebote(e, c.pared_izq);
-	Interaccion::rebote(e, c.pared_dcha);
+	Vector2D pos = d.getPos(); //la posicion de la base del hombre
+	pos.y += d.getRadio(); //posicion del centro
+	float distancia = p.distancia(pos);
+	if (distancia < d.getRadio())
+		return true;
+	return false;
+}
+bool Interaccion::colision(DisparoGel d, Escenario e)
+{
+	return Interaccion::colision(d, e.techo);
 }
 
-void Interaccion::rebote(Esfera& e1, Esfera& e2)
-{
-	Esfera i, j;
-	float a1 = PI * e1.radio * e1.radio;
-	float a2 = PI * e2.radio * e2.radio;
-	float dist = (e1.posicion - e2.posicion).modulo();
-	if ((e1.radio + e2.radio) >= dist)
-	{
-		Vector2D dist1 = e1.posicion - e2.posicion, dist2 = e2.posicion - e1.posicion;
-		i.velocidad = e1.velocidad - dist1 * ((2 * a2) / (a1 + a2)) * ((e1.velocidad - e2.velocidad) * dist1) * (1 / (dist * dist));
-		j.velocidad = e2.velocidad - dist2 * ((2 * a1) / (a2 + a1)) * ((e2.velocidad - e1.velocidad) * dist2) * (1 / (dist * dist));
-		e1.velocidad = i.velocidad;
-		e2.velocidad = j.velocidad;
-	}
-}*/

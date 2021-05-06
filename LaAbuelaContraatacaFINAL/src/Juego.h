@@ -4,6 +4,9 @@
 #include "Bonus.h" 
 #include "DisparoGel.h" 
 #include "Interaccion.h"
+#include "Enemigo.h"
+#include "ListaEnemigos.h"
+#include "ListaDisparosGel.h"
 class Juego
 {
 private:
@@ -15,8 +18,11 @@ private:
 	Escenario escenario;
 	Bonus bonus;
 	Plataforma plataforma;
+	ListaEnemigos enemigos;
+	ListaDisparosGel disparos;
 
 public:
+	virtual ~Juego();
 	void tecla(unsigned char key);
 	void inicializa();
 	void rotarOjo();
