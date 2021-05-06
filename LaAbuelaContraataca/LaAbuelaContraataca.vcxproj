@@ -22,7 +22,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6f0f7327-e669-439b-ad8a-44922d971323}</ProjectGuid>
+    <ProjectGuid>{05fb4ab4-ffbf-4098-b190-d580a6054f10}</ProjectGuid>
     <RootNamespace>LaAbuelaContraataca</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
