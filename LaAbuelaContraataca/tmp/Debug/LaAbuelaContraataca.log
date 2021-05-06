@@ -1,4 +1,5 @@
-﻿Bonus.obj : error LNK2019: símbolo externo __imp__glutSolidCube@8 sin resolver al que se hace referencia en la función "public: void __thiscall Bonus::dibuja(void)" (?dibuja@Bonus@@QAEXXZ)
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+Bonus.obj : error LNK2019: símbolo externo __imp__glutSolidCube@8 sin resolver al que se hace referencia en la función "public: void __thiscall Bonus::dibuja(void)" (?dibuja@Bonus@@QAEXXZ)
 DisparoGel.obj : error LNK2019: símbolo externo __imp__glutSolidSphere@16 sin resolver al que se hace referencia en la función "public: void __thiscall DisparoGel::dibuja(void)" (?dibuja@DisparoGel@@QAEXXZ)
 Enemigo.obj : error LNK2001: símbolo externo __imp__glutSolidSphere@16 sin resolver
 Jugador.obj : error LNK2001: símbolo externo __imp__glutSolidSphere@16 sin resolver
@@ -13,4 +14,8 @@ LaAbuelaContraataca.obj : error LNK2019: símbolo externo __imp__glutDisplayFunc
 LaAbuelaContraataca.obj : error LNK2019: símbolo externo __imp____glutInitWithExit@12 sin resolver al que se hace referencia en la función _glutInit_ATEXIT_HACK@8
 LaAbuelaContraataca.obj : error LNK2019: símbolo externo __imp____glutCreateWindowWithExit@8 sin resolver al que se hace referencia en la función _glutCreateWindow_ATEXIT_HACK@4
 lib\freeglut.lib : warning LNK4272: el tipo de máquina de biblioteca 'x64' está en conflicto con el tipo de máquina de destino 'x86'
+<<<<<<< Updated upstream:LaAbuelaContraataca/tmp/Debug/LaAbuelaContraataca.log
 C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraataca\bin\LaAbuelaContraataca.exe : fatal error LNK1120: 12 externos sin resolver
+=======
+bin\LaAbuelaContraataca.exe : fatal error LNK1120: 12 externos sin resolver
+>>>>>>> Stashed changes:LaAbuelaContraataca/Debug/LaAbuelaContraataca.log
