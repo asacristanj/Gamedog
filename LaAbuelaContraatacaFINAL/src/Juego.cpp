@@ -10,7 +10,6 @@ void Juego::inicializa()
 
 	bonus.setPos(5.0f, 5.0f);
 	disparogel.setPos(-5.0f, 0.0f);
-
 	plataforma.setPos(-5.0f, 9.0f, 5.0f, 9.0f);
 }
 
@@ -59,5 +58,6 @@ void Juego::teclaEspecial(unsigned char key)
 
 void Juego::tecla(unsigned char key)
 {
-
+	if (key == ' ')
+		jugador.salto();
 }

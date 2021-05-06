@@ -8,6 +8,9 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 	float xmin = e.suelo.limite1.x;
 	if (j.posicion.x > xmax)j.posicion.x = xmax;
 	if (j.posicion.x < xmin)j.posicion.x = xmin;
+
+	float ymin = e.suelo.limite1.y;
+	if ((j.posicion.y - j.altura) < ymin) j.posicion.y = ymin + j.altura;
 }
 
 /*bool Interaccion::rebote(Esfera& e, Pared p)

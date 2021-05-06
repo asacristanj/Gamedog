@@ -61,6 +61,10 @@ void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 
 	glutPostRedisplay();
 }
+void onSpecialKeyboardDown(int key, int x, int y)
+{
+	juego.teclaEspecial(key);
+}
 
 void OnTimer(int value)
 {
