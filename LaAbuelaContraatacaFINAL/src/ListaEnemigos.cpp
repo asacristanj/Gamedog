@@ -38,7 +38,7 @@ Enemigo* ListaEnemigos::colision(Jugador& j)
 	for (int i = 0; i < numero; i++)
 	{
 		if (Interaccion::colision(*(lista[i]), j))
-			return lista[i];
+		return lista[i];
 	}
 	return 0; //no hay colisión
 }

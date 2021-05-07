@@ -2,8 +2,10 @@
 #include "freeglut.h" 
 Enemigo::Enemigo()
 {
-	altura = 1.8f;
-	aceleracion.y = 0;
+	altura = 0.8f;
+	aceleracion.y = -9.8f;
+	color.r = color.b = 0;
+	color.g = 100;
 }
 Enemigo::Enemigo(float alt, float x, float y, float vx, float vy)
 {
@@ -12,8 +14,8 @@ Enemigo::Enemigo(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = color.g = 255;
-	color.b = 100;
+	color.r = color.b = 0;
+	color.g = 100;
 	aceleracion.y = -9.8f;
 }
 void Enemigo::dibuja()

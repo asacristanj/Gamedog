@@ -4,9 +4,7 @@ DisparoGel::DisparoGel()
 {
 	radio = 0.25f;
 	posicion.y = aceleracion.x = aceleracion.y = 0.0f;
-	velocidad.y = 1.0f;
-	posicion.x = origen.x = -5.0f;
-	posicion.y = origen.y = 0.0f;
+	velocidad.y = 4.0f;
 }
 void DisparoGel::dibuja()
 {
