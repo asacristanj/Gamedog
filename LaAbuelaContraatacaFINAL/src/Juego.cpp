@@ -56,12 +56,33 @@ void Juego::teclaEspecial(unsigned char key)
 {
 	switch (key)
 	{
-	/*case GLUT_KEY_LEFT:
-		jugador.setVel(-5.0f, 0.0f);
-		break;
-	case GLUT_KEY_RIGHT:
-		jugador.setVel(5.0f, 0.0f);
-		break;*/
+	   case GLUT_KEY_LEFT:
+	   {
+		  DisparoGel* d = new DisparoGel();
+		  Vector2D pos = jugador.getPos();
+		  d->setPos(pos.x, pos.y);
+		  d->setVel(-4.0f, 0);
+		  disparos.agregar(d);
+		  break;
+	   }
+	   case GLUT_KEY_RIGHT:
+	   {
+		  DisparoGel* d = new DisparoGel();
+		  Vector2D pos = jugador.getPos();
+		  d->setPos(pos.x, pos.y);
+		  d->setVel(4.0f, 0);
+		  disparos.agregar(d);
+		  break;
+	   }
+	   case GLUT_KEY_UP:
+	   {
+		  DisparoGel* d = new DisparoGel();
+		  Vector2D pos = jugador.getPos();
+		  d->setPos(pos.x, pos.y);
+		  d->setVel(0, 4.0f);
+		  disparos.agregar(d);
+		  break;
+	   }
 	}
 }
 
@@ -69,14 +90,6 @@ void Juego::tecla(unsigned char key)
 {
 	switch (key)
 	{
-	case ' ':
-	{
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		disparos.agregar(d);
-		break;
-	}
 	case 'w':
 		jugador.salto();
 		break;

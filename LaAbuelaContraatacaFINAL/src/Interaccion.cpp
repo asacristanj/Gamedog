@@ -71,6 +71,8 @@ bool Interaccion::colision(Jugador j, Plataforma p)
 }
 bool Interaccion::colision(DisparoGel d, Escenario e)
 {
-	return Interaccion::colision(d, e.techo);
+	if (Interaccion::colision(d, e.pared_dcha) || Interaccion::colision(d, e.techo) || Interaccion::colision(d, e.pared_izq))
+		return true;
+	return false;
 }
 
