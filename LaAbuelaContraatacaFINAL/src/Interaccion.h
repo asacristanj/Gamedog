@@ -9,7 +9,8 @@ class Interaccion
 public:
 	static void rebote(Jugador& j, Escenario e);
 	static void rebote(Enemigo& enem, Escenario e);
-	static bool colision(Jugador j, Plataforma p);
+	static bool colisionEncima(Jugador j, Plataforma p);
+	static bool colisionDebajo(Jugador j, Plataforma p);
 	static void rebote(Jugador& j, Plataforma p);
 	static void rebote(Enemigo& enem, Plataforma p);
 	static bool colision(Enemigo enem, Jugador j);
