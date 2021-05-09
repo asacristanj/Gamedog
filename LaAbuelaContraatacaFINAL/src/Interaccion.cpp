@@ -64,8 +64,11 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 	Vector2D pos = j.getPos(); //la posicion de la base del jugador
 	pos.y += (j.altura);
 	float distancia = p.distancia(pos);
-	if (distancia <= j.getAltura())
+	if (distancia <= j.getAltura()) {
 		return true;
+		//al chocar desde abajo queda parada y empieza a bajar
+		j.velocidad.y =0.0f;
+	}
 	return false;
 }
 bool Interaccion::colisionEncima(Jugador j, Plataforma p)
@@ -79,16 +82,26 @@ bool Interaccion::colisionEncima(Jugador j, Plataforma p)
 bool Interaccion::colision(DisparoGel d, Plataforma p)
 {
 	Vector2D pos = d.getPos(); //la posicion de la base del hombre
-	pos.y += d.getRadio(); //posicion del centro
+	//pos.y += d.getRadio(); //posicion del centro Diego:no estas consiguiendo nada con esto es la posicion del disparo la da el centro, no tiene ningun calculo mas
 	float distancia = p.distancia(pos);
-	if (distancia < d.getRadio())
+	if (distancia <= d.getRadio()) {
 		return true;
+	}
 	return false;
 }
 bool Interaccion::colision(DisparoGel d, Escenario e)
 {
-	if (Interaccion::colision(d, e.pared_dcha) || Interaccion::colision(d, e.techo) || Interaccion::colision(d, e.pared_izq))
+	if (Interaccion::colision(d, e.pared_dcha) || Interaccion::colision(d, e.techo) || Interaccion::colision(d, e.pared_izq)||Interaccion::colision(d,e.suelo))
 		return true;
 	return false;
 }
-
+bool Interaccion::colision(DisparoGel d, Enemigo e) {
+	//un vector para la diferencia de posiciones y dos floats para las distancias a comparar
+	Vector2D posicionenem=e.getPos(),diferencia = e.posicion-posicionenem;
+	float distancia = diferencia.modulo(),radios=e.altura+d.getRadio();
+	if (distancia <= radios) {
+		return true;
+	}
+	return false;
+	
+}

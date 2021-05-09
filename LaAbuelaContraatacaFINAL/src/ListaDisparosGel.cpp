@@ -35,7 +35,8 @@ void ListaDisparosGel::colision(Plataforma p)
 	for (int i = 0; i < numero; i++)
 		if (Interaccion::colision(*(lista[i]), p))
 		{
-			lista[i]->setVel(0, 0);
+			//eliminamos el disparo al impactar con la plataforma
+			delete lista[i];
 		}
 }
 void ListaDisparosGel::colision(Escenario e)
@@ -43,7 +44,8 @@ void ListaDisparosGel::colision(Escenario e)
 	for (int i = 0; i < numero; i++)
 		if (Interaccion::colision(*(lista[i]), e))
 		{
-			lista[i]->setVel(0, 0);
+			//eliminamos el disparo cuando se impacta con la pared
+			delete lista[i];
 		}
 }
 void ListaDisparosGel::destruirContenido()
@@ -51,6 +53,14 @@ void ListaDisparosGel::destruirContenido()
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
+}
+void ListaDisparosGel::colision(Enemigo e) {
+	for (int i = 0; i < numero; i++) {
+		if (Interaccion::colision(*(lista[i]), e)) {
+			//al detectar colision entre la bola y el enemigo eliminamos el disparo
+			delete lista[i];
+		}
+	}
 }
 ListaDisparosGel :: ~ListaDisparosGel()
 {

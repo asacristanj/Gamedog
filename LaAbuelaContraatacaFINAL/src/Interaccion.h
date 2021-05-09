@@ -16,6 +16,7 @@ public:
 	static bool colision(Enemigo enem, Jugador j);
 	static bool colision(DisparoGel d, Plataforma p);
 	static bool colision(DisparoGel d, Escenario e);
+	static bool colision(DisparoGel d, Enemigo e);
 };
 
 

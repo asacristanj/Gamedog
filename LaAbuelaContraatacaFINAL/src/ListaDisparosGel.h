@@ -16,6 +16,7 @@ public:
 	void dibuja();
 	void colision(Plataforma p);
 	void colision(Escenario e);
+	void colision(Enemigo e);
 };
 
 

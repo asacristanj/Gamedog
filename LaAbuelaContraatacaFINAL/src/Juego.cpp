@@ -44,7 +44,6 @@ void Juego::mueve()
 	Enemigo* aux = enemigos.colision(jugador);
 	if (aux != 0)//si algún enemigo ha chocado
 		enemigos.eliminar(aux);
-
 	disparos.colision(escenario);
 	disparos.colision(plataforma);
 	Interaccion::rebote(jugador, escenario);
