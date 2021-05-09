@@ -25,7 +25,7 @@ public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
 	void inicializa();
-	void rotarOjo();
+	void moverOjo();
 	void mueve();
 	void dibuja();
 	void teclaEspecial(unsigned char key);

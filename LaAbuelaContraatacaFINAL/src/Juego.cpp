@@ -12,13 +12,10 @@ void Juego::inicializa()
 	plataforma.setPos(-5.0f, 9.0f, 5.0f, 9.0f);
 }
 
-void Juego::rotarOjo()
+void Juego::moverOjo()
 {
-	float dist = (float)sqrt(x_ojo * x_ojo + z_ojo * z_ojo);
-	float ang = (float)atan2(z_ojo, x_ojo);
-	ang += 0.05f;
-	x_ojo = (float)dist * (float)cos(ang);
-	z_ojo = (float)dist * (float)sin(ang);
+	Vector2D pos = jugador.getPos();
+	y_ojo = pos.y+5.5f;
 }
 
 void Juego::dibuja()
