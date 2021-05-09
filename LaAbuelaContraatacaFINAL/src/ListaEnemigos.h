@@ -1,11 +1,11 @@
 #pragma once
-#define MAX_ESFERAS 100
+#define MAX_ENEMIGOS 100
 #include "Enemigo.h"
 #include "Interaccion.h"
 class ListaEnemigos
 {
 private:
-	Enemigo* lista[MAX_ESFERAS];
+	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;
 
 public:
@@ -14,6 +14,7 @@ public:
 	void dibuja();
 	void mueve(float t);
 	bool agregar(Enemigo* enem);
+	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	Enemigo* colision(Jugador& j);
 	Enemigo* operator [](int i);

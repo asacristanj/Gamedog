@@ -17,7 +17,7 @@ public:
 	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
 	void setAcel(float ax);
-	void salto();
+	void salto(float imp);
 	Vector2D getPos() { return posicion; }
 	float getAltura() { return altura; }
 

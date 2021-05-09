@@ -2,7 +2,7 @@
 #include "freeglut.h" 
 Jugador::Jugador()
 {
-	altura = 1.8f;
+	altura = 0.9f;
 	aceleracion.y = -9.8f;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
@@ -34,9 +34,9 @@ void Jugador::setAcel(float ax)
 {
 	aceleracion.x = ax;
 }
-void Jugador::salto()
+void Jugador::salto(float imp)
 {
-	setVel(velocidad.x, impulso);
+	setVel(velocidad.x, imp);
 }
 /*
 void Jugador::movLateral(float ix)
