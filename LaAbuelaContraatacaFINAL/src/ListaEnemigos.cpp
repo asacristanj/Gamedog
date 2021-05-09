@@ -2,7 +2,7 @@
 ListaEnemigos::ListaEnemigos()
 {
 	numero = 0;
-	for (int i = 0; i < MAX_ESFERAS; i++)
+	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;
 }
 bool ListaEnemigos::agregar(Enemigo* enem)
@@ -12,7 +12,7 @@ bool ListaEnemigos::agregar(Enemigo* enem)
 		if (enem == lista[i])
 			return false;
 	}
-	if (numero < MAX_ESFERAS)
+	if (numero < MAX_ENEMIGOS)
 		lista[numero++] = enem; // último puesto sin rellenar
 	else
 		return false; // capacidad máxima alcanzada
@@ -27,6 +27,11 @@ void ListaEnemigos::mueve(float t)
 {
 	for (int i = 0; i < numero; i++)
 		lista[i]->mueve(t);
+}
+void ListaEnemigos::rebote(Plataforma p)
+{
+	for (int i = 0; i < numero; i++)
+		Interaccion::rebote(*(lista[i]), p);
 }
 void ListaEnemigos::rebote(Escenario e)
 {

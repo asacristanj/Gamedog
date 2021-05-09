@@ -9,13 +9,14 @@ void Juego::inicializa()
 	z_ojo = 30;
 
 	bonus.setPos(5.0f, 5.0f);
-	plataforma.setPos(-5.0f, 9.0f, 5.0f, 9.0f);
+	plataforma.setPos(-3.0f, 5.0f, 3.0f, 5.0f);
+	enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f, 0.0f));
 }
 
 void Juego::moverOjo()
 {
 	Vector2D pos = jugador.getPos();
-	y_ojo = pos.y+5.5f;
+	y_ojo = pos.y+6.4f;
 }
 
 void Juego::dibuja()
@@ -39,6 +40,7 @@ void Juego::mueve()
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
 	enemigos.rebote(escenario);
+	enemigos.rebote(plataforma);
 	Enemigo* aux = enemigos.colision(jugador);
 	if (aux != 0)//si algún enemigo ha chocado
 		enemigos.eliminar(aux);
@@ -88,13 +90,13 @@ void Juego::tecla(unsigned char key)
 	switch (key)
 	{
 	case 'w':
-		jugador.salto();
+		jugador.salto(10.0f);
 		break;
 	case 'a':
-		jugador.setPos(-0.5f, 0.0f);
+		jugador.setPos(-0.25f, 0.0f);
 		break;
 	case 'd':
-		jugador.setPos(0.5f, 0.0f);
+		jugador.setPos(0.25f, 0.0f);
 		break;
 	case '1':
 		enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f,0.0f));
