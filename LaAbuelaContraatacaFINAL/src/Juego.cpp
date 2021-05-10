@@ -15,6 +15,7 @@ void Juego::inicializa()
 
 void Juego::moverOjo()
 {
+	//Se coge la posicion actual del jugador para centrarla en él y se suma una cantidad para ajustarlo al escenario
 	Vector2D pos = jugador.getPos();
 	y_ojo = pos.y+6.4f;
 }
@@ -39,8 +40,9 @@ void Juego::mueve()
 	bonus.mueve(0.025f);
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
-	enemigos.rebote(escenario);
+	//enemigos.rebote(escenario);
 	enemigos.rebote(plataforma);
+	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
 	Enemigo* aux = enemigos.colision(jugador);
 	if (aux != 0)//si algún enemigo ha chocado
 		enemigos.eliminar(aux);
@@ -56,10 +58,11 @@ void Juego::teclaEspecial(unsigned char key)
 	{
 	   case GLUT_KEY_LEFT:
 	   {
+		   //Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
 		  DisparoGel* d = new DisparoGel();
 		  Vector2D pos = jugador.getPos();
 		  d->setPos(pos.x, pos.y);
-		  d->setVel(-4.0f, 0);
+		  d->setVel(-6.0f, 0);
 		  disparos.agregar(d);
 		  break;
 	   }
@@ -68,7 +71,7 @@ void Juego::teclaEspecial(unsigned char key)
 		  DisparoGel* d = new DisparoGel();
 		  Vector2D pos = jugador.getPos();
 		  d->setPos(pos.x, pos.y);
-		  d->setVel(4.0f, 0);
+		  d->setVel(6.0f, 0);
 		  disparos.agregar(d);
 		  break;
 	   }
@@ -77,7 +80,7 @@ void Juego::teclaEspecial(unsigned char key)
 		  DisparoGel* d = new DisparoGel();
 		  Vector2D pos = jugador.getPos();
 		  d->setPos(pos.x, pos.y);
-		  d->setVel(0, 4.0f);
+		  d->setVel(0, 6.0f);
 		  disparos.agregar(d);
 		  break;
 	   }
@@ -89,8 +92,12 @@ void Juego::tecla(unsigned char key)
 	switch (key)
 	{
 	case 'w':
+	{
+		//Para que no pueda saltar en el aire
+		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
 		jugador.salto(10.0f);
 		break;
+	}
 	case 'a':
 		jugador.setPos(-0.25f, 0.0f);
 		break;
