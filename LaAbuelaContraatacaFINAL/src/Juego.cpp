@@ -9,7 +9,7 @@ void Juego::inicializa()
 	z_ojo = 30;
 
 	bonus.setPos(5.0f, 5.0f);
-	plataforma.setPos(-3.0f, 5.0f, 3.0f, 5.0f);
+	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
 	enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f, 0.0f));
 }
 
@@ -95,7 +95,7 @@ void Juego::tecla(unsigned char key)
 	{
 		//Para que no pueda saltar en el aire
 		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
-		jugador.salto(10.0f);
+		jugador.salto(15.0f);
 		break;
 	}
 	case 'a':

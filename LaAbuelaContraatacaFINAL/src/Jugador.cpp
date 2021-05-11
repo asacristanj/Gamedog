@@ -3,7 +3,7 @@
 Jugador::Jugador()
 {
 	altura = 0.9f;
-	aceleracion.y = -9.8f;
+	aceleracion.y = -20.0f;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
 }

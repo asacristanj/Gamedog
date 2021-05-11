@@ -22,11 +22,7 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	if (Interaccion::colisionEncima(j, p))
 		j.posicion.y = y + j.altura;
 	if (Interaccion::colisionDebajo(j, p))
-	{
-		j.posicion.y = y - (j.altura * 2);
-		//al chocar desde abajo queda parada y empieza a bajar
-		j.velocidad.y = 0.0f;
-	}
+		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
 }
 void Interaccion::rebote(Enemigo& enem, Plataforma p)
 {
@@ -77,9 +73,9 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 {
 	//Función que manda un booleano si ha habido contacto entre la plataforma y la cabeza del jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del jugador
-	pos.y += (j.altura);
+	pos.y += (j.getAltura());
 	float distancia = p.distancia(pos);
-	if (distancia <= j.getAltura()) 
+	if (distancia <= 0.2f)//compara la distancia de la plataforma al jugador con un valor pequeño
 		return true;
 	return false;
 }
