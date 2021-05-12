@@ -26,7 +26,7 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 		j.aceleracion.y = 0.0f;
 	}
 	else
-		j.aceleracion.y = -20.0f; // vuelvo
+		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial
 
 	if (Interaccion::colisionDebajo(j, p))
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma

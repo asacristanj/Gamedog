@@ -95,14 +95,16 @@ void Juego::tecla(unsigned char key)
 	{
 		//Para que no pueda saltar en el aire
 		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
-		jugador.salto(15.0f);
+		jugador.salto(19.0f);
 		break;
 	}
 	case 'a':
-		jugador.setPos(-0.25f, 0.0f);
+		jugador.setVelx(-5.0f);
+		//jugador.setPos(-0.25f, 0.0f);
 		break;
 	case 'd':
-		jugador.setPos(0.25f, 0.0f);
+		jugador.setVelx(5.0f);
+		//jugador.setPos(0.25f, 0.0f);
 		break;
 	case '1':
 		enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f,0.0f));

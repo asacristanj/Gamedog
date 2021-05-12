@@ -4,6 +4,7 @@ class Jugador
 {
 private:
 	float altura;
+	float acel_inicial = -30.0f;
 	float impulso = 10.0f; //impulso vertical inicial del salto
 	Vector2D posicion;
 	Vector2D velocidad;
@@ -16,6 +17,7 @@ public:
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
+	void setVelx(float vx);
 	void setAcel(float ax);
 	void salto(float imp);
 	Vector2D getPos() { return posicion; }

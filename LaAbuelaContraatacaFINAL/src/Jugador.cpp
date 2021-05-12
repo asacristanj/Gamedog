@@ -3,7 +3,7 @@
 Jugador::Jugador()
 {
 	altura = 0.9f;
-	aceleracion.y = -20.0f;
+	aceleracion.y = acel_inicial;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
 }
@@ -12,7 +12,7 @@ void Jugador::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glutSolidSphere(altura, 20, 20);
+	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
 }
 void Jugador::mueve(float t)
@@ -29,6 +29,10 @@ void Jugador::setVel(float vx, float vy)
 {
 	velocidad.x = vx;
 	velocidad.y = vy;
+}
+void Jugador::setVelx(float vx)
+{
+	velocidad.x = vx;
 }
 void Jugador::setAcel(float ax)
 {
