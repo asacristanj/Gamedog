@@ -153,6 +153,7 @@
     <ClCompile Include="src\LaAbuelaContraataca.cpp" />
     <ClCompile Include="src\ListaDisparosGel.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
+    <ClCompile Include="src\ObjetoMovil.cpp" />
     <ClCompile Include="src\Plataforma.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
@@ -167,6 +168,7 @@
     <ClInclude Include="src\Jugador.h" />
     <ClInclude Include="src\ListaDisparosGel.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
+    <ClInclude Include="src\ObjetoMovil.h" />
     <ClInclude Include="src\Plataforma.h" />
     <ClInclude Include="src\Vector2D.h" />
   </ItemGroup>

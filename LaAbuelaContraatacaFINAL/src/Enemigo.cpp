@@ -42,16 +42,6 @@ void Enemigo::setAltura(float alt)
 	if (alt < 0.1f)alt = 0.1f;
 	altura = alt;
 }
-void Enemigo::setPos(float ix, float iy)
-{
-	posicion.x = ix;
-	posicion.y = iy;
-}
-void Enemigo::setVel(float vx, float vy)
-{
-	velocidad.x = vx;
-	velocidad.y = vy;
-}
 Enemigo :: ~Enemigo()
 {
 

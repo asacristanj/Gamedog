@@ -23,11 +23,6 @@ void DisparoGel::setPos(float ix, float iy)
 	origen.x=posicion.x = ix;
 	origen.y=posicion.y = iy;
 }
-void DisparoGel::setVel(float vx, float vy)
-{
-	velocidad.x = vx;
-	velocidad.y = vy;
-}
 DisparoGel :: ~DisparoGel()
 {
 
