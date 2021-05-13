@@ -17,7 +17,6 @@ public:
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
-	void setVelx(float vx);
 	void setAcel(float ax);
 	void salto(float imp);
 	Vector2D getPos() { return posicion; }

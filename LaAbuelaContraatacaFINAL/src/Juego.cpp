@@ -99,12 +99,12 @@ void Juego::tecla(unsigned char key)
 		break;
 	}
 	case 'a':
-		jugador.setVelx(-5.0f);
-		//jugador.setPos(-0.25f, 0.0f);
+		//jugador.setVelx(-5.0f);
+		jugador.setPos(-0.25f, 0.0f);
 		break;
 	case 'd':
-		jugador.setVelx(5.0f);
-		//jugador.setPos(0.25f, 0.0f);
+		//jugador.setVelx(5.0f);
+		jugador.setPos(0.25f, 0.0f);
 		break;
 	case '1':
 		enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f,0.0f));
