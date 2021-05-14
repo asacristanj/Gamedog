@@ -1,7 +1,7 @@
 #include "Interaccion.h"
 #include "freeglut.h" 
 #include <math.h>
-#include <stdio.h>
+//#include <stdio.h>
 #define PI 3.141592
 void Interaccion::rebote(Jugador& j, Escenario e)
 {
@@ -75,26 +75,20 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	float enemh = (enem.getAltura()/2), jh=(j.getAltura()/2);
+	//float enemh = (enem.getAltura()/2), jh=(j.getAltura()/2);
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= ((enem.altura / 2.0f) + (j.altura / 2.0f))) && ((enem.posicion.y+enemh)  >= (j.posicion.y+jh)))
-	{
+	if ((distancia <= (enem.altura + (j.altura/2))) && (enem.posicion.y  >= j.posicion.y))
 		return true;
-		printf("Muerte jugador");
-	}
 	return false;
 }
 bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	float enemh = (enem.getAltura() / 2), jh = (j.getAltura() / 2);
+	//float enemh = (enem.getAltura() / 2), jh = (j.getAltura() / 2);
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= ((enem.altura / 2.0f) + (j.altura / 2.0f))) && ((enem.posicion.y + enemh) >= (j.posicion.y + jh)))
-	{
+	if ((distancia <= (enem.altura + (j.altura / 2))) && (enem.posicion.y < j.posicion.y))
 		return true;
-		printf("Muerte enemigo");
-	}
 	return false;
 }
 bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
