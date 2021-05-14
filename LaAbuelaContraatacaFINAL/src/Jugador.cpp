@@ -15,11 +15,6 @@ void Jugador::dibuja()
 	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
 }
-void Jugador::mueve(float t)
-{
-	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
-	velocidad = velocidad + aceleracion * t;
-}
 void Jugador::salto(float imp)
 {
 	setVel(velocidad.x, imp);
@@ -28,7 +23,10 @@ void Jugador::movLateral(float ix)
 {
 	posicion.x += ix;
 }
-
+void Jugador::morir()
+{
+	altura = 0.0f;
+}
 Jugador :: ~Jugador()
 {
 

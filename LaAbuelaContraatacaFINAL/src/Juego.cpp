@@ -10,7 +10,7 @@ void Juego::inicializa()
 
 	bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
-	enemigos.agregar(new Enemigo(1.0f, 0.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new Enemigo(2.0f, 0.0f, 10.0f, -1.0f, 0.0f));
 }
 
 void Juego::moverOjo()
@@ -45,6 +45,9 @@ void Juego::mueve()
 	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
 	Enemigo* aux = enemigos.colision(jugador);
 	if (aux != 0)//si algún enemigo ha chocado
+		jugador.morir();
+	Enemigo* aux1 = enemigos.colisionEncima(jugador);
+	if (aux1 != 0)//si algún enemigo ha chocado
 		enemigos.eliminar(aux);
 	disparos.colision(escenario);
 	disparos.colision(plataforma);

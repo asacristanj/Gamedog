@@ -17,6 +17,7 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	Enemigo* colision(Jugador& j);
+	Enemigo* colisionEncima(Jugador& j);
 	Enemigo* operator [](int i);
 	int getNumero() { return numero; }
 	void destruirContenido();

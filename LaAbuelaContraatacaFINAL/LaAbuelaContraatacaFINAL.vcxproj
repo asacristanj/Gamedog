@@ -144,6 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Bonus.cpp" />
+    <ClCompile Include="src\CepaBrasileña.cpp" />
+    <ClCompile Include="src\CepaBritanica.cpp" />
+    <ClCompile Include="src\CepaChina.cpp" />
+    <ClCompile Include="src\CepaIndia.cpp" />
     <ClCompile Include="src\DisparoGel.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Escenario.cpp" />
@@ -153,12 +157,18 @@
     <ClCompile Include="src\LaAbuelaContraataca.cpp" />
     <ClCompile Include="src\ListaDisparosGel.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
+    <ClCompile Include="src\MurcielagoBoss.cpp" />
+    <ClCompile Include="src\MurcielagoPequeño.cpp" />
     <ClCompile Include="src\ObjetoMovil.cpp" />
     <ClCompile Include="src\Plataforma.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Bonus.h" />
+    <ClInclude Include="src\CepaBrasileña.h" />
+    <ClInclude Include="src\CepaBritanica.h" />
+    <ClInclude Include="src\CepaChina.h" />
+    <ClInclude Include="src\CepaIndia.h" />
     <ClInclude Include="src\ColorRVA.h" />
     <ClInclude Include="src\DisparoGel.h" />
     <ClInclude Include="src\Enemigo.h" />
@@ -168,6 +178,8 @@
     <ClInclude Include="src\Jugador.h" />
     <ClInclude Include="src\ListaDisparosGel.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
+    <ClInclude Include="src\MurcielagoBoss.h" />
+    <ClInclude Include="src\MurcielagoPequeño.h" />
     <ClInclude Include="src\ObjetoMovil.h" />
     <ClInclude Include="src\Plataforma.h" />
     <ClInclude Include="src\Vector2D.h" />

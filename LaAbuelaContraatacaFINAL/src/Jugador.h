@@ -12,9 +12,9 @@ public:
 	Jugador();
 	virtual ~Jugador();
 	void dibuja();
-	void mueve(float t);
 	void salto(float imp);
 	void movLateral(float ix);
+	void morir();
 	float getAltura() { return altura; }
 
 	friend class Interaccion;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
-class DisparoGel: public ObjetoMovil
+class DisparoGel:public ObjetoMovil
 {
 private:
 	float radio;

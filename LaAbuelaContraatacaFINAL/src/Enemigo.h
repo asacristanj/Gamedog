@@ -4,7 +4,7 @@
 #include "ObjetoMovil.h"
 class Enemigo: public ObjetoMovil
 {
-private:
+protected:
 	float altura;
 	ColorRVA color;
 

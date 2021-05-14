@@ -1,6 +1,7 @@
 #include "Interaccion.h"
 #include "freeglut.h" 
 #include <math.h>
+#include <stdio.h>
 #define PI 3.141592
 void Interaccion::rebote(Jugador& j, Escenario e)
 {
@@ -30,6 +31,10 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 
 	if (Interaccion::colisionDebajo(j, p))
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
+	if (Interaccion::colisionLadoDer(j, p))
+		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma
+	if (Interaccion::colisionLadoIzq(j, p))
+		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma
 }
 void Interaccion::rebote(Enemigo& enem, Plataforma p)
 {
@@ -70,9 +75,26 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
+	float enemh = (enem.getAltura()/2), jh=(j.getAltura()/2);
 	float distancia = (enem.getPos() - pos).modulo();
-	if (distancia < ((enem.altura/2.0f)+(j.altura/2.0f)))
+	if ((distancia <= ((enem.altura / 2.0f) + (j.altura / 2.0f))) && ((enem.posicion.y+enemh)  >= (j.posicion.y+jh)))
+	{
 		return true;
+		printf("Muerte jugador");
+	}
+	return false;
+}
+bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
+{
+	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
+	Vector2D pos = j.getPos(); //la posicion de la base del hombre
+	float enemh = (enem.getAltura() / 2), jh = (j.getAltura() / 2);
+	float distancia = (enem.getPos() - pos).modulo();
+	if ((distancia <= ((enem.altura / 2.0f) + (j.altura / 2.0f))) && ((enem.posicion.y + enemh) >= (j.posicion.y + jh)))
+	{
+		return true;
+		printf("Muerte enemigo");
+	}
 	return false;
 }
 bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
@@ -92,6 +114,26 @@ bool Interaccion::colisionEncima(Jugador j, Plataforma p)
 	pos.y -= (j.getAltura() / 2.0f);
 	float distancia = p.distancia(pos);
 	if (distancia <= j.getAltura())
+		return true;
+	return false;
+}
+bool Interaccion::colisionLadoDer(Jugador j, Plataforma p)
+{
+	//Función que manda un booleano si ha habido contacto entre la plataforma y el lado izquierdo del jugador. Coge ambas posiciones y mide la distancia entre ellas.
+	Vector2D pos = j.getPos(); //la posicion de la base del jugador
+	pos.x += (j.getAltura());
+	float distancia = p.distancia(pos);
+	if (distancia <= 0.2f)
+		return true;
+	return false;
+}
+bool Interaccion::colisionLadoIzq(Jugador j, Plataforma p)
+{
+	//Función que manda un booleano si ha habido contacto entre la plataforma y el lado derecho del jugador. Coge ambas posiciones y mide la distancia entre ellas.
+	Vector2D pos = j.getPos(); //la posicion de la base del jugador
+	pos.x -= (j.getAltura());
+	float distancia = p.distancia(pos);
+	if (distancia <= 0.2f)
 		return true;
 	return false;
 }
@@ -132,3 +174,19 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 	return false;
 	
 }
+/*bool Interaccion::ratio(CepaBritanica brit, Jugador j)
+{
+	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
+	Vector2D pos = j.getPos(); //la posicion de la base del hombre
+	float distancia = (brit.getPos() - pos).modulo();
+	if (distancia < ((brit.altura / 2.0f) + (j.altura / 2.0f)+3.0f))
+		return true;
+	return false;
+}
+void Interaccion::explotar(CepaBritanica &brit, Jugador j)
+{
+	if (Interaccion::ratio(brit, j))
+	{
+		brit.color.r = brit.color. b = 255;
+	}
+}*/
