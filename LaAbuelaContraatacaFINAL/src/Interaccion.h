@@ -16,6 +16,8 @@ public:
 	static bool colisionLadoDer(Jugador j, Plataforma p);
 	static bool colisionSuelo(Jugador j, Escenario e);
 	static void rebote(Jugador& j, Plataforma p);
+	static void rebote(Bonus& b, Plataforma p);
+	static void rebote(Bonus& b, Escenario e);
 	static void rebote(Enemigo& enem, Plataforma p);
 	static void rebote(Enemigo& enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);

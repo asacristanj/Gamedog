@@ -36,6 +36,23 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	if (Interaccion::colisionLadoIzq(j, p))
 		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma
 }
+//funcion que hace que el bonus no se vaya del escenario y choque en las plataformas:
+void Interaccion::rebote(Bonus& b, Plataforma p) {
+	/*float xmax = p.limite2.x;
+	float xmin = p.limite1.x;
+	float y = p.limite1.y;
+	*/
+	if (Interaccion::colision(b, p)) {
+		b.velocidad.y = 0.0f;
+		b.aceleracion.y = 0.0f;
+	}
+}
+void Interaccion::rebote(Bonus& b, Escenario e) {
+	if (Interaccion::colision(b, e.suelo)) {
+		b.velocidad.y = 0;
+		b.aceleracion.y = 0;
+	}
+}
 void Interaccion::rebote(Enemigo& enem, Plataforma p)
 {
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
@@ -142,17 +159,19 @@ bool Interaccion::colisionSuelo(Jugador j, Escenario e)
 }
 bool Interaccion::colision(Bonus b, Plataforma p) {//Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
 	Vector2D pos = b.getPos();
+	pos.y -= b.getlado();//se le resta el lado para que se apoye en la superficie de abajo
 	float distancia = p.distancia(pos);
 	if (distancia <= 0.1f) {
 		return true;
 	}
-	return true;
+	return false;
 }
-bool Interaccion::colision(Bonus b, Escenario e) {
+bool Interaccion::colision(Bonus b, Escenario e) {//Funcion que manda true si hay colision entre bonus y escenario. Mide distancia entre ellas y compara
 	Vector2D pos = b.getPos();
+	pos.y -= b.getlado();//se le resta el lado para que quede apoyado en a superficie de abajo
 	float distancia = e.suelo.distancia(pos);
 	if (distancia <= b.getlado()) {
-		return false;
+		return true;
 	}
 	return false;
 }

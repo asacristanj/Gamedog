@@ -7,6 +7,7 @@ private:
 	float lado;
 
 public:
+	friend class Interaccion;
 	Bonus();
 	virtual ~Bonus();
 	void dibuja();
