@@ -2,6 +2,7 @@
 #define MAX_ENEMIGOS 100
 #include "Enemigo.h"
 #include "Interaccion.h"
+#include "ListaDisparosGel.h"
 class ListaEnemigos
 {
 private:
@@ -18,6 +19,7 @@ public:
 	void rebote(Escenario e);
 	Enemigo* colision(Jugador& j);
 	Enemigo* colisionEncima(Jugador& j);
+	//Enemigo* colision(DisparoGel& d);
 	Enemigo* operator [](int i);
 	int getNumero() { return numero; }
 	void destruirContenido();

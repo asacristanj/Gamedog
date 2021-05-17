@@ -56,6 +56,15 @@ Enemigo* ListaEnemigos::colisionEncima(Jugador& j)
 	}
 	return 0; //no hay colisión
 }
+/*Enemigo* ListaEnemigos::colision(DisparoGel& d){
+	for (int i=0;i < numero; i++) {
+		if (Interaccion::colision(d, (*(lista[i])))) {
+			return lista[i];
+		}
+	}
+	return 0;
+}
+*/
 Enemigo* ListaEnemigos::operator [](int i)
 {
 	if (i >= numero)//si me paso, devuelvo la ultima
@@ -92,3 +101,4 @@ ListaEnemigos :: ~ListaEnemigos()
 {
 
 }
+

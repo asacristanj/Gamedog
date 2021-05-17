@@ -1,7 +1,6 @@
 #include "Juego.h"
 #include "freeglut.h"
 #include <math.h>
-
 void Juego::inicializa()
 {
 	x_ojo = 0;
@@ -45,6 +44,7 @@ void Juego::mueve()
 	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
 	Enemigo* aux = enemigos.colision(jugador);
 	Enemigo* aux1 = enemigos.colisionEncima(jugador);
+	//funcion que regula que el disparo elimina al enemigo
 	if (aux != 0)//si algún enemigo ha chocado
 		jugador.morir();
 	else if (aux1 != 0)//si algún enemigo ha chocado

@@ -48,6 +48,15 @@ void ListaDisparosGel::colision(Escenario e)
 			delete lista[i];
 		}
 }
+/*DisparoGel* ListaDisparosGel::colision(Enemigo& e) {
+	for (int i = 0; i < numero; i++) {
+		if (Interaccion::colision(e, (*(lista[i])))) {
+			return lista[i];
+		}
+	}
+	return 0;
+}
+*/
 void ListaDisparosGel::destruirContenido()
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas

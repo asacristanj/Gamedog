@@ -11,4 +11,5 @@ public:
 	virtual ~Bonus();
 	void dibuja();
 	void mueve(float t);
+	float getlado() { return lado; }
 };
