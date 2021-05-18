@@ -62,33 +62,33 @@ void Juego::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	   case GLUT_KEY_LEFT:
-	   {
-		   //Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
-		  DisparoGel* d = new DisparoGel();
-		  Vector2D pos = jugador.getPos();
-		  d->setPos(pos.x, pos.y);
-		  d->setVel(-6.0f, 0);
-		  disparos.agregar(d);
-		  break;
-	   }
+		   jugador.setVel(-5.0f, 0.0f);
+		   break;
 	   case GLUT_KEY_RIGHT:
-	   {
-		  DisparoGel* d = new DisparoGel();
-		  Vector2D pos = jugador.getPos();
-		  d->setPos(pos.x, pos.y);
-		  d->setVel(6.0f, 0);
-		  disparos.agregar(d);
-		  break;
-	   }
+		   jugador.setVel(5.0f, 0.0f);
+		   break;
 	   case GLUT_KEY_UP:
-	   {
-		  DisparoGel* d = new DisparoGel();
-		  Vector2D pos = jugador.getPos();
-		  d->setPos(pos.x, pos.y);
-		  d->setVel(0, 6.0f);
-		  disparos.agregar(d);
-		  break;
-	   }
+		   //Para que no pueda saltar en el aire
+		   if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
+			   jugador.salto(19.0f);
+		   break;
+	}
+}
+void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
+{
+	switch (key)
+	{
+	case GLUT_KEY_LEFT:
+		jugador.setVel(0.0f, 0.0f);
+		break;
+	case GLUT_KEY_RIGHT:
+		jugador.setVel(0.0f, 0.0f);
+		break;
+	case GLUT_KEY_UP:
+		//Para que no pueda saltar en el aire
+		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
+			jugador.salto(19.0f);
+		break;
 	}
 }
 
@@ -98,19 +98,32 @@ void Juego::tecla(unsigned char key)
 	{
 	case 'w':
 	{
-		//Para que no pueda saltar en el aire
-		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
-		jugador.salto(19.0f);
+		DisparoGel* d = new DisparoGel();
+		Vector2D pos = jugador.getPos();
+		d->setPos(pos.x, pos.y);
+		d->setVel(0, 6.0f);
+		disparos.agregar(d);
 		break;
 	}
 	case 'a':
-		jugador.setVel(-5.0f,0.0f);
-		//jugador.movLateral(-0.25f);
+	{
+		//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
+		DisparoGel* d = new DisparoGel();
+		Vector2D pos = jugador.getPos();
+		d->setPos(pos.x, pos.y);
+		d->setVel(-6.0f, 0);
+		disparos.agregar(d);
 		break;
+	}
 	case 'd':
-		jugador.setVel(5.0f,0.0f);
-		//jugador.movLateral(0.25f);
+	{
+		DisparoGel* d = new DisparoGel();
+		Vector2D pos = jugador.getPos();
+		d->setPos(pos.x, pos.y);
+		d->setVel(6.0f, 0);
+		disparos.agregar(d);
 		break;
+	}
 	case '1':
 		enemigos.agregar(new Enemigo(2.0f, 0.0f, 10.0f, -1.0f,0.0f));
 		break;

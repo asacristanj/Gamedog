@@ -31,10 +31,10 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 
 	if (Interaccion::colisionDebajo(j, p))
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
-	if (Interaccion::colisionLadoDer(j, p))
+	/*if (Interaccion::colisionLadoDer(j, p))
 		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma
 	if (Interaccion::colisionLadoIzq(j, p))
-		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma
+		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma*/
 }
 //funcion que hace que el bonus no se vaya del escenario y choque en las plataformas:
 void Interaccion::rebote(Bonus& b, Plataforma p) {

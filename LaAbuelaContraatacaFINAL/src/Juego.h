@@ -29,6 +29,7 @@ public:
 	void mueve();
 	void dibuja();
 	void teclaEspecial(unsigned char key);
+	void teclaEspecialUp(unsigned char key);
 };
 
 
