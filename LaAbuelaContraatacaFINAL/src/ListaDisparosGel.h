@@ -10,16 +10,20 @@ private:
 public:
 	ListaDisparosGel();
 	virtual ~ListaDisparosGel();
+
 	bool agregar(DisparoGel* d);
 	void destruirContenido();
-	void mueve(float t);
-	void dibuja();
-	void colision(Plataforma p);
-	void colision(Escenario e);
-	DisparoGel* operator[](int i);
-	int getNumero() { return numero; }
 	void eliminar(int index);
 	void eliminar(DisparoGel* d);
+
+	void mueve(float t);
+	void dibuja();
+
+	void colision(Plataforma p);
+	void colision(Escenario e);
+
+	DisparoGel* operator[](int i);
+	int getNumero() { return numero; }
 };
 
 

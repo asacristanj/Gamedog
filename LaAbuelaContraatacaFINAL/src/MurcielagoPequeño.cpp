@@ -1,6 +1,7 @@
 #include "MurcielagoPequeño.h"
 MurcielagoPequeño::MurcielagoPequeño()
 {
+	tipo = MURCIELAGOPEQUEÑO;
 	altura = 0.4f;
 	posicion.x = 0.0f;
 	posicion.y = 10.0f;
