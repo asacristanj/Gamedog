@@ -196,13 +196,24 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 {
 	//Función que manda un booleano si ha habido contacto entre un disparo y un enemigo. Coge ambas posiciones y mide la distancia entre ellas.
 	//un vector para la diferencia de posiciones y dos floats para las distancias a comparar
-	Vector2D pos=enem.getPos(),diferencia = enem.posicion-pos;
-	float distancia = diferencia.modulo(),radios=enem.altura+d.getRadio();
-	if (distancia <= radios) 
+	Vector2D aux = d.getPos() - enem.posicion;
+	float distancia = aux.modulo();
+	if (distancia <= d.getRadio() + enem.getAltura())
 		return true;
 	return false;
 	
 }
+/*void Interaccion::colision(ListaEnemigos& e, ListaDisparosGel d) {
+	for (int i = 0; i < e.numero; i++) {
+		for (int j = 0; j < d.numero; j++) {
+			if (colision(*(d.lista[i]), *(e.lista[j]))) {
+				//al detectar colision entre la bola y el enemigo eliminamos el disparo
+				delete e.lista[i];
+				e.numero--;
+			}
+		}
+	}
+}*/
 /*bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.

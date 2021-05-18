@@ -6,6 +6,8 @@
 #include "Plataforma.h"
 #include "CepaBritanica.h"
 #include "Bonus.h"
+#include "ListaDisparosGel.h"
+#include "ListaEnemigos.h"
 class Interaccion
 {
 public:
@@ -27,6 +29,7 @@ public:
 	static bool colision(DisparoGel d, Enemigo enem);
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus b, Escenario e);
+	static void colision(ListaEnemigos& e, ListaDisparosGel d);
 	//static bool ratio(CepaBritanica brit, Jugador j);
 	//static void explotar(CepaBritanica& brit, Jugador j);
 };

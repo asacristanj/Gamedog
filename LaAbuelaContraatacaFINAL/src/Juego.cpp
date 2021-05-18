@@ -55,6 +55,7 @@ void Juego::mueve()
 	Interaccion::rebote(jugador, plataforma);
 	Interaccion::rebote(bonus, plataforma);
 	Interaccion::rebote(bonus, escenario);
+	enemigos.colision(disparos);
 }
 
 void Juego::teclaEspecial(unsigned char key)
