@@ -49,22 +49,38 @@ void ListaDisparosGel::colision(Escenario e)
 			numero--;
 		}
 }
-/*DisparoGel* ListaDisparosGel::colision(Enemigo& e) {
-	for (int i = 0; i < numero; i++) {
-		if (Interaccion::colision(e, (*(lista[i])))) {
-			return lista[i];
-		}
-	}
-	return 0;
+DisparoGel* ListaDisparosGel:: operator[] (int i)
+{
+	if (i >= numero)//si me paso, devuelvo la ultima
+		i = numero - 1;
+	if (i < 0) //si el indice es negativo, devuelvo la primera
+		i = 0;
+	return lista[i];
 }
-*/
 void ListaDisparosGel::destruirContenido()
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
 }
-
+void ListaDisparosGel::eliminar(int index)
+{
+	if ((index < 0) || (index >= numero))
+		return;
+	delete lista[index];
+	numero--;
+	for (int i = index; i < numero; i++)
+		lista[i] = lista[i + 1];
+}
+void ListaDisparosGel::eliminar(DisparoGel* d)
+{
+	for (int i = 0; i < numero; i++)
+		if (lista[i] == d)
+		{
+			eliminar(i);
+			return;
+		}
+}
 ListaDisparosGel :: ~ListaDisparosGel()
 {
 

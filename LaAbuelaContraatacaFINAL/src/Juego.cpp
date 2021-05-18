@@ -1,6 +1,7 @@
 #include "Juego.h"
 #include "freeglut.h"
 #include <math.h>
+#include "ETSIDI.h"
 void Juego::inicializa()
 {
 	x_ojo = 0;
@@ -55,7 +56,17 @@ void Juego::mueve()
 	Interaccion::rebote(jugador, plataforma);
 	Interaccion::rebote(bonus, plataforma);
 	Interaccion::rebote(bonus, escenario);
-	enemigos.colision(disparos);
+	for (int i = 0; i < enemigos.getNumero(); i++)
+	{
+		for (int j = 0; j < disparos.getNumero(); j++)
+		{
+			if (Interaccion::colision(*disparos[i], *enemigos[i]))
+			{
+				disparos.eliminar(disparos[i]);
+				enemigos.eliminar(enemigos[i]);
+			}
+		}
+	}
 }
 
 void Juego::teclaEspecial(unsigned char key)

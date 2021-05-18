@@ -14,5 +14,7 @@ public:
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	float getRadio() { return radio; }
+
+	friend class Interaccion;
 };
 

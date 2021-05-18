@@ -2,7 +2,6 @@
 #define MAX_DISPAROS 10
 #include "DisparoGel.h"
 #include "Interaccion.h"
-#include "ListaEnemigos.h"
 class ListaDisparosGel
 {
 private:
@@ -17,7 +16,10 @@ public:
 	void dibuja();
 	void colision(Plataforma p);
 	void colision(Escenario e);
-	friend class ListaEnemigos;
+	DisparoGel* operator[](int i);
+	int getNumero() { return numero; }
+	void eliminar(int index);
+	void eliminar(DisparoGel* d);
 };
 
 

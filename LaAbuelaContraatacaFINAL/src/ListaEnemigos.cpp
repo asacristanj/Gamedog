@@ -56,28 +56,7 @@ Enemigo* ListaEnemigos::colisionEncima(Jugador& j)
 	}
 	return 0; //no hay colisión
 }
-/*Enemigo* ListaEnemigos::colision(DisparoGel& d){
-	for (int i=0;i < numero; i++) {
-		if (Interaccion::colision(d, (*(lista[i])))) {
-			return lista[i];
-		}
-	}
-	return 0;
-}
-*/
-void ListaEnemigos::colision(ListaDisparosGel d) {
-	//Funcion que recorre la listas de disparos y enemigos y borra los enemigos cuando detecta una colision
-	for (int i = 0; i < numero; i++) {
-		for (int j = 0; j < d.numero; j++) {
-			if (Interaccion::colision(*(d.lista[i]), *(lista[j]))) {
-				//al detectar colision entre la bola y el enemigo eliminamos el enemigo
-				delete lista[i];
-				numero--;
-			}
-		}
-	}
-}
-Enemigo* ListaEnemigos::operator [](int i)
+Enemigo* ListaEnemigos:: operator[] (int i)
 {
 	if (i >= numero)//si me paso, devuelvo la ultima
 		i = numero - 1;

@@ -25,8 +25,6 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigo* enem);
-	friend class ListaDisparosGel;
-	void colision(ListaDisparosGel d);
 };
 
 
