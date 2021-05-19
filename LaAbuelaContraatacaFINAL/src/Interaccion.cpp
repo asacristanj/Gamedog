@@ -205,7 +205,7 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
-/*bool Interaccion::ratio(CepaBritanica brit, Jugador j)
+bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
@@ -214,10 +214,3 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
-void Interaccion::explotar(CepaBritanica &brit, Jugador j)
-{
-	if (Interaccion::ratio(brit, j))
-	{
-		brit.color.r = brit.color. b = 255;
-	}
-}*/

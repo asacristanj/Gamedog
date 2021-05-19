@@ -2,6 +2,8 @@
 #include "freeglut.h"
 #include <math.h>
 #include "ETSIDI.h"
+#include <time.h>
+
 void Juego::inicializa()
 {
 	x_ojo = 0;
@@ -11,13 +13,14 @@ void Juego::inicializa()
 	bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
 	enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
+	//enemigos.agregar(new CepaBritanica());
 }
 
 void Juego::moverOjo()
 {
 	//Se coge la posicion actual del jugador para centrarla en él y se suma una cantidad para ajustarlo al escenario
 	Vector2D pos = jugador.getPos();
-	y_ojo = pos.y+6.4f;
+	y_ojo = pos.y+5.0f;
 }
 
 void Juego::dibuja()
@@ -64,6 +67,23 @@ void Juego::mueve()
 			{
 				disparos.eliminar(disparos[i]);
 				enemigos.eliminar(enemigos[i]);
+			}
+		}
+	}
+	for (int i = 0; i < enemigos.getNumero(); i++)
+	{
+		if (Interaccion::ratio(brit, jugador))
+		{
+			brit.setVel(0, 0);
+			const int SEGUNDOS = 2; //Tiempo que tarda en explotar
+			int horaActual;
+			int horaInicio = (int)time(NULL);
+			horaActual = (int)time(NULL);
+			if ((horaActual - horaInicio) > SEGUNDOS)
+			{
+				brit.explotar();
+				if (Interaccion::ratio(brit, jugador))
+					jugador.morir();
 			}
 		}
 	}

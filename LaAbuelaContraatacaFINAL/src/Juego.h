@@ -7,6 +7,7 @@
 #include "Enemigo.h"
 #include "ListaEnemigos.h"
 #include "ListaDisparosGel.h"
+#include "CepaBritanica.h"
 class Juego
 {
 private:
@@ -20,7 +21,7 @@ private:
 	Plataforma plataforma;
 	ListaEnemigos enemigos;
 	ListaDisparosGel disparos;
-
+	CepaBritanica brit;
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);

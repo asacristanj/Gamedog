@@ -29,8 +29,8 @@ public:
 	static bool colision(DisparoGel d, Enemigo enem);
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus b, Escenario e);
-	//static bool ratio(CepaBritanica brit, Jugador j);
-	//static void explotar(CepaBritanica& brit, Jugador j);
+	static bool ratio(CepaBritanica brit, Jugador j);
+	static void explotar(CepaBritanica& brit, Jugador j);
 };
 
 
