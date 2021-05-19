@@ -70,7 +70,7 @@ void Juego::mueve()
 			}
 		}
 	}
-	for (int i = 0; i < enemigos.getNumero(); i++)
+	/*for (int i = 0; i < enemigos.getNumero(); i++)
 	{
 		if (Interaccion::ratio(brit, jugador))
 		{
@@ -86,7 +86,7 @@ void Juego::mueve()
 					jugador.morir();
 			}
 		}
-	}
+	}*/
 }
 
 void Juego::teclaEspecial(unsigned char key)
