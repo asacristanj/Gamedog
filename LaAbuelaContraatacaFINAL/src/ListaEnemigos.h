@@ -17,6 +17,7 @@ public:
 	bool agregar(Enemigo* enem);
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
+	void rebote(Jugador& j);
 	Enemigo* colision(Jugador& j);
 	Enemigo* colisionEncima(Jugador& j);
 	//Enemigo* colision(DisparoGel& d);

@@ -110,6 +110,21 @@ void Interaccion::rebote(CepaBritanica& brit, Plataforma p)
 	float ymin = p.limite1.y;
 	if ((brit.posicion.y - brit.altura) < ymin) brit.posicion.y = ymin + brit.altura;
 }
+/*bool Interaccion::rebote(CepaIndia& ind, Jugador j)
+{
+	if (Interaccion::colision(ind, j))
+	{
+		j.morir();
+		return false;
+	}
+	else if (Interaccion::colisionEncima(ind, j))
+		return true;
+}
+void Interaccion::rebote(CepaChina& chin, Jugador j)
+{
+	if (Interaccion::colision(chin, j) || Interaccion::colisionEncima(chin, j))
+		j.morir();
+}*/
 void Interaccion::rebote(Enemigo& enem, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
@@ -130,7 +145,6 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	//float enemh = (enem.getAltura()/2), jh=(j.getAltura()/2);
 	float distancia = (enem.getPos() - pos).modulo();
 	if ((distancia <= (enem.altura + (j.altura/2))) && (enem.posicion.y  >= j.posicion.y))
 		return true;
@@ -140,7 +154,6 @@ bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	//float enemh = (enem.getAltura() / 2), jh = (j.getAltura() / 2);
 	float distancia = (enem.getPos() - pos).modulo();
 	if ((distancia <= (enem.altura + (j.altura / 2))) && (enem.posicion.y < j.posicion.y))
 		return true;

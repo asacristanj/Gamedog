@@ -50,6 +50,27 @@ void ListaEnemigos::rebote(Escenario e)
 	for (int i = 0; i < numero; i++)
 		Interaccion::rebote(*(lista[i]), e);
 }
+void ListaEnemigos::rebote(Jugador& j)
+{
+	for (int i = numero - 1; i >= 0; i--)
+	{
+		int tipo = lista[i]->getTipo();
+		if (tipo == CEPAINDIA)
+		{
+			CepaIndia* ind = (CepaIndia*)lista[i];
+			if (Interaccion::colisionEncima(*ind, j))
+				eliminar(i);
+			else if (Interaccion::colision(*ind, j))
+				j.morir();
+		}
+		if (tipo == CEPACHINA)
+		{
+			CepaChina* chin = (CepaChina*)lista[i];
+		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j))
+			j.morir();
+		}
+	}
+}
 Enemigo* ListaEnemigos::colision(Jugador& j)
 {
 	for (int i = 0; i < numero; i++)

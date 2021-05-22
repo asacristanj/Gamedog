@@ -13,8 +13,10 @@ void Juego::inicializa()
 	bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
-	enemigos.agregar(new CepaBritanica(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
-	enemigos.agregar(new CepaIndia(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(1.5f, 2.0f, 5.0f, -2.0f, 0.0f));
+	enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
+	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+	
 }
 
 void Juego::moverOjo()
@@ -46,14 +48,15 @@ void Juego::mueve()
 	disparos.mueve(0.025f);
 	//enemigos.rebote(escenario);
 	enemigos.rebote(plataforma);
+	enemigos.rebote(jugador);
 	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
-	Enemigo* aux = enemigos.colision(jugador);
+	/*Enemigo* aux = enemigos.colision(jugador);
 	Enemigo* aux1 = enemigos.colisionEncima(jugador);
 	//funcion que regula que el disparo elimina al enemigo
 	if (aux != 0)//si algún enemigo ha chocado
 		jugador.morir();
 	else if (aux1 != 0)//si algún enemigo ha chocado
-		enemigos.eliminar(aux1);
+		enemigos.eliminar(aux1);*/
 	disparos.colision(escenario);
 	disparos.colision(plataforma);
 	Interaccion::rebote(jugador, escenario);
