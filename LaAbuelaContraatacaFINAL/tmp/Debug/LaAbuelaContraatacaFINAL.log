@@ -1,3 +1,14 @@
-﻿  Juego.cpp
+﻿  CepaBrasileña.cpp
+  CepaBritanica.cpp
+  CepaChina.cpp
+  CepaIndia.cpp
+  Enemigo.cpp
+  Interaccion.cpp
+  Juego.cpp
+  ListaDisparosGel.cpp
+  ListaEnemigos.cpp
+  MurcielagoBoss.cpp
+  MurcielagoPequeño.cpp
+  Generando código...
   LINK : no se encontró C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

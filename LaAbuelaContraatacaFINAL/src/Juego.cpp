@@ -12,8 +12,9 @@ void Juego::inicializa()
 
 	bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
-	enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica());
+	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaBritanica(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 }
 
 void Juego::moverOjo()

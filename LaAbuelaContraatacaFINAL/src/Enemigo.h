@@ -21,7 +21,7 @@ public:
 	Enemigo();
 	Enemigo(float alt, float x = 0.0f, float y = 0.0f, float vx = 0.0f, float vy = 0.0f);
 	virtual ~Enemigo();
-	void dibuja();
+	virtual void dibuja();
 	void mueve(float t);
 	void setColor(Byte r, Byte v, Byte a);
 	void setAltura(float alt);

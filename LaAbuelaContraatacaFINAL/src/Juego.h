@@ -8,6 +8,7 @@
 #include "ListaEnemigos.h"
 #include "ListaDisparosGel.h"
 #include "CepaBritanica.h"
+#include "CepaIndia.h"
 class Juego
 {
 private:
