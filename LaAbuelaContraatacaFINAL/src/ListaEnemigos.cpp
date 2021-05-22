@@ -30,8 +30,20 @@ void ListaEnemigos::mueve(float t)
 }
 void ListaEnemigos::rebote(Plataforma p)
 {
-	for (int i = 0; i < numero; i++)
-		Interaccion::rebote(*(lista[i]), p);
+	for (int i = numero - 1; i >= 0; i--)
+	{
+		int tipo = lista[i]->getTipo();
+		if (tipo == CEPAINDIA)
+		{
+			CepaIndia* ind = (CepaIndia*)lista[i];
+			Interaccion::rebote(*ind, p);
+		}
+		if (tipo == CEPABRITANICA)
+		{
+			CepaBritanica* brit = (CepaBritanica*)lista[i];
+			Interaccion::rebote(*brit, p);
+		}
+	}
 }
 void ListaEnemigos::rebote(Escenario e)
 {

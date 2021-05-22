@@ -53,7 +53,7 @@ void Interaccion::rebote(Bonus& b, Escenario e) {
 		b.aceleracion.y = 0;
 	}
 }
-void Interaccion::rebote(Enemigo& enem, Plataforma p)
+/*void Interaccion::rebote(Enemigo& enem, Plataforma p)
 {
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = p.limite2.x;
@@ -71,6 +71,44 @@ void Interaccion::rebote(Enemigo& enem, Plataforma p)
 
 	float ymin = p.limite1.y;
 	if ((enem.posicion.y - enem.altura) < ymin) enem.posicion.y = ymin + enem.altura;
+}*/
+void Interaccion::rebote(CepaIndia& ind, Plataforma p)
+{
+	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = p.limite2.x;
+	float xmin = p.limite1.x;
+	if (ind.posicion.x > xmax)
+	{
+		ind.posicion.x = xmax;
+		ind.velocidad.x = -1.0f;
+	}
+	if (ind.posicion.x < xmin)
+	{
+		ind.posicion.x = xmin;
+		ind.velocidad.x = 1.0f;
+	}
+
+	float ymin = p.limite1.y;
+	if ((ind.posicion.y - ind.altura) < ymin) ind.posicion.y = ymin + ind.altura;
+}
+void Interaccion::rebote(CepaBritanica& brit, Plataforma p)
+{
+	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = p.limite2.x;
+	float xmin = p.limite1.x;
+	if (brit.posicion.x > xmax)
+	{
+		brit.posicion.x = xmax;
+		brit.velocidad.x = -6.0f;
+	}
+	if (brit.posicion.x < xmin)
+	{
+		brit.posicion.x = xmin;
+		brit.velocidad.x = 6.0f;
+	}
+
+	float ymin = p.limite1.y;
+	if ((brit.posicion.y - brit.altura) < ymin) brit.posicion.y = ymin + brit.altura;
 }
 void Interaccion::rebote(Enemigo& enem, Escenario e)
 {

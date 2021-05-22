@@ -5,6 +5,7 @@
 #include "Escenario.h"
 #include "Plataforma.h"
 #include "CepaBritanica.h"
+#include "CepaIndia.h"
 #include "Bonus.h"
 #include "ListaDisparosGel.h"
 #include "ListaEnemigos.h"
@@ -20,7 +21,9 @@ public:
 	static void rebote(Jugador& j, Plataforma p);
 	static void rebote(Bonus& b, Plataforma p);
 	static void rebote(Bonus& b, Escenario e);
-	static void rebote(Enemigo& enem, Plataforma p);
+	//static void rebote(Enemigo& enem, Plataforma p);
+	static void rebote(CepaBritanica& brit, Plataforma p);
+	static void rebote(CepaIndia& ind, Plataforma p);
 	static void rebote(Enemigo& enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);
 	static bool colisionEncima(Enemigo enem, Jugador j);
