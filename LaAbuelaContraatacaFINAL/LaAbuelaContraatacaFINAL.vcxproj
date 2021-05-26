@@ -151,10 +151,12 @@
     <ClCompile Include="src\DisparoGel.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Escenario.cpp" />
+    <ClCompile Include="src\Factoria.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\Juego.cpp" />
     <ClCompile Include="src\Jugador.cpp" />
     <ClCompile Include="src\LaAbuelaContraataca.cpp" />
+    <ClCompile Include="src\ListaBonus.cpp" />
     <ClCompile Include="src\ListaDisparosGel.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
     <ClCompile Include="src\MurcielagoBoss.cpp" />
@@ -173,9 +175,11 @@
     <ClInclude Include="src\DisparoGel.h" />
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Escenario.h" />
+    <ClInclude Include="src\Factoria.h" />
     <ClInclude Include="src\Interaccion.h" />
     <ClInclude Include="src\Juego.h" />
     <ClInclude Include="src\Jugador.h" />
+    <ClInclude Include="src\ListaBonus.h" />
     <ClInclude Include="src\ListaDisparosGel.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
     <ClInclude Include="src\MurcielagoBoss.h" />

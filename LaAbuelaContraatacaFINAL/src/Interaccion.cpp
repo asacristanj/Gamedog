@@ -226,6 +226,14 @@ bool Interaccion::colision(Bonus b, Escenario e) {//Funcion que manda true si ha
 	}
 	return false;
 }
+bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el jugador entr aen contacto con el bonus
+	Vector2D pos = j.getPos();
+	float distancia = (b.getPos() - pos).modulo();
+	if ((distancia <= (b.lado + (j.altura / 2))) && (b.posicion.y < j.posicion.y)) {
+		return true;
+	}
+	return false;
+}
 bool Interaccion::colision(DisparoGel d, Plataforma p)
 {
 	//Función que manda un booleano si ha habido contacto entre un disparo y una plataforma. Coge ambas posiciones y mide la distancia entre ellas.

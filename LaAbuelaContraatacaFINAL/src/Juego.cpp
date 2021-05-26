@@ -10,9 +10,11 @@ void Juego::inicializa()
 	y_ojo = 7.5;
 	z_ojo = 30;
 
-	bonus.setPos(5.0f, 5.0f);
+	//bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
+	//Agregamos un bonus inicial
+	bonuses.agregar(new Bonus);
 	enemigos.agregar(new CepaIndia(1.5f, 2.0f, 5.0f, -2.0f, 0.0f));
 	enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
@@ -35,7 +37,7 @@ void Juego::dibuja()
 	escenario.dibuja();
 	jugador.dibuja();
 	plataforma.dibuja();
-	bonus.dibuja();
+	bonuses.dibuja();
 	enemigos.dibuja();
 	disparos.dibuja();
 }
@@ -43,7 +45,7 @@ void Juego::dibuja()
 void Juego::mueve()
 {
 	jugador.mueve(0.025f);
-	bonus.mueve(0.025f);
+	bonuses.mueve(0.025f);
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
 	//enemigos.rebote(escenario);
@@ -59,10 +61,13 @@ void Juego::mueve()
 		enemigos.eliminar(aux1);*/
 	disparos.colision(escenario);
 	disparos.colision(plataforma);
+	bonuses.rebote(escenario);
+	bonuses.rebote(plataforma);
+	bonuses.rebote(jugador);
 	Interaccion::rebote(jugador, escenario);
 	Interaccion::rebote(jugador, plataforma);
-	Interaccion::rebote(bonus, plataforma);
-	Interaccion::rebote(bonus, escenario);
+	//Interaccion::rebote(bonus, plataforma);
+	//Interaccion::rebote(bonus, escenario);
 	for (int i = 0; i < enemigos.getNumero(); i++)
 	{
 		for (int j = 0; j < disparos.getNumero(); j++)
@@ -90,7 +95,7 @@ void Juego::mueve()
 					jugador.morir();
 			}
 		}
-	}*/
+	}*/ 
 }
 
 void Juego::teclaEspecial(unsigned char key)
@@ -169,4 +174,5 @@ Juego::~Juego()
 {
 	enemigos.destruirContenido();
 	disparos.destruirContenido();
+	bonuses.destruirContenido();
 }

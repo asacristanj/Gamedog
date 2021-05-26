@@ -6,6 +6,7 @@ Jugador::Jugador()
 	aceleracion.y = acel_inicial;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
+	numbonus = 0;
 }
 void Jugador::dibuja()
 {
@@ -26,6 +27,15 @@ void Jugador::movLateral(float ix)
 void Jugador::morir()
 {
 	altura = 0.0f;
+}
+//void Jugador::IncrementaNumBonus() {
+
+//}
+void Jugador::setNumBonus(int num){
+	num = numbonus;
+}
+int Jugador::GetNumBonus() {
+	return numbonus;
 }
 Jugador :: ~Jugador()
 {

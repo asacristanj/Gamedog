@@ -7,6 +7,7 @@
 #include "Enemigo.h"
 #include "ListaEnemigos.h"
 #include "ListaDisparosGel.h"
+#include "ListaBonus.h"
 #include "CepaBritanica.h"
 #include "CepaIndia.h"
 class Juego
@@ -22,6 +23,7 @@ private:
 	Plataforma plataforma;
 	ListaEnemigos enemigos;
 	ListaDisparosGel disparos;
+	ListaBonus bonuses;
 	CepaBritanica brit;
 public:
 	virtual ~Juego();

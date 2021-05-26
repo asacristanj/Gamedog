@@ -7,7 +7,8 @@ private:
 	float altura;
 	float acel_inicial = -30.0f;
 	float impulso = 10.0f; //impulso vertical inicial del salto
-
+protected:
+	int numbonus;
 public:
 	Jugador();
 	virtual ~Jugador();
@@ -16,6 +17,9 @@ public:
 	void movLateral(float ix);
 	void morir();
 	float getAltura() { return altura; }
+	//void IncrementaNumBonus();
+	void setNumBonus(int num);
+	int GetNumBonus();
 
 	friend class Interaccion;
 };
