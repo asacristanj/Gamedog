@@ -7,6 +7,7 @@
 #include "CepaBritanica.h"
 #include "CepaIndia.h"
 #include "CepaChina.h"
+#include "CepaBrasileña.h"
 #include "Bonus.h"
 #include "ListaDisparosGel.h"
 #include "ListaEnemigos.h"
@@ -22,12 +23,13 @@ public:
 	static void rebote(Jugador& j, Plataforma p);
 	static void rebote(Bonus& b, Plataforma p);
 	static void rebote(Bonus& b, Escenario e);
-	//static void rebote(Enemigo& enem, Plataforma p);
 	static void rebote(CepaBritanica& brit, Plataforma p);
 	static void rebote(CepaIndia& ind, Plataforma p);
-	static void rebote(CepaChina& chin, Jugador j);
-	static bool rebote(CepaIndia& ind, Jugador j);
-	static void rebote(Enemigo& enem, Escenario e);
+	static void rebote(CepaBrasileña& bra, Plataforma p);
+	static bool rebote(Enemigo enem, Plataforma p);
+	static void rebote(CepaBritanica& brit, Escenario e);
+	static void rebote(CepaIndia& ind, Escenario e);
+	static bool rebote(Enemigo enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);
 	static bool colisionEncima(Enemigo enem, Jugador j);
 	static bool colision(DisparoGel d, Plataforma p);
@@ -37,7 +39,6 @@ public:
 	static bool colision(Bonus b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
-	static void explotar(CepaBritanica& brit, Jugador j);
 };
 
 

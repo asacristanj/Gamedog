@@ -2,7 +2,6 @@
 #include "freeglut.h"
 #include <math.h>
 #include "ETSIDI.h"
-#include <time.h>
 
 void Juego::inicializa()
 {
@@ -11,12 +10,12 @@ void Juego::inicializa()
 	z_ojo = 30;
 
 	//bonus.setPos(5.0f, 5.0f);
-	plataforma.setPos(-3.0f, 4.0f, 3.0f, 4.0f);
+	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	bonuses.agregar(new Bonus);
-	enemigos.agregar(new CepaIndia(1.5f, 2.0f, 5.0f, -2.0f, 0.0f));
-	enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaBrasileña(1.5f, 2.0f, 10.0f, -0.5f, 0.0f));
+	//enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	
 }

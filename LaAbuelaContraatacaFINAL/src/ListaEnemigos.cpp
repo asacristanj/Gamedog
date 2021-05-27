@@ -1,4 +1,5 @@
 #include "ListaEnemigos.h"
+#include <time.h>
 ListaEnemigos::ListaEnemigos()
 {
 	numero = 0;
@@ -43,12 +44,47 @@ void ListaEnemigos::rebote(Plataforma p)
 			CepaBritanica* brit = (CepaBritanica*)lista[i];
 			Interaccion::rebote(*brit, p);
 		}
+		if (tipo == CEPABRASILEÑA)
+		{
+			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
+			Interaccion::rebote(*bra, p);
+		}
+		if (tipo == CEPACHINA)
+		{
+			CepaChina* chin = (CepaChina*)lista[i];
+			if (Interaccion::rebote(*chin, p))
+				eliminar(i);
+		}
 	}
 }
 void ListaEnemigos::rebote(Escenario e)
 {
-	for (int i = 0; i < numero; i++)
-		Interaccion::rebote(*(lista[i]), e);
+	for (int i = numero - 1; i >= 0; i--)
+	{
+		int tipo = lista[i]->getTipo();
+		if (tipo == CEPAINDIA)
+		{
+			CepaIndia* ind = (CepaIndia*)lista[i];
+			Interaccion::rebote(*ind, e);
+		}
+		if (tipo == CEPABRITANICA)
+		{
+			CepaBritanica* brit = (CepaBritanica*)lista[i];
+			Interaccion::rebote(*brit, e);
+		}
+		if (tipo == CEPABRASILEÑA)
+		{
+			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
+			if (Interaccion::rebote(*bra, e))
+				eliminar(i);
+		}
+		if (tipo == CEPACHINA)
+		{
+			CepaChina* chin = (CepaChina*)lista[i];
+			if (Interaccion::rebote(*chin, e))
+				eliminar(i);
+		}
+	}
 }
 void ListaEnemigos::rebote(Jugador& j)
 {
@@ -61,6 +97,57 @@ void ListaEnemigos::rebote(Jugador& j)
 			if (Interaccion::colisionEncima(*ind, j))
 				eliminar(i);
 			else if (Interaccion::colision(*ind, j))
+				j.morir();
+		}
+		if (tipo == CEPABRITANICA)
+		{
+			CepaBritanica* brit = (CepaBritanica*)lista[i];
+			if (Interaccion::ratio(*brit, j))
+			{
+				brit->setVel(0, 0);
+				const int SEGUNDOS = 2; //Tiempo que tarda en explotar
+				int horaActual;
+				static int horaInicio = time(NULL);
+				horaActual = time(NULL);
+				if ((horaActual - horaInicio) >= SEGUNDOS)
+				{
+					if (Interaccion::ratio(*brit, j))
+					{
+						brit->explotar();
+						j.morir();
+					}
+					else
+						brit->explotar();
+				}
+			}
+		}
+		if (tipo == CEPABRASILEÑA)
+		{
+			CepaIndia* bra = (CepaIndia*)lista[i];
+			if (Interaccion::colisionEncima(*bra, j))
+			{
+				bra->setAltura(0.4f);
+				bra->setVel(0.0f, 0.0f);
+				Vector2D posj = j.getPos();
+				Vector2D posenem = bra->getPos();
+				const int SEGUNDOS = 10; //Tiempo que tarda en explotar
+				int horaActual;
+				static int horaInicio = time(NULL);
+				horaActual = time(NULL);
+				if ((horaActual - horaInicio) < SEGUNDOS)
+				{
+					if ((Interaccion::colisionEncima(*bra, j) || Interaccion::colision(*bra, j)) && posj.x >= posenem.x)
+						bra->setVel(5.0f, 0.0f);
+					if ((Interaccion::colisionEncima(*bra, j) || Interaccion::colision(*bra, j)) && posj.x < posenem.x)
+						bra->setVel(-5.0f, 0.0f);
+					if ((horaActual - horaInicio) >= SEGUNDOS)
+					{
+						bra->setAltura(1.0f);
+						bra->setVel(1.0f, 0.0f);
+					}
+				}
+			}
+			else if (Interaccion::colision(*bra, j))
 				j.morir();
 		}
 		if (tipo == CEPACHINA)

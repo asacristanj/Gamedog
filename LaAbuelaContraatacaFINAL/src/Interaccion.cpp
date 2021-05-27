@@ -25,6 +25,7 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 		// freno al personaje
 		j.velocidad.y = 0.0f;
 		j.aceleracion.y = 0.0f;
+		j.posicion.y = y + j.altura;
 	}
 	else
 		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial
@@ -80,12 +81,12 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 	if (ind.posicion.x > xmax)
 	{
 		ind.posicion.x = xmax;
-		ind.velocidad.x = -1.0f;
+		ind.velocidad.x = -5.0f;
 	}
 	if (ind.posicion.x < xmin)
 	{
 		ind.posicion.x = xmin;
-		ind.velocidad.x = 1.0f;
+		ind.velocidad.x = 5.0f;
 	}
 
 	float ymin = p.limite1.y;
@@ -99,16 +100,35 @@ void Interaccion::rebote(CepaBritanica& brit, Plataforma p)
 	if (brit.posicion.x > xmax)
 	{
 		brit.posicion.x = xmax;
-		brit.velocidad.x = -6.0f;
+		brit.velocidad.x = -3.0f;
 	}
 	if (brit.posicion.x < xmin)
 	{
 		brit.posicion.x = xmin;
-		brit.velocidad.x = 6.0f;
+		brit.velocidad.x = 3.0f;
 	}
 
 	float ymin = p.limite1.y;
 	if ((brit.posicion.y - brit.altura) < ymin) brit.posicion.y = ymin + brit.altura;
+}
+void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
+{
+	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = p.limite2.x;
+	float xmin = p.limite1.x;
+	float ymin = p.limite1.y;
+	if ((bra.posicion.y - bra.altura) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
+		bra.posicion.y = ymin + bra.altura;
+}
+bool Interaccion::rebote(Enemigo enem, Plataforma p)
+{
+	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = p.limite2.x;
+	float xmin = p.limite1.x;
+	float ymin = p.limite1.y;
+	if (((enem.posicion.y - enem.altura) < ymin) && enem.posicion.x>=xmin && enem.posicion.x <= xmax)
+		return true;
+	return false;
 }
 /*bool Interaccion::rebote(CepaIndia& ind, Jugador j)
 {
@@ -125,21 +145,46 @@ void Interaccion::rebote(CepaChina& chin, Jugador j)
 	if (Interaccion::colision(chin, j) || Interaccion::colisionEncima(chin, j))
 		j.morir();
 }*/
-void Interaccion::rebote(Enemigo& enem, Escenario e)
+void Interaccion::rebote(CepaIndia& ind, Escenario e)
 {
-	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = e.pared_dcha.limite2.x;
 	float xmin = e.pared_izq.limite2.x;
-	if (enem.posicion.x > xmax)
+	if (ind.posicion.x > xmax)
 	{
-		enem.posicion.x = xmax;
-		enem.velocidad.x = -4.0f;
+		ind.posicion.x = xmax;
+		ind.velocidad.x = -5.0f;
 	}
-	if (enem.posicion.x < xmin)
+	if (ind.posicion.x < xmin)
 	{
-		enem.posicion.x = xmin;
-		enem.velocidad.x = 4.0f;
+		ind.posicion.x = xmin;
+		ind.velocidad.x = 5.0f;
 	}
+}
+void Interaccion::rebote(CepaBritanica& brit, Escenario e)
+{
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = e.pared_dcha.limite2.x;
+	float xmin = e.pared_izq.limite2.x;
+	if (brit.posicion.x > xmax)
+	{
+		brit.posicion.x = xmax;
+		brit.velocidad.x = -3.0f;
+	}
+	if (brit.posicion.x < xmin)
+	{
+		brit.posicion.x = xmin;
+		brit.velocidad.x = 3.0f;
+	}
+}
+bool Interaccion::rebote(Enemigo enem, Escenario e)
+{
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = e.pared_dcha.limite2.x;
+	float xmin = e.pared_izq.limite2.x;
+	if (enem.posicion.x <= xmin && enem.posicion.x >= xmax)
+		return true;
+	return false;
 }
 bool Interaccion::colision(Enemigo enem, Jugador j)
 {
@@ -267,9 +312,13 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
-	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	float distancia = (brit.getPos() - pos).modulo();
-	if (distancia < ((brit.altura / 2.0f) + (j.altura / 2.0f)+3.0f))
+	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
+	posjugador.y -= j.getAltura();
+	Vector2D posenemigo = brit.getPos();
+	posenemigo.y -= brit.getAltura();
+	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
+	float distancia = (brit.getPos() - j.getPos()).modulo();
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f)+2.0f))
 		return true;
 	return false;
 }
