@@ -1,1 +1,19 @@
-﻿  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Astrazeneca.cpp
+  Bonus.cpp
+  MascarillaTocha.cpp
+  Interaccion.cpp
+  Janssen.cpp
+  Juego.cpp
+  LaAbuelaContraataca.cpp
+  ListaBonus.cpp
+  ListaDisparosGel.cpp
+  ListaEnemigos.cpp
+C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\ListaEnemigos.cpp(110,27): warning C4244: 'inicializando': conversión de 'time_t' a 'int'; posible pérdida de datos
+C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\ListaEnemigos.cpp(111,22): warning C4244: '=': conversión de 'time_t' a 'int'; posible pérdida de datos
+C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\ListaEnemigos.cpp(135,27): warning C4244: 'inicializando': conversión de 'time_t' a 'int'; posible pérdida de datos
+C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\ListaEnemigos.cpp(136,22): warning C4244: '=': conversión de 'time_t' a 'int'; posible pérdida de datos
+  Pfizer.cpp
+  Quirurgica.cpp
+  Sputnik.cpp
+  Generando código...
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

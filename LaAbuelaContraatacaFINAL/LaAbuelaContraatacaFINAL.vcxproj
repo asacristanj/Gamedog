@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Astrazeneca.cpp" />
     <ClCompile Include="src\Bonus.cpp" />
     <ClCompile Include="src\CepaBrasileña.cpp" />
     <ClCompile Include="src\CepaBritanica.cpp" />
@@ -152,7 +153,9 @@
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Escenario.cpp" />
     <ClCompile Include="src\Factoria.cpp" />
+    <ClCompile Include="src\MascarillaTocha.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
+    <ClCompile Include="src\Janssen.cpp" />
     <ClCompile Include="src\Juego.cpp" />
     <ClCompile Include="src\Jugador.cpp" />
     <ClCompile Include="src\LaAbuelaContraataca.cpp" />
@@ -162,10 +165,14 @@
     <ClCompile Include="src\MurcielagoBoss.cpp" />
     <ClCompile Include="src\MurcielagoPequeño.cpp" />
     <ClCompile Include="src\ObjetoMovil.cpp" />
+    <ClCompile Include="src\Pfizer.cpp" />
     <ClCompile Include="src\Plataforma.cpp" />
+    <ClCompile Include="src\Quirurgica.cpp" />
+    <ClCompile Include="src\Sputnik.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Astrazeneca.h" />
     <ClInclude Include="src\Bonus.h" />
     <ClInclude Include="src\CepaBrasileña.h" />
     <ClInclude Include="src\CepaBritanica.h" />
@@ -176,7 +183,9 @@
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Escenario.h" />
     <ClInclude Include="src\Factoria.h" />
+    <ClInclude Include="src\MascarillaTocha.h" />
     <ClInclude Include="src\Interaccion.h" />
+    <ClInclude Include="src\Janssen.h" />
     <ClInclude Include="src\Juego.h" />
     <ClInclude Include="src\Jugador.h" />
     <ClInclude Include="src\ListaBonus.h" />
@@ -185,7 +194,10 @@
     <ClInclude Include="src\MurcielagoBoss.h" />
     <ClInclude Include="src\MurcielagoPequeño.h" />
     <ClInclude Include="src\ObjetoMovil.h" />
+    <ClInclude Include="src\Pfizer.h" />
     <ClInclude Include="src\Plataforma.h" />
+    <ClInclude Include="src\Quirurgica.h" />
+    <ClInclude Include="src\Sputnik.h" />
     <ClInclude Include="src\Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
