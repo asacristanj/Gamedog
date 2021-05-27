@@ -36,20 +36,7 @@ void ListaBonus::rebote(Plataforma p)
 		Interaccion::rebote(*bon, p);
 	}
 }
-/*
-		int tipo = lista[i]->getTipo();
-		if (tipo == CEPAINDIA)
-		{
-			CepaIndia* ind = (CepaIndia*)lista[i];
-			Interaccion::rebote(*ind, p);
-		}
-		if (tipo == CEPABRITANICA)
-		{
-			CepaBritanica* brit = (CepaBritanica*)lista[i];
-			Interaccion::rebote(*brit, p);
-		}
-	}
-}*/
+
 void ListaBonus::rebote(Escenario e)
 {
 	for (int i = 0; i < numero; i++)
@@ -64,24 +51,9 @@ void ListaBonus::rebote(Jugador& j)
 			eliminar(i);
 		}
 	}
-}
-/*int tipo = lista[i]->getTipo();
-		if (tipo == CEPAINDIA)
-		{
-			CepaIndia* ind = (CepaIndia*)lista[i];
-			if (Interaccion::colisionEncima(*ind, j))
-				eliminar(i);
-			else if (Interaccion::colision(*ind, j))
-				j.morir();
-		}
-		if (tipo == CEPACHINA)
-		{
-			CepaChina* chin = (CepaChina*)lista[i];
-			if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j))
-				j.morir();
-		}
-	}
-}*/
+ }
+
+
 Bonus* ListaBonus::colision(Jugador& j)
 {
 	for (int i = 0; i < numero; i++)
