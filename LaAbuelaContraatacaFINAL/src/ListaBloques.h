@@ -15,7 +15,6 @@ public:
 	bool agregar(BloqueSorpresa* b);
 	int getNumero() { return numero; }
 	void destruirContenido();
-
-
+	void rebote(Jugador& j);
 };
 

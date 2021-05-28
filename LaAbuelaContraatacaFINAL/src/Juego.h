@@ -8,6 +8,8 @@
 #include "ListaEnemigos.h"
 #include "ListaDisparosGel.h"
 #include "ListaBonus.h"
+#include "ListaBloques.h"
+#include "BloqueSorpresa.h"
 #include "CepaBritanica.h"
 #include "CepaIndia.h"
 #include "Astrazeneca.h"
@@ -31,6 +33,7 @@ private:
 	ListaDisparosGel disparos;
 	ListaBonus bonuses;
 	CepaBritanica brit;
+	ListaBloques bloques;
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);

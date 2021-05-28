@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Astrazeneca.cpp" />
+    <ClCompile Include="src\BloqueSorpresa.cpp" />
     <ClCompile Include="src\Bonus.cpp" />
     <ClCompile Include="src\CepaBrasileña.cpp" />
     <ClCompile Include="src\CepaBritanica.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Escenario.cpp" />
     <ClCompile Include="src\Factoria.cpp" />
+    <ClCompile Include="src\ListaBloques.cpp" />
     <ClCompile Include="src\MascarillaTocha.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\Janssen.cpp" />
@@ -173,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Astrazeneca.h" />
+    <ClInclude Include="src\BloqueSorpresa.h" />
     <ClInclude Include="src\Bonus.h" />
     <ClInclude Include="src\CepaBrasileña.h" />
     <ClInclude Include="src\CepaBritanica.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Escenario.h" />
     <ClInclude Include="src\Factoria.h" />
+    <ClInclude Include="src\ListaBloques.h" />
     <ClInclude Include="src\MascarillaTocha.h" />
     <ClInclude Include="src\Interaccion.h" />
     <ClInclude Include="src\Janssen.h" />

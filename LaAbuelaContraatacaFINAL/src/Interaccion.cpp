@@ -335,3 +335,39 @@ bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
 		return true;
 	return false;
 }
+bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) {
+	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
+	Vector2D aux,bloque=b.posicion,jugador=j.getPos();
+	float radio = j.getAltura(), l = b.lado * 0.5f;
+	aux = bloque - jugador;
+	float distancia = aux.modulo();
+	if ((distancia <= radio + l)&& (jugador.y<=bloque.y)) {
+		return true;
+
+	}
+	else 
+		return false;
+}
+bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b) {
+	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
+	float radio = j.getAltura(), l = b.lado * 0.5f;
+	aux = bloque - jugador;
+	float distancia = aux.modulo();
+	if ((distancia <= radio + l) && (jugador.y >= bloque.y))
+		return true;
+	return false;
+}
+void Interaccion::rebote(Jugador& j,BloqueSorpresa b) {
+	//Si el choque se produce desde abajo
+	if (Interaccion::colisionDebajo(j, b)) {
+		j.velocidad.y = -5.0f;
+		b.usado = true;
+		//Generacion de un numero aleatorio para poder generar uno de los distintos tipos de bonus
+	}
+	if (Interaccion::colisionEncima(j, b)) {
+		float y = b.posicion.y+b.getlado()*0.5f;
+		j.velocidad.y = 0.0f;
+		j.aceleracion.y = 0.0f;
+		j.posicion.y =y+ j.altura;
+	}
+}

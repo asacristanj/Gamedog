@@ -1,5 +1,6 @@
 #pragma once
 #include "Jugador.h"
+#include "BloqueSorpresa.h"
 #include "Enemigo.h"
 #include "DisparoGel.h"
 #include "Escenario.h"
@@ -40,6 +41,9 @@ public:
 	static bool colision(Bonus b, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
 	static bool ratioExplosion(CepaBritanica brit, Jugador j);
+	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
+	static bool colisionEncima(Jugador j, BloqueSorpresa b);
+	static void rebote(Jugador& j, BloqueSorpresa b);
 };
 
 

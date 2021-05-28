@@ -22,7 +22,7 @@ void Juego::inicializa()
 	enemigos.agregar(new CepaBritanica(1.5f, 2.0f, 10.0f, -0.5f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
-	
+	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
 
 void Juego::moverOjo()
@@ -44,6 +44,7 @@ void Juego::dibuja()
 	bonuses.dibuja();
 	enemigos.dibuja();
 	disparos.dibuja();
+	bloques.dibuja();
 }
 
 void Juego::mueve()
@@ -100,6 +101,7 @@ void Juego::mueve()
 			}
 		}
 	}*/ 
+	bloques.rebote(jugador);
 }
 
 void Juego::teclaEspecial(unsigned char key)

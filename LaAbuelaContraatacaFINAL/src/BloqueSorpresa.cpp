@@ -1,8 +1,9 @@
 #include "BloqueSorpresa.h"
 
 BloqueSorpresa::BloqueSorpresa() {
-	color.b= 0;
-	color.g = color.b = 255;
+	color.r = 255;
+	color.g = 223;
+	color.b = 0;
 	posicion.x = posicion.y = 0;
 	lado = 1.0f;
 	usado = false;
@@ -22,8 +23,8 @@ BloqueSorpresa::~BloqueSorpresa() {
 void BloqueSorpresa::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
-	glRotatef(30, 1, 1, 1);
-	glColor3f(color.r,color.b,color.g);//color aleatorio 
+	//glRotatef(30, 1, 1, 1);
+	glColor3f(color.r,color.g,color.b);//color aleatorio 
 	glutSolidCube(lado);
 	glPopMatrix();
 }

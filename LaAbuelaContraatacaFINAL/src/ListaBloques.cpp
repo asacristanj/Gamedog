@@ -24,6 +24,11 @@ bool ListaBloques::agregar(BloqueSorpresa *b){
 	return true;
 }
 void ListaBloques::destruirContenido() {
-	for (int i = 0; i < numero; i++)
+	for (int i = 0; i <numero; i++)
 		delete lista[i];
+}
+void ListaBloques::rebote(Jugador& j) {
+	for (int i = 0; i <numero; i++) {
+		Interaccion::rebote(j, *(lista[i]));
+	}
 }

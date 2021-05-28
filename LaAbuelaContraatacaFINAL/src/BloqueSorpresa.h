@@ -1,7 +1,7 @@
 #pragma once
-#include "Interaccion.h"
 #include "freeglut.h"
 #include "Vector2D.h"
+#include "ColorRVA.h"
 class BloqueSorpresa
 {
 private: 
@@ -13,7 +13,7 @@ public:
 	friend class Interaccion;
 	void dibuja();
 	BloqueSorpresa();
-	BloqueSorpresa(float l, float x, float y, unsigned char r = 255, unsigned char g = 255, unsigned char b = 100);
+	BloqueSorpresa(float l, float x, float y, unsigned char r = 255, unsigned char g = 223, unsigned char b = 0);
 	virtual ~BloqueSorpresa();
 	float getlado();
 	void setPos(float x, float y);
