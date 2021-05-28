@@ -20,7 +20,7 @@ public:
 	friend class Interaccion;
 	Bonus();
 	virtual ~Bonus();
-	void dibuja();
+	virtual void dibuja();
 	void mueve(float t);
 	float getlado() { return lado; }
 };

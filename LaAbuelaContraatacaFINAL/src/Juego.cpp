@@ -13,7 +13,12 @@ void Juego::inicializa()
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	bonuses.agregar(new Bonus);
+	bonuses.agregar(new Astrazeneca(0.5f,-5.0f,8));
+	//bonuses.agregar(new Janssen(0.5f,-4.0f,5));
+	//bonuses.agregar(new MascarillaTocha(3.0f,-0.5f,9));
+	//bonuses.agregar(new Pfizer(0.5f,1.0f,3));
+	//bonuses.agregar(new Quirurgica(3.0f,5.0f,10));
+	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	enemigos.agregar(new CepaBrasileña(1.5f, 2.0f, 10.0f, -0.5f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));

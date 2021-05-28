@@ -255,9 +255,9 @@ bool Interaccion::colisionSuelo(Jugador j, Escenario e)
 }
 bool Interaccion::colision(Bonus b, Plataforma p) {//Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
 	Vector2D pos = b.getPos();
-	pos.y -= b.getlado();//se le resta el lado para que se apoye en la superficie de abajo
+	pos.y += b.getlado()/2;//se le resta el lado para que se apoye en la superficie de abajo
 	float distancia = p.distancia(pos);
-	if (distancia <= 0.1f) {
+	if (distancia <= 0.1f+b.getlado()) {
 		return true;
 	}
 	return false;
@@ -274,7 +274,7 @@ bool Interaccion::colision(Bonus b, Escenario e) {//Funcion que manda true si ha
 bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el jugador entr aen contacto con el bonus
 	Vector2D pos = j.getPos();
 	float distancia = (b.getPos() - pos).modulo();
-	if ((distancia <= (b.lado + (j.altura / 2))) && (b.posicion.y < j.posicion.y)) {
+	if ((distancia <= (b.lado + (j.altura/2)))) {
 		return true;
 	}
 	return false;

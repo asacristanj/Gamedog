@@ -10,6 +10,12 @@
 #include "ListaBonus.h"
 #include "CepaBritanica.h"
 #include "CepaIndia.h"
+#include "Astrazeneca.h"
+#include "Janssen.h"
+#include "MascarillaTocha.h"
+#include "Pfizer.h"
+#include "Quirurgica.h"
+#include "Sputnik.h"
 class Juego
 {
 private:

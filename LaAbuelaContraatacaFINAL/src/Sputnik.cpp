@@ -8,3 +8,22 @@ Sputnik::Sputnik() {//constructor
 Sputnik::~Sputnik() {//destructor
 
 }
+Sputnik::Sputnik(float l, float x, float y, float vx, float vy)
+{
+	tipo = SPUTNIK;
+	lado = l;
+	posicion.x = x;
+	posicion.y = y;
+	velocidad.x = vx;
+	velocidad.y = vy;
+	color.g = 100;
+	color.b = color.r = 0;
+	aceleracion.y = -9.8;
+}
+void Sputnik::dibuja() {
+	glPushMatrix();
+	glTranslatef(posicion.x, posicion.y, 0);
+	glColor3f(0.0f, 100.0f, 0.0f);
+	glutSolidCube(lado);
+	glPopMatrix();
+}

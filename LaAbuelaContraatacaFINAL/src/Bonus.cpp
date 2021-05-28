@@ -2,8 +2,9 @@
 #include "freeglut.h" 
 Bonus::Bonus()
 {
-	posicion.x = 5.0f;
-	posicion.y = 5.0f;
+	tipo = NINGUNO;
+	posicion.x = 0.0f;
+	posicion.y = 1.0f;
 	lado = 1.0f;
 	aceleracion.y = -9.8f;
 }
