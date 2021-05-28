@@ -39,6 +39,7 @@ public:
 	static bool colision(Bonus b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
+	static bool ratioExplosion(CepaBritanica brit, Jugador j);
 };
 
 

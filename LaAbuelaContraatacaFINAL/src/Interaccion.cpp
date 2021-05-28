@@ -322,3 +322,16 @@ bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 		return true;
 	return false;
 }
+bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
+{
+	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
+	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
+	posjugador.y -= j.getAltura();
+	Vector2D posenemigo = brit.getPos();
+	posenemigo.y -= brit.getAltura();
+	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
+	float distancia = (brit.getPos() - j.getPos()).modulo();
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 3.0f))
+		return true;
+	return false;
+}

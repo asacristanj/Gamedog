@@ -102,22 +102,37 @@ void ListaEnemigos::rebote(Jugador& j)
 		if (tipo == CEPABRITANICA)
 		{
 			CepaBritanica* brit = (CepaBritanica*)lista[i];
+			const int SEGUNDOS = 2; //Tiempo que tarda en explotar
+			time_t horaActual = time(NULL);
 			if (Interaccion::ratio(*brit, j))
 			{
-				brit->setVel(0, 0);
-				const int SEGUNDOS = 2; //Tiempo que tarda en explotar
-				int horaActual;
-				static int horaInicio = time(NULL);
-				horaActual = time(NULL);
-				if ((horaActual - horaInicio) >= SEGUNDOS)
+				if (inicializar_hora_inicio == false)
 				{
-					if (Interaccion::ratio(*brit, j))
+					inicializar_hora_inicio = true;
+					horaInicio = time(NULL);
+				}
+				brit->setVel(0, 0);
+				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j))
+				{
+					brit->explotar();
+					j.morir();
+				}
+				else if ((horaActual - horaInicio) >= SEGUNDOS)
+				{
+					//brit->explotar();
+					if (Interaccion::ratioExplosion(*brit, j))
+						j.morir();
+				}
+			}
+			else
+			{
+				if (inicializar_hora_inicio == true)
+				{
+					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
 						brit->explotar();
-						j.morir();
+						inicializar_hora_inicio = false;
 					}
-					else
-						brit->explotar();
 				}
 			}
 		}
