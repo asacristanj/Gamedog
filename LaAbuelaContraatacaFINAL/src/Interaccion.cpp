@@ -1,6 +1,7 @@
 #include "Interaccion.h"
 #include "freeglut.h" 
 #include <math.h>
+#include <time.h>
 //#include <stdio.h>
 #define PI 3.141592
 void Interaccion::rebote(Jugador& j, Escenario e)
@@ -116,22 +117,32 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = p.limite2.x;
 	float xmin = p.limite1.x;
-	Vector2D posActual = bra.getPos();
-	if (bra.posicion.x  > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.0f && bra.posicion.x < -3.1f)
+	float ymin = p.limite1.y;
+	Vector2D deltax = bra.getPos();
+	//bra.posicion.x  > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.1f && bra.posicion.x < -3.0f
+	//(deltax.x - bra.posicion.x) >= 2.0f
+	/*if (bra.posicion.x > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.1f && bra.posicion.x < -3.0f)
 	{
 		bra.saltar();
+	}*/
+	float recorrido = deltax.x - bra.origenSalto.x;
+	if (recorrido < 0)
+		recorrido = -recorrido;
+	if (recorrido >= 2.1f)
+	{
+		bra.saltar();
+		bra.origenSalto = bra.getPos();
 	}
 	if (bra.posicion.x > xmax)
 	{
 		bra.posicion.x = xmax;
-		bra.velocidad.x = -3.0f;
+		bra.velocidad.x = -2.0f;
 	}
 	if (bra.posicion.x < xmin)
 	{
 		bra.posicion.x = xmin;
-		bra.velocidad.x = 3.0f;
+		bra.velocidad.x = 2.0f;
 	}
-	float ymin = p.limite1.y;
 	if ((bra.posicion.y - bra.altura) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
 		bra.posicion.y = ymin + bra.altura;
 }

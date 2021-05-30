@@ -6,6 +6,7 @@ CepaBrasileña::CepaBrasileña()
 	color.r = color.g = 100;
 	color.b = 0;
 	aceleracion.y = -9.8f;
+	origenSalto = { 0,0 };
 }
 CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 {
@@ -18,6 +19,7 @@ CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 	color.r = color.b = 0;
 	color.g = 100;
 	aceleracion.y = -9.8f;
+	origenSalto = { 0,0 };
 }
 void CepaBrasileña::dibuja()
 {
