@@ -116,6 +116,21 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = p.limite2.x;
 	float xmin = p.limite1.x;
+	Vector2D posActual = bra.getPos();
+	if (bra.posicion.x  > 0.0f)
+	{
+		bra.saltar();
+	}
+	if (bra.posicion.x > xmax)
+	{
+		bra.posicion.x = xmax;
+		bra.velocidad.x = -3.0f;
+	}
+	if (bra.posicion.x < xmin)
+	{
+		bra.posicion.x = xmin;
+		bra.velocidad.x = 3.0f;
+	}
 	float ymin = p.limite1.y;
 	if ((bra.posicion.y - bra.altura) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
 		bra.posicion.y = ymin + bra.altura;

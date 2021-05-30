@@ -102,6 +102,7 @@ void ListaEnemigos::rebote(Jugador& j)
 		if (tipo == CEPABRITANICA)
 		{
 			CepaBritanica* brit = (CepaBritanica*)lista[i];
+			static time_t horaInicio = 0;
 			const int SEGUNDOS = 2; //Tiempo que tarda en explotar
 			time_t horaActual = time(NULL);
 			if (Interaccion::ratio(*brit, j))
@@ -140,28 +141,7 @@ void ListaEnemigos::rebote(Jugador& j)
 		{
 			CepaIndia* bra = (CepaIndia*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
-			{
-				bra->setAltura(0.4f);
-				bra->setVel(0.0f, 0.0f);
-				Vector2D posj = j.getPos();
-				Vector2D posenem = bra->getPos();
-				const int SEGUNDOS = 10; //Tiempo que tarda en explotar
-				int horaActual;
-				static int horaInicio = time(NULL);
-				horaActual = time(NULL);
-				if ((horaActual - horaInicio) < SEGUNDOS)
-				{
-					if ((Interaccion::colisionEncima(*bra, j) || Interaccion::colision(*bra, j)) && posj.x >= posenem.x)
-						bra->setVel(5.0f, 0.0f);
-					if ((Interaccion::colisionEncima(*bra, j) || Interaccion::colision(*bra, j)) && posj.x < posenem.x)
-						bra->setVel(-5.0f, 0.0f);
-					if ((horaActual - horaInicio) >= SEGUNDOS)
-					{
-						bra->setAltura(1.0f);
-						bra->setVel(1.0f, 0.0f);
-					}
-				}
-			}
+				eliminar(i);
 			else if (Interaccion::colision(*bra, j))
 				j.morir();
 		}
