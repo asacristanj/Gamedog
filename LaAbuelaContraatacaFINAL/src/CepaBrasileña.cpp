@@ -17,7 +17,7 @@ CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	color.r = color.b = 0;
 	color.g = 100;
-	aceleracion.y = -30.8f;
+	aceleracion.y = -9.8f;
 }
 void CepaBrasileña::dibuja()
 {
@@ -29,5 +29,5 @@ void CepaBrasileña::dibuja()
 }
 void CepaBrasileña::saltar()
 {
-	setVel(velocidad.x, 1.0f);
+	setVel(velocidad.x, 5.0f);
 }

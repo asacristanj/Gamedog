@@ -117,7 +117,7 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 	float xmax = p.limite2.x;
 	float xmin = p.limite1.x;
 	Vector2D posActual = bra.getPos();
-	if (bra.posicion.x  > 0.0f)
+	if (bra.posicion.x  > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.0f && bra.posicion.x < -3.1f)
 	{
 		bra.saltar();
 	}
