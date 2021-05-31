@@ -6,7 +6,7 @@ CepaBrasileña::CepaBrasileña()
 	color.r = color.g = 100;
 	color.b = 0;
 	aceleracion.y = -9.8f;
-	origenSalto = { 0,0 };
+	origenSalto = getPos();
 }
 CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 {
@@ -19,7 +19,7 @@ CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 	color.r = color.b = 0;
 	color.g = 100;
 	aceleracion.y = -9.8f;
-	origenSalto = { 0,0 };
+	origenSalto = getPos();
 }
 void CepaBrasileña::dibuja()
 {
@@ -29,7 +29,7 @@ void CepaBrasileña::dibuja()
 	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
 }
-void CepaBrasileña::saltar()
+void CepaBrasileña::saltar(float alto)
 {
-	setVel(velocidad.x, 5.0f);
+	setVel(velocidad.x, alto);
 }

@@ -138,7 +138,7 @@ void ListaEnemigos::rebote(Jugador& j)
 		}
 		if (tipo == CEPABRASILEÑA)
 		{
-			CepaIndia* bra = (CepaIndia*)lista[i];
+			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
 				eliminar(i);
 			else if (Interaccion::colision(*bra, j))

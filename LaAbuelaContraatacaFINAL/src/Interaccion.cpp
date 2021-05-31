@@ -2,6 +2,7 @@
 #include "freeglut.h" 
 #include <math.h>
 #include <time.h>
+#include <ctime>
 //#include <stdio.h>
 #define PI 3.141592
 void Interaccion::rebote(Jugador& j, Escenario e)
@@ -118,21 +119,15 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 	float xmax = p.limite2.x;
 	float xmin = p.limite1.x;
 	float ymin = p.limite1.y;
-	Vector2D deltax = bra.getPos();
-	//bra.posicion.x  > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.1f && bra.posicion.x < -3.0f
-	//(deltax.x - bra.posicion.x) >= 2.0f
-	/*if (bra.posicion.x > 0.0f && bra.posicion.x < 0.1f || bra.posicion.x  > 3.0f && bra.posicion.x < 3.1f || bra.posicion.x  > -3.1f && bra.posicion.x < -3.0f)
-	{
-		bra.saltar();
-	}*/
+	/*Vector2D deltax = bra.getPos();
 	float recorrido = deltax.x - bra.origenSalto.x;
 	if (recorrido < 0)
 		recorrido = -recorrido;
-	if (recorrido >= 2.1f)
+	if (recorrido >= 2.1f && (bra.posicion.y - bra.altura) < ymin)
 	{
 		bra.saltar();
 		bra.origenSalto = bra.getPos();
-	}
+	}*/
 	if (bra.posicion.x > xmax)
 	{
 		bra.posicion.x = xmax;
@@ -144,7 +139,14 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 		bra.velocidad.x = 2.0f;
 	}
 	if ((bra.posicion.y - bra.altura) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
+	{
 		bra.posicion.y = ymin + bra.altura;
+		int SemillaAl= rand();
+		srand(time(NULL) * SemillaAl);
+		int i, n, aleatorio, DESDE = 5, HASTA = 10;
+		aleatorio = rand() % (HASTA - DESDE + 1) + DESDE;
+		bra.saltar(aleatorio);
+	}
 }
 bool Interaccion::rebote(Enemigo enem, Plataforma p)
 {
