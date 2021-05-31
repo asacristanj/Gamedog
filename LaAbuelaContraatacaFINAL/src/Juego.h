@@ -9,6 +9,7 @@
 #include "ListaDisparosGel.h"
 #include "ListaBonus.h"
 #include "ListaBloques.h"
+#include "Factoria.h"
 #include "BloqueSorpresa.h"
 #include "CepaBritanica.h"
 #include "CepaIndia.h"

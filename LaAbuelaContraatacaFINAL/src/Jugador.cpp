@@ -31,6 +31,9 @@ void Jugador::morir()
 //void Jugador::IncrementaNumBonus() {
 
 //}
+void Jugador::setAltura(float nalt) {
+	altura = nalt;
+}
 void Jugador::setNumBonus(int num){
 	num = numbonus;
 }

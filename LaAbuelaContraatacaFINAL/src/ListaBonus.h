@@ -2,6 +2,9 @@
 #define MAX_BONUS 10
 #include "Bonus.h"
 #include "Interaccion.h"
+#include "ListaDisparosGel.h"
+#include "ListaEnemigos.h"
+#include "Factoria.h"
 class ListaBonus
 {
 private:
@@ -16,6 +19,7 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
+	void accionbonus(Jugador j, Bonus b);
 	Bonus* colision(Jugador& j);
 	Bonus* operator [](int i);
 	int getNumero() { return numero; }

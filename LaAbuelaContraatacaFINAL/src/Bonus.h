@@ -22,5 +22,6 @@ public:
 	virtual ~Bonus();
 	virtual void dibuja();
 	void mueve(float t);
+	int getTipo() { return tipo; }
 	float getlado() { return lado; }
 };

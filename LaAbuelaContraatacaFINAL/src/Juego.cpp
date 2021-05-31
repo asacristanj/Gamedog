@@ -13,9 +13,9 @@ void Juego::inicializa()
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	bonuses.agregar(new Astrazeneca(0.5f,-5.0f,8));
+	//bonuses.agregar(new Astrazeneca(0.5f,-5.0f,8));
 	//bonuses.agregar(new Janssen(0.5f,-4.0f,5));
-	//bonuses.agregar(new MascarillaTocha(3.0f,-0.5f,9));
+	bonuses.agregar(new MascarillaTocha(3.0f,-0.5f,9));
 	//bonuses.agregar(new Pfizer(0.5f,1.0f,3));
 	//bonuses.agregar(new Quirurgica(3.0f,5.0f,10));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
@@ -147,7 +147,18 @@ void Juego::tecla(unsigned char key)
 	switch (key)
 	{
 	case 'w':
-	{
+	{/*
+		//incorporo disparos dependiendo del bonus hacia arriba
+		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)){
+			DisparoGel* d = Factoria::CrearDisparo(jugador);
+			//Vector2D pos = jugador.getPos();
+			//d->setPos(pos.x, pos.y);
+			d->setVel(0.0f, 6.0f);
+			disparos.agregar(d);
+		}
+		
+		break;
+		*/
 		DisparoGel* d = new DisparoGel();
 		Vector2D pos = jugador.getPos();
 		d->setPos(pos.x, pos.y);
@@ -156,7 +167,17 @@ void Juego::tecla(unsigned char key)
 		break;
 	}
 	case 'a':
-	{
+	{/*
+		//incorporo disparos dependiendo del bonus hacia izquierda
+		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)) {
+			DisparoGel* d = Factoria::CrearDisparo(jugador);
+			//Vector2D pos = jugador.getPos();
+			//d->setPos(pos.x, pos.y);
+			d->setVel(-6.0f, 0);
+			disparos.agregar(d);
+		}
+		break;
+		*/
 		//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
 		DisparoGel* d = new DisparoGel();
 		Vector2D pos = jugador.getPos();
@@ -164,9 +185,21 @@ void Juego::tecla(unsigned char key)
 		d->setVel(-6.0f, 0);
 		disparos.agregar(d);
 		break;
+		
 	}
 	case 'd':
 	{
+		//incorporo disparos dependiendo del bonus hacia derecha
+		/*if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus()==2)) {
+			DisparoGel* d = Factoria::CrearDisparo(jugador);
+			//Vector2D pos = jugador.getPos();
+			//d->setPos(pos.x, pos.y);
+			d->setVel(6.0f, 0);
+			disparos.agregar(d);
+		}
+		break;
+		*/
+		
 		DisparoGel* d = new DisparoGel();
 		Vector2D pos = jugador.getPos();
 		d->setPos(pos.x, pos.y);

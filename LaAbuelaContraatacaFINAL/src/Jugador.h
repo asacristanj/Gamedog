@@ -17,6 +17,7 @@ public:
 	void movLateral(float ix);
 	void morir();
 	float getAltura() { return altura; }
+	void setAltura(float nalt);
 	//void IncrementaNumBonus();
 	void setNumBonus(int num);
 	int GetNumBonus();
