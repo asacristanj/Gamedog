@@ -12,6 +12,7 @@
 #include "Bonus.h"
 #include "ListaDisparosGel.h"
 #include "ListaEnemigos.h"
+#include "Quirurgica.h"
 class Interaccion
 {
 public:
@@ -30,6 +31,7 @@ public:
 	static bool rebote(Enemigo enem, Plataforma p);
 	static void rebote(CepaBritanica& brit, Escenario e);
 	static void rebote(CepaIndia& ind, Escenario e);
+	static void rebote(Quirurgica& qui, Escenario e);
 	static bool rebote(Enemigo enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);
 	static bool colisionEncima(Enemigo enem, Jugador j);

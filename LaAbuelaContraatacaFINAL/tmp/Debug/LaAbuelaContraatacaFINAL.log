@@ -1,8 +1,1 @@
-﻿  Interaccion.cpp
-C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(145,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(148,14): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(146,7): warning C4101: 'i': variable local sin referencia
-C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(146,10): warning C4101: 'n': variable local sin referencia
-  Juego.cpp
-  Generando código...
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

@@ -31,17 +31,66 @@ void ListaBonus::mueve(float t)
 }
 void ListaBonus::rebote(Plataforma p)
 {
-	for (int i = numero - 1; i >= 0; i--)
-	{
-		Bonus* bon = lista[i];
-		Interaccion::rebote(*bon, p);
+	for (int i = numero - 1; i >= 0; i--) {
+		int tipo = lista[i]->getTipo();
+		if (tipo == QUIRURGICA) {
+			Quirurgica* qui = (Quirurgica*)lista[i];
+			Interaccion::rebote(*qui, p);
+		}
+		if (tipo == MATOCHA) {
+			MascarillaTocha* mato = (MascarillaTocha*)lista[i];
+			Interaccion::rebote(*mato, p);
+		}
+		if (tipo == ASTRAZENECA) {
+			Astrazeneca* ast = (Astrazeneca*)lista[i];
+			Interaccion::rebote(*ast, p);
+		}
+		if (tipo == JANSSEN) {
+			Janssen* jans = (Janssen*)lista[i];
+			Interaccion::rebote(*jans, p);
+		}
+		if (tipo == PFIZER) {
+			Pfizer* pfi = (Pfizer*)lista[i];
+			Interaccion::rebote(*pfi, p);
+		}
+		if (tipo == SPUTNIK) {
+			Sputnik* spu = (Sputnik*)lista[i];
+			Interaccion::rebote(*spu, p);
+		}
+
 	}
 }
 
 void ListaBonus::rebote(Escenario e)
 {
-	for (int i = 0; i < numero; i++)
-		Interaccion::rebote(*(lista[i]), e);
+	for (int i = numero-1; i >=0; i--) {
+		int tipo = lista[i]->getTipo();
+		if (tipo == QUIRURGICA) {
+			Quirurgica* qui = (Quirurgica*)lista[i];
+			Interaccion::rebote(*qui, e);
+		}
+		if (tipo == MATOCHA) {
+			MascarillaTocha* mato = (MascarillaTocha*)lista[i];
+			Interaccion::rebote(*mato, e);
+		}
+		if (tipo == ASTRAZENECA) {
+			Astrazeneca* ast = (Astrazeneca*)lista[i];
+			Interaccion::rebote(*ast, e);
+		}
+		if (tipo == JANSSEN) {
+			Janssen* jans = (Janssen*)lista[i];
+			Interaccion::rebote(*jans, e);
+		}
+		if (tipo == PFIZER) {
+			Pfizer* pfi = (Pfizer*)lista[i];
+			Interaccion::rebote(*pfi, e);
+		}
+		if (tipo == SPUTNIK) {
+			Sputnik* spu = (Sputnik*)lista[i];
+			Interaccion::rebote(*spu, e);
+		}
+		
+	}
 }
 void ListaBonus::rebote(Jugador& j)
 {
@@ -61,32 +110,6 @@ void ListaBonus::rebote(Jugador& j)
 	
 	}
  }
-void ListaBonus::accionbonus(Jugador j, Bonus b) {//accion que recoge lo que pasa con el jugador al interactuar con los diferentes bonus
-	static time_t horaInicioBonus = time(NULL);
-	const int SEGUNDOS = 10; //Tiempo que dura el bonus
-	time_t horaActualBonus = time(NULL);
-	for (int i = numero - 1; i >= 0; i--) {
-		int tipo = lista[i]->getTipo();
-		if (tipo == ASTRAZENECA && Interaccion::colision(b,j)){//salto el doble
-			j.salto(38.0f);
-		}
-		if (tipo == JANSSEN && Interaccion::colision(b, j)) {//25% mitad velocidad , 25% nada y 50% doble velocidad
-			int azar = rand() / (float)RAND_MAX;
-			if (azar <=25) {
-				j.setVelx(j.getVel().x / 2);
-			}
-			if (azar >=50) {
-				j.setVelx(j.getVel().x * 2);
-			}
-		}
-		if (tipo == SPUTNIK && Interaccion::colision(b, j)) {//eres invencible y pegas con un baston
-
-		}
-		if (tipo == PFIZER && Interaccion::colision(b, j)) {//aumenta el doble de la velocidad del jugador y eres invencible x tiempo
-			j.setVelx(j.getVel().x*2);
-		}
-	}
-}
 
 Bonus* ListaBonus::colision(Jugador& j)
 {

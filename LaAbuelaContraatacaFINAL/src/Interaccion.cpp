@@ -49,6 +49,9 @@ void Interaccion::rebote(Bonus& b, Plataforma p) {
 		b.velocidad.y = 0.0f;
 		b.aceleracion.y = 0.0f;
 	}
+	else {
+		b.aceleracion.y = -5.0f;
+	}
 }
 void Interaccion::rebote(Bonus& b, Escenario e) {
 	if (Interaccion::colision(b, e.suelo)) {
@@ -205,6 +208,27 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 		brit.velocidad.x = 3.0f;
 	}
 }
+void Interaccion::rebote(Quirurgica& qui, Escenario e) {
+	//Funcion que hace el bonus de quirurgica circule por el escenario y si choca con una pared rebote como seta de mario bros
+	float xmax = e.pared_dcha.limite2.x;
+	float xmin = e.pared_izq.limite2.x;
+	float smax = e.suelo.limite2.x;
+	float smin = e.suelo.limite1.x;
+	float ymin = e.suelo.limite1.y;
+	if ((qui.posicion.y - qui.lado/2) < ymin) {
+		qui.posicion.y = ymin + qui.lado/2;
+	}
+	if (qui.posicion.x  > xmax)
+	{
+		qui.posicion.x= xmax;
+		qui.velocidad.x = -3.0f;
+	}
+	if (qui.posicion.x < xmin)
+	{
+		qui.posicion.x= xmin;
+		qui.velocidad.x = 3.0f;
+	}	
+}
 bool Interaccion::rebote(Enemigo enem, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
@@ -302,7 +326,7 @@ bool Interaccion::colision(Bonus b, Escenario e) {//Funcion que manda true si ha
 bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el jugador entr aen contacto con el bonus
 	Vector2D pos = j.getPos();
 	float distancia = (b.getPos() - pos).modulo();
-	if ((distancia <= (b.lado + (j.altura/2)))) {
+	if ((distancia <= ((j.altura)))) {
 		return true;
 	}
 	return false;
