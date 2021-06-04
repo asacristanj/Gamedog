@@ -1,4 +1,6 @@
-﻿  Factoria.cpp
-  Jugador.cpp
-  Generando código...
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\alejandro\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Interaccion.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(256,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(259,14): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(257,7): warning C4101: 'i': variable local sin referencia
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(257,10): warning C4101: 'n': variable local sin referencia
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

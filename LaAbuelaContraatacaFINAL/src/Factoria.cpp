@@ -29,7 +29,7 @@ DisparoGel* Factoria::CrearDisparo(Jugador j) {
 	return d;
 }
 void Factoria::CogerAstrazeneca(Jugador& j) {
-	j.setImpulso(100.0f);
+	j.setImpulso(30.0f);
 }
 /*void Factoria::ModificarSalto(Jugador j, Bonus b) {
 	

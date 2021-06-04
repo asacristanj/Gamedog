@@ -16,36 +16,20 @@ void Jugador::dibuja()
 	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
 }
-void Jugador::salto(float imp)
+void Jugador::salto()
 {
-	setVel(velocidad.x, imp);
-}
-void Jugador::movLateral(float ix)
-{
-	posicion.x += ix;
+	setVel(velocidad.x, impulso);
 }
 void Jugador::morir()
 {
 	altura = 0.0f;
 }
 void Jugador::crecer(){
-	altura +=altura;
+	setAltura(2.0 * altura); // el doble de grande
 }
 //void Jugador::IncrementaNumBonus() {
 
 //}
-void Jugador::setAltura(float nalt) {
-	altura = nalt;
-}
-void Jugador::setNumBonus(int num){
-	numbonus = num;
-}
-int Jugador::GetNumBonus() {
-	return numbonus;
-}
-void Jugador::setImpulso(float imp) {
-	impulso =imp;
-}
 Jugador :: ~Jugador()
 {
 

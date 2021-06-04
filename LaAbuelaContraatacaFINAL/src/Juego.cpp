@@ -120,7 +120,7 @@ void Juego::teclaEspecial(unsigned char key)
 	   case GLUT_KEY_UP:
 		   //Para que no pueda saltar en el aire
 		   if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
-			   jugador.salto(19.0f);
+			   jugador.salto();
 		   break;
 	}
 }
@@ -128,17 +128,19 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 {
 	switch (key)
 	{
-	case GLUT_KEY_LEFT:
-		jugador.setVelx(0.0f);
-		break;
-	case GLUT_KEY_RIGHT:
-		jugador.setVelx(0.0f);
-		break;
-	case GLUT_KEY_UP:
-		//Para que no pueda saltar en el aire
-		if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
-			jugador.salto(19.0f);
-		break;
+		case GLUT_KEY_LEFT:
+			jugador.setVelx(0.0f);
+			break;
+		case GLUT_KEY_RIGHT:
+			jugador.setVelx(0.0f);
+			break;
+		case GLUT_KEY_UP:
+		{
+			//Para que no pueda saltar en el aire
+			if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
+				jugador.salto();
+			break;
+		}
 	}
 }
 
