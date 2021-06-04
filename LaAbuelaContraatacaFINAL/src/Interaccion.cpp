@@ -3,6 +3,7 @@
 #include <math.h>
 #include <time.h>
 #include <ctime>
+#include <stdlib.h>
 //#include <stdio.h>
 #define PI 3.141592
 void Interaccion::rebote(Jugador& j, Escenario e)
@@ -501,8 +502,6 @@ void Interaccion::rebote(Jugador& j,BloqueSorpresa b) {
 	//Si el choque se produce desde abajo
 	if (Interaccion::colisionDebajo(j, b)) {
 		j.velocidad.y = -5.0f;
-		b.usado = true;
-		//Generacion de un numero aleatorio para poder generar uno de los distintos tipos de bonus
 	}
 	if (Interaccion::colisionEncima(j, b)) {
 		float y = b.posicion.y+b.getlado()*0.5f;

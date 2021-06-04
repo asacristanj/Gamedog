@@ -32,3 +32,34 @@ void ListaBloques::rebote(Jugador& j) {
 		Interaccion::rebote(j, *(lista[i]));
 	}
 }
+void ListaBloques::CrearBonus(ListaBonus& b,Jugador j) {
+	for (int i = 0; i < numero; i++) {
+		bool uso = lista[i]->getuso();
+		if (Interaccion::colisionDebajo(j, *(lista[i]))&&uso==false) {
+			//Generacion de un numero aleatorio para poder generar uno de los distintos tipos de bonus
+			int bonus = rand() % 6;
+			Vector2D posbloque = lista[i]->getPos();
+			lista[i]->setUsotrue();
+				switch (bonus) {
+				case 0: //Para el caso de que sea cero creamos una nueva mascarilla
+					b.agregar(new Quirurgica(2.0f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				case 1: //Para el caso de que sea uno añadimos una mascarilla tocha
+					b.agregar(new MascarillaTocha(1.5f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				case 2: //Para el caso de que sea dos añadimos una vacuna Pfizer
+					b.agregar(new Pfizer(1.5f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				case 3: //Para el caso de que sea tres añadimos una vacuna Sputnik
+					b.agregar(new Sputnik(1.5f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				case 4:	//Para el caso de que sea cuatro añadimos una vacuna Janssen
+					b.agregar(new Janssen(1.5f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				case 5: //Para el caso de que sea cinco añadimos una vacuna Astrazeneca
+					b.agregar(new Astrazeneca(1.5f, posbloque.x, posbloque.y, 0.0f, 5.0f));
+					break;
+				}
+		}
+	}
+}

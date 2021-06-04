@@ -19,5 +19,7 @@ public:
 	void setPos(float x, float y);
 	void setColor(unsigned char r, unsigned char g, unsigned char b);
 	bool getuso();
+	Vector2D getPos();
+	void setUsotrue();
 };
 

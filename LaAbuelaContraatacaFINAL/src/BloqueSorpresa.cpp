@@ -43,3 +43,9 @@ void BloqueSorpresa::setColor(unsigned char r, unsigned char g, unsigned char b)
 bool BloqueSorpresa::getuso() {
 	return usado;
 }
+void BloqueSorpresa::setUsotrue() {
+	usado = true;
+}
+Vector2D BloqueSorpresa::getPos() {
+	return posicion;
+}

@@ -1,7 +1,7 @@
 #pragma once
 #define MAXNUMBER 3
 #include "BloqueSorpresa.h"
-#include "Interaccion.h"
+#include "ListaBonus.h"
 class ListaBloques
 {
 private:
@@ -16,5 +16,6 @@ public:
 	int getNumero() { return numero; }
 	void destruirContenido();
 	void rebote(Jugador& j);
+	void CrearBonus(ListaBonus& b, Jugador j);
 };
 

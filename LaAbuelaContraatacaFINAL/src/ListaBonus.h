@@ -2,8 +2,6 @@
 #define MAX_BONUS 10
 #include "Bonus.h"
 #include "Interaccion.h"
-#include "ListaDisparosGel.h"
-#include "ListaEnemigos.h"
 #include "Factoria.h"
 class ListaBonus
 {

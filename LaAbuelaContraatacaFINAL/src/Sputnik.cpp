@@ -18,7 +18,7 @@ Sputnik::Sputnik(float l, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	color.g = 100;
 	color.b = color.r = 0;
-	aceleracion.y = -9.8;
+	aceleracion.y = -9.8f;
 }
 void Sputnik::dibuja() {
 	glPushMatrix();
