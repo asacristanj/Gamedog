@@ -21,6 +21,7 @@ public:
 	//void IncrementaNumBonus();
 	void setNumBonus(int num);
 	int GetNumBonus();
+	void setImpulso(float imp);
 
 	friend class Interaccion;
 };

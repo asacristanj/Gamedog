@@ -2,15 +2,18 @@
 Factoria::Factoria() {
 	
 }
-void Factoria::CogerQuirurgica(Jugador j) {
+void Factoria::CogerQuirurgica(Jugador& j) {
 	j.setNumBonus(j.GetNumBonus() + 1);
 	if (j.GetNumBonus() == 1) {
 		j.setAltura(j.getAltura() * 2);
+		j.morir();
+		j.dibuja();
 	}
 	if (j.GetNumBonus() > 2) {
 		j.setNumBonus(2);
 	}
 }
+
 void Factoria::CogerMascarillaTocha(Jugador j) {
 	if (j.GetNumBonus() == 0) {
 		j.setAltura(j.getAltura() * 2);
@@ -19,16 +22,20 @@ void Factoria::CogerMascarillaTocha(Jugador j) {
 }
 DisparoGel* Factoria::CrearDisparo(Jugador j) {
 	DisparoGel* d = 0;
-	//if (j.GetNumBonus() == 2) {
+	if (j.GetNumBonus() == 2) {
 	d = new DisparoGel;
-	//}
+	}
 	Vector2D pos = j.getPos();
 	d->setPos(pos.x, pos.y);
 	return d;
 }
-void Factoria::ModificarSalto(Jugador j, Bonus b) {
+void Factoria::CogerAstrazeneca(Jugador& j) {
+	j.setImpulso(100.0f);
+}
+/*void Factoria::ModificarSalto(Jugador j, Bonus b) {
 	
 }
+*/
 Factoria::~Factoria() {
 
 }

@@ -15,9 +15,10 @@ public:
 	Factoria();
 	virtual ~Factoria();
 	static DisparoGel* CrearDisparo(Jugador j);
-	static void CogerQuirurgica(Jugador j);
+	static void CogerQuirurgica(Jugador& j);
 	static void CogerMascarillaTocha(Jugador j);
-	static void accionbonus(Jugador j, Bonus b);
-	void ModificarSalto(Jugador j, Bonus b);
+	static void CogerAstrazeneca(Jugador& j);
+	//static void accionbonus(Jugador j, Bonus b);
+	//void ModificarSalto(Jugador j, Bonus b);
 };
 

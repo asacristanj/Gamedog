@@ -19,7 +19,7 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
-	void accionbonus(Jugador j, Bonus b);
+	//void accionbonus(Jugador j, Bonus b);
 	Bonus* colision(Jugador& j);
 	Bonus* operator [](int i);
 	int getNumero() { return numero; }

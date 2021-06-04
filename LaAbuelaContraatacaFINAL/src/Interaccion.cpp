@@ -39,8 +39,64 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	if (Interaccion::colisionLadoIzq(j, p))
 		j.velocidad.x = 0.0f; // el jugador rebota ligeramente al tocar la plataforma*/
 }
+bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el jugador entra en contacto con un bonus general
+	Vector2D pos = j.getPos();
+	float distancia = (b.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Quirurgica q, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la quirurgica
+	Vector2D pos = j.getPos();
+	float distancia = (q.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(MascarillaTocha m, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la mascarilla tocha
+	Vector2D pos = j.getPos();
+	float distancia = (m.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Astrazeneca a, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Astrazeneca
+	Vector2D pos = j.getPos();
+	float distancia = (a.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Janssen jan, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Janssen
+	Vector2D pos = j.getPos();
+	float distancia = (jan.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Pfizer pfi, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Pfizer
+	Vector2D pos = j.getPos();
+	float distancia = (pfi.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Sputnik sp , Jugador j) {//Funcion que manda true si el jugador entra en contacto con Sputnik
+	Vector2D pos = j.getPos();
+	float distancia = (sp.getPos() - pos).modulo();
+	if ((distancia <= ((j.altura)))) {
+		return true;
+	}
+	return false;
+}
 //funcion que hace que el bonus no se vaya del escenario y choque en las plataformas:
-void Interaccion::rebote(Bonus& b, Plataforma p) {
+void Interaccion::rebote(Bonus& b, Plataforma p) {//meto el esceneario para que haya aceleracion de plataforma a escenario y no haya en el escenario
 	/*float xmax = p.limite2.x;
 	float xmin = p.limite1.x;
 	float y = p.limite1.y;
@@ -50,7 +106,7 @@ void Interaccion::rebote(Bonus& b, Plataforma p) {
 		b.aceleracion.y = 0.0f;
 	}
 	else {
-		b.aceleracion.y = -5.0f;
+		b.aceleracion.y = -2.0f;
 	}
 }
 void Interaccion::rebote(Bonus& b, Escenario e) {
@@ -58,7 +114,59 @@ void Interaccion::rebote(Bonus& b, Escenario e) {
 		b.velocidad.y = 0;
 		b.aceleracion.y = 0;
 	}
+	float ymin = e.suelo.limite1.y;
+	if ((b.posicion.y - b.lado) < ymin) b.posicion.y = ymin + b.lado/2;
 }
+void Interaccion::rebote(Quirurgica& qui, Escenario e) {
+	//Funcion que hace el bonus de quirurgica circule por el escenario y si choca con una pared rebote como seta de mario bros
+	float xmax = e.pared_dcha.limite2.x;
+	float xmin = e.pared_izq.limite2.x;
+	float smax = e.suelo.limite2.x;
+	float smin = e.suelo.limite1.x;
+	float ymin = e.suelo.limite1.y;
+	if ((qui.posicion.y - qui.lado / 2) < ymin) {
+		qui.posicion.y = ymin + qui.lado / 2;
+	}
+	if (qui.posicion.x > xmax)
+	{
+		qui.posicion.x = xmax;
+		qui.velocidad.x = -3.0f;
+	}
+	if (qui.posicion.x < xmin)
+	{
+		qui.posicion.x = xmin;
+		qui.velocidad.x = 3.0f;
+	}
+}
+bool Interaccion::colision(Bonus b, Plataforma p) {//Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
+	Vector2D pos = b.getPos();
+	pos.y += b.getlado() / 2;//se le resta el lado para que se apoye en la superficie de abajo
+	float distancia = p.distancia(pos);
+	if (distancia <= 0.1f + b.getlado()) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Bonus& b, Escenario e) {//Funcion que manda true si hay colision entre bonus y escenario. Mide distancia entre ellas y compara
+	float xmax = e.suelo.limite2.x;
+	float xmin = e.suelo.limite1.x;
+	if (b.posicion.x + b.lado > xmax) {
+		b.posicion.x = xmax - b.lado;
+		b.velocidad.x = -4.0f;
+	}
+	if (b.posicion.x - b.lado < xmin) {
+		b.posicion.x = xmin + b.lado;
+		b.velocidad.x = 4.0f;
+	}
+	Vector2D pos = b.getPos();
+	pos.y -= b.getlado() / 2;//se le resta el lado para que quede apoyado en a superficie de abajo
+	float distancia = e.suelo.distancia(pos);
+	if (distancia <= 0.1f) {
+		return true;
+	}
+	return false;
+}
+
 /*void Interaccion::rebote(Enemigo& enem, Plataforma p)
 {
 	//Función para que los enemgios no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
@@ -208,27 +316,7 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 		brit.velocidad.x = 3.0f;
 	}
 }
-void Interaccion::rebote(Quirurgica& qui, Escenario e) {
-	//Funcion que hace el bonus de quirurgica circule por el escenario y si choca con una pared rebote como seta de mario bros
-	float xmax = e.pared_dcha.limite2.x;
-	float xmin = e.pared_izq.limite2.x;
-	float smax = e.suelo.limite2.x;
-	float smin = e.suelo.limite1.x;
-	float ymin = e.suelo.limite1.y;
-	if ((qui.posicion.y - qui.lado/2) < ymin) {
-		qui.posicion.y = ymin + qui.lado/2;
-	}
-	if (qui.posicion.x  > xmax)
-	{
-		qui.posicion.x= xmax;
-		qui.velocidad.x = -3.0f;
-	}
-	if (qui.posicion.x < xmin)
-	{
-		qui.posicion.x= xmin;
-		qui.velocidad.x = 3.0f;
-	}	
-}
+
 bool Interaccion::rebote(Enemigo enem, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
@@ -305,32 +393,7 @@ bool Interaccion::colisionSuelo(Jugador j, Escenario e)
 		return true;
 	return false;
 }
-bool Interaccion::colision(Bonus b, Plataforma p) {//Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
-	Vector2D pos = b.getPos();
-	pos.y += b.getlado()/2;//se le resta el lado para que se apoye en la superficie de abajo
-	float distancia = p.distancia(pos);
-	if (distancia <= 0.1f+b.getlado()) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Bonus b, Escenario e) {//Funcion que manda true si hay colision entre bonus y escenario. Mide distancia entre ellas y compara
-	Vector2D pos = b.getPos();
-	pos.y -= b.getlado();//se le resta el lado para que quede apoyado en a superficie de abajo
-	float distancia = e.suelo.distancia(pos);
-	if (distancia <= b.getlado()) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el jugador entr aen contacto con el bonus
-	Vector2D pos = j.getPos();
-	float distancia = (b.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
+
 bool Interaccion::colision(DisparoGel d, Plataforma p)
 {
 	//Función que manda un booleano si ha habido contacto entre un disparo y una plataforma. Coge ambas posiciones y mide la distancia entre ellas.

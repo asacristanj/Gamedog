@@ -35,10 +35,13 @@ void Jugador::setAltura(float nalt) {
 	altura = nalt;
 }
 void Jugador::setNumBonus(int num){
-	num = numbonus;
+	numbonus = num;
 }
 int Jugador::GetNumBonus() {
 	return numbonus;
+}
+void Jugador::setImpulso(float imp) {
+	impulso =imp;
 }
 Jugador :: ~Jugador()
 {

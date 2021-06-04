@@ -61,33 +61,45 @@ void ListaBonus::rebote(Plataforma p)
 	}
 }
 
-void ListaBonus::rebote(Escenario e)
+void ListaBonus::rebote(Escenario e)//elimino los bonuses si tocan el suelo
 {
 	for (int i = numero-1; i >=0; i--) {
 		int tipo = lista[i]->getTipo();
 		if (tipo == QUIRURGICA) {
 			Quirurgica* qui = (Quirurgica*)lista[i];
-			Interaccion::rebote(*qui, e);
+			if (Interaccion::colision(*qui, e)) {
+				eliminar(i);
+			}
 		}
 		if (tipo == MATOCHA) {
 			MascarillaTocha* mato = (MascarillaTocha*)lista[i];
-			Interaccion::rebote(*mato, e);
+			if (Interaccion::colision(*mato, e)) {
+				eliminar(i);
+			}
 		}
 		if (tipo == ASTRAZENECA) {
 			Astrazeneca* ast = (Astrazeneca*)lista[i];
-			Interaccion::rebote(*ast, e);
+			if (Interaccion::colision(*ast, e)) { 
+				eliminar(i); 
+			}
 		}
 		if (tipo == JANSSEN) {
 			Janssen* jans = (Janssen*)lista[i];
-			Interaccion::rebote(*jans, e);
+			if (Interaccion::colision(*jans, e)) {
+				eliminar(i);
+			}
 		}
 		if (tipo == PFIZER) {
 			Pfizer* pfi = (Pfizer*)lista[i];
-			Interaccion::rebote(*pfi, e);
+			if (Interaccion::colision(*pfi, e)) {
+				eliminar(i);
+			}
 		}
 		if (tipo == SPUTNIK) {
 			Sputnik* spu = (Sputnik*)lista[i];
-			Interaccion::rebote(*spu, e);
+			if (Interaccion::colision(*spu, e)) {
+				eliminar(i);
+			}
 		}
 		
 	}
@@ -97,17 +109,48 @@ void ListaBonus::rebote(Jugador& j)
 	for (int i = numero - 1; i >= 0; i--)
 	{
 		int tipo = lista[i]->getTipo();
-		Bonus* bon = lista[i];
-		if (Interaccion::colision(*bon, j)) {
-			eliminar(i);
-		}
-		if (tipo==QUIRURGICA) {
-			Factoria::CogerQuirurgica(j);
+		//Bonus* bon = lista[i];
+		//if (Interaccion::colision(*bon, j)) {
+			//eliminar(i);
+		//}	
+		if (tipo == QUIRURGICA) {
+			Quirurgica* q = (Quirurgica*)lista[i];
+			if (Interaccion::colision(*q, j)) {
+				Factoria::CogerQuirurgica(j);
+				eliminar(i);
+			}
 		}
 		if (tipo == MATOCHA) {
-			Factoria::CogerMascarillaTocha(j);
+			MascarillaTocha* m = (MascarillaTocha*)lista[i];
+			if (Interaccion::colision(*m, j)) {
+				eliminar(i);
+			}
 		}
-	
+		if (tipo == ASTRAZENECA) {
+			Astrazeneca* a = (Astrazeneca*)lista[i];
+			if (Interaccion::colision(*a, j)) {
+				Factoria::CogerAstrazeneca(j);
+				eliminar(i);
+			}
+		}
+		if (tipo == JANSSEN) {
+			Janssen* jan = (Janssen*)lista[i];
+			if (Interaccion::colision(*jan, j)) {
+				eliminar(i);
+			}
+		}
+		if (tipo == PFIZER) {
+			Pfizer* p = (Pfizer*)lista[i];
+			if (Interaccion::colision(*p, j)) {
+				eliminar(i);
+			}
+		}
+		if (tipo == SPUTNIK) {
+			Sputnik* s = (Sputnik*)lista[i];
+			if (Interaccion::colision(*s, j)) {
+				eliminar(i);
+			}
+		}
 	}
  }
 

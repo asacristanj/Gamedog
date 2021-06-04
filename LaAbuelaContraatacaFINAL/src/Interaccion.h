@@ -13,6 +13,11 @@
 #include "ListaDisparosGel.h"
 #include "ListaEnemigos.h"
 #include "Quirurgica.h"
+#include "Astrazeneca.h"
+#include "Janssen.h"
+#include "Pfizer.h"
+#include "Sputnik.h"
+#include "MascarillaTocha.h"
 class Interaccion
 {
 public:
@@ -39,8 +44,14 @@ public:
 	static bool colision(DisparoGel d, Escenario e);
 	static bool colision(DisparoGel d, Enemigo enem);
 	static bool colision(Bonus b, Plataforma p);
-	static bool colision(Bonus b, Escenario e);
+	static bool colision(Bonus& b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
+	static bool colision(Pfizer b, Jugador j);
+	static bool colision(Quirurgica q, Jugador j);
+	static bool colision(MascarillaTocha m, Jugador j);
+	static bool colision(Astrazeneca a, Jugador j);
+	static bool colision(Janssen jan, Jugador j);
+	static bool colision(Sputnik sp, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
 	static bool ratioExplosion(CepaBritanica brit, Jugador j);
 	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
