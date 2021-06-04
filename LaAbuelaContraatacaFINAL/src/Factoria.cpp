@@ -5,9 +5,8 @@ Factoria::Factoria() {
 void Factoria::CogerQuirurgica(Jugador& j) {
 	j.setNumBonus(j.GetNumBonus() + 1);
 	if (j.GetNumBonus() == 1) {
-		j.setAltura(j.getAltura() * 2);
-		j.morir();
-		j.dibuja();
+		//j.setAltura(j.getAltura() * 2);
+		j.crecer();
 	}
 	if (j.GetNumBonus() > 2) {
 		j.setNumBonus(2);

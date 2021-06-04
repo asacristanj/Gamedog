@@ -28,6 +28,9 @@ void Jugador::morir()
 {
 	altura = 0.0f;
 }
+void Jugador::crecer(){
+	altura +=altura;
+}
 //void Jugador::IncrementaNumBonus() {
 
 //}
