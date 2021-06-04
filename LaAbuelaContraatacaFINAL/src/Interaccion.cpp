@@ -424,6 +424,31 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
+bool Interaccion::colision(CepaChina c, Plataforma p)
+{
+	Vector2D pos = c.getPos(); //la posicion del centro de la cepa
+	float distancia = p.distancia(pos);
+	if (distancia <= c.getRadio())
+		return true;
+	return false;
+}
+bool Interaccion::colision(CepaChina c, Escenario e)
+{
+	if (Interaccion::colision(c, e.pared_dcha) || Interaccion::colision(c, e.pared_izq) || Interaccion::colision(c, e.suelo))
+		return true;
+	return false;
+}
+bool Interaccion::colision(CepaChina c, Enemigo enem)
+{
+	Plataforma aux; //Creamos una pared auxiliar
+	Vector2D p1 = c.posicion;
+	Vector2D p2 = c.origen;
+	aux.setPos(p1.x, p1.y, p2.x, p2.y); //Que coincida con el disparo.
+	float dist = aux.distancia(enem.posicion); //para calcular su distancia 
+	if (dist < (enem.altura / 2.0f))
+		return true;
+	return false;
+}
 bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.

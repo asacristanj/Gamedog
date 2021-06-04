@@ -43,6 +43,9 @@ public:
 	static bool colision(DisparoGel d, Plataforma p);
 	static bool colision(DisparoGel d, Escenario e);
 	static bool colision(DisparoGel d, Enemigo enem);
+	static bool colision(CepaChina c, Plataforma p);
+	static bool colision(CepaChina c, Escenario e);
+	static bool colision(CepaChina c, Enemigo enem);
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);
 	static bool colision(Bonus b, Jugador j);

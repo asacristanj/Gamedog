@@ -1,6 +1,44 @@
-﻿  Interaccion.cpp
+﻿  Astrazeneca.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Astrazeneca.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  BloqueSorpresa.cpp
+  Bonus.cpp
+  CepaBrasileña.cpp
+  CepaBritanica.cpp
+  CepaChina.cpp
+  CepaIndia.cpp
+  DisparoGel.cpp
+  Enemigo.cpp
+  Escenario.cpp
+  Factoria.cpp
+  Interaccion.cpp
 C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(256,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
 C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(259,14): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(257,7): warning C4101: 'i': variable local sin referencia
 C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(257,10): warning C4101: 'n': variable local sin referencia
+  Janssen.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Janssen.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Juego.cpp
+  Jugador.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.cpp(28,16): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  LaAbuelaContraataca.cpp
+  ListaBloques.cpp
+  ListaBonus.cpp
+  ListaDisparosGel.cpp
+  ListaEnemigos.cpp
+  Generando código...
+  Compilando...
+  MascarillaTocha.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\MascarillaTocha.cpp(19,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  MurcielagoBoss.cpp
+  MurcielagoPequeño.cpp
+  ObjetoMovil.cpp
+  Pfizer.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Pfizer.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Plataforma.cpp
+  Quirurgica.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Quirurgica.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Sputnik.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Sputnik.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Vector2D.cpp
+  Generando código...
   LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
