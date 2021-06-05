@@ -11,6 +11,7 @@ void Juego::inicializa()
 
 	//bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
+	escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f,-5.0f,8));
@@ -48,6 +49,7 @@ void Juego::dibuja()
 	disparos.dibuja();
 	bloques.dibuja();
 	bonuses.dibuja();
+	escalera.dibujar();
 }
 
 void Juego::mueve()
@@ -138,9 +140,11 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 		case GLUT_KEY_UP:
 		{
 			//Para que no pueda saltar en el aire
-			if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
+			if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario)||jugador.suelo())
 				jugador.salto();
 			break;
+			if (Interaccion::colisionEscalera(escalera, jugador))
+				jugador.subirEscalera();
 		}
 	}
 }

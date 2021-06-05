@@ -19,6 +19,7 @@
 #include "Pfizer.h"
 #include "Quirurgica.h"
 #include "Sputnik.h"
+#include "Escalera.h"
 class Juego
 {
 private:
@@ -35,6 +36,7 @@ private:
 	ListaBonus bonuses;
 	CepaBritanica brit;
 	ListaBloques bloques;
+	Escalera escalera;
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);

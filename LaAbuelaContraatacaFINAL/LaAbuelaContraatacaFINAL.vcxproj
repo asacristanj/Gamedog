@@ -152,6 +152,7 @@
     <ClCompile Include="src\CepaIndia.cpp" />
     <ClCompile Include="src\DisparoGel.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
+    <ClCompile Include="src\Escalera.cpp" />
     <ClCompile Include="src\Escenario.cpp" />
     <ClCompile Include="src\Factoria.cpp" />
     <ClCompile Include="src\ListaBloques.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="src\ColorRVA.h" />
     <ClInclude Include="src\DisparoGel.h" />
     <ClInclude Include="src\Enemigo.h" />
+    <ClInclude Include="src\Escalera.h" />
     <ClInclude Include="src\Escenario.h" />
     <ClInclude Include="src\Factoria.h" />
     <ClInclude Include="src\ListaBloques.h" />

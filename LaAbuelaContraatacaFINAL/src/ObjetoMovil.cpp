@@ -20,3 +20,6 @@ void ObjetoMovil::setVelx(float vx)
 {
 	velocidad.x = vx;
 }
+void ObjetoMovil::setVely(float vy) {
+	velocidad.y = vy;
+}

@@ -19,6 +19,7 @@ void Jugador::dibuja()
 void Jugador::salto()
 {
 	setVel(velocidad.x, impulso);
+	tocandosuelo = false;
 }
 void Jugador::morir()
 {
@@ -33,4 +34,10 @@ void Jugador::crecer(){
 Jugador :: ~Jugador()
 {
 
+}
+void Jugador::subirEscalera() {
+	this->setVely(0.0f);
+}
+bool Jugador::suelo() {
+	return tocandosuelo;
 }

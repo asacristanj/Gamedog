@@ -18,6 +18,7 @@
 #include "Pfizer.h"
 #include "Sputnik.h"
 #include "MascarillaTocha.h"
+#include "Escalera.h"
 class Interaccion
 {
 public:
@@ -60,6 +61,7 @@ public:
 	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
 	static bool colisionEncima(Jugador j, BloqueSorpresa b);
 	static void rebote(Jugador& j, BloqueSorpresa b);
+	static bool colisionEscalera(Escalera e, Jugador j);
 };
 
 

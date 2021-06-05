@@ -502,6 +502,7 @@ void Interaccion::rebote(Jugador& j,BloqueSorpresa b) {
 	//Si el choque se produce desde abajo
 	if (Interaccion::colisionDebajo(j, b)) {
 		j.velocidad.y = -5.0f;
+		j.tocandosuelo = true;
 	}
 	if (Interaccion::colisionEncima(j, b)) {
 		float y = b.posicion.y+b.getlado()*0.5f;
@@ -509,4 +510,12 @@ void Interaccion::rebote(Jugador& j,BloqueSorpresa b) {
 		j.aceleracion.y = 0.0f;
 		j.posicion.y =y+ j.altura;
 	}
+}
+bool Interaccion::colisionEscalera(Escalera e, Jugador j) {
+	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
+	Vector2D limites = e.limenx();
+	Vector2D pos = j.getPos();
+	if (limites.y <= pos.x <= limites.x)
+		return true;
+	return false;
 }
