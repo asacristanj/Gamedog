@@ -150,6 +150,7 @@
     <ClCompile Include="src\CepaBritanica.cpp" />
     <ClCompile Include="src\CepaChina.cpp" />
     <ClCompile Include="src\CepaIndia.cpp" />
+    <ClCompile Include="src\Coordinador.cpp" />
     <ClCompile Include="src\DisparoGel.cpp" />
     <ClCompile Include="src\Enemigo.cpp" />
     <ClCompile Include="src\Escalera.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="src\CepaChina.h" />
     <ClInclude Include="src\CepaIndia.h" />
     <ClInclude Include="src\ColorRVA.h" />
+    <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\DisparoGel.h" />
     <ClInclude Include="src\Enemigo.h" />
     <ClInclude Include="src\Escalera.h" />

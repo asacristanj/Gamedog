@@ -1,0 +1,19 @@
+#pragma once
+#include "Juego.h"
+#include "ETSIDI.h"
+class Coordinador
+{
+public:
+	Coordinador();
+	virtual ~Coordinador();
+
+	void teclaEspecial(unsigned char key);
+	void tecla(unsigned char key);
+	void mueve();
+	void dibuja();
+protected:
+	Juego juego;
+	enum Estado {INICIO, JUEGO, GAMEOVER,FIN};
+	Estado estado;
+};
+
