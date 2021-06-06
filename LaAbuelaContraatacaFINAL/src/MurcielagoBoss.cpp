@@ -9,7 +9,26 @@ MurcielagoBoss::MurcielagoBoss()
 	color.r = color.g = 255;
 	color.b = 0;
 }
-
+MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
+{
+	tipo = MURCIELAGOBOSS;
+	altura = alt;
+	posicion.x = x;
+	posicion.y = y;
+	velocidad.x = vx;
+	velocidad.y = vy;
+	color.r = color.b = 0;
+	color.g = 100;
+	aceleracion.y = -9.8f;
+}
+void MurcielagoBoss::dibuja()
+{
+	glPushMatrix();
+	glTranslatef(posicion.x, posicion.y, 0);
+	glColor3f(0.0f, 200.0f, 200.0f);
+	glutSolidSphere(altura, 15, 15);
+	glPopMatrix();
+}
 void MurcielagoBoss::volar()
 {
 }

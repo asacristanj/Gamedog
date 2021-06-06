@@ -17,7 +17,6 @@ private:
 	float acel_inicial = -30.0f;
 	float impulso = 20.0f; //impulso vertical inicial del salto
 	bool tocandosuelo;
-protected:
 	int numbonus;
 public:
 	Jugador();

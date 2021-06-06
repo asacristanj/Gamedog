@@ -9,9 +9,9 @@
 #include "CepaIndia.h"
 #include "CepaChina.h"
 #include "CepaBrasileña.h"
+#include "MurcielagoBoss.h"
+#include "MurcielagoPequeño.h"
 #include "Bonus.h"
-//#include "ListaDisparosGel.h"
-//#include "ListaEnemigos.h"
 #include "Quirurgica.h"
 #include "Astrazeneca.h"
 #include "Janssen.h"
@@ -37,6 +37,9 @@ public:
 	static bool rebote(Enemigo enem, Plataforma p);
 	static void rebote(CepaBritanica& brit, Escenario e);
 	static void rebote(CepaIndia& ind, Escenario e);
+	static void rebote(MurcielagoPequeño& murpeq, Escenario e);
+	static void rebote(MurcielagoBoss& murboss, Escenario e);
+	static void disparo(MurcielagoPequeño& murpeq, Jugador j);
 	static void rebote(Quirurgica& qui, Escenario e);
 	static bool rebote(Enemigo enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);
@@ -44,9 +47,9 @@ public:
 	static bool colision(DisparoGel d, Plataforma p);
 	static bool colision(DisparoGel d, Escenario e);
 	static bool colision(DisparoGel d, Enemigo enem);
-	static bool colision(CepaChina c, Plataforma p);
+	/*static bool colision(CepaChina c, Plataforma p);
 	static bool colision(CepaChina c, Escenario e);
-	static bool colision(CepaChina c, Enemigo enem);
+	static bool colision(CepaChina c, Enemigo enem);*/
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
@@ -63,5 +66,3 @@ public:
 	static void rebote(Jugador& j, BloqueSorpresa b);
 	static bool colisionEscalera(Escalera e, Jugador j);
 };
-
-

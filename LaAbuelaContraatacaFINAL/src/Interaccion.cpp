@@ -255,9 +255,9 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 		bra.posicion.y = ymin + bra.altura;
 		int SemillaAl= rand();
 		srand(time(NULL) * SemillaAl);
-		int i, n, aleatorio, DESDE = 5, HASTA = 10;
+		int aleatorio, DESDE = 5, HASTA = 10;
 		aleatorio = rand() % (HASTA - DESDE + 1) + DESDE;
-		bra.saltar(aleatorio);
+		bra.saltar((float)aleatorio);
 	}
 }
 bool Interaccion::rebote(Enemigo enem, Plataforma p)
@@ -288,8 +288,8 @@ void Interaccion::rebote(CepaChina& chin, Jugador j)
 void Interaccion::rebote(CepaIndia& ind, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x;
-	float xmin = e.pared_izq.limite2.x;
+	float xmax = e.pared_dcha.limite2.x - (ind.getAltura());
+	float xmin = e.pared_izq.limite2.x + (ind.getAltura());
 	if (ind.posicion.x > xmax)
 	{
 		ind.posicion.x = xmax;
@@ -304,8 +304,8 @@ void Interaccion::rebote(CepaIndia& ind, Escenario e)
 void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x;
-	float xmin = e.pared_izq.limite2.x;
+	float xmax = e.pared_dcha.limite2.x - (brit.getAltura());
+	float xmin = e.pared_izq.limite2.x + (brit.getAltura());;
 	if (brit.posicion.x > xmax)
 	{
 		brit.posicion.x = xmax;
@@ -317,13 +317,52 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 		brit.velocidad.x = 3.0f;
 	}
 }
-
+void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e)
+{
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura());
+	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura());;
+	if (murpeq.posicion.x > xmax)
+	{
+		murpeq.posicion.x = xmax;
+		murpeq.velocidad.x = -3.0f;
+	}
+	if (murpeq.posicion.x < xmin)
+	{
+		murpeq.posicion.x = xmin;
+		murpeq.velocidad.x = 3.0f;
+	}
+}
+void Interaccion::disparo(MurcielagoPequeño& murpeq, Jugador j)
+{
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	if (murpeq.posicion.x > 2.0f && murpeq.posicion.x < 2.5f)
+	{
+		murpeq.disparoChina(j.getPos());
+	}
+}
+void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e)
+{
+	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
+	float xmax = e.pared_dcha.limite2.x - (murboss.getAltura());
+	float xmin = e.pared_izq.limite2.x + (murboss.getAltura());;
+	if (murboss.posicion.x > xmax)
+	{
+		murboss.posicion.x = xmax;
+		murboss.velocidad.x = -3.0f;
+	}
+	if (murboss.posicion.x < xmin)
+	{
+		murboss.posicion.x = xmin;
+		murboss.velocidad.x = 3.0f;
+	}
+}
 bool Interaccion::rebote(Enemigo enem, Escenario e)
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x;
-	float xmin = e.pared_izq.limite2.x;
-	if (enem.posicion.x <= xmin && enem.posicion.x >= xmax)
+	float xmax = e.pared_dcha.limite2.x- (enem.altura / 2.0f);
+	float xmin = e.pared_izq.limite2.x + (enem.altura/2.0f);
+	if (enem.posicion.x <= xmin || enem.posicion.x >= xmax)
 		return true;
 	return false;
 }
@@ -425,31 +464,31 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
-bool Interaccion::colision(CepaChina c, Plataforma p)
-{
-	Vector2D pos = c.getPos(); //la posicion del centro de la cepa
-	float distancia = p.distancia(pos);
-	if (distancia <= c.getRadio())
-		return true;
-	return false;
-}
-bool Interaccion::colision(CepaChina c, Escenario e)
-{
-	if (Interaccion::colision(c, e.pared_dcha) || Interaccion::colision(c, e.pared_izq) || Interaccion::colision(c, e.suelo))
-		return true;
-	return false;
-}
-bool Interaccion::colision(CepaChina c, Enemigo enem)
-{
-	Plataforma aux; //Creamos una pared auxiliar
-	Vector2D p1 = c.posicion;
-	Vector2D p2 = c.origen;
-	aux.setPos(p1.x, p1.y, p2.x, p2.y); //Que coincida con el disparo.
-	float dist = aux.distancia(enem.posicion); //para calcular su distancia 
-	if (dist < (enem.altura / 2.0f))
-		return true;
-	return false;
-}
+//bool Interaccion::colision(CepaChina c, Plataforma p)
+//{
+//	Vector2D pos = c.getPos(); //la posicion del centro de la cepa
+//	float distancia = p.distancia(pos);
+//	if (distancia <= c.getRadio())
+//		return true;
+//	return false;
+//}
+//bool Interaccion::colision(CepaChina c, Escenario e)
+//{
+//	if (Interaccion::colision(c, e.pared_dcha) || Interaccion::colision(c, e.pared_izq) || Interaccion::colision(c, e.suelo))
+//		return true;
+//	return false;
+//}
+//bool Interaccion::colision(CepaChina c, Enemigo enem)
+//{
+//	Plataforma aux; //Creamos una pared auxiliar
+//	Vector2D p1 = c.posicion;
+//	Vector2D p2 = c.origen;
+//	aux.setPos(p1.x, p1.y, p2.x, p2.y); //Que coincida con el disparo.
+//	float dist = aux.distancia(enem.posicion); //para calcular su distancia 
+//	if (dist < (enem.altura / 2.0f))
+//		return true;
+//	return false;
+//}
 bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 {
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.

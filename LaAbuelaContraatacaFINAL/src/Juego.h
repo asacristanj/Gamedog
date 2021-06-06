@@ -49,5 +49,3 @@ public:
 	void teclaEspecialUp(unsigned char key);
 	bool getImpacto() {	return impacto;}//funcion que lee el impacto
 };
-
-

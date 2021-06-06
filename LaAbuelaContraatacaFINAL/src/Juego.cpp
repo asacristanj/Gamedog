@@ -23,11 +23,14 @@ void Juego::inicializa()
 	//bonuses.agregar(new Quirurgica(1.0f,4.0f,10.0f,-5.0f,0.0f));
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, -5.0f, 0.0f));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
-	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
+	//enemigos.agregar(new MurcielagoPequeño());
+	enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 3.0f, 0.0f));
+	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaChina(1.5f, 0.0f, 15.0f, -1.0f, 0.0f));
+	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
@@ -61,7 +64,7 @@ void Juego::mueve()
 	bonuses.mueve(0.025f);
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
-	//enemigos.rebote(escenario);
+	enemigos.rebote(escenario);
 	enemigos.rebote(plataforma);
 	enemigos.rebote(jugador);
 	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
@@ -160,9 +163,14 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 
 void Juego::tecla(unsigned char key)
 {
-	if (jugador.GetNumBonus() == 2) {
+	//if (jugador.GetNumBonus() == 2) {
 		switch (key)
 		{
+		case 'm':
+		{
+			enemigos.agregar(new CepaBritanica(1.5f, -2.0f, 10.0f, -0.5f, 0.0f));
+			break;
+		}
 		case 'w':
 		{/*
 			//incorporo disparos dependiendo del bonus hacia arriba
@@ -226,12 +234,7 @@ void Juego::tecla(unsigned char key)
 		}
 		}
 	}
-	switch(key){
-	case '1':
-		enemigos.agregar(new CepaBritanica(1.5f, -2.0f, 10.0f, -0.5f, 0.0f));
-		break;
-	}
-}
+//}
 Juego::~Juego()
 {
 	enemigos.destruirContenido();

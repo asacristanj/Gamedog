@@ -84,6 +84,16 @@ void ListaEnemigos::rebote(Escenario e)
 			if (Interaccion::rebote(*chin, e))
 				eliminar(i);
 		}
+		if (tipo ==  MURCIELAGOPEQUEÑO)
+		{
+			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
+			Interaccion::rebote(*murpeq, e);
+		}
+		if (tipo == MURCIELAGOBOSS)
+		{
+			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
+			Interaccion::rebote(*murboss, e);
+		}
 	}
 }
 void ListaEnemigos::rebote(Jugador& j)
@@ -149,6 +159,38 @@ void ListaEnemigos::rebote(Jugador& j)
 			CepaChina* chin = (CepaChina*)lista[i];
 		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j))
 			j.morir();
+		}
+		if (tipo == MURCIELAGOPEQUEÑO)
+		{
+			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
+			Vector2D pos= murpeq->getPos();
+			if (pos.x > 2.0f && pos.x < 2.05f)
+			{
+				CepaChina* c = new CepaChina();
+				c->setPos(pos.x, pos.y);
+				c->setVel(0, -4.0f);
+				agregar (c);
+			}
+			if (Interaccion::colisionEncima(*murpeq, j))
+				eliminar(i);
+			else if (Interaccion::colision(*murpeq, j))
+				j.morir();
+		}
+		if (tipo == MURCIELAGOBOSS)
+		{
+			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
+			Vector2D pos = murboss->getPos();
+			if (pos.x > 2.0f && pos.x < 2.05f)
+			{
+				CepaChina* c = new CepaChina();
+				c->setPos(pos.x, pos.y);
+				c->setVel(0, -6.0f);
+				agregar(c);
+			}
+			if (Interaccion::colisionEncima(*murboss, j))
+				eliminar(i);
+			else if (Interaccion::colision(*murboss, j))
+				j.morir();
 		}
 	}
 }

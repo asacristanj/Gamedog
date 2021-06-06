@@ -2,7 +2,6 @@
 #define MAX_ENEMIGOS 100
 #include "Enemigo.h"
 #include "Interaccion.h"
-#include "ListaDisparosGel.h"
 class ListaEnemigos
 {
 private:
