@@ -4,8 +4,9 @@ class ObjetoMovil
 {
 protected:
 	Vector2D posicion, velocidad, aceleracion;
+
 public:
-	void mueve(float t);
+ void mueve(float t);
 	void setPos(float ix, float iy);
 	void setVel(float vx, float vy);
 	void setVelx(float vx);

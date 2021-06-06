@@ -2,7 +2,10 @@
 #include "freeglut.h" 
 Jugador::Jugador()
 {
-	altura = 0.9f;
+	altura = 2.0f;
+	sprite.setCenter(1, 0);
+	sprite.setSize(1, altura);
+	
 	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;
 	posicion.x = 0.0f;
@@ -13,8 +16,19 @@ void Jugador::dibuja()
 {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
+	
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glutSolidSphere(altura, 15, 15);
+	//glutSolidSphere(altura, 15, 15);
+	//glPopMatrix();
+	
+	if (velocidad.x > 0.01)sprite.flip(false, false);
+	if (velocidad.x < -0.01)sprite.flip(true, false);
+	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
+		sprite.setState(0);
+	else if (sprite.getState() == 0)
+		sprite.setState(1, false);
+	sprite.draw();
+
 	glPopMatrix();
 }
 void Jugador::salto()
@@ -42,3 +56,11 @@ void Jugador::subirEscalera() {
 bool Jugador::suelo() {
 	return tocandosuelo;
 }
+
+void Jugador::mueve(float t)
+{
+	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	velocidad = velocidad + aceleracion * t;
+	sprite.loop();
+}
+

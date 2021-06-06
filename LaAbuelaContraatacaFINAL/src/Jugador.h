@@ -1,9 +1,14 @@
 #pragma once
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
+#include "ETSIDI.h"
+using ETSIDI::SpriteSequence;
+
 class Jugador: public ObjetoMovil
 {
+	
 private:
+	SpriteSequence sprite{ "imagenes/sprite_abuela.png", 6 };
 	float altura;
 	float vel_normal = 5.0f;
 	float coeficiente_velx; // coeficiente de velocidad x
@@ -18,6 +23,7 @@ public:
 	Jugador();
 	virtual ~Jugador();
 	void dibuja();
+	void mueve(float t);
 	void salto();
 	void morir();
 	//void crecer();
