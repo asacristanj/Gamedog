@@ -124,10 +124,10 @@ void Juego::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	   case GLUT_KEY_LEFT:
-		   jugador.setVelx(-jugador.getvelNom()); // solo modifico la velocidad en el eje x
+		   jugador.setVelx(-(jugador.getVelNormal() * jugador.getCoefVelx())); // velocidad normal * coeficiente de velocidad
 		   break;
 	   case GLUT_KEY_RIGHT:
-		   jugador.setVelx(jugador.getvelNom());
+		   jugador.setVelx((jugador.getVelNormal() * jugador.getCoefVelx()));
 		   break;
 	   case GLUT_KEY_UP:
 		   //Para que no pueda saltar en el aire
@@ -141,7 +141,7 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 	switch (key)
 	{
 		case GLUT_KEY_LEFT:
-			jugador.setVelx(0.0f);
+			jugador.setVelx(0.0f); // ESTO NO FUNCIONA!!???
 			break;
 		case GLUT_KEY_RIGHT:
 			jugador.setVelx(0.0f);

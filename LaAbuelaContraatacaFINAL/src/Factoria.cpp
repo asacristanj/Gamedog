@@ -33,19 +33,19 @@ void Factoria::CogerAstrazeneca(Jugador& j) {
 }
 void Factoria::CogerPfizer(Jugador& j) {
 	//invencible y mas rapido
-	//j.setVelx(2*velo.x);
+	j.setCoefVelx(j.getVelRapida()); // modifico el coeficiente de la velocidad para hacerla más rapida
 }
 void Factoria::CogerJanssen(Jugador& j) {
 	int azar = rand() % 4;
 	switch (azar) {
 	case 0:
-		//mas lento
+		j.setCoefVelx(j.getVelLenta()); //mas lento
 		break;
 	case 1:
-		//mas rapido
+		j.setCoefVelx(j.getVelRapida()); //mas rapido
 		break;
 	case 2:
-		//mas rapido
+		j.setCoefVelx(j.getVelRapida()); //mas rapido
 		break;
 	case 3:
 		//no pasa na

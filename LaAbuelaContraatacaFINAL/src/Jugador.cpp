@@ -3,10 +3,10 @@
 Jugador::Jugador()
 {
 	altura = 0.9f;
+	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
-	velocidad.x = 0.0f;
 	numbonus = 0;
 }
 void Jugador::dibuja()

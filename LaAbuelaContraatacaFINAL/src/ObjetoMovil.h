@@ -12,5 +12,7 @@ public:
 	void setVely(float vy);
 	Vector2D getPos() { return posicion; }
 	Vector2D getVel() { return velocidad; }
+	float getVelx() { return velocidad.x; }
+	float getVely() { return velocidad.y; }
 };
 

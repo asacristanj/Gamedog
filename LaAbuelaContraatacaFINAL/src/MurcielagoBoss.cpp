@@ -10,6 +10,10 @@ MurcielagoBoss::MurcielagoBoss()
 	color.b = 0;
 }
 
+void MurcielagoBoss::volar()
+{
+}
+
 void MurcielagoBoss::disparoChina(Vector2D posJugador)
 {
 	CepaChina* c = new CepaChina();
