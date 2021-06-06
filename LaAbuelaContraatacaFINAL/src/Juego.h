@@ -37,6 +37,7 @@ private:
 	CepaBritanica brit;
 	ListaBloques bloques;
 	Escalera escalera;
+	bool impacto;//variable que es true si enemigo choca con jugador
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -46,6 +47,7 @@ public:
 	void dibuja();
 	void teclaEspecial(unsigned char key);
 	void teclaEspecialUp(unsigned char key);
+	bool getImpacto() {	return impacto;}//funcion que lee el impacto
 };
 
 

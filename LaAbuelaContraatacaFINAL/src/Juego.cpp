@@ -8,7 +8,9 @@ void Juego::inicializa()
 	x_ojo = 0;
 	y_ojo = 7.5;
 	z_ojo = 30;
-
+	impacto = false;//inicializo otra vez el impacto
+	enemigos.destruirContenido();//limpio tras game over
+	disparos.destruirContenido();//limpio tras game over
 	//bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
 	escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
@@ -16,10 +18,11 @@ void Juego::inicializa()
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f,-5.0f,8));
 	//bonuses.agregar(new Janssen(1.5f,-4.0f,5));
-	//bonuses.agregar(new MascarillaTocha(1.0f,7.0f,9));
-	//bonuses.agregar(new Pfizer(0.5f,1.0f,3,0,0));
-	bonuses.agregar(new Quirurgica(1.0f,4.0f,10.0f,-5.0f,0.0f));
-	bonuses.agregar(new Sputnik(0.5f,8.5f,6));
+	//bonuses.agregar(new MascarillaTocha(1.0f,0.0f,9));
+	bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
+	//bonuses.agregar(new Quirurgica(1.0f,4.0f,10.0f,-5.0f,0.0f));
+	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, -5.0f, 0.0f));
+	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
@@ -89,6 +92,12 @@ void Juego::mueve()
 			}
 		}
 	}
+	//Funcion que manda un true si el enemigo golpea al jugador
+	Enemigo* aux = enemigos.colision(jugador);
+	if (aux != 0) {
+		impacto = true;
+	}
+
 	/*for (int i = 0; i < enemigos.getNumero(); i++)
 	{
 		if (Interaccion::ratio(brit, jugador))
@@ -115,10 +124,10 @@ void Juego::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	   case GLUT_KEY_LEFT:
-		   jugador.setVelx(-5.0f); // solo modifico la velocidad en el eje x
+		   jugador.setVelx(-jugador.getvelNom()); // solo modifico la velocidad en el eje x
 		   break;
 	   case GLUT_KEY_RIGHT:
-		   jugador.setVelx(5.0f);
+		   jugador.setVelx(jugador.getvelNom());
 		   break;
 	   case GLUT_KEY_UP:
 		   //Para que no pueda saltar en el aire
@@ -151,69 +160,73 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 
 void Juego::tecla(unsigned char key)
 {
-	switch (key)
-	{
-	case 'w':
-	{/*
-		//incorporo disparos dependiendo del bonus hacia arriba
-		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)){
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
-			d->setVel(0.0f, 6.0f);
+	if (jugador.GetNumBonus() == 2) {
+		switch (key)
+		{
+		case 'w':
+		{/*
+			//incorporo disparos dependiendo del bonus hacia arriba
+			if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)){
+				DisparoGel* d = Factoria::CrearDisparo(jugador);
+				//Vector2D pos = jugador.getPos();
+				//d->setPos(pos.x, pos.y);
+				d->setVel(0.0f, 6.0f);
+				disparos.agregar(d);
+			}
+
+			break;
+			*/
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
+			d->setVel(0, 6.0f);
 			disparos.agregar(d);
+			break;
 		}
-		
-		break;
-		*/
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(0, 6.0f);
-		disparos.agregar(d);
-		break;
-	}
-	case 'a':
-	{/*
-		//incorporo disparos dependiendo del bonus hacia izquierda
-		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)) {
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
+		case 'a':
+		{/*
+			//incorporo disparos dependiendo del bonus hacia izquierda
+			if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)) {
+				DisparoGel* d = Factoria::CrearDisparo(jugador);
+				//Vector2D pos = jugador.getPos();
+				//d->setPos(pos.x, pos.y);
+				d->setVel(-6.0f, 0);
+				disparos.agregar(d);
+			}
+			break;
+			*/
+			//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
 			d->setVel(-6.0f, 0);
 			disparos.agregar(d);
+			break;
+
 		}
-		break;
-		*/
-		//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(-6.0f, 0);
-		disparos.agregar(d);
-		break;
-		
-	}
-	case 'd':
-	{
-		//incorporo disparos dependiendo del bonus hacia derecha
-		/*if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus()==2)) {
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
+		case 'd':
+		{
+			//incorporo disparos dependiendo del bonus hacia derecha
+			/*if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus()==2)) {
+				DisparoGel* d = Factoria::CrearDisparo(jugador);
+				//Vector2D pos = jugador.getPos();
+				//d->setPos(pos.x, pos.y);
+				d->setVel(6.0f, 0);
+				disparos.agregar(d);
+			}
+			break;
+			*/
+
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
 			d->setVel(6.0f, 0);
 			disparos.agregar(d);
+			break;
 		}
-		break;
-		*/
-		
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(6.0f, 0);
-		disparos.agregar(d);
-		break;
+		}
 	}
+	switch(key){
 	case '1':
 		enemigos.agregar(new CepaBritanica(1.5f, -2.0f, 10.0f, -0.5f, 0.0f));
 		break;

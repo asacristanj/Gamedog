@@ -48,7 +48,7 @@ bool Interaccion::colision(Bonus b, Jugador j) {//Funcion que manda true si el j
 	}
 	return false;
 }
-bool Interaccion::colision(Quirurgica q, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la quirurgica
+/*bool Interaccion::colision(Quirurgica q, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la quirurgica
 	Vector2D pos = j.getPos();
 	float distancia = (q.getPos() - pos).modulo();
 	if ((distancia <= ((j.altura)))) {
@@ -95,7 +95,7 @@ bool Interaccion::colision(Sputnik sp , Jugador j) {//Funcion que manda true si 
 		return true;
 	}
 	return false;
-}
+}*/
 //funcion que hace que el bonus no se vaya del escenario y choque en las plataformas:
 void Interaccion::rebote(Bonus& b, Plataforma p) {//meto el esceneario para que haya aceleracion de plataforma a escenario y no haya en el escenario
 	/*float xmax = p.limite2.x;

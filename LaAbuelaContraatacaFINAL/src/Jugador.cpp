@@ -6,6 +6,7 @@ Jugador::Jugador()
 	aceleracion.y = acel_inicial;
 	posicion.x = 0.0f;
 	posicion.y = 1.8f;
+	velocidad.x = 0.0f;
 	numbonus = 0;
 }
 void Jugador::dibuja()
@@ -25,9 +26,9 @@ void Jugador::morir()
 {
 	altura = 0.0f;
 }
-void Jugador::crecer(){
+/*void Jugador::crecer(){
 	setAltura(2.0 * altura); // el doble de grande
-}
+}*/
 //void Jugador::IncrementaNumBonus() {
 
 //}

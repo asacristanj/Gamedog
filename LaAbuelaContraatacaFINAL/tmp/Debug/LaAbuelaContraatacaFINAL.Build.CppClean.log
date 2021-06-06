@@ -1,7 +1,5 @@
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\vc142.pdb
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\vc142.idb
-c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listadisparosgel.obj
-c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listabonus.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\laabuelacontraataca.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\jugador.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\juego.obj
@@ -11,8 +9,10 @@ c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\m
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listabloques.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\factoria.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\escenario.obj
+c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\escalera.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\enemigo.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\disparogel.obj
+c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\coordinador.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\cepaindia.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\cepachina.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\cepabritanica.obj
@@ -29,10 +29,11 @@ c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\o
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\murcielagopequeño.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\murcielagoboss.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listaenemigos.obj
+c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listadisparosgel.obj
+c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\listabonus.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\bin\laabuelacontraatacafinal.exe
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\bin\laabuelacontraatacafinal.ilk
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\bin\laabuelacontraatacafinal.pdb
-c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\laabuelacontraatacafinal.obj
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\laabuela.53939eb2.tlog\cl.command.1.tlog
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\laabuela.53939eb2.tlog\cl.read.1.tlog
 c:\users\alejandro\documents\github\gamedog\laabuelacontraatacafinal\tmp\debug\laabuela.53939eb2.tlog\cl.write.1.tlog

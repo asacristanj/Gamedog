@@ -23,6 +23,15 @@ void Coordinador::tecla(unsigned char key) {
 	}
 	else if (estado == JUEGO) {
 		juego.tecla(key);
+		if (key == 'p') {
+			estado = PAUSA;
+		}
+	}
+	else if (estado == PAUSA) {
+		//juego.tecla(key);
+		if (key == 'c') {
+			estado = JUEGO;
+		}
 	}
 	else if (estado == GAMEOVER) {
 		if (key == 'c') {
@@ -35,9 +44,18 @@ void Coordinador::tecla(unsigned char key) {
 		}
 	}
 }
+void Coordinador::teclaEspecialUp(unsigned char key) {
+	if (estado == JUEGO) {
+		juego.teclaEspecialUp(key);
+	}
+}
 void Coordinador::mueve() {
 	if (estado == JUEGO) {
 		juego.mueve();
+		//aqui falta el añadir cuando ganes
+		if (juego.getImpacto()) {
+			estado = GAMEOVER;
+		}
 	}
 }
 void Coordinador::dibuja() {
@@ -45,29 +63,32 @@ void Coordinador::dibuja() {
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
-		/*ETSIDI::setTextColor(1, 1, 0);
+		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("LA ABUELA CONTRATACA", -5, 8);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
-		ETSIDI::printxy("MACCABI DE LEVANTAR CHICO", 2, 1);*/
+		ETSIDI::printxy("MACCABI DE LEVANTAR CHICO", 2, 1);
 	}
 	else if (estado == JUEGO) {
 		juego.dibuja();
 	}
+	else if (estado == PAUSA) {
+		juego.dibuja();
+	}
 	else if (estado == GAMEOVER) {
 		juego.dibuja();
-		/*ETSIDI::setTextColor(1, 0, 0);
+		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("GAME OVER: chupaste", -5, 10);
-		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);*/
+		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);
 	}
 	else if (estado == FIN) {
 		juego.dibuja();
-		//ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		//ETSIDI::printxy("Chico estas mas dentro", -5, 10);
-		//ETSIDI::printxy("Pulsa -C- para continuar", -5, 10);
+		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::printxy("Chico estas mas dentro", -5, 10);
+		ETSIDI::printxy("Pulsa -C- para continuar", -5, 10);
 	}
 }

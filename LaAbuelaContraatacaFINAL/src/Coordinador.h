@@ -9,11 +9,12 @@ public:
 
 	void teclaEspecial(unsigned char key);
 	void tecla(unsigned char key);
+	void teclaEspecialUp(unsigned char key);
 	void mueve();
 	void dibuja();
 protected:
 	Juego juego;
-	enum Estado {INICIO, JUEGO, GAMEOVER,FIN};
+	enum Estado {INICIO, JUEGO, PAUSA, GAMEOVER,FIN};
 	Estado estado;
 };
 

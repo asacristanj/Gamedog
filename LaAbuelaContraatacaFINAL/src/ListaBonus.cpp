@@ -123,6 +123,7 @@ void ListaBonus::rebote(Jugador& j)
 		if (tipo == MATOCHA) {
 			MascarillaTocha* m = (MascarillaTocha*)lista[i];
 			if (Interaccion::colision(*m, j)) {
+				Factoria::CogerMascarillaTocha(j);
 				eliminar(i);
 			}
 		}
@@ -142,6 +143,7 @@ void ListaBonus::rebote(Jugador& j)
 		if (tipo == PFIZER) {
 			Pfizer* p = (Pfizer*)lista[i];
 			if (Interaccion::colision(*p, j)) {
+				Factoria::CogerPfizer(j);
 				eliminar(i);
 			}
 		}

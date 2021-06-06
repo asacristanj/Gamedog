@@ -8,6 +8,7 @@ private:
 	float acel_inicial = -30.0f;
 	float impulso = 20.0f; //impulso vertical inicial del salto
 	bool tocandosuelo;
+	float vel_nom=5.0f;
 protected:
 	int numbonus;
 public:
@@ -16,7 +17,7 @@ public:
 	void dibuja();
 	void salto();
 	void morir();
-	void crecer();
+	//void crecer();
 	float getAltura() { return altura; }
 	void setAltura(float nalt) { altura = nalt; }
 	//void IncrementaNumBonus();
@@ -24,6 +25,8 @@ public:
 	int GetNumBonus() { return numbonus; }
 	void setImpulso(float imp) { impulso = imp; }
 	void subirEscalera();
+	float getvelNom() { return vel_nom; }
+	void setvelNom();
 	bool suelo();
 
 	friend class Interaccion;
