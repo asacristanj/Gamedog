@@ -536,10 +536,10 @@ bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
 bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) {
 	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
 	Vector2D aux,bloque=b.posicion,jugador=j.getPos();
-	float radio = j.getAltura(), l = b.lado * 0.5f;
+	float radio = j.getAltura(), l = b.lado * 0.5f,lim1=bloque.x+l,lim2=bloque.x-l;
 	aux = bloque - jugador;
 	float distancia = aux.modulo();
-	if ((distancia <= radio + l)&& (jugador.y<=bloque.y)) {
+	if ((distancia <= radio + l)&& (jugador.y<=bloque.y)&&(lim2<=jugador.x<=lim1)) {
 		return true;
 
 	}
