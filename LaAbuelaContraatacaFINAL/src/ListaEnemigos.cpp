@@ -1,35 +1,35 @@
 #include "ListaEnemigos.h"
 #include <time.h>
-ListaEnemigos::ListaEnemigos()
+ListaEnemigos::ListaEnemigos() //Constructor de ListaEnemigos
 {
 	numero = 0;
 	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;
 }
-bool ListaEnemigos::agregar(Enemigo* enem)
+bool ListaEnemigos::agregar(Enemigo* enem) //Método para agregar enemigos de manera correcta y ordenada
 {
 	for (int i = 0; i < numero; i++)
 	{
-		if (enem == lista[i])
+		if (enem == lista[i]) //Si se introduce un enemigo ya hecho no se mete
 			return false;
 	}
 	if (numero < MAX_ENEMIGOS)
-		lista[numero++] = enem; // último puesto sin rellenar
+		lista[numero++] = enem; // Último puesto sin rellenar
 	else
-		return false; // capacidad máxima alcanzada
+		return false; // Capacidad máxima alcanzada
 	return true;
 }
-void ListaEnemigos::dibuja()
+void ListaEnemigos::dibuja() //Método para dibujar todos los enemigos
 {
 	for (int i = 0; i < numero; i++)
 		lista[i]->dibuja();
 }
-void ListaEnemigos::mueve(float t)
+void ListaEnemigos::mueve(float t) // Método para mover todos los enemigos
 {
 	for (int i = 0; i < numero; i++)
 		lista[i]->mueve(t);
 }
-void ListaEnemigos::rebote(Plataforma p)
+void ListaEnemigos::rebote(Plataforma p) // Método para gestionar la interacción de todos los enemigos con las plataformas
 {
 	for (int i = numero - 1; i >= 0; i--)
 	{
@@ -37,7 +37,7 @@ void ListaEnemigos::rebote(Plataforma p)
 		if (tipo == CEPAINDIA)
 		{
 			CepaIndia* ind = (CepaIndia*)lista[i];
-			Interaccion::rebote(*ind, p);
+			Interaccion::rebote(*ind, p); //Se llama al método que gestiona la interacción de la cepa con la plataforma
 		}
 		if (tipo == CEPABRITANICA)
 		{
@@ -53,11 +53,12 @@ void ListaEnemigos::rebote(Plataforma p)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
 			if (Interaccion::rebote(*chin, p))
-				eliminar(i);
+				eliminar(i); //En este caso se quiere que si esta cepa toca la plataforma se elimine
 		}
+		//No están los murcielagos ya que nunca va a haber colisión entre ellos
 	}
 }
-void ListaEnemigos::rebote(Escenario e)
+void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción de todos los enemigos con el escenario
 {
 	for (int i = numero - 1; i >= 0; i--)
 	{
@@ -65,7 +66,7 @@ void ListaEnemigos::rebote(Escenario e)
 		if (tipo == CEPAINDIA)
 		{
 			CepaIndia* ind = (CepaIndia*)lista[i];
-			Interaccion::rebote(*ind, e);
+			Interaccion::rebote(*ind, e); //Se llama al método que gestiona la interacción de la cepa con el escenario
 		}
 		if (tipo == CEPABRITANICA)
 		{
@@ -96,37 +97,37 @@ void ListaEnemigos::rebote(Escenario e)
 		}
 	}
 }
-void ListaEnemigos::rebote(Jugador& j)
+void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción de todos los enemigos con el jugador
 {
 	for (int i = numero - 1; i >= 0; i--)
 	{
 		int tipo = lista[i]->getTipo();
-		if (tipo == CEPAINDIA)
+		if (tipo == CEPAINDIA) //En la CepaIndia se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador
 		{
 			CepaIndia* ind = (CepaIndia*)lista[i];
 			if (Interaccion::colisionEncima(*ind, j))
 				eliminar(i);
 			else if (Interaccion::colision(*ind, j))
-				j.setNumBonus(j.GetNumBonus() - 1);
+				j.setNumBonus(j.GetNumBonus() - 1); //si tiene algún bonus se lo quitamos
 			if (j.GetNumBonus() < 0) {
-				j.morir();
+				j.morir(); //cuando no tenga bonus muere
 			}
 		}
-		if (tipo == CEPABRITANICA)
+		if (tipo == CEPABRITANICA)//En la CepaBritanica se quiere que si el jugador se acerca a una cierta distancia del enemigo este se pare y a los 2 segundos explote. Si el jugador se encuentra en una distancia algo mayor que la anterior, el jugador muere por la explosión, sino sobrevive.
 		{
 			CepaBritanica* brit = (CepaBritanica*)lista[i];
-			static time_t horaInicio = time(NULL);
+			static time_t horaInicio = time(NULL); //Se coge hora de inicio 
 			const int SEGUNDOS = 2; //Tiempo que tarda en explotar
-			time_t horaActual = time(NULL);
-			if (Interaccion::ratio(*brit, j))
+			time_t horaActual = time(NULL); //Se coge todo el rato la hora actual
+			if (Interaccion::ratio(*brit, j)) //El juagdor entra en el ratio de explosión
 			{
-				if (inicializar_hora_inicio == false)
+				if (inicializar_hora_inicio == false) //Si el temporizador ya ha sido usado
 				{
 					inicializar_hora_inicio = true;
-					horaInicio = time(NULL);
+					horaInicio = time(NULL); //Se actualiza hora de inicio para todos los enemigos CepaBritanica
 				}
-				brit->setVel(0, 0);
-				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j))
+				brit->setVel(0, 0); //El enemigo se para
+				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j)) //Si se tocan también afecta al jugador
 				{
 					eliminar(i);
 					j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
@@ -135,29 +136,32 @@ void ListaEnemigos::rebote(Jugador& j)
 					}
 					//j.morir();
 				}
-				else if ((horaActual - horaInicio) >= SEGUNDOS)
+				else if ((horaActual - horaInicio) >= SEGUNDOS) //Momento de explosión
 				{
-					if (Interaccion::ratioExplosion(*brit, j))
-						j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
-					if (j.GetNumBonus() < 0) {
-						j.morir();
+					if (Interaccion::ratioExplosion(*brit, j)) //Si el jugador está dentro de la explosión
+					{
+						j.setNumBonus(j.GetNumBonus() - 1);//Disminuir el bonus
+						if (j.GetNumBonus() < 0)
+						{
+							j.morir();
+						}
+						//j.morir();
 					}
-					//j.morir();
 				}
 			}
 			else
 			{
-				if (inicializar_hora_inicio == true)
+				if (inicializar_hora_inicio == true) //El temporizador se ha usado
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
-						eliminar(i);
-						inicializar_hora_inicio = false;
+						eliminar(i); //Se elimina el enemigo tras la explosion
+						inicializar_hora_inicio = false; //Se marca que se ha usado el temporizador
 					}
 				}
 			}
 		}
-		if (tipo == CEPABRASILEÑA)
+		if (tipo == CEPABRASILEÑA) //En la CepaBrasileña se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador
 		{
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
@@ -170,40 +174,45 @@ void ListaEnemigos::rebote(Jugador& j)
 				//j.morir();
 			}
 		}
-		if (tipo == CEPACHINA)
+		if (tipo == CEPACHINA)//En la CepaChina se quiere que si el jugador toca el enemigo los 2 mueran
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)){
+		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)) //Si hay colisión sea cual sea los dos mueren (si el jugador no tiene bonus obviamente)
+		 {
+			 eliminar(i);
 			 j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
-			 if (j.GetNumBonus() < 0) {
+			 if (j.GetNumBonus() < 0) 
+			 {
 				 j.morir();
 			 }
 		 }
 			//j.morir();
 		}
-		if (tipo == MURCIELAGOPEQUEÑO)
+		if (tipo == MURCIELAGOPEQUEÑO) //En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
 			Vector2D pos= murpeq->getPos();
 			Vector2D posjugador = j.getPos();
-			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f))
+			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f)) //Le disparan cuando estén en el mismo eje X
 			{
 				CepaChina* c = new CepaChina();
-				c->setPos(pos.x, pos.y);
-				c->setVely(murpeq->getVelChina());
+				c->setPos(pos.x, pos.y); //Se dispara desde la posicion del murcielago
+				c->setVely(murpeq->getVelChina()); //Se coge una velocidad que apunta al jugador dentro de las leyes de la física
 				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
 				eliminar(i);
-			else if (Interaccion::colision(*murpeq, j)){
+			else if (Interaccion::colision(*murpeq, j))
+			{
 				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) {
+				if (j.GetNumBonus() < 0) 
+				{
 					j.morir();
 				}
 			}
 				//j.morir();
 		}
-		if (tipo == MURCIELAGOBOSS)
+		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
 			Vector2D pos = murboss->getPos();
@@ -216,10 +225,10 @@ void ListaEnemigos::rebote(Jugador& j)
 			}
 			if (Interaccion::colisionEncima(*murboss, j))
 			{
-				if (murboss->getVidas() > 1) // le queda al menos una vida
-					murboss->setVidas(-1); // resto una vida
+				if (murboss->getVidas() > 1) // Le queda al menos una vida
+					murboss->setVidas(-1); // Resto una vida
 				else
-					eliminar(i); // si no le quedan vidas muere
+					eliminar(i); // Si no le quedan vidas muere
 			}
 			else if (Interaccion::colision(*murboss, j)) {
 				j.setNumBonus(j.GetNumBonus() - 1);
@@ -231,39 +240,39 @@ void ListaEnemigos::rebote(Jugador& j)
 		}
 	}
 }
-Enemigo* ListaEnemigos::colision(Jugador& j)
+//Enemigo* ListaEnemigos::colision(Jugador& j)
+//{
+//	for (int i = 0; i < numero; i++)
+//	{
+//		if (Interaccion::colision(*(lista[i]), j))
+//		return lista[i];
+//	}
+//	return 0; //no hay colisión
+//}
+//Enemigo* ListaEnemigos::colisionEncima(Jugador& j)
+//{
+//	for (int i = 0; i < numero; i++)
+//	{
+//		if (Interaccion::colisionEncima(*(lista[i]), j))
+//			return lista[i];
+//	}
+//	return 0; //no hay colisión
+//}
+Enemigo* ListaEnemigos:: operator[] (int i) //Funcion que ajusta el simbolo [] para nuestro caso
 {
-	for (int i = 0; i < numero; i++)
-	{
-		if (Interaccion::colision(*(lista[i]), j))
-		return lista[i];
-	}
-	return 0; //no hay colisión
-}
-Enemigo* ListaEnemigos::colisionEncima(Jugador& j)
-{
-	for (int i = 0; i < numero; i++)
-	{
-		if (Interaccion::colisionEncima(*(lista[i]), j))
-			return lista[i];
-	}
-	return 0; //no hay colisión
-}
-Enemigo* ListaEnemigos:: operator[] (int i)
-{
-	if (i >= numero)//si me paso, devuelvo la ultima
+	if (i >= numero)//Si me paso, devuelvo la ultima
 		i = numero - 1;
-	if (i < 0) //si el indice es negativo, devuelvo la primera
+	if (i < 0) //Si el indice es negativo, devuelvo la primera
 		i = 0;
 	return lista[i];
 }
-void ListaEnemigos::destruirContenido()
+void ListaEnemigos::destruirContenido() //Funcion para eliminar enemigos correctamente
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
 }
-void ListaEnemigos::eliminar(int index)
+void ListaEnemigos::eliminar(int index)//Funcion para eliminar enemigos correctamente del vector de enemigos
 {
 	if ((index < 0) || (index >= numero))
 		return;
@@ -272,7 +281,7 @@ void ListaEnemigos::eliminar(int index)
 	for (int i = index; i < numero; i++)
 		lista[i] = lista[i + 1];
 }
-void ListaEnemigos::eliminar(Enemigo* enem)
+void ListaEnemigos::eliminar(Enemigo* enem) // Funcion para eliminar cualquier enemigo correctamente
 {
 	for (int i = 0; i < numero; i++)
 		if (lista[i] == enem)

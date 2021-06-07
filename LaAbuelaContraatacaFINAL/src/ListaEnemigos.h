@@ -7,7 +7,7 @@ class ListaEnemigos
 private:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;
-	bool inicializar_hora_inicio = false;
+	bool inicializar_hora_inicio = false; //Variable que guarda si se ha usado el temporizador de la CepaBritanica
 public:
 	ListaEnemigos();
 	virtual ~ListaEnemigos();
@@ -17,8 +17,8 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
-	Enemigo* colision(Jugador& j);
-	Enemigo* colisionEncima(Jugador& j);
+	//Enemigo* colision(Jugador& j);
+	//Enemigo* colisionEncima(Jugador& j);
 	//Enemigo* colision(DisparoGel& d);
 	Enemigo* operator [](int i);
 	int getNumero() { return numero; }

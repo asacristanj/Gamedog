@@ -13,26 +13,26 @@ void Juego::inicializa()
 	disparos.destruirContenido();//limpio tras game over
 	//bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
-	escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
+	//escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
+	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
 	//bonuses.agregar(new Janssen(1.5f,-4.0f,5));
-	bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
+	//bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
 	//bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
-	bonuses.agregar(new Quirurgica(1.0f, 4.0f, 10.0f, 0.0f, 0.0f));
+	//bonuses.agregar(new Quirurgica(1.0f, 4.0f, 10.0f, 0.0f, 0.0f));
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, -5.0f, 0.0f));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
-	enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
+	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
-	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
+	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 	setChances(jugador.GetNumBonus());
 	//chances = jugador.GetNumBonus();
 }
@@ -70,14 +70,6 @@ void Juego::mueve()
 	enemigos.rebote(escenario);
 	enemigos.rebote(plataforma);
 	enemigos.rebote(jugador);
-	//Se crea un enemigo auxiliar que revisa si todos los enemigos se choca con un jugador
-	/*Enemigo* aux = enemigos.colision(jugador);
-	Enemigo* aux1 = enemigos.colisionEncima(jugador);
-	//funcion que regula que el disparo elimina al enemigo
-	if (aux != 0)//si algún enemigo ha chocado
-		jugador.morir();
-	else if (aux1 != 0)//si algún enemigo ha chocado
-		enemigos.eliminar(aux1);*/
 	disparos.colision(escenario);
 	disparos.colision(plataforma);
 	bonuses.rebote(escenario);
@@ -98,29 +90,6 @@ void Juego::mueve()
 			}
 		}
 	}
-	//Funcion que manda un true si el enemigo golpea al jugador
-	/*Enemigo* aux = enemigos.colision(jugador);
-	if (aux != 0) {
-		impacto = true;
-	}
-	*/
-	/*for (int i = 0; i < enemigos.getNumero(); i++)
-	{
-		if (Interaccion::ratio(brit, jugador))
-		{
-			brit.setVel(0, 0);
-			const int SEGUNDOS = 2; //Tiempo que tarda en explotar
-			int horaActual;
-			int horaInicio = (int)time(NULL);
-			horaActual = (int)time(NULL);
-			if ((horaActual - horaInicio) > SEGUNDOS)
-			{
-				brit.explotar();
-				if (Interaccion::ratio(brit, jugador))
-					jugador.morir();
-			}
-		}
-	}*/ 
 	bloques.rebote(jugador);
 	bloques.CrearBonus(bonuses, jugador);
 	//bonuses.rebote(enemigos, jugador);
@@ -172,7 +141,7 @@ void Juego::tecla(unsigned char key)
 		{
 		case 'm':
 		{
-			enemigos.agregar(new CepaBritanica(1.5f, -2.0f, 10.0f, -0.5f, 0.0f));
+			enemigos.agregar(new CepaBritanica(1.5f, -2.0f, 10.0f, -5.0f, 0.0f));
 			break;
 		}
 		case 'w':
