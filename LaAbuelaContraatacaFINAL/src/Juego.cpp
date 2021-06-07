@@ -24,7 +24,7 @@ void Juego::inicializa()
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, -5.0f, 0.0f));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
-	enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 3.0f, 0.0f));
+	enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
 	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));

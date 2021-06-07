@@ -185,12 +185,13 @@ void ListaEnemigos::rebote(Jugador& j)
 		{
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
 			Vector2D pos= murpeq->getPos();
-			if (pos.x > 2.0f && pos.x < 2.05f)
+			Vector2D posjugador = j.getPos();
+			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f))
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(pos.x, pos.y);
-				c->setVel(0, -4.0f);
-				agregar (c);
+				c->setVely(murpeq->getVelChina());
+				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
 				eliminar(i);
@@ -214,7 +215,12 @@ void ListaEnemigos::rebote(Jugador& j)
 				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murboss, j))
-				eliminar(i);
+			{
+				if (murboss->getVidas() > 1) // le queda al menos una vida
+					murboss->setVidas(-1); // resto una vida
+				else
+					eliminar(i); // si no le quedan vidas muere
+			}
 			else if (Interaccion::colision(*murboss, j)) {
 				j.setNumBonus(j.GetNumBonus() - 1);
 				if (j.GetNumBonus() < 0) {

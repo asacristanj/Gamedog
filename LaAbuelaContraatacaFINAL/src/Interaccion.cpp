@@ -317,28 +317,33 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 		brit.velocidad.x = 3.0f;
 	}
 }
-void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e)
+void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO
 {
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura());
 	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura());;
+	float posicion_referencia = 10.0f; // Falta asignar la posicion inical del murcielago
+	float ymax = posicion_referencia + 0.5f;
+	float ymin = posicion_referencia - 0.5f;
+	if(murpeq.posicion.y > ymax)
+	{
+		murpeq.posicion.y = ymax;
+		murpeq.velocidad.y = -murpeq.velocidad.y;
+	}
+	if (murpeq.posicion.y < ymin)
+	{
+		murpeq.posicion.y = ymin;
+		murpeq.velocidad.y = -murpeq.velocidad.y;
+	}
 	if (murpeq.posicion.x > xmax)
 	{
 		murpeq.posicion.x = xmax;
-		murpeq.velocidad.x = -3.0f;
+		murpeq.velocidad.x = -murpeq.velocidad.x;
 	}
 	if (murpeq.posicion.x < xmin)
 	{
 		murpeq.posicion.x = xmin;
-		murpeq.velocidad.x = 3.0f;
-	}
-}
-void Interaccion::disparo(MurcielagoPequeño& murpeq, Jugador j)
-{
-	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	if (murpeq.posicion.x > 2.0f && murpeq.posicion.x < 2.5f)
-	{
-		murpeq.disparoChina(j.getPos());
+		murpeq.velocidad.x = -murpeq.velocidad.x;
 	}
 }
 void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e)
@@ -346,15 +351,28 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e)
 	//Función para que los enemgios no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = e.pared_dcha.limite2.x - (murboss.getAltura());
 	float xmin = e.pared_izq.limite2.x + (murboss.getAltura());;
+	float posicion_referencia = 10.0f; // Falta asignar la posicion inical del murcielago
+	float ymax = posicion_referencia + 0.5f;
+	float ymin = posicion_referencia - 0.5f;
+	if (murboss.posicion.y > ymax)
+	{
+		murboss.posicion.y = ymax;
+		murboss.velocidad.y = -murboss.velocidad.y;
+	}
+	if (murboss.posicion.y < ymin)
+	{
+		murboss.posicion.y = ymin;
+		murboss.velocidad.y = -murboss.velocidad.y;
+	}
 	if (murboss.posicion.x > xmax)
 	{
 		murboss.posicion.x = xmax;
-		murboss.velocidad.x = -3.0f;
+		murboss.velocidad.x = -murboss.velocidad.x;
 	}
 	if (murboss.posicion.x < xmin)
 	{
 		murboss.posicion.x = xmin;
-		murboss.velocidad.x = 3.0f;
+		murboss.velocidad.x = -murboss.velocidad.x;
 	}
 }
 bool Interaccion::rebote(Enemigo enem, Escenario e)

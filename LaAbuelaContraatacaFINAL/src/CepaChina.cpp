@@ -5,6 +5,7 @@ CepaChina::CepaChina()
 	altura = 0.4f;
 	color.g = color.b = 0;
 	color.r = 100;
+	aceleracion = (0.0f, 0.0f);
 }
 CepaChina::CepaChina(float alt, float x, float y, float vx, float vy)
 {
