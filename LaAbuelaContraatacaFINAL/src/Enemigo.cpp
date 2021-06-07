@@ -3,20 +3,20 @@
 Enemigo::Enemigo()
 {
 	tipo = NINGUNO;
-	altura = 0.8f;
+	altura = 2.0f;
 	aceleracion.y = -9.8f;
 	color.r = color.b = 0;
 	color.g = 100;
 
 	//TAMAÑO Y CENTRO SPRITE:
-	spritebras.setCenter(1, 1);
-	spritebras.setSize(2, 2);
-	spritechin.setCenter(1, 1);
-	spritechin.setSize(2, 2);
-	spriteindi.setCenter(1, 1);
-	spriteindi.setSize(2, 2);
-	spritebrit.setCenter(1, 1);
-	spritebrit.setSize(2, 2);
+	spritebras.setCenter(altura/2.0f, altura / 2.0f); // centro eje x, centro eje y
+	spritebras.setSize(altura, altura); // ancho, alto
+	spritechin.setCenter(altura / 2.0f, altura / 2.0f);
+	spritechin.setSize(altura, altura);
+	spriteindi.setCenter(altura / 2.0f, altura / 2.0f);
+	spriteindi.setSize(altura, altura);
+	spritebrit.setCenter(altura / 2.0f, altura / 2.0f);
+	spritebrit.setSize(altura, altura);
 
 }
 Enemigo::Enemigo(float alt, float x, float y, float vx, float vy)

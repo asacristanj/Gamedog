@@ -38,7 +38,8 @@ private:
 	ListaBloques bloques;
 	Escalera escalera;
 	bool impacto;//variable que es true si enemigo choca con jugador
-	int chances;//oportunidades de que te puedan tocar
+	int chances; // veces que se puede recibir daño sin llegar a morir
+	int vidas = 3; // veces que se puede reintentar el nivel tras morir
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -48,6 +49,9 @@ public:
 	void dibuja();
 	void teclaEspecial(unsigned char key);
 	void teclaEspecialUp(unsigned char key);
-	int getchances() { return chances; }
+	void setChances(int chance) { chances = chance; }
+	void setVidas(int vida) { vidas += vida; }
+	int getChances() { return chances; }
+	int getVidas() { return vidas; }
 	bool getImpacto() {	return impacto;}//funcion que lee el impacto
 };

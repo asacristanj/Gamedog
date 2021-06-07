@@ -389,7 +389,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= (enem.altura + (j.altura/2))) && (enem.posicion.y  >= j.posicion.y))
+	if ((distancia < (enem.altura + j.altura)) && (enem.posicion.y  >= j.posicion.y))
 		return true;
 	return false;
 }

@@ -1,2 +1,6 @@
-﻿  Plataforma.cpp
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\Raul\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Coordinador.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Juego.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Generando código...
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

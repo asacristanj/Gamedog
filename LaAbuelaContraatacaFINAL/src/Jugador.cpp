@@ -1,18 +1,19 @@
 #include "Jugador.h"
-#include "freeglut.h" 
+#include "freeglut.h"
 Jugador::Jugador()
 {
-	altura = 0.9f;
+	altura = 1.0f;
+	posicion_inicial = (0.0f, 2.0f);
 
 	//TAMAÑO Y CENTRO SPRITE PERSONAJE:
-	sprite.setCenter(0.5, 1);
-	sprite.setSize(1, 2);
+	sprite.setCenter(altura/2.0f, altura);
+	sprite.setSize(altura, altura * 2.0f);
 
 	tocandosuelo = false;
 	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;
-	posicion.x = 0.0f;
-	posicion.y = 1.8f;
+	posicion.x = posicion_inicial.x;
+	posicion.y = posicion_inicial.y;
 	numbonus = 0;
 }
 void Jugador::dibuja()
@@ -44,7 +45,7 @@ void Jugador::salto()
 }
 void Jugador::morir()
 {
-	altura = 0.0f;
+	posicion = posicion_inicial; // vuelve a una posición inicial
 }
 
 /*void Jugador::crecer(){

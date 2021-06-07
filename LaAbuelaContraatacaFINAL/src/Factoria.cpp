@@ -5,7 +5,7 @@ Factoria::Factoria() {
 void Factoria::CogerQuirurgica(Jugador& j) {
 	j.setNumBonus(j.GetNumBonus() + 1);
 	if (j.GetNumBonus() == 1) {
-		j.setAltura(j.getAltura() * 2);
+		//j.setAltura(j.getAltura() * 2.0f);
 		//j.crecer();
 	}
 	if (j.GetNumBonus() > 2) {
@@ -15,7 +15,7 @@ void Factoria::CogerQuirurgica(Jugador& j) {
 
 void Factoria::CogerMascarillaTocha(Jugador& j) {
 	if (j.GetNumBonus() == 0) {
-		j.setAltura(j.getAltura() * 2);
+		//j.setAltura(j.getAltura() * 2.0f);
 	}
 	j.setNumBonus(2);
 }
