@@ -76,7 +76,7 @@ void onSpecialKeyboardDown(int key, int x, int y)
 }
 void onSpecialKeyboardUp(int key, int x, int y)
 {
-	//juego.teclaEspecialUp(key);
+	abuela.teclaEspecialUp(key);
 }
 void OnTimer(int value)
 {

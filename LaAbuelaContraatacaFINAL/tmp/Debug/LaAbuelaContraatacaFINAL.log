@@ -1,4 +1,42 @@
-﻿  Juego.cpp
-  ListaEnemigos.cpp
+﻿  Astrazeneca.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Astrazeneca.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  BloqueSorpresa.cpp
+  Bonus.cpp
+  CepaBrasileña.cpp
+  CepaBritanica.cpp
+  CepaChina.cpp
+  CepaIndia.cpp
+  Coordinador.cpp
+  DisparoGel.cpp
+  Enemigo.cpp
+  Escalera.cpp
+  Escenario.cpp
+  Factoria.cpp
+  ListaBloques.cpp
+  MascarillaTocha.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\MascarillaTocha.cpp(19,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Interaccion.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(257,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(557,16): warning C4804: '<=': uso no seguro del tipo 'bool' en la operación
+  Janssen.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Janssen.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Juego.cpp
+  Jugador.cpp
+  LaAbuelaContraataca.cpp
   Generando código...
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+  Compilando...
+  ListaBonus.cpp
+  ListaDisparosGel.cpp
+  ListaEnemigos.cpp
+  MurcielagoBoss.cpp
+  MurcielagoPequeño.cpp
+  ObjetoMovil.cpp
+  Pfizer.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Pfizer.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Plataforma.cpp
+  Quirurgica.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Quirurgica.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Sputnik.cpp
+  Vector2D.cpp
+  Generando código...
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
