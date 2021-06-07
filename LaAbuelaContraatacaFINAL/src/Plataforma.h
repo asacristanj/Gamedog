@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "ColorRVA.h"
+#include "ETSIDI.h"
 class Plataforma
 {
 private:
@@ -11,7 +12,9 @@ private:
 public:
 	Plataforma();
 	virtual ~Plataforma();
-	void dibuja();
+	void dibuja(int n); 
+	//si n==0 dibujar escenario
+	//si n==1 plataformas
 	void setColor(Byte r, Byte v, Byte a);
 	void setPos(float x1, float y1, float x2, float y2);
 	float distancia(Vector2D punto, Vector2D* direccion = 0);

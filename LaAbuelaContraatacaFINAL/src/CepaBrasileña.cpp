@@ -26,7 +26,19 @@ void CepaBrasileña::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 200.0f, 200.0f);
-	glutSolidSphere(altura, 15, 15);
+	
+	//glutSolidSphere(altura, 15, 15);
+	//ANIMACION DEL SPRITE DEL PERSONAJE:
+
+	if (velocidad.x > 0.01)spritebras.flip(false, false);
+	if (velocidad.x < -0.01)spritebras.flip(true, false);
+	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
+		spritebras.setState(0);
+	else if (spritebras.getState() == 0)
+		spritebras.setState(1, false);
+	spritebras.draw();
+
+
 	glPopMatrix();
 }
 void CepaBrasileña::saltar(float alto)

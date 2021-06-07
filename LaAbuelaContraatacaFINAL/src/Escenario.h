@@ -1,5 +1,7 @@
 #pragma once
 #include "Plataforma.h"
+#include "ETSIDI.h"
+
 class Escenario
 {
 private:

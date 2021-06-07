@@ -24,6 +24,13 @@ void CepaChina::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(255.0f, 0.0f, 0.0f);
-	glutSolidSphere(altura, 15, 15);
+	//glutSolidSphere(altura, 15, 15);
+	if (velocidad.x > 0.01)spritechin.flip(false, false);
+	if (velocidad.x < -0.01)spritechin.flip(true, false);
+	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
+		spritechin.setState(0);
+	else if (spritechin.getState() == 0)
+		spritechin.setState(1, false);
+	spritechin.draw();
 	glPopMatrix();
 }

@@ -10,10 +10,17 @@
 #include "Vector2D.h"
 #include "ColorRVA.h"
 #include "ObjetoMovil.h"
+#include "ETSIDI.h"
+using ETSIDI::SpriteSequence;
+
 class Enemigo: public ObjetoMovil
 {
 protected:
 	float altura;
+	SpriteSequence spritebras{ "imagenes/sprite_brasilena.png", 5 };
+	SpriteSequence spritebrit{ "imagenes/sprite_britanica.png", 5 };
+	SpriteSequence spritechin{ "imagenes/sprite_china.png", 5 };
+	SpriteSequence spriteindi{ "imagenes/sprite_india.png", 5 };
 	ColorRVA color;
 	int tipo;
 

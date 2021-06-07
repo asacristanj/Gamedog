@@ -17,21 +17,21 @@ void Juego::inicializa()
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	bonuses.agregar(new Astrazeneca(1.0f,-5.0f,8));
-	//bonuses.agregar(new Janssen(1.5f,-4.0f,5));
-	//bonuses.agregar(new MascarillaTocha(1.0f,0.0f,9));
-	//bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
+	bonuses.agregar(new Janssen(1.5f,-4.0f,5));
+	bonuses.agregar(new MascarillaTocha(1.0f,0.0f,9));
+	bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
 	bonuses.agregar(new Quirurgica(1.0f,4.0f,10.0f,-5.0f,0.0f));
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, -5.0f, 0.0f));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
 	enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
+	enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 	chances = jugador.GetNumBonus();
 }
@@ -47,16 +47,17 @@ void Juego::dibuja()
 {
 	gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
 		0.0, y_ojo, 0.0,      // hacia que punto mira  (0,0,0) 
-		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
+		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 
+	
 	escenario.dibuja();
 	jugador.dibuja();
-	plataforma.dibuja();
 	enemigos.dibuja();
 	disparos.dibuja();
 	bloques.dibuja();
 	bonuses.dibuja();
 	escalera.dibujar();
+	plataforma.dibuja(1);
 }
 
 void Juego::mueve()

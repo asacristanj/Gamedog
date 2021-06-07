@@ -1,12 +1,15 @@
-#include "Plataforma.h"
+Ôªø#include "Plataforma.h"
 #include "freeglut.h" 
 #include "Plataforma.h"
+
+
 Plataforma::Plataforma()
 {
 	color.r = color.g = color.b = 255; //blanco 
 }
-void Plataforma::dibuja()
+void Plataforma::dibuja(int n)
 {
+	/*
 	glDisable(GL_LIGHTING);
 	glColor3ub(color.r, color.g, color.b);
 	glBegin(GL_POLYGON);
@@ -16,6 +19,35 @@ void Plataforma::dibuja()
 	glVertex3d(limite1.x, limite1.y, -5);
 	glEnd();
 	glEnable(GL_LIGHTING);
+	*/
+		
+	glEnable(GL_BLEND);     
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_TEXTURE_2D);
+
+	if (n==1)	
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/plataforma.png").id);
+	if (n==0)
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/plataforma2.png").id);
+
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	/*
+	glTexCoord2d(0, 0); glVertex3d(limite1.x, limite1.y, 5);
+	glTexCoord2d(1, 0); glVertex3d(limite2.x, limite1.y, 5);
+	glTexCoord2d(1, 1); glVertex3d(limite2.x, limite2.y, -5);
+	glTexCoord2d(0, 1); glVertex3d(limite1.x, limite2.y, -5);
+	*/
+	glVertex3d(limite1.x, limite1.y, 5);
+	glVertex3d(limite2.x, limite2.y, 5);
+	glVertex3d(limite2.x, limite2.y, -5);
+	glVertex3d(limite1.x, limite1.y, -5);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+	
+	
 }
 void Plataforma::setColor(Byte r, Byte v, Byte a)
 {
@@ -32,9 +64,9 @@ void Plataforma::setPos(float x1, float y1, float x2, float y2)
 }
 
 //Calculo de distancia de una pared a un punto, adicionalmente 
-//se modifica el valor de un vector direccion opcional que contendr· 
+//se modifica el valor de un vector direccion opcional que contendr√° 
 //el vector unitario saliente que indica la direccion de la 
-//recta m·s corta entre el punto y la pared. 
+//recta m√°s corta entre el punto y la pared. 
 float Plataforma::distancia(Vector2D punto, Vector2D* direccion)
 {
 	Vector2D u = (punto - limite1);
@@ -50,7 +82,7 @@ float Plataforma::distancia(Vector2D punto, Vector2D* direccion)
 	else
 		dir = u - v * valor;
 	distancia = dir.modulo();
-	if (direccion != 0) //si nos dan un vectorÖ 
+	if (direccion != 0) //si nos dan un vector‚Ä¶ 
 		*direccion = dir.unitario();
 	return distancia;
 }

@@ -27,7 +27,14 @@ void CepaBritanica::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 0.0f, 255.0f);
-	glutSolidSphere(altura, 15, 15);
+	//glutSolidSphere(altura, 15, 15);
+	if (velocidad.x > 0.01)spritebrit.flip(false, false);
+	if (velocidad.x < -0.01)spritebrit.flip(true, false);
+	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
+		spritebrit.setState(0);
+	else if (spritebrit.getState() == 0)
+		spritebrit.setState(1, false);
+	spritebrit.draw();
 	glPopMatrix();
 }
 void CepaBritanica::explotar()

@@ -23,6 +23,13 @@ void CepaIndia::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 255.0f, 0.0f);
-	glutSolidSphere(altura, 15, 15);
+	//glutSolidSphere(altura, 15, 15);
+	if (velocidad.x > 0.01)spriteindi.flip(false, false);
+	if (velocidad.x < -0.01)spriteindi.flip(true, false);
+	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
+		spriteindi.setState(0);
+	else if (spriteindi.getState() == 0)
+		spriteindi.setState(1, false);
+	spriteindi.draw();
 	glPopMatrix();
 }

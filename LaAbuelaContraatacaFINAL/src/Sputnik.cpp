@@ -24,6 +24,7 @@ void Sputnik::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 100.0f, 0.0f);
-	glutSolidCube(lado);
+	//glutSolidCube(lado);
+	sprite5.draw();
 	glPopMatrix();
 }

@@ -3,8 +3,11 @@
 Jugador::Jugador()
 {
 	altura = 0.9f;
-	/*sprite.setCenter(1, 0);
-	sprite.setSize(1, altura);*/
+
+	//TAMAÑO Y CENTRO SPRITE PERSONAJE:
+	sprite.setCenter(0.5, 1);
+	sprite.setSize(1, 2);
+
 	tocandosuelo = false;
 	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;
@@ -16,12 +19,14 @@ void Jugador::dibuja()
 {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
-	
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glutSolidSphere(altura, 15, 15);
-	glPopMatrix();
+
+	//glutSolidSphere(altura, 15, 15);
+
 	
-	/*if (velocidad.x > 0.01)sprite.flip(false, false);
+	//ANIMACION DEL SPRITE DEL PERSONAJE:
+
+	if (velocidad.x > 0.01)sprite.flip(false, false);
 	if (velocidad.x < -0.01)sprite.flip(true, false);
 	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
 		sprite.setState(0);
@@ -29,7 +34,8 @@ void Jugador::dibuja()
 		sprite.setState(1, false);
 	sprite.draw();
 
-	glPopMatrix();*/
+	glPopMatrix();
+	
 }
 void Jugador::salto()
 {
@@ -40,6 +46,7 @@ void Jugador::morir()
 {
 	altura = 0.0f;
 }
+
 /*void Jugador::crecer(){
 	setAltura(2.0 * altura); // el doble de grande
 }*/
@@ -56,6 +63,7 @@ void Jugador::subirEscalera() {
 bool Jugador::suelo() {
 	return tocandosuelo;
 }
+
 
 void Jugador::mueve(float t)
 {
