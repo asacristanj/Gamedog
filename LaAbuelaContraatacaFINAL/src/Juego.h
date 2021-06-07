@@ -38,6 +38,7 @@ private:
 	ListaBloques bloques;
 	Escalera escalera;
 	bool impacto;//variable que es true si enemigo choca con jugador
+	int chances;//oportunidades de que te puedan tocar
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -47,5 +48,6 @@ public:
 	void dibuja();
 	void teclaEspecial(unsigned char key);
 	void teclaEspecialUp(unsigned char key);
+	int getchances() { return chances; }
 	bool getImpacto() {	return impacto;}//funcion que lee el impacto
 };

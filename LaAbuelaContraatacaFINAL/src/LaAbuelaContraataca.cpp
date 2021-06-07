@@ -57,7 +57,6 @@ void OnDraw(void)
 
 	//juego.dibuja();
 	abuela.dibuja();
-
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
 }

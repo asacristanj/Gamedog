@@ -1,6 +1,9 @@
 #pragma once
 #include "Juego.h"
 #include "ETSIDI.h"
+#include <iostream>
+using namespace ETSIDI;
+
 class Coordinador
 {
 public:

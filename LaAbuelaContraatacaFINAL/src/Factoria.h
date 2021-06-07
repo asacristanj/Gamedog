@@ -20,7 +20,7 @@ public:
 	static void CogerMascarillaTocha(Jugador& j);
 	static void CogerAstrazeneca(Jugador& j);
 	static void CogerPfizer(Jugador& j);
-	static void CogerSputnik(Jugador& j, ListaEnemigos& e);
+	//static void CogerSputnik(ListaEnemigos& e, Jugador& j);
 	static void CogerJanssen(Jugador& j);
 	//static void accionbonus(Jugador j, Bonus b);
 	//void ModificarSalto(Jugador j, Bonus b);

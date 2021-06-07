@@ -13,7 +13,7 @@ private:
 	float vel_normal = 5.0f;
 	float coeficiente_velx; // coeficiente de velocidad x
 	float coef_vel_rapida = 2.0; // coeficiente para velocidad rapida
-	float coef_vel_lenta = 1.0 / 2.0; // coeficiente para velocidad lenta
+	float coef_vel_lenta = 1.0 / 3.0; // coeficiente para velocidad lenta
 	float acel_inicial = -30.0f;
 	float impulso = 20.0f; //impulso vertical inicial del salto
 	bool tocandosuelo;

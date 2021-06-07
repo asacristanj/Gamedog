@@ -32,8 +32,7 @@ void Factoria::CogerAstrazeneca(Jugador& j) {
 	j.setImpulso(25.0f);
 }
 void Factoria::CogerPfizer(Jugador& j) {
-	//invencible y mas rapido
-	j.setCoefVelx(j.getVelRapida()); // modifico el coeficiente de la velocidad para hacerla más rapida
+	j.setCoefVelx(j.getVelRapida());// modifico el coeficiente de la velocidad para hacerla más rapida
 }
 void Factoria::CogerJanssen(Jugador& j) {
 	int azar = rand() % 4;
@@ -48,13 +47,20 @@ void Factoria::CogerJanssen(Jugador& j) {
 		j.setCoefVelx(j.getVelRapida()); //mas rapido
 		break;
 	case 3:
-		//no pasa na
+		
 		break;
 	}
 }
-void Factoria::CogerSputnik(Jugador& j, ListaEnemigos& e) {
-	//mata a enemigos estrellita mario bros
+/*void Factoria::CogerSputnik(ListaEnemigos& e, Jugador& j) {
+	//funcion que a tocar un enemigo, muere el enemigo
+	for (int i = 0; i < e.getNumero(); i++) {
+		Enemigo* enem = (Enemigo*)e[i];
+		if (Interaccion::colision((*e[i]), j)||(Interaccion::colisionEncima((*e[i]),j))){
+			e.eliminar(i);
+		}
+	}
 }
+*/
 /*void Factoria::ModificarSalto(Jugador j, Bonus b) {
 	
 }

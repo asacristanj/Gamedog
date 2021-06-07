@@ -53,10 +53,10 @@ void ListaBonus::rebote(Plataforma p)
 			Pfizer* pfi = (Pfizer*)lista[i];
 			Interaccion::rebote(*pfi, p);
 		}
-		if (tipo == SPUTNIK) {
+		/*if (tipo == SPUTNIK) {
 			Sputnik* spu = (Sputnik*)lista[i];
 			Interaccion::rebote(*spu, p);
-		}
+		}*/
 
 	}
 }
@@ -95,20 +95,24 @@ void ListaBonus::rebote(Escenario e)//elimino los bonuses si tocan el suelo
 				eliminar(i);
 			}
 		}
-		if (tipo == SPUTNIK) {
+		/*if (tipo == SPUTNIK) {
 			Sputnik* spu = (Sputnik*)lista[i];
 			if (Interaccion::colision(*spu, e)) {
 				eliminar(i);
 			}
-		}
+		}*/
 		
 	}
 }
 void ListaBonus::rebote(Jugador& j)
 {
+	
 	for (int i = numero - 1; i >= 0; i--)
 	{
 		int tipo = lista[i]->getTipo();
+		static time_t horaInicio = time(NULL);
+		const int SEGUNDOS = 10; //Tiempo que dura el bonus
+		time_t horaActual = time(NULL);
 		//Bonus* bon = lista[i];
 		//if (Interaccion::colision(*bon, j)) {
 			//eliminar(i);
@@ -132,29 +136,66 @@ void ListaBonus::rebote(Jugador& j)
 			if (Interaccion::colision(*a, j)) {
 				Factoria::CogerAstrazeneca(j);
 				eliminar(i);
+				if (inicializar_hora_inicio == false)
+				{
+					inicializar_hora_inicio = true;
+					horaInicio = time(NULL);
+				}
+				if((horaActual - horaInicio) >= SEGUNDOS)
+				{
+				j.setImpulso(10.0f);
+				}
+			}
+			else
+			{
+				if (inicializar_hora_inicio == true)
+				{
+					if ((horaActual - horaInicio) >= SEGUNDOS)
+					{
+						inicializar_hora_inicio = false;
+					}
+				}
 			}
 		}
+		
 		if (tipo == JANSSEN) {
 			Janssen* jan = (Janssen*)lista[i];
 			if (Interaccion::colision(*jan, j)) {
+				Factoria::CogerJanssen(j);
 				eliminar(i);
+				if (inicializar_hora_inicio == false)
+				{
+					inicializar_hora_inicio = true;
+					horaInicio = time(NULL);
+				}
 			}
 		}
 		if (tipo == PFIZER) {
 			Pfizer* p = (Pfizer*)lista[i];
-			if (Interaccion::colision(*p, j)) {
+			if(Interaccion::colision(*p,j)){
 				Factoria::CogerPfizer(j);
 				eliminar(i);
-			}
-		}
-		if (tipo == SPUTNIK) {
-			Sputnik* s = (Sputnik*)lista[i];
-			if (Interaccion::colision(*s, j)) {
-				eliminar(i);
+				if (inicializar_hora_inicio == false)
+				{
+					inicializar_hora_inicio = true;
+					horaInicio = time(NULL);
+				}
 			}
 		}
 	}
  }
+/*void ListaBonus::rebote(ListaEnemigos& e, Jugador& j) {
+	for (int i = numero - 1; i >= 0; i--) {
+		int tipo = lista[i]->getTipo();
+		if (tipo == SPUTNIK) {
+			Sputnik* s = (Sputnik*)lista[i];
+			if (Interaccion::colision(*s, j)) {
+				Factoria::CogerSputnik(e, j);
+				eliminar(i);
+			}
+		}
+	}
+}*/
 
 Bonus* ListaBonus::colision(Jugador& j)
 {

@@ -107,7 +107,10 @@ void ListaEnemigos::rebote(Jugador& j)
 			if (Interaccion::colisionEncima(*ind, j))
 				eliminar(i);
 			else if (Interaccion::colision(*ind, j))
+				j.setNumBonus(j.GetNumBonus() - 1);
+			if (j.GetNumBonus() < 0) {
 				j.morir();
+			}
 		}
 		if (tipo == CEPABRITANICA)
 		{
@@ -126,12 +129,20 @@ void ListaEnemigos::rebote(Jugador& j)
 				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j))
 				{
 					eliminar(i);
-					j.morir();
+					j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
+					if (j.GetNumBonus() < 0) {
+						j.morir();
+					}
+					//j.morir();
 				}
 				else if ((horaActual - horaInicio) >= SEGUNDOS)
 				{
 					if (Interaccion::ratioExplosion(*brit, j))
+						j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
+					if (j.GetNumBonus() < 0) {
 						j.morir();
+					}
+					//j.morir();
 				}
 			}
 			else
@@ -151,14 +162,24 @@ void ListaEnemigos::rebote(Jugador& j)
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
 				eliminar(i);
-			else if (Interaccion::colision(*bra, j))
-				j.morir();
+			else if (Interaccion::colision(*bra, j)) {
+				j.setNumBonus(j.GetNumBonus() - 1);
+				if (j.GetNumBonus() < 0) {
+					j.morir();
+				}
+				//j.morir();
+			}
 		}
 		if (tipo == CEPACHINA)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j))
-			j.morir();
+		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)){
+			 j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
+			 if (j.GetNumBonus() < 0) {
+				 j.morir();
+			 }
+		 }
+			//j.morir();
 		}
 		if (tipo == MURCIELAGOPEQUEÑO)
 		{
@@ -173,8 +194,13 @@ void ListaEnemigos::rebote(Jugador& j)
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
 				eliminar(i);
-			else if (Interaccion::colision(*murpeq, j))
-				j.morir();
+			else if (Interaccion::colision(*murpeq, j)){
+				j.setNumBonus(j.GetNumBonus() - 1);
+				if (j.GetNumBonus() < 0) {
+					j.morir();
+				}
+			}
+				//j.morir();
 		}
 		if (tipo == MURCIELAGOBOSS)
 		{
@@ -189,8 +215,13 @@ void ListaEnemigos::rebote(Jugador& j)
 			}
 			if (Interaccion::colisionEncima(*murboss, j))
 				eliminar(i);
-			else if (Interaccion::colision(*murboss, j))
-				j.morir();
+			else if (Interaccion::colision(*murboss, j)) {
+				j.setNumBonus(j.GetNumBonus() - 1);
+				if (j.GetNumBonus() < 0) {
+					j.morir();
+				}
+			}
+				//j.morir();
 		}
 	}
 }

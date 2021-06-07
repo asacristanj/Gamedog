@@ -8,6 +8,7 @@ class ListaBonus
 private:
 	Bonus* lista[MAX_BONUS];
 	int numero;
+	bool inicializar_hora_inicio = false;
 public:
 	ListaBonus();
 	virtual ~ListaBonus();
@@ -17,6 +18,7 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
+	void rebote(ListaEnemigos& e, Jugador& j);
 	//void accionbonus(Jugador j, Bonus b);
 	Bonus* colision(Jugador& j);
 	Bonus* operator [](int i);

@@ -8,7 +8,6 @@ private:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;
 	bool inicializar_hora_inicio = false;
-
 public:
 	ListaEnemigos();
 	virtual ~ListaEnemigos();
