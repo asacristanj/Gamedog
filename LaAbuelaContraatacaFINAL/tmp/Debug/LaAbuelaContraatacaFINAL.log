@@ -1,1 +1,46 @@
-﻿  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Astrazeneca.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Astrazeneca.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  BloqueSorpresa.cpp
+  Bonus.cpp
+  CepaBrasileña.cpp
+  CepaBritanica.cpp
+  CepaChina.cpp
+  CepaIndia.cpp
+  Coordinador.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  DisparoGel.cpp
+  Enemigo.cpp
+  Escalera.cpp
+  Escenario.cpp
+  Factoria.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Janssen.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Janssen.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Juego.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Jugador.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaBloques.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaBonus.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaDisparosGel.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaEnemigos.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(17,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Generando código...
+  Compilando...
+  MascarillaTocha.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\MascarillaTocha.cpp(19,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  MurcielagoBoss.cpp
+  MurcielagoPequeño.cpp
+  ObjetoMovil.cpp
+  Pfizer.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Pfizer.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Plataforma.cpp
+  Quirurgica.cpp
+C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Quirurgica.cpp(21,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Sputnik.cpp
+  Vector2D.cpp
+  Generando código...
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
