@@ -134,47 +134,25 @@ void ListaBonus::rebote(Jugador& j)
 				eliminar(i);
 			}
 		}
-		if (tipo == ASTRAZENECA) {
+		if (tipo == ASTRAZENECA) 
+		{
 			Astrazeneca* a = (Astrazeneca*)lista[i];
-			//static time_t horaInicio = time(NULL);
-			//const int SEGUNDOS = 2; //Tiempo que dura el bonus
-			//time_t horaActual = time(NULL);
-			if (Interaccion::colision(*a, j)) {
-				cont = true;
-			}
-			if (cont) {
-				//inicializar_hora_inicio = false;
+			if (Interaccion::colision(*a, j))
+			{
 				Factoria::CogerAstrazeneca(j);
 				int punt = a->getPunt();
 				punt += 15;
 				a->setPunt(punt);
 				eliminar(i);
-				//if (inicializar_hora_inicio == false)
-				//{
-					//inicializar_hora_inicio = true;
-					//horaInicio = time(NULL);
-				//}
-				//if ((horaActual - horaInicio) >= SEGUNDOS)
-				//{
-					//j.setImpulso(10.0f);
-					//inicializar_hora_inicio = false;
-					//cont = false;
+				if (j.getAstraActivo() == false)
+				{
+					j.setAstraActivo(true);
+					j.sethInicioAstra(time(NULL));
 				}
 			}
-			//else
-			//{
-			/*if (inicializar_hora_inicio == true)
-				{
-					if ((horaActual - horaInicio) >= SEGUNDOS)
-					{
-						inicializar_hora_inicio = false;
-						j.setImpulso(4.0f);
-					}
-				}*/
-			//}
-		//}
-		
-		if (tipo == JANSSEN) {
+		}
+		if (tipo == JANSSEN) 
+		{
 			Janssen* jan = (Janssen*)lista[i];
 			if (Interaccion::colision(*jan, j)) {
 				Factoria::CogerJanssen(j);
@@ -189,7 +167,8 @@ void ListaBonus::rebote(Jugador& j)
 				}*/
 			}
 		}
-		if (tipo == PFIZER) {
+		if (tipo == PFIZER) 
+		{
 			Pfizer* p = (Pfizer*)lista[i];
 			if(Interaccion::colision(*p,j)){
 				Factoria::CogerPfizer(j);
@@ -197,11 +176,11 @@ void ListaBonus::rebote(Jugador& j)
 				punt += 15;
 				p->setPunt(punt);
 				eliminar(i);
-				//if (inicializar_hora_inicio == false)
-				//{//
-					//inicializar_hora_inicio = true;
-					//horaInicio = time(NULL);
-				//}
+				if (j.getPfizerActivo() == false)
+				{
+					j.setPfizerActivo(true);
+					j.sethInicioPfizer(time(NULL));
+				}
 			}
 		}
 	}

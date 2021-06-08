@@ -2,6 +2,7 @@
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
 #include "ETSIDI.h"
+#include <time.h>
 using ETSIDI::SpriteSequence;
 
 class Jugador: public ObjetoMovil
@@ -19,6 +20,9 @@ private:
 	float impulso = 15.0f; //impulso vertical inicial del salto
 	bool tocandosuelo;
 	int numbonus;
+	bool astra_activo,pfizer_activo,janssen_activo;
+	time_t horaInicioAstra, horaInicioPfizer, horaInicioJanssen;
+
 public:
 	Jugador();
 	virtual ~Jugador();
@@ -34,6 +38,15 @@ public:
 	float getCoefVelx() { return coeficiente_velx; }
 	void setAltura(float nalt) { altura = nalt; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }
+	bool getAstraActivo() { return astra_activo; }
+	bool getPfizerActivo() { return pfizer_activo; }
+	bool getJanssenActivo() { return janssen_activo; }
+	void setAstraActivo(bool act) { astra_activo = act; }
+	void setPfizerActivo(bool act) { pfizer_activo = act; }
+	void setJanssenActivo(bool act) { janssen_activo = act; }
+	void sethInicioAstra(time_t tiempo) { horaInicioAstra = tiempo; }
+	void sethInicioPfizer(time_t tiempo) { horaInicioPfizer = tiempo; }
+	void sethInicioJanssen(time_t tiempo) { horaInicioJanssen = tiempo; }
 	//void IncrementaNumBonus();
 	void setNumBonus(int num) { numbonus = num; }
 	int GetNumBonus() { return numbonus; }
@@ -41,6 +54,9 @@ public:
 	void subirEscalera();
 	void bajarEscalera();
 	bool suelo();
+	void volverSalto();
+	void volverVelocidadPfizer();
+	void volverVelocidadJanssen();
 
 	friend class Interaccion;
 };

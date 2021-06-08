@@ -14,6 +14,8 @@ Jugador::Jugador()
 	posicion.x = posicion_inicial.x;
 	posicion.y = posicion_inicial.y;
 	numbonus = 0;
+	astra_activo = pfizer_activo = janssen_activo = false;
+	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
 }
 void Jugador::dibuja()
 {
@@ -66,12 +68,36 @@ void Jugador::bajarEscalera() {
 bool Jugador::suelo() {
 	return tocandosuelo;
 }
-
-
 void Jugador::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
 	sprite.loop();
 }
-
+void Jugador::volverSalto()
+{
+	time_t horaActual = time(NULL);
+	if (astra_activo == true && (horaActual - horaInicioAstra) > 5)
+	{
+		astra_activo = false;
+		setImpulso(15.0f);
+	}
+}
+void Jugador::volverVelocidadPfizer()
+{
+	time_t horaActual = time(NULL);
+	if (pfizer_activo == true && (horaActual - horaInicioPfizer) > 5)
+	{
+		pfizer_activo = false;
+		setCoefVelx(1);
+	}
+}
+void Jugador::volverVelocidadJanssen()
+{
+	time_t horaActual = time(NULL);
+	if (janssen_activo == true && (horaActual - horaInicioJanssen) > 5)
+	{
+		janssen_activo = false;
+		setVelx(5.0f);
+	}
+}
