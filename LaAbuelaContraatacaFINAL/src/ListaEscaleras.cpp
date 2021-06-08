@@ -17,7 +17,7 @@ bool ListaEscaleras::agregar(Escalera* e) {
 			return false;
 	}
 	if (numero < MAX_NUM)
-		lista[numero++] = b;
+		lista[numero++] = e;
 	else
 		return false;
 	return true;

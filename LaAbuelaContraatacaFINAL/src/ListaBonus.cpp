@@ -110,9 +110,6 @@ void ListaBonus::rebote(Jugador& j)
 	for (int i = numero - 1; i >= 0; i--)
 	{
 		int tipo = lista[i]->getTipo();
-		static time_t horaInicio = time(NULL);
-		const int SEGUNDOS = 10; //Tiempo que dura el bonus
-		time_t horaActual = time(NULL);
 		//Bonus* bon = lista[i];
 		//if (Interaccion::colision(*bon, j)) {
 			//eliminar(i);
@@ -139,33 +136,43 @@ void ListaBonus::rebote(Jugador& j)
 		}
 		if (tipo == ASTRAZENECA) {
 			Astrazeneca* a = (Astrazeneca*)lista[i];
+			//static time_t horaInicio = time(NULL);
+			//const int SEGUNDOS = 2; //Tiempo que dura el bonus
+			//time_t horaActual = time(NULL);
 			if (Interaccion::colision(*a, j)) {
+				cont = true;
+			}
+			if (cont) {
+				//inicializar_hora_inicio = false;
 				Factoria::CogerAstrazeneca(j);
 				int punt = a->getPunt();
 				punt += 15;
 				a->setPunt(punt);
 				eliminar(i);
-				if (inicializar_hora_inicio == false)
-				{
-					inicializar_hora_inicio = true;
-					horaInicio = time(NULL);
-				}
-				if((horaActual - horaInicio) >= SEGUNDOS)
-				{
-				j.setImpulso(10.0f);
+				//if (inicializar_hora_inicio == false)
+				//{
+					//inicializar_hora_inicio = true;
+					//horaInicio = time(NULL);
+				//}
+				//if ((horaActual - horaInicio) >= SEGUNDOS)
+				//{
+					//j.setImpulso(10.0f);
+					//inicializar_hora_inicio = false;
+					//cont = false;
 				}
 			}
-			else
-			{
-				if (inicializar_hora_inicio == true)
+			//else
+			//{
+			/*if (inicializar_hora_inicio == true)
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
 						inicializar_hora_inicio = false;
+						j.setImpulso(4.0f);
 					}
-				}
-			}
-		}
+				}*/
+			//}
+		//}
 		
 		if (tipo == JANSSEN) {
 			Janssen* jan = (Janssen*)lista[i];
@@ -175,11 +182,11 @@ void ListaBonus::rebote(Jugador& j)
 				punt += 15;
 				jan->setPunt(punt);
 				eliminar(i);
-				if (inicializar_hora_inicio == false)
+				/*if (inicializar_hora_inicio == false)
 				{
 					inicializar_hora_inicio = true;
 					horaInicio = time(NULL);
-				}
+				}*/
 			}
 		}
 		if (tipo == PFIZER) {
@@ -190,11 +197,11 @@ void ListaBonus::rebote(Jugador& j)
 				punt += 15;
 				p->setPunt(punt);
 				eliminar(i);
-				if (inicializar_hora_inicio == false)
-				{
-					inicializar_hora_inicio = true;
-					horaInicio = time(NULL);
-				}
+				//if (inicializar_hora_inicio == false)
+				//{//
+					//inicializar_hora_inicio = true;
+					//horaInicio = time(NULL);
+				//}
 			}
 		}
 	}

@@ -118,6 +118,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				if (j.GetNumBonus() < 0) {
 					j.morir(); //cuando no tenga bonus muere
 				}
+				else {
+					eliminar(i);
+				}
 			}
 		}
 		if (tipo == CEPABRITANICA)//En la CepaBritanica se quiere que si el jugador se acerca a una cierta distancia del enemigo este se pare y a los 2 segundos explote. Si el jugador se encuentra en una distancia algo mayor que la anterior, el jugador muere por la explosión, sino sobrevive.
@@ -141,7 +144,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 					if (j.GetNumBonus() < 0) {
 						j.morir();
 					}
-					//j.morir();
+					else {
+						eliminar(i);
+					}
 				}
 				else if ((horaActual - horaInicio) >= SEGUNDOS) //Momento de explosión
 				{
@@ -152,7 +157,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 						{
 							j.morir();
 						}
-						//j.morir();
+						else {
+							eliminar(i);
+						}
 					}
 				}
 			}
@@ -187,6 +194,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				if (j.GetNumBonus() < 0) 
 				{
 					j.morir();
+				}
+				else {
+					eliminar(i);
 				}
 			}
 		}
@@ -229,6 +239,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					j.morir();
 				}
+				else {
+					eliminar(i);
+				}
 			}
 		}
 		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
@@ -260,6 +273,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				j.setNumBonus(j.GetNumBonus() - 1);
 				if (j.GetNumBonus() < 0) {
 					j.morir();
+				}
+				else {
+					eliminar(i);
 				}
 			}
 		}

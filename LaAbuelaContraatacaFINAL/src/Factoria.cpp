@@ -29,7 +29,7 @@ void Factoria::CogerMascarillaTocha(Jugador& j) {
 	return d;
 }*/
 void Factoria::CogerAstrazeneca(Jugador& j) {
-	j.setImpulso(25.0f);
+	j.setImpulso(20.0f);
 }
 void Factoria::CogerPfizer(Jugador& j) {
 	j.setCoefVelx(j.getVelRapida());// modifico el coeficiente de la velocidad para hacerla más rapida

@@ -11,12 +11,15 @@ void Juego::inicializa()
 	impacto = false;//inicializo otra vez el impacto
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
+	jugador.setNumBonus(0);
+	setVidas(1);
 	//bonus.setPos(5.0f, 5.0f);
+	jugador.setPos(0.0f, 0.0f);
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
 	escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
+	bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
 	//bonuses.agregar(new Janssen(1.5f,-4.0f,5));
 	//bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
 	//bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
@@ -33,8 +36,6 @@ void Juego::inicializa()
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
-	setChances(jugador.GetNumBonus());
-	//chances = jugador.GetNumBonus();
 }
 
 void Juego::moverOjo()
@@ -93,6 +94,7 @@ void Juego::mueve()
 	bloques.rebote(jugador);
 	bloques.CrearBonus(bonuses, jugador);
 	//bonuses.rebote(enemigos, jugador);
+	setChances(jugador.GetNumBonus());
 }
 
 void Juego::teclaEspecial(unsigned char key)

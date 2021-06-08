@@ -55,8 +55,8 @@ void Coordinador::mueve() {
 		//aqui falta el añadir cuando ganes
 		if (juego.getChances() < 0) // no tengo bonus y muero
 		{
-			juego.setVidas(-1); // se descuenta una vida
-			if(juego.getVidas() < 0) // si no quedan vidas
+			juego.setVidas(-1);// se descuenta una vida
+			if(juego.getVidas() < 1) // si no quedan vidas
 				estado = GAMEOVER;
 		}
 	}
@@ -68,13 +68,13 @@ void Coordinador::dibuja() {
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
 		ETSIDI::setTextColor(1, 1, 0);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("LA ABUELA CONTRATACA", -5, 8);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 32);
+		ETSIDI::printxy("LA ABUELA CONTRATACA", -7, 16);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
-		ETSIDI::printxy("MACCABI DE LEVANTAR CHICO", 2, 1);
+		ETSIDI::setFont("fuentes/256BYTES.TTF", 16);
+		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 8);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 7);
+		ETSIDI::printxy("MACCABI DE LEVANTAR CHICO", -4, 1);
 		glPopMatrix();
 	}
 	else if (estado == JUEGO) {
@@ -86,13 +86,13 @@ void Coordinador::dibuja() {
 	else if (estado == GAMEOVER) {
 		juego.dibuja();
 		ETSIDI::setTextColor(1, 0, 0);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 32);
 		ETSIDI::printxy("GAME OVER: chupaste", -5, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);
 	}
 	else if (estado == FIN) {
 		juego.dibuja();
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 32);
 		ETSIDI::printxy("Chico estas mas dentro", -5, 10);
 		ETSIDI::printxy("Pulsa -C- para continuar", -5, 10);
 	}
