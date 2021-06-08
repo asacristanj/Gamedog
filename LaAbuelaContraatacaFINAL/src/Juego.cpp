@@ -29,12 +29,12 @@ void Juego::inicializa()
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
 
@@ -69,18 +69,34 @@ void Juego::mueve()
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
 	enemigos.rebote(escenario);
+	plataformas.rebote(jugador);
 	plataformas.rebote(jugador, escaleras);
 	enemigos.rebote(jugador);
 	disparos.colision(escenario);
-	//disparos.colision(plataforma);
 	bonuses.rebote(escenario);
-	//bonuses.rebote(plataforma);
 	bonuses.rebote(jugador);
 	Interaccion::rebote(jugador, escenario);
 	//Interaccion::rebote(jugador, plataforma);
 	//Interaccion::rebote(bonus, plataforma);
 	//Interaccion::rebote(bonus, escenario);
-
+	for (int i = 0; i < plataformas.getNumero(); i++)
+	{
+		enemigos.rebote(*plataformas[i]);
+	}
+	for (int i = 0; i < plataformas.getNumero(); i++)
+	{
+		bonuses.rebote(*plataformas[i]);
+	}
+	for (int i = 0; i < plataformas.getNumero(); i++)
+	{
+		for (int j = 0; j < disparos.getNumero(); j++)
+		{
+			if (Interaccion::colision(*disparos[i], *plataformas[i]))
+			{
+				disparos.eliminar(disparos[i]);
+			}
+		}
+	}
 	for (int i = 0; i < enemigos.getNumero(); i++)
 	{
 		for (int j = 0; j < disparos.getNumero(); j++)

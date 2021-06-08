@@ -35,6 +35,11 @@ void ListaPlataformas::dibuja() {
 	for (int i = 0; i < numero; i++)
 		lista[i]->dibuja();
 }
+void ListaPlataformas::rebote(Jugador& j)
+{
+	for (int i = 0; i < numero; i++)
+		Interaccion::rebote(j, *(lista[i]));
+}
 void ListaPlataformas::rebote(Jugador& j, ListaEscaleras e) {
 	if (e.rebote(j) == false) {
 		for (int i = 0; i < numero; i++) {
@@ -48,4 +53,12 @@ bool ListaPlataformas::colisionEncima(Jugador j) {
 			return true;
 	}
 	return false;
+}
+Plataforma* ListaPlataformas:: operator[] (int i) //Funcion que ajusta el simbolo [] para nuestro caso
+{
+	if (i >= numero)//Si me paso, devuelvo la ultima
+		i = numero - 1;
+	if (i < 0) //Si el indice es negativo, devuelvo la primera
+		i = 0;
+	return lista[i];
 }

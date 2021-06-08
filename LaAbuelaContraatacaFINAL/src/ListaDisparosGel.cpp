@@ -38,6 +38,7 @@ void ListaDisparosGel::colision(Plataforma p)
 			//eliminamos el disparo al impactar con la plataforma
 			//delete lista[i];
 			eliminar(i);
+			numero--;
 		}
 }
 void ListaDisparosGel::colision(Escenario e)
