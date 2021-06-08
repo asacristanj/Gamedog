@@ -25,8 +25,6 @@ public:
 	//Jugador
 	static bool colisionEncima(Jugador j, Plataforma p); //Capta la colision del jugador y la plataforma por debajo de la plataforma
 	static bool colisionDebajo(Jugador j, Plataforma p); //Capta la colision del jugador y la plataforma por encima de la plataforma
-	static bool colisionLadoIzq(Jugador j, Plataforma p);
-	static bool colisionLadoDer(Jugador j, Plataforma p);
 	static bool colisionSuelo(Jugador j, Escenario e);
 	static void rebote(Jugador& j, Plataforma p);
 	static void rebote(Jugador& j, Escenario e);

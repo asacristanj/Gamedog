@@ -14,4 +14,3 @@ public:
 	void SetPos(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y);
 	Vector2D limenx();
 };
-

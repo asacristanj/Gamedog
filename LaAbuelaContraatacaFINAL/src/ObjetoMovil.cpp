@@ -1,9 +1,4 @@
 #include "ObjetoMovil.h"
-ObjetoMovil::ObjetoMovil()
-{
-	posicion = velocidad = aceleracion = { 0,0 };
-	puntuacion = 0;
-}
 void ObjetoMovil::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);

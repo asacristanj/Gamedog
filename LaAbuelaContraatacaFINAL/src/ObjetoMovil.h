@@ -5,7 +5,7 @@ class ObjetoMovil
 {
 protected:
 	Vector2D posicion, velocidad, aceleracion;
-	static int puntuacion;
+	int puntuacion=0;
 public:
     void mueve(float t);
 	void setPos(float ix, float iy);

@@ -29,10 +29,10 @@ void Juego::inicializa()
 	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
+	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
-	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
+	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 	setChances(jugador.GetNumBonus());
 	//chances = jugador.GetNumBonus();
 }

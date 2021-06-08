@@ -66,7 +66,7 @@ void Coordinador::dibuja() {
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
-		//glPushMatrix();
+		glPushMatrix();
 		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("LA ABUELA CONTRATACA", -5, 8);
@@ -75,7 +75,7 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -5, 7);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 6);
 		ETSIDI::printxy("MACCABI DE LEVANTAR CHICO", 2, 1);
-		//glPopMatrix();
+		glPopMatrix();
 	}
 	else if (estado == JUEGO) {
 		juego.dibuja();

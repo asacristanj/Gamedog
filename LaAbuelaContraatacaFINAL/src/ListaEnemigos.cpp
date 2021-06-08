@@ -113,9 +113,11 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*ind, j))
+			{
 				j.setNumBonus(j.GetNumBonus() - 1); //si tiene algún bonus se lo quitamos
-			if (j.GetNumBonus() < 0) {
-				j.morir(); //cuando no tenga bonus muere
+				if (j.GetNumBonus() < 0) {
+					j.morir(); //cuando no tenga bonus muere
+				}
 			}
 		}
 		if (tipo == CEPABRITANICA)//En la CepaBritanica se quiere que si el jugador se acerca a una cierta distancia del enemigo este se pare y a los 2 segundos explote. Si el jugador se encuentra en una distancia algo mayor que la anterior, el jugador muere por la explosión, sino sobrevive.
@@ -179,12 +181,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				bra->setPunt(punt);
 				eliminar(i);
 			}
-			else if (Interaccion::colision(*bra, j)) {
+			else if (Interaccion::colision(*bra, j)) 
+			{
 				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) {
+				if (j.GetNumBonus() < 0) 
+				{
 					j.morir();
 				}
-				//j.morir();
 			}
 		}
 		if (tipo == CEPACHINA)//En la CepaChina se quiere que si el jugador toca el enemigo los 2 mueran
@@ -199,7 +202,6 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				 j.morir();
 			 }
 		 }
-			//j.morir();
 		}
 		if (tipo == MURCIELAGOPEQUEÑO) //En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
@@ -228,13 +230,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 					j.morir();
 				}
 			}
-				//j.morir();
 		}
 		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
 			Vector2D pos = murboss->getPos();
-			if (pos.x > 2.0f && pos.x < 2.05f)
+			Vector2D posjugador = j.getPos();
+			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f)) //Le disparan cuando estén en el mismo eje X
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(pos.x, pos.y);
@@ -253,13 +255,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 					eliminar(i);// Si no le quedan vidas muere
 				}
 			}
-			else if (Interaccion::colision(*murboss, j)) {
+			else if (Interaccion::colision(*murboss, j)) 
+			{
 				j.setNumBonus(j.GetNumBonus() - 1);
 				if (j.GetNumBonus() < 0) {
 					j.morir();
 				}
 			}
-				//j.morir();
 		}
 	}
 }
