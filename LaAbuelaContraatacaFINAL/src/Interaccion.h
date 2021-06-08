@@ -22,34 +22,19 @@
 class Interaccion
 {
 public:
-	static void rebote(Jugador& j, Escenario e);
+	//Jugador
 	static bool colisionEncima(Jugador j, Plataforma p); //Capta la colision del jugador y la plataforma por debajo de la plataforma
 	static bool colisionDebajo(Jugador j, Plataforma p); //Capta la colision del jugador y la plataforma por encima de la plataforma
 	static bool colisionLadoIzq(Jugador j, Plataforma p);
 	static bool colisionLadoDer(Jugador j, Plataforma p);
 	static bool colisionSuelo(Jugador j, Escenario e);
 	static void rebote(Jugador& j, Plataforma p);
-	static void rebote(Bonus& b, Plataforma p);
-	static void rebote(Bonus& b, Escenario e);
-	static void rebote(CepaBritanica& brit, Plataforma p);
-	static void rebote(CepaIndia& ind, Plataforma p);
-	static void rebote(CepaBrasileña& bra, Plataforma p);
-	static bool rebote(Enemigo enem, Plataforma p);
-	static void rebote(CepaBritanica& brit, Escenario e);
-	static void rebote(CepaIndia& ind, Escenario e);
-	static void rebote(MurcielagoPequeño& murpeq, Escenario e);
-	static void rebote(MurcielagoBoss& murboss, Escenario e);
-	static void disparo(MurcielagoPequeño& murpeq, Jugador j);
-	static void rebote(Quirurgica& qui, Escenario e);
-	static bool rebote(Enemigo enem, Escenario e);
-	static bool colision(Enemigo enem, Jugador j);
-	static bool colisionEncima(Enemigo enem, Jugador j);
-	static bool colision(DisparoGel d, Plataforma p);
-	static bool colision(DisparoGel d, Escenario e);
-	static bool colision(DisparoGel d, Enemigo enem);
-	/*static bool colision(CepaChina c, Plataforma p);
-	static bool colision(CepaChina c, Escenario e);
-	static bool colision(CepaChina c, Enemigo enem);*/
+	static void rebote(Jugador& j, Escenario e);
+	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
+	static bool colisionEncima(Jugador j, BloqueSorpresa b);
+	static void rebote(Jugador& j, BloqueSorpresa b);
+	static bool colisionEscalera(Escalera e, Jugador j);
+	//Bonus
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
@@ -59,10 +44,25 @@ public:
 	static bool colision(Astrazeneca a, Jugador j);
 	static bool colision(Janssen jan, Jugador j);
 	static bool colision(Sputnik sp, Jugador j);*/
+	static void rebote(Bonus& b, Plataforma p);
+	static void rebote(Bonus& b, Escenario e);
+	//Enemigos
+	static bool rebote(Enemigo enem, Plataforma p);
+	static bool rebote(Enemigo enem, Escenario e);
+	static bool colision(Enemigo enem, Jugador j);
+	static bool colisionEncima(Enemigo enem, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
 	static bool ratioExplosion(CepaBritanica brit, Jugador j);
-	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
-	static bool colisionEncima(Jugador j, BloqueSorpresa b);
-	static void rebote(Jugador& j, BloqueSorpresa b);
-	static bool colisionEscalera(Escalera e, Jugador j);
+	static void rebote(CepaBritanica& brit, Plataforma p);
+	static void rebote(CepaIndia& ind, Plataforma p);
+	static void rebote(CepaBrasileña& bra, Plataforma p);
+	static void rebote(CepaBritanica& brit, Escenario e);
+	static void rebote(CepaIndia& ind, Escenario e);
+	static void rebote(MurcielagoPequeño& murpeq, Escenario e);
+	static void rebote(MurcielagoBoss& murboss, Escenario e);
+	static void rebote(Quirurgica& qui, Escenario e);
+	//Disparos
+	static bool colision(DisparoGel d, Plataforma p);
+	static bool colision(DisparoGel d, Escenario e);
+	static bool colision(DisparoGel d, Enemigo enem);
 };

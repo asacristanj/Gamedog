@@ -17,9 +17,6 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
-	//Enemigo* colision(Jugador& j);
-	//Enemigo* colisionEncima(Jugador& j);
-	//Enemigo* colision(DisparoGel& d);
 	Enemigo* operator [](int i);
 	int getNumero() { return numero; }
 	void destruirContenido();

@@ -121,6 +121,9 @@ void ListaBonus::rebote(Jugador& j)
 			Quirurgica* q = (Quirurgica*)lista[i];
 			if (Interaccion::colision(*q, j)) {
 				Factoria::CogerQuirurgica(j);
+				int punt = q->getPunt();
+				punt += 5;
+				q->setPunt(punt);
 				eliminar(i);
 			}
 		}
@@ -128,6 +131,9 @@ void ListaBonus::rebote(Jugador& j)
 			MascarillaTocha* m = (MascarillaTocha*)lista[i];
 			if (Interaccion::colision(*m, j)) {
 				Factoria::CogerMascarillaTocha(j);
+				int punt = m->getPunt();
+				punt += 10;
+				m->setPunt(punt);
 				eliminar(i);
 			}
 		}
@@ -135,6 +141,9 @@ void ListaBonus::rebote(Jugador& j)
 			Astrazeneca* a = (Astrazeneca*)lista[i];
 			if (Interaccion::colision(*a, j)) {
 				Factoria::CogerAstrazeneca(j);
+				int punt = a->getPunt();
+				punt += 15;
+				a->setPunt(punt);
 				eliminar(i);
 				if (inicializar_hora_inicio == false)
 				{
@@ -162,6 +171,9 @@ void ListaBonus::rebote(Jugador& j)
 			Janssen* jan = (Janssen*)lista[i];
 			if (Interaccion::colision(*jan, j)) {
 				Factoria::CogerJanssen(j);
+				int punt = jan->getPunt();
+				punt += 15;
+				jan->setPunt(punt);
 				eliminar(i);
 				if (inicializar_hora_inicio == false)
 				{
@@ -174,6 +186,9 @@ void ListaBonus::rebote(Jugador& j)
 			Pfizer* p = (Pfizer*)lista[i];
 			if(Interaccion::colision(*p,j)){
 				Factoria::CogerPfizer(j);
+				int punt = p->getPunt();
+				punt += 15;
+				p->setPunt(punt);
 				eliminar(i);
 				if (inicializar_hora_inicio == false)
 				{

@@ -27,4 +27,3 @@ public:
 	void eliminar(int index);
 	void eliminar(Bonus* b);
 };
-

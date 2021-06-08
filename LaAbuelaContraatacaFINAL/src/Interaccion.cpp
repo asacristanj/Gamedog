@@ -92,6 +92,53 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 	if ((j.posicion.y - j.getAltura()) < ymin) j.posicion.y = ymin+ j.getAltura();
 }
 
+bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)
+{
+	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
+	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
+	float radio = j.getAltura(), l = b.lado * 0.5f, lim1 = bloque.x + l, lim2 = bloque.x - l;
+	aux = bloque - jugador;
+	float distancia = aux.modulo();
+	if ((distancia <= radio + l) && (jugador.y <= bloque.y) && (lim2 <= jugador.x <= lim1)) {
+		return true;
+
+	}
+	else
+		return false;
+}
+bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b)
+{
+	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
+	float radio = j.getAltura(), l = b.lado * 0.5f;
+	aux = bloque - jugador;
+	float distancia = aux.modulo();
+	if ((distancia <= radio + l) && (jugador.y >= bloque.y))
+		return true;
+	return false;
+}
+void Interaccion::rebote(Jugador& j, BloqueSorpresa b)
+{
+	//Si el choque se produce desde abajo
+	if (Interaccion::colisionDebajo(j, b)) {
+		j.velocidad.y = -5.0f;
+		j.tocandosuelo = true;
+	}
+	if (Interaccion::colisionEncima(j, b)) {
+		float y = b.posicion.y + b.getlado() * 0.5f;
+		j.velocidad.y = 0.0f;
+		j.aceleracion.y = 0.0f;
+		j.posicion.y = y + j.altura;
+	}
+}
+bool Interaccion::colisionEscalera(Escalera e, Jugador j)
+{
+	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
+	Vector2D limites = e.limenx();
+	Vector2D pos = j.getPos();
+	if (limites.y <= pos.x <= limites.x)
+		return true;
+	return false;
+}
 ///////////////////////////////////////////Funciones de interacción de los bonus con el resto de elementos///////////////////////////////////////////////////////////
 
 /*bool Interaccion::colision(Quirurgica q, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la quirurgica
@@ -433,6 +480,34 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e) // PATRON DE MOVI
 	}
 }
 
+bool Interaccion::ratio(CepaBritanica brit, Jugador j)
+{
+	//Función que manda un booleano si el jugador se encuentra en el ratio de explosion de la CepaBritanica
+	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
+	posjugador.y -= j.getAltura();
+	Vector2D posenemigo = brit.getPos();
+	posenemigo.y -= brit.getAltura();
+	float distancia = (brit.getPos() - j.getPos()).modulo();
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 2.0f))
+		return true;
+	return false;
+}
+bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
+{
+	//Función que manda un booleano si el jugador se encuentra en el ratio de explosion para morir de la CepaBritanica
+	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
+	posjugador.y -= j.getAltura();
+	Vector2D posenemigo = brit.getPos();
+	posenemigo.y -= brit.getAltura();
+	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
+	float distancia = (brit.getPos() - j.getPos()).modulo();
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 3.0f))
+		return true;
+	return false;
+}
+///////////////////////////////////////////Funciones de interacción de los disparos con el resto de elementos///////////////////////////////////////////////////////////
+
+
 bool Interaccion::colision(DisparoGel d, Plataforma p)
 {
 	//Función que manda un booleano si ha habido contacto entre un disparo y una plataforma. Coge ambas posiciones y mide la distancia entre ellas.
@@ -453,7 +528,7 @@ bool Interaccion::colision(DisparoGel d, Escenario e)
 bool Interaccion::colision(DisparoGel d, Enemigo enem) 
 {
 	//Función que manda un booleano si ha habido contacto entre un disparo y un enemigo. Coge ambas posiciones y mide la distancia entre ellas.
-	//un vector para la diferencia de posiciones y dos floats para las distancias a comparar
+	//Un vector para la diferencia de posiciones y dos floats para las distancias a comparar
 	Plataforma aux; //Creamos una pared auxiliar
 	Vector2D p1 = d.posicion;
 	Vector2D p2 = d.origen;
@@ -464,72 +539,3 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 	return false;
 }
 
-bool Interaccion::ratio(CepaBritanica brit, Jugador j)
-{
-	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
-	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
-	posjugador.y -= j.getAltura();
-	Vector2D posenemigo = brit.getPos();
-	posenemigo.y -= brit.getAltura();
-	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
-	float distancia = (brit.getPos() - j.getPos()).modulo();
-	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f)+2.0f))
-		return true;
-	return false;
-}
-bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
-{
-	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador. Coge ambas posiciones y mide la distancia entre ellas.
-	Vector2D posjugador = j.getPos(); //la posicion de la base del hombre
-	posjugador.y -= j.getAltura();
-	Vector2D posenemigo = brit.getPos();
-	posenemigo.y -= brit.getAltura();
-	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
-	float distancia = (brit.getPos() - j.getPos()).modulo();
-	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 3.0f))
-		return true;
-	return false;
-}
-bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) {
-	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
-	Vector2D aux,bloque=b.posicion,jugador=j.getPos();
-	float radio = j.getAltura(), l = b.lado * 0.5f,lim1=bloque.x+l,lim2=bloque.x-l;
-	aux = bloque - jugador;
-	float distancia = aux.modulo();
-	if ((distancia <= radio + l)&& (jugador.y<=bloque.y)&&(lim2<=jugador.x<=lim1)) {
-		return true;
-
-	}
-	else 
-		return false;
-}
-bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b) {
-	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
-	float radio = j.getAltura(), l = b.lado * 0.5f;
-	aux = bloque - jugador;
-	float distancia = aux.modulo();
-	if ((distancia <= radio + l) && (jugador.y >= bloque.y))
-		return true;
-	return false;
-}
-void Interaccion::rebote(Jugador& j,BloqueSorpresa b) {
-	//Si el choque se produce desde abajo
-	if (Interaccion::colisionDebajo(j, b)) {
-		j.velocidad.y = -5.0f;
-		j.tocandosuelo = true;
-	}
-	if (Interaccion::colisionEncima(j, b)) {
-		float y = b.posicion.y+b.getlado()*0.5f;
-		j.velocidad.y = 0.0f;
-		j.aceleracion.y = 0.0f;
-		j.posicion.y =y+ j.altura;
-	}
-}
-bool Interaccion::colisionEscalera(Escalera e, Jugador j) {
-	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
-	Vector2D limites = e.limenx();
-	Vector2D pos = j.getPos();
-	if (limites.y <= pos.x <= limites.x)
-		return true;
-	return false;
-}

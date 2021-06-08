@@ -106,7 +106,12 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		{
 			CepaIndia* ind = (CepaIndia*)lista[i];
 			if (Interaccion::colisionEncima(*ind, j))
+			{
+				int punt = ind->getPunt();
+				punt += 20;
+				ind->setPunt(punt);
 				eliminar(i);
+			}
 			else if (Interaccion::colision(*ind, j))
 				j.setNumBonus(j.GetNumBonus() - 1); //si tiene algún bonus se lo quitamos
 			if (j.GetNumBonus() < 0) {
@@ -155,6 +160,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
+						int punt = brit->getPunt();
+						punt += 30;
+						brit->setPunt(punt);
 						eliminar(i); //Se elimina el enemigo tras la explosion
 						inicializar_hora_inicio = false; //Se marca que se ha usado el temporizador
 					}
@@ -165,7 +173,12 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		{
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
+			{
+				int punt = bra->getPunt();
+				punt += 25;
+				bra->setPunt(punt);
 				eliminar(i);
+			}
 			else if (Interaccion::colision(*bra, j)) {
 				j.setNumBonus(j.GetNumBonus() - 1);
 				if (j.GetNumBonus() < 0) {
@@ -201,7 +214,12 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
+			{
+				int punt = murpeq->getPunt();
+				punt += 35;
+				murpeq->setPunt(punt);
 				eliminar(i);
+			}
 			else if (Interaccion::colision(*murpeq, j))
 			{
 				j.setNumBonus(j.GetNumBonus() - 1);
@@ -228,7 +246,12 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				if (murboss->getVidas() > 1) // Le queda al menos una vida
 					murboss->setVidas(-1); // Resto una vida
 				else
-					eliminar(i); // Si no le quedan vidas muere
+				{
+					int punt = murboss->getPunt();
+					punt += 50;
+					murboss->setPunt(punt);
+					eliminar(i);// Si no le quedan vidas muere
+				}
 			}
 			else if (Interaccion::colision(*murboss, j)) {
 				j.setNumBonus(j.GetNumBonus() - 1);
@@ -240,24 +263,6 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		}
 	}
 }
-//Enemigo* ListaEnemigos::colision(Jugador& j)
-//{
-//	for (int i = 0; i < numero; i++)
-//	{
-//		if (Interaccion::colision(*(lista[i]), j))
-//		return lista[i];
-//	}
-//	return 0; //no hay colisión
-//}
-//Enemigo* ListaEnemigos::colisionEncima(Jugador& j)
-//{
-//	for (int i = 0; i < numero; i++)
-//	{
-//		if (Interaccion::colisionEncima(*(lista[i]), j))
-//			return lista[i];
-//	}
-//	return 0; //no hay colisión
-//}
 Enemigo* ListaEnemigos:: operator[] (int i) //Funcion que ajusta el simbolo [] para nuestro caso
 {
 	if (i >= numero)//Si me paso, devuelvo la ultima

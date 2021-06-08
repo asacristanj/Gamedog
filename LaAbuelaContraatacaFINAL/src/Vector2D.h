@@ -14,4 +14,3 @@ public:
 	float operator* (Vector2D); // producto escalar 
 	Vector2D operator* (float); // producto por un escalar 
 };
-
