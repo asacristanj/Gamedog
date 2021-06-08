@@ -77,7 +77,7 @@ void Jugador::mueve(float t)
 void Jugador::volverSalto()
 {
 	time_t horaActual = time(NULL);
-	if (astra_activo == true && (horaActual - horaInicioAstra) > 5)
+	if (astra_activo == true && (horaActual - horaInicioAstra) > 10)
 	{
 		astra_activo = false;
 		setImpulso(15.0f);
@@ -86,7 +86,7 @@ void Jugador::volverSalto()
 void Jugador::volverVelocidadPfizer()
 {
 	time_t horaActual = time(NULL);
-	if (pfizer_activo == true && (horaActual - horaInicioPfizer) > 5)
+	if (pfizer_activo == true && (horaActual - horaInicioPfizer) > 10)
 	{
 		pfizer_activo = false;
 		setCoefVelx(1);
@@ -95,9 +95,9 @@ void Jugador::volverVelocidadPfizer()
 void Jugador::volverVelocidadJanssen()
 {
 	time_t horaActual = time(NULL);
-	if (janssen_activo == true && (horaActual - horaInicioJanssen) > 5)
+	if (janssen_activo == true && (horaActual - horaInicioJanssen) > 10)
 	{
 		janssen_activo = false;
-		setVelx(5.0f);
+		setCoefVelx(1);
 	}
 }

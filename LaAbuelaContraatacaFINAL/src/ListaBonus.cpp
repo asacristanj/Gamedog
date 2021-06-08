@@ -160,11 +160,11 @@ void ListaBonus::rebote(Jugador& j)
 				punt += 15;
 				jan->setPunt(punt);
 				eliminar(i);
-				/*if (inicializar_hora_inicio == false)
+				if (j.getJanssenActivo() == false)
 				{
-					inicializar_hora_inicio = true;
-					horaInicio = time(NULL);
-				}*/
+					j.setJanssenActivo(true);
+					j.sethInicioJanssen(time(NULL));
+				}
 			}
 		}
 		if (tipo == PFIZER) 
