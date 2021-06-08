@@ -16,6 +16,7 @@ public:
 	bool agregar(Escalera* e);
 	int getNumero() { return numero; }
 	void destruirContenido();
-	void rebote(Jugador& j);
+	void eliminar(int index);
+	bool rebote(Jugador j);
 };
 

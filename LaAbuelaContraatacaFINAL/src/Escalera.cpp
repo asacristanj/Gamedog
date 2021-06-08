@@ -2,6 +2,16 @@
 Escalera::Escalera() {
 	color.r = color.g = color.b = 255;
 }
+Escalera::Escalera(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y) {
+	limder1.x = limder1x;
+	limder1.y = limder1y;
+	limder2.x = limder2x;
+	limder2.y = limder2y;
+	limizq1.x = limizq1x;
+	limizq1.y = limizq1y;
+	limizq2.x = limizq2x;
+	limizq2.y = limizq2y;
+}
 Escalera::~Escalera() {
 
 }

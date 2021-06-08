@@ -9,6 +9,8 @@
 #include "ListaDisparosGel.h"
 #include "ListaBonus.h"
 #include "ListaBloques.h"
+#include"ListaEscaleras.h"
+#include "ListaPlataformas.h"
 #include "Factoria.h"
 #include "BloqueSorpresa.h"
 #include "CepaBritanica.h"
@@ -30,12 +32,13 @@ private:
 	Jugador jugador;
 	Escenario escenario;
 	Bonus bonus;
-	Plataforma plataforma;
 	ListaEnemigos enemigos;
 	ListaDisparosGel disparos;
 	ListaBonus bonuses;
 	CepaBritanica brit;
 	ListaBloques bloques;
+	ListaPlataformas plataformas;
+	ListaEscaleras escaleras;
 	Escalera escalera;
 	bool impacto;//variable que es true si enemigo choca con jugador
 	int chances=jugador.GetNumBonus(); // veces que se puede recibir daño sin llegar a morir

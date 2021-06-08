@@ -53,6 +53,7 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	if (Interaccion::colisionDebajo(j, p))
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
 }
+
 void Interaccion::rebote(Jugador& j, Escenario e)
 {
 	//Función para que el jugador no se pueda salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde del escenario

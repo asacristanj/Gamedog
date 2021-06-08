@@ -8,6 +8,7 @@ private:
 	ColorRVA color;
 public:
 	Escalera();
+	Escalera(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y);
 	virtual ~Escalera();
 	void dibujar();
 	void SetColor(unsigned char r, unsigned char b, unsigned char g);

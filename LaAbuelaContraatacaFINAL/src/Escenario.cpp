@@ -18,10 +18,10 @@ Escenario::Escenario()
 }
 void Escenario::dibuja()
 {
-	suelo.dibuja(0);
-	techo.dibuja(0);
-	pared_izq.dibuja(0);
-	pared_dcha.dibuja(0);
+	suelo.dibuja();
+	techo.dibuja();
+	pared_izq.dibuja();
+	pared_dcha.dibuja();
 }
 
 Escenario :: ~Escenario()

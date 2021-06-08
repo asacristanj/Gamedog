@@ -25,9 +25,21 @@ bool ListaEscaleras::agregar(Escalera* e) {
 void ListaEscaleras::destruirContenido() {
 	for (int i = 0; i < numero; i++)
 		delete lista[i];
+	numero = 0;
 }
-void ListaEscaleras::rebote(Jugador& j) {
+bool ListaEscaleras::rebote(Jugador j) {
 	for (int i = 0; i < numero; i++) {
-		
+		if(Interaccion::colisionEscalera(*(lista[i]), j))
+			return true;
 	}
+	return false;
+}
+void ListaEscaleras::eliminar(int index)//Funcion para eliminar enemigos correctamente del vector de enemigos
+{
+	if ((index < 0) || (index >= numero))
+		return;
+	delete lista[index];
+	numero--;
+	for (int i = index; i < numero; i++)
+		lista[i] = lista[i + 1];
 }

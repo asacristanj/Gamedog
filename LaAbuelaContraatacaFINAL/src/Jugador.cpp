@@ -8,7 +8,6 @@ Jugador::Jugador()
 	//TAMAÑO Y CENTRO SPRITE PERSONAJE:
 	sprite.setCenter(altura/2.0f, altura);
 	sprite.setSize(altura, altura * 2.0f);
-
 	tocandosuelo = false;
 	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;

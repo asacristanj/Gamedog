@@ -7,9 +7,15 @@ Plataforma::Plataforma()
 {
 	color.r = color.g = color.b = 255; //blanco 
 }
-void Plataforma::dibuja(int n)
+Plataforma::Plataforma(float x1, float y1, float x2, float y2) {
+	limite1.x = x1;
+	limite1.y = y1;
+	limite2.x = x2;
+	limite2.y = y2;
+}
+void Plataforma::dibuja()
 {
-	/*
+	
 	glDisable(GL_LIGHTING);
 	glColor3ub(color.r, color.g, color.b);
 	glBegin(GL_POLYGON);
@@ -19,12 +25,14 @@ void Plataforma::dibuja(int n)
 	glVertex3d(limite1.x, limite1.y, -5);
 	glEnd();
 	glEnable(GL_LIGHTING);
-	*/
-		
+	/*/*
+	
+
+
 	glEnable(GL_BLEND);     
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE_2D);
-
+/*
 	if (n==1)	
 		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/plataforma.png").id);
 	if (n==0)
@@ -38,7 +46,7 @@ void Plataforma::dibuja(int n)
 	glTexCoord2d(1, 0); glVertex3d(limite2.x, limite1.y, 5);
 	glTexCoord2d(1, 1); glVertex3d(limite2.x, limite2.y, -5);
 	glTexCoord2d(0, 1); glVertex3d(limite1.x, limite2.y, -5);
-	*/
+
 	glVertex3d(limite1.x, limite1.y, 5);
 	glVertex3d(limite2.x, limite2.y, 5);
 	glVertex3d(limite2.x, limite2.y, -5);
@@ -46,7 +54,7 @@ void Plataforma::dibuja(int n)
 	glEnd();
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
-	
+	*/
 	
 }
 void Plataforma::setColor(Byte r, Byte v, Byte a)

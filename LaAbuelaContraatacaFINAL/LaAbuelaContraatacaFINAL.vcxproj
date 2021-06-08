@@ -158,6 +158,7 @@
     <ClCompile Include="src\Factoria.cpp" />
     <ClCompile Include="src\ListaBloques.cpp" />
     <ClCompile Include="src\ListaEscaleras.cpp" />
+    <ClCompile Include="src\ListaPlataformas.cpp" />
     <ClCompile Include="src\MascarillaTocha.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\Janssen.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="src\Factoria.h" />
     <ClInclude Include="src\ListaBloques.h" />
     <ClInclude Include="src\ListaEscaleras.h" />
+    <ClInclude Include="src\ListaPlataformas.h" />
     <ClInclude Include="src\MascarillaTocha.h" />
     <ClInclude Include="src\Interaccion.h" />
     <ClInclude Include="src\Janssen.h" />
