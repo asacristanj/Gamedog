@@ -136,9 +136,9 @@ void ListaBonus::rebote(Jugador& j)
 		}
 		if (tipo == ASTRAZENECA) {
 			Astrazeneca* a = (Astrazeneca*)lista[i];
-			static time_t horaInicio = time(NULL);
-			const int SEGUNDOS = 2; //Tiempo que dura el bonus
-			time_t horaActual = time(NULL);
+			//static time_t horaInicio = time(NULL);
+			//const int SEGUNDOS = 2; //Tiempo que dura el bonus
+			//time_t horaActual = time(NULL);
 			if (Interaccion::colision(*a, j)) {
 				cont = true;
 			}
@@ -149,16 +149,16 @@ void ListaBonus::rebote(Jugador& j)
 				punt += 15;
 				a->setPunt(punt);
 				eliminar(i);
-				if (inicializar_hora_inicio == false)
-				{
-					inicializar_hora_inicio = true;
-					horaInicio = time(NULL);
-				}
-				if ((horaActual - horaInicio) >= SEGUNDOS)
-				{
-					j.setImpulso(10.0f);
-					inicializar_hora_inicio = false;
-					cont = false;
+				//if (inicializar_hora_inicio == false)
+				//{
+					//inicializar_hora_inicio = true;
+					//horaInicio = time(NULL);
+				//}
+				//if ((horaActual - horaInicio) >= SEGUNDOS)
+				//{
+					//j.setImpulso(10.0f);
+					//inicializar_hora_inicio = false;
+					//cont = false;
 				}
 			}
 			//else
@@ -172,7 +172,7 @@ void ListaBonus::rebote(Jugador& j)
 					}
 				}*/
 			//}
-		}
+		//}
 		
 		if (tipo == JANSSEN) {
 			Janssen* jan = (Janssen*)lista[i];
