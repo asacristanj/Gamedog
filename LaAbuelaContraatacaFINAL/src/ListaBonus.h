@@ -26,4 +26,5 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Bonus* b);
+	bool cont= false;
 };

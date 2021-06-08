@@ -38,8 +38,8 @@ private:
 	ListaBloques bloques;
 	Escalera escalera;
 	bool impacto;//variable que es true si enemigo choca con jugador
-	int chances; // veces que se puede recibir daño sin llegar a morir
-	int vidas = 3; // veces que se puede reintentar el nivel tras morir
+	int chances=jugador.GetNumBonus(); // veces que se puede recibir daño sin llegar a morir
+	int vidas=1; // veces que se puede reintentar el nivel tras morir
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
