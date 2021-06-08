@@ -13,7 +13,7 @@ void Juego::inicializa()
 	disparos.destruirContenido();//limpio tras game over
 	//bonus.setPos(5.0f, 5.0f);
 	plataforma.setPos(-5.0f, 4.0f, 5.0f, 4.0f);
-	//escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
+	escalera.SetPos(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f);
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
@@ -32,7 +32,7 @@ void Juego::inicializa()
 	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
-	bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
+	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 	setChances(jugador.GetNumBonus());
 	//chances = jugador.GetNumBonus();
 }
@@ -110,6 +110,12 @@ void Juego::teclaEspecial(unsigned char key)
 		   if (Interaccion::colisionEncima(jugador, plataforma) || Interaccion::colisionSuelo(jugador, escenario))
 			   jugador.salto();
 		   break;
+	   case GLUT_KEY_DOWN:
+	   {
+		   if (Interaccion::colisionEscalera(escalera, jugador))
+			   jugador.bajarEscalera();
+		   break;
+	   }
 	}
 }
 void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
@@ -130,6 +136,13 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 			break;
 			if (Interaccion::colisionEscalera(escalera, jugador))
 				jugador.subirEscalera();
+			break;
+		}
+		case GLUT_KEY_DOWN:
+		{
+			if (Interaccion::colisionEscalera(escalera, jugador))
+				jugador.bajarEscalera();
+			break;
 		}
 	}
 }

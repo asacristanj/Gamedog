@@ -61,6 +61,9 @@ Jugador :: ~Jugador()
 void Jugador::subirEscalera() {
 	this->setVely(0.0f);
 }
+void Jugador::bajarEscalera() {
+	this->setVely(0.0f);
+}
 bool Jugador::suelo() {
 	return tocandosuelo;
 }

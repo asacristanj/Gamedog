@@ -50,7 +50,6 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	}
 	else
 		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial
-
 	if (Interaccion::colisionDebajo(j, p))
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
 }
@@ -71,10 +70,10 @@ bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)
 {
 	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
 	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
-	float radio = (j.getAltura()/2.0f), l = b.lado * 0.5f, lim1 = bloque.x + l, lim2 = bloque.x - l;
+	float radio = (j.getAltura()), l = b.lado * 0.5f,lim1=bloque.x-l,lim2=bloque.x+l;
 	aux = bloque - jugador;
 	float distancia = aux.modulo();
-	if ((distancia <= radio+1.1f) && (jugador.y <= bloque.y) && (lim2 <= jugador.x <= lim1)) 
+	if ((distancia <= radio+l) && (jugador.y <= bloque.y)&&(lim1<=jugador.x)&&(jugador.x<=lim2)) 
 	{
 		return true;
 	}
@@ -84,10 +83,10 @@ bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)
 bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b)
 {
 	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
-	float radio = j.getAltura(), l = b.lado * 0.5f;
+	float radio = (j.getAltura()), l = b.lado * 0.5f, lim1 = bloque.x - l, lim2 = bloque.x + l;
 	aux = bloque - jugador;
 	float distancia = aux.modulo();
-	if ((distancia <= radio + l) && (jugador.y >= bloque.y))
+	if ((distancia <= radio + l) && (jugador.y >= bloque.y) && (lim1 <= jugador.x)&&(jugador.x <= lim2))
 		return true;
 	return false;
 }
@@ -96,13 +95,14 @@ void Interaccion::rebote(Jugador& j, BloqueSorpresa b)
 	//Si el choque se produce desde abajo
 	if (Interaccion::colisionDebajo(j, b)) {
 		j.velocidad.y = -5.0f;
-		j.tocandosuelo = true;
+		
 	}
 	if (Interaccion::colisionEncima(j, b)) {
 		float y = b.posicion.y + b.getlado() * 0.5f;
 		j.velocidad.y = 0.0f;
 		j.aceleracion.y = 0.0f;
 		j.posicion.y = y + j.altura;
+		j.tocandosuelo = true;
 	}
 }
 bool Interaccion::colisionEscalera(Escalera e, Jugador j)

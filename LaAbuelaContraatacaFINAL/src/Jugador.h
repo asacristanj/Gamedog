@@ -39,6 +39,7 @@ public:
 	int GetNumBonus() { return numbonus; }
 	void setImpulso(float imp) { impulso = imp; }
 	void subirEscalera();
+	void bajarEscalera();
 	bool suelo();
 
 	friend class Interaccion;
