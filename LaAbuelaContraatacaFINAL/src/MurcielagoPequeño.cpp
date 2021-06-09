@@ -6,10 +6,9 @@ MurcielagoPequeño::MurcielagoPequeño()
 	altura = 0.4f;
 	posicion.x = 0.0f;
 	posicion.y = 10.0f;
-	velocidad = (5.0f, 5.0f);
-	aceleracion.y = 0;
+	velocidad = (4.0f, 4.0f);
+	aceleracion.y = 0.0f;
 	velocidad_china = -5.0f;
-	posiciony_inicial = 0.0f;
 }
 MurcielagoPequeño::MurcielagoPequeño(float alt, float x, float y, float vx, float vy)
 {
@@ -19,9 +18,8 @@ MurcielagoPequeño::MurcielagoPequeño(float alt, float x, float y, float vx, floa
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	aceleracion.y = 0;
+	aceleracion.y = 0.0f;
 	velocidad_china = -5.0f;
-	posiciony_inicial = y;
 }
 void MurcielagoPequeño::dibuja()
 {

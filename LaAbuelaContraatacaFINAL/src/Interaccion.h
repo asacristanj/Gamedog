@@ -57,7 +57,7 @@ public:
 	static void rebote(CepaBritanica& brit, Escenario e);
 	static void rebote(CepaIndia& ind, Escenario e);
 	static void rebote(MurcielagoPequeño& murpeq, Escenario e);
-	static void rebote(MurcielagoBoss& murboss, Escenario e);
+	static void rebote(MurcielagoBoss& murboss, Escenario e, Jugador j);
 	static void rebote(Quirurgica& qui, Escenario e);
 	//Disparos
 	static bool colision(DisparoGel d, Plataforma p);

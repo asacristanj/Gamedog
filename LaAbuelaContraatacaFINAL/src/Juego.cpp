@@ -19,22 +19,22 @@ void Juego::inicializa()
 	escaleras.agregar(new Escalera(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
-	bonuses.agregar(new Janssen(1.5f,-4.0f,5));
-	bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
-	bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
-	bonuses.agregar(new Quirurgica(1.0f, 4.0f, 10.0f, 0.0f, 0.0f));
-	bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, 0.0f, 0.0f));
+	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
+	//bonuses.agregar(new Janssen(1.5f,-4.0f,5));
+	//bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
+	//bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
+	//bonuses.agregar(new Quirurgica(1.0f, 4.0f, 10.0f, 0.0f, 0.0f));
+	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, 0.0f, 0.0f));
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
-	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 5.0f, 5.0f));
-	//enemigos.agregar(new MurcielagoBoss(1.0f, -2.0f, 10.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
+	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
+	enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 10.0f, 4.0f, 4.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
-	enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
 
@@ -75,6 +75,7 @@ void Juego::mueve()
 	plataformas.rebote(jugador);
 	plataformas.rebote(jugador, escaleras);
 	enemigos.rebote(jugador);
+	enemigos.reboteBoss(escenario, jugador);
 	disparos.colision(escenario);
 	bonuses.rebote(escenario);
 	bonuses.rebote(jugador);
@@ -106,8 +107,20 @@ void Juego::mueve()
 		{
 			if (Interaccion::colision(*disparos[i], *enemigos[i]))
 			{
-				disparos.eliminar(disparos[i]);
-				enemigos.eliminar(enemigos[i]);
+				if (enemigos[i]->getTipo() == MURCIELAGOBOSS)
+				{
+					enemigos[i]->setDisparoRecibido(true);
+					if (enemigos[i]->getVidas() < 0) // si no le quedan vidas muere
+					{
+						disparos.eliminar(disparos[i]);
+						enemigos.eliminar(enemigos[i]);
+					}
+				}
+				else
+				{
+					disparos.eliminar(disparos[i]);
+					enemigos.eliminar(enemigos[i]);
+				}
 			}
 		}
 	}
@@ -191,7 +204,7 @@ void Juego::tecla(unsigned char key)
 			}
 
 			break;
-			*/
+		*/
 			DisparoGel* d = new DisparoGel();
 			Vector2D pos = jugador.getPos();
 			d->setPos(pos.x, pos.y);

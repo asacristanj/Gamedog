@@ -17,6 +17,9 @@ class Enemigo: public ObjetoMovil
 {
 protected:
 	float altura;
+	int vidas;
+	bool disparo_recibido; // se pone a true si es impactado por disparo de jugador
+	bool pisoton; // se pone a true cuando es pisado por el jugador
 	SpriteSequence spritebras{ "imagenes/sprite_brasilena.png", 5 };
 	SpriteSequence spritebrit{ "imagenes/sprite_britanica.png", 5 };
 	SpriteSequence spritechin{ "imagenes/sprite_china.png", 5 };
@@ -32,8 +35,11 @@ public:
 	void mueve(float t);
 	void setColor(Byte r, Byte v, Byte a);
 	void setAltura(float alt);
+	void setDisparoRecibido(bool disparo) { disparo_recibido = disparo; }
 	int getTipo() { return tipo; }
 	float getAltura() { return altura; }
+	bool getDisparoRecibido() { return disparo_recibido; }
+	int getVidas() { return vidas; }
 
 	friend class Interaccion;
 };

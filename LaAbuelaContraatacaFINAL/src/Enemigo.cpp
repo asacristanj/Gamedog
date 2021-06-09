@@ -7,6 +7,9 @@ Enemigo::Enemigo()
 	aceleracion.y = -9.8f;
 	color.r = color.b = 0;
 	color.g = 100;
+	vidas = 0;
+	disparo_recibido = false;
+	pisoton = false;
 
 	//TAMAÑO Y CENTRO SPRITE:
 	spritebras.setCenter(altura/2.0f, altura / 2.0f); // centro eje x, centro eje y

@@ -17,6 +17,7 @@ public:
 	void rebote(Plataforma p);
 	void rebote(Escenario e);
 	void rebote(Jugador& j);
+	void reboteBoss(Escenario e, Jugador& j);
 	Enemigo* operator [](int i);
 	int getNumero() { return numero; }
 	void destruirContenido();

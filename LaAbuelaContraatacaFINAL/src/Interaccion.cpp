@@ -397,14 +397,14 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 		brit.velocidad.x = 3.0f;
 	}
 }
-void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
+void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERENTE. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que los Murcielagospequeños no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura());
 	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura());;
-	float posicion_referencia = 10.0f; // Falta asignar la posicion inical del murcielago
-	float ymax = posicion_referencia + 0.5f;
-	float ymin = posicion_referencia - 0.5f;
+	static const float posicion_referencia = murpeq.getPos().y; // referencia del movimiento
+	float ymax = posicion_referencia + 0.25f;
+	float ymin = posicion_referencia - 0.25f;
 	if(murpeq.posicion.y > ymax)
 	{
 		murpeq.posicion.y = ymax;
@@ -426,33 +426,71 @@ void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MO
 		murpeq.velocidad.x = -murpeq.velocidad.x;
 	}
 }
-void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
+void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que el MurcielagoBoss no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x - (murboss.getAltura());
-	float xmin = e.pared_izq.limite2.x + (murboss.getAltura());;
-	float posicion_referencia = 10.0f; // Falta asignar la posicion inical del murcielago
+	float xmax_escenario = e.pared_dcha.limite2.x - (murboss.getAltura());
+	float xmin_escenario = e.pared_izq.limite2.x + (murboss.getAltura());;
+	float xmax_jugador = j.getPos().x + 2.0f; // limite relativo al jugador
+	float xmin_jugador = j.getPos().x - 2.0f; // lo mismo pero por el otro lado
+	static const float posicion_referencia = murboss.getPos().y; // recibe la posicion inicial del enemigo
+	static const Vector2D velocidad_referencia = murboss.getVel(); // recibe la velocidad inicial del enemigo
 	float ymax = posicion_referencia + 0.5f;
 	float ymin = posicion_referencia - 0.5f;
-	if (murboss.posicion.y > ymax)
+	// limites de movimiento en eje y
+	if (murboss.getPos().y > ymax)
 	{
-		murboss.posicion.y = ymax;
+		murboss.setPos(murboss.getPos().x, ymax);
 		murboss.velocidad.y = -murboss.velocidad.y;
 	}
-	if (murboss.posicion.y < ymin)
+	if (murboss.getPos().y < ymin)
 	{
-		murboss.posicion.y = ymin;
+		murboss.setPos(murboss.getPos().x, ymin);
 		murboss.velocidad.y = -murboss.velocidad.y;
 	}
-	if (murboss.posicion.x > xmax)
+	// limites relativos a escenario y jugador
+
+	if (murboss.getPos().x > xmax_escenario) // limite max escenario 
 	{
-		murboss.posicion.x = xmax;
+		murboss.setPos(xmax_escenario, murboss.getPos().y);
 		murboss.velocidad.x = -murboss.velocidad.x;
 	}
-	if (murboss.posicion.x < xmin)
+	if (murboss.getPos().x > xmax_jugador) // limite max jugador
 	{
-		murboss.posicion.x = xmin;
+		murboss.setPos(xmax_jugador, murboss.getPos().y);
 		murboss.velocidad.x = -murboss.velocidad.x;
+	}
+	if (murboss.getPos().x < xmin_escenario) // limite min escenario
+	{
+		murboss.setPos(xmin_escenario, murboss.getPos().y);
+		murboss.velocidad.x = -murboss.velocidad.x;
+	}
+	if (murboss.getPos().x < xmin_jugador) // limite min jugador
+	{
+		murboss.setPos(xmin_jugador, murboss.getPos().y);
+		murboss.velocidad.x = -murboss.velocidad.x;
+	}
+
+	if (murboss.getDisparoRecibido() == true && murboss.getVidas() > -1) // si es disparado
+	{
+		murboss.setDisparoRecibido(false);
+		murboss.setVel(0.0f, murboss.getVelocidadBajada()); // baja
+		if (murboss.getPos().y < murboss.getPosicionBajada()) // si llego a la posicion de bajada
+		{
+			// se queda quieto esperando que le den, como la madre del que está leyendo esto :D
+			murboss.setPos(murboss.getPos().x, murboss.getPosicionBajada());
+			murboss.setVel(0.0f, 0.0f);
+		}
+		if (murboss.getPisoton() == true && murboss.getVidas() > 0) // si es pisado y aun le quedan vidas
+		{
+			murboss.setVel(0.0f, -murboss.getVelocidadBajada()); // sube
+			murboss.setPisoton(false);
+			if (murboss.getPos().y > posicion_referencia)
+			{
+				murboss.setPos(murboss.getPos().x, posicion_referencia);
+				murboss.setVel(velocidad_referencia.x, velocidad_referencia.y); // recupera el movimiento normal
+			}
+		}
 	}
 }
 

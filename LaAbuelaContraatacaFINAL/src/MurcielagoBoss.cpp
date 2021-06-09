@@ -7,10 +7,13 @@ MurcielagoBoss::MurcielagoBoss()
 	posicion.x = 0.0f;
 	posicion.y = 10.0f;
 	velocidad = (2.0f, 2.0f);
+	aceleracion.y = 0.0f;
 	color.r = color.g = 255;
 	color.b = 0;
 	vidas = 3;
-	velocidad_china = -7.0f;
+	posicion_bajada = 1.0f;
+	velocidad_bajada = -5.0f;
+	velocidad_china = -5.0f;
 }
 MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 {
@@ -20,9 +23,10 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
+	aceleracion.y = 0.0f;
+	velocidad_china = -5.0f;
 	color.r = color.b = 0;
 	color.g = 100;
-	aceleracion.y = -9.8f;
 }
 void MurcielagoBoss::dibuja()
 {
@@ -31,7 +35,4 @@ void MurcielagoBoss::dibuja()
 	glColor3f(0.0f, 200.0f, 200.0f);
 	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
-}
-void MurcielagoBoss::volar()
-{
 }

@@ -90,11 +90,13 @@ void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción 
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
 			Interaccion::rebote(*murpeq, e);
 		}
+		/*
 		if (tipo == MURCIELAGOBOSS)
 		{
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
 			Interaccion::rebote(*murboss, e);
 		}
+		*/
 	}
 }
 void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción de todos los enemigos con el jugador
@@ -216,13 +218,11 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		if (tipo == MURCIELAGOPEQUEÑO) //En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
-			Vector2D pos= murpeq->getPos();
-			Vector2D posjugador = j.getPos();
-			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f)) //Le disparan cuando estén en el mismo eje X
+			if (j.getPos().x > (murpeq->getPos().x - 0.02f) && j.getPos().x < (murpeq->getPos().x + 0.02f)) //Le disparan cuando estén en el mismo eje X
 			{
 				CepaChina* c = new CepaChina();
-				c->setPos(pos.x, pos.y); //Se dispara desde la posicion del murcielago
-				c->setVely(murpeq->getVelChina()); //Se coge una velocidad que apunta al jugador dentro de las leyes de la física
+				c->setPos(murpeq->getPos().x, murpeq->getPos().y); //Se dispara desde la posicion del murcielago
+				c->setVel(0.0f, murpeq->getVelChina()); //Se coge una velocidad que apunta al jugador dentro de las leyes de la física
 				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
@@ -244,16 +244,15 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				}
 			}
 		}
+		/*
 		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
-			Vector2D pos = murboss->getPos();
-			Vector2D posjugador = j.getPos();
-			if (posjugador.x > (pos.x - 0.1f) && posjugador.x < (pos.x + 0.1f)) //Le disparan cuando estén en el mismo eje X
+			if (j.getPos().x > (murboss->getPos().x - 0.1f) && j.getPos().x < (murboss->getPos().x + 0.1f)) //Le disparan cuando estén en el mismo eje X
 			{
 				CepaChina* c = new CepaChina();
-				c->setPos(pos.x, pos.y);
-				c->setVel(0, -6.0f);
+				c->setPos(murboss->getPos().x, murboss->getPos().y);
+				c->setVel(0, murboss->getVelChina());
 				agregar(c);
 			}
 			if (Interaccion::colisionEncima(*murboss, j))
@@ -269,6 +268,51 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				}
 			}
 			else if (Interaccion::colision(*murboss, j)) 
+			{
+				j.setNumBonus(j.GetNumBonus() - 1);
+				if (j.GetNumBonus() < 0) {
+					j.morir();
+				}
+				else {
+					eliminar(i);
+				}
+			}
+		}
+		*/
+	}
+}
+void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss con escenario y jugador
+{
+	for (int i = numero - 1; i >= 0; i--)
+	{
+		int tipo = lista[i]->getTipo();
+		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
+		{
+			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
+			Interaccion::rebote(*murboss, e, j); // patron de movimiento****
+
+			if (j.getPos().x > (murboss->getPos().x - 0.02f) && j.getPos().x < (murboss->getPos().x + 0.02f)) //Le disparan cuando estén en el mismo eje X
+			{
+				CepaChina* c = new CepaChina();
+				c->setPos(murboss->getPos().x, murboss->getPos().y);
+				c->setVel(0.0f, murboss->getVelChina());
+				agregar(c);
+			}
+			if (Interaccion::colisionEncima(*murboss, j))
+			{
+				j.setPos(j.getPos().x, murboss->getPos().y + murboss->getAltura());
+				j.setVel(j.getVel().x, j.getVelocidadRebote()); // el jugador rebota al pisar el boss
+				if (murboss->getVidas() > 1) // Le queda al menos una vida
+					murboss->setVidas(-1); // Resto una vida
+				else
+				{
+					int punt = murboss->getPunt();
+					punt += 50;
+					murboss->setPunt(punt);
+					eliminar(i);// Si no le quedan vidas muere
+				}
+			}
+			else if (Interaccion::colision(*murboss, j))
 			{
 				j.setNumBonus(j.GetNumBonus() - 1);
 				if (j.GetNumBonus() < 0) {
