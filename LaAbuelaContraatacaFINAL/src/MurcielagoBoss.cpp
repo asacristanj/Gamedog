@@ -14,6 +14,7 @@ MurcielagoBoss::MurcielagoBoss()
 	posicion_bajada = 1.0f;
 	velocidad_bajada = -5.0f;
 	velocidad_china = -5.0f;
+	horaIniciocaida = time(NULL);
 }
 MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 {
@@ -27,6 +28,10 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad_china = -5.0f;
 	color.r = color.b = 0;
 	color.g = 100;
+	posicion_bajada = 1.0f;
+	velocidad_bajada = -5.0f;
+	velocidad_china = -5.0f;
+	horaIniciocaida = time(NULL);
 }
 void MurcielagoBoss::dibuja()
 {
@@ -35,4 +40,15 @@ void MurcielagoBoss::dibuja()
 	glColor3f(0.0f, 200.0f, 200.0f);
 	glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
+}
+void MurcielagoBoss::mueve(float t)
+{
+	time_t horaActual = time(NULL);
+	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	velocidad = velocidad + aceleracion * t;
+	if ((horaActual - horaIniciocaida) > 3)
+	{
+		velocidad.y = -5.0f;
+		horaIniciocaida = time(NULL);
+	}
 }

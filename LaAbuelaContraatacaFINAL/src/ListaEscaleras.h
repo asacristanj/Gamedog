@@ -19,5 +19,6 @@ public:
 	void eliminar(int index);
 	bool subirEscalera(Jugador j);
 	bool bajarEscalera(Jugador j);
+	Escalera* operator [](int i);
 };
 

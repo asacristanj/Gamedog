@@ -43,4 +43,3 @@ public:
 
 	friend class Interaccion;
 };
-

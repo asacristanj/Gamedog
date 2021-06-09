@@ -63,3 +63,11 @@ void ListaBloques::CrearBonus(ListaBonus& b,Jugador j) {
 		}
 	}
 }
+BloqueSorpresa* ListaBloques:: operator[] (int i) //Funcion que ajusta el simbolo [] para nuestro caso
+{
+	if (i >= numero)//Si me paso, devuelvo la ultima
+		i = numero - 1;
+	if (i < 0) //Si el indice es negativo, devuelvo la primera
+		i = 0;
+	return lista[i];
+}

@@ -40,6 +40,12 @@ void Jugador::dibuja()
 	glPopMatrix();
 	
 }
+void Jugador::mueve(float t)
+{
+	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	velocidad = velocidad + aceleracion * t;
+	sprite.loop();
+}
 void Jugador::salto()
 {
 	setVel(velocidad.x, impulso);
@@ -56,25 +62,6 @@ void Jugador::morir()
 //void Jugador::IncrementaNumBonus() {
 
 //}
-Jugador :: ~Jugador()
-{
-
-}
-void Jugador::subirEscalera() {
-	this->setVely(0.0f);
-}
-void Jugador::bajarEscalera() {
-	this->setVely(0.0f);
-}
-bool Jugador::suelo() {
-	return tocandosuelo;
-}
-void Jugador::mueve(float t)
-{
-	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
-	velocidad = velocidad + aceleracion * t;
-	sprite.loop();
-}
 void Jugador::volverSalto()
 {
 	time_t horaActual = time(NULL);
@@ -102,12 +89,26 @@ void Jugador::volverVelocidadJanssen()
 		setCoefVelx(1);
 	}
 }
-void Jugador::setEscalera(int i) {
+void Jugador::subirEscalera() 
+{
+	this->setVely(0.0f);
+}
+void Jugador::bajarEscalera() 
+{
+	this->setVely(0.0f);
+}
+bool Jugador::suelo()
+{
+	return tocandosuelo;
+}
+void Jugador::setEscalera(int i) 
+{
 	if (i == 1)
 		escalera = true;
 	else
 		escalera = false;
 }
-bool Jugador::getEscalera() {
-	return escalera;
+Jugador :: ~Jugador()
+{
+
 }

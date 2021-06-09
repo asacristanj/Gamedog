@@ -31,7 +31,6 @@ private:
 	DisparoGel disparogel;
 	Jugador jugador;
 	Escenario escenario;
-	Bonus bonus;
 	ListaEnemigos enemigos;
 	ListaDisparosGel disparos;
 	ListaBonus bonuses;

@@ -17,5 +17,6 @@ public:
 	void destruirContenido();
 	void rebote(Jugador& j);
 	void CrearBonus(ListaBonus& b, Jugador j);
+	BloqueSorpresa* operator [](int i);
 };
 
