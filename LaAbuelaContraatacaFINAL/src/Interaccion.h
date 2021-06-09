@@ -31,7 +31,8 @@ public:
 	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
 	static bool colisionEncima(Jugador j, BloqueSorpresa b);
 	static void rebote(Jugador& j, BloqueSorpresa b);
-	static bool colisionEscalera(Escalera e, Jugador j);
+	static bool colisionEscalerasubir(Escalera e, Jugador j);
+	static bool colisionEscalerabajar(Escalera e, Jugador j);
 	//Bonus
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);

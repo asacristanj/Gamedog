@@ -9,6 +9,7 @@ Jugador::Jugador()
 	sprite.setCenter(altura/2.0f, altura);
 	sprite.setSize(altura, altura * 2.0f);
 	tocandosuelo = false;
+	escalera = false;
 	coeficiente_velx = 1.0f;
 	aceleracion.y = acel_inicial;
 	posicion.x = posicion_inicial.x;
@@ -100,4 +101,13 @@ void Jugador::volverVelocidadJanssen()
 		janssen_activo = false;
 		setCoefVelx(1);
 	}
+}
+void Jugador::setEscalera(int i) {
+	if (i == 1)
+		escalera = true;
+	else
+		escalera = false;
+}
+bool Jugador::getEscalera() {
+	return escalera;
 }

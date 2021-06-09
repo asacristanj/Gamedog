@@ -27,10 +27,21 @@ void ListaEscaleras::destruirContenido() {
 		delete lista[i];
 	numero = 0;
 }
-bool ListaEscaleras::rebote(Jugador j) {
+bool ListaEscaleras::subirEscalera(Jugador j) {
 	for (int i = 0; i < numero; i++) {
-		if(Interaccion::colisionEscalera(*(lista[i]), j))
+		if (Interaccion::colisionEscalerasubir(*(lista[i]), j)) {
 			return true;
+			break;
+		}
+	}
+	return false;
+}
+bool ListaEscaleras::bajarEscalera(Jugador j) {
+	for (int i = 0; i < numero; i++) {
+		if (Interaccion::colisionEscalerabajar(*(lista[i]), j)) {
+			return true;
+			break;
+		}
 	}
 	return false;
 }

@@ -40,13 +40,7 @@ void ListaPlataformas::rebote(Jugador& j)
 	for (int i = 0; i < numero; i++)
 		Interaccion::rebote(j, *(lista[i]));
 }
-void ListaPlataformas::rebote(Jugador& j, ListaEscaleras e) {
-	if (e.rebote(j) == false) {
-		for (int i = 0; i < numero; i++) {
-			Interaccion::rebote(j, *(lista[i]));
-		}
-	}
-}
+
 bool ListaPlataformas::colisionEncima(Jugador j) {
 	for (int i = 0; i <numero; i++) {
 		if (Interaccion::colisionEncima(j, *(lista[i])))

@@ -2,15 +2,15 @@
 Escalera::Escalera() {
 	color.r = color.g = color.b = 255;
 }
-Escalera::Escalera(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y) {
-	limder1.x = limder1x;
-	limder1.y = limder1y;
-	limder2.x = limder2x;
-	limder2.y = limder2y;
-	limizq1.x = limizq1x;
-	limizq1.y = limizq1y;
-	limizq2.x = limizq2x;
-	limizq2.y = limizq2y;
+Escalera::Escalera(float limizqx, float limderx,float ybase, float altura, float ancho) {
+	limder1.x = limderx;
+	limder1.y = ybase;
+	limder2.x = limderx;
+	limder2.y = ybase+altura;
+	limizq1.x = limizqx;
+	limizq1.y = ybase;
+	limizq2.x = limizqx;
+	limizq2.y = ybase+altura;
 }
 Escalera::~Escalera() {
 
@@ -31,19 +31,21 @@ void Escalera::SetColor(unsigned char r, unsigned char b, unsigned char g) {
 	color.g = g;
 	color.b = b;
 }
-void Escalera::SetPos(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y) {
-	limder1.x = limder1x;
-	limder1.y = limder1y;
-	limder2.x = limder2x;
-	limder2.y = limder2y;
-	limizq1.x = limizq1x;
-	limizq1.y = limizq1y;
-	limizq2.x = limizq2x;
-	limizq2.y = limizq2y;
+void Escalera::SetPos(float limizqx, float limderx, float ybase, float altura, float ancho) {
+	limder1.x = limderx;
+	limder1.y = ybase;
+	limder2.x = limderx;
+	limder2.y = ybase + altura;
+	limizq1.x = limizqx;
+	limizq1.y = ybase;
+	limizq2.x = limizqx;
+	limizq2.y = ybase + altura;
 }
 Vector2D Escalera::limenx() {
 	Vector2D aux;
 	aux.x = limder1.x;
 	aux.y = limizq1.x;
 	return aux;
+}float Escalera::limeny() {
+	return limizq2.y;
 }

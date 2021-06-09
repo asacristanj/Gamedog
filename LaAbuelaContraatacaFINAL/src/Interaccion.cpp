@@ -13,7 +13,7 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 	Vector2D pos = j.getPos(); //la posicion de la base del jugador
 	pos.y += (j.getAltura());
 	float distancia = p.distancia(pos);
-	if (distancia <= 0.2f)//compara la distancia de la plataforma al jugador con un valor pequeño
+	if (distancia <= j.getAltura())//compara la distancia de la plataforma al jugador con un valor pequeño
 		return true;
 	return false;
 }
@@ -106,12 +106,21 @@ void Interaccion::rebote(Jugador& j, BloqueSorpresa b)
 		j.tocandosuelo = true;
 	}
 }
-bool Interaccion::colisionEscalera(Escalera e, Jugador j)
+bool Interaccion::colisionEscalerasubir(Escalera e, Jugador j)
 {
 	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos();
-	if (limites.y <= pos.x <= limites.x)
+	if ((limites.y <= pos.x)&&(pos.x <= limites.x)&&(pos.y<=e.limeny()))
+		return true;
+	return false;
+}
+bool Interaccion::colisionEscalerabajar(Escalera e, Jugador j)
+{
+	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
+	Vector2D limites = e.limenx();
+	Vector2D pos = j.getPos();
+	if ((limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y >= e.limeny()))
 		return true;
 	return false;
 }

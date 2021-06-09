@@ -17,6 +17,7 @@ public:
 	int getNumero() { return numero; }
 	void destruirContenido();
 	void eliminar(int index);
-	bool rebote(Jugador j);
+	bool subirEscalera(Jugador j);
+	bool bajarEscalera(Jugador j);
 };
 

@@ -8,10 +8,11 @@ private:
 	ColorRVA color;
 public:
 	Escalera();
-	Escalera(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y);
+	Escalera(float limizqx, float limderx, float ybase, float altura, float ancho);
 	virtual ~Escalera();
 	void dibujar();
 	void SetColor(unsigned char r, unsigned char b, unsigned char g);
-	void SetPos(float limizq1x, float limizq2x, float limder1x, float limder2x, float limizq1y, float limizq2y, float limder1y, float limder2y);
+	void SetPos(float limizqx, float limderx, float ybase, float altura, float ancho);
 	Vector2D limenx();
+	float limeny();
 };

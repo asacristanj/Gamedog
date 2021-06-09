@@ -17,7 +17,6 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void rebote(Jugador& j);
-	void rebote(Jugador& j,ListaEscaleras e);
 	bool colisionEncima(Jugador j);
 	Plataforma* operator [](int i);
 };

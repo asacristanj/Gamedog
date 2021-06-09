@@ -20,7 +20,7 @@ void Juego::inicializa()
 	disparos.destruirContenido();//limpio tras game over
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
 	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
-	escaleras.agregar(new Escalera(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f));
+	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
@@ -32,7 +32,7 @@ void Juego::inicializa()
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
-	enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 10.0f, 4.0f, 4.0f));
+	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 10.0f, 4.0f, 4.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
@@ -76,8 +76,8 @@ void Juego::mueve()
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
 	enemigos.rebote(escenario);
-	plataformas.rebote(jugador);
-	plataformas.rebote(jugador, escaleras);
+	if((escaleras.subirEscalera(jugador)==false)&&(escaleras.bajarEscalera(jugador)==false))
+		plataformas.rebote(jugador);
 	enemigos.rebote(jugador);
 	enemigos.reboteBoss(escenario, jugador);
 	disparos.colision(escenario);
@@ -143,12 +143,17 @@ void Juego::teclaEspecial(unsigned char key)
 		   break;
 	   case GLUT_KEY_UP:
 		   //Para que no pueda saltar en el aire
-		   if (plataformas.colisionEncima(jugador)|| Interaccion::colisionSuelo(jugador, escenario))
-			   jugador.salto();
+		   if (escaleras.subirEscalera(jugador)) {
+			   jugador.setVely(5.0f);
+			   break;
+		   }
+		   if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()) {
+					jugador.salto();
+		   }
 		   break;
 	   case GLUT_KEY_DOWN:
 	   {
-		   if (Interaccion::colisionEscalera(escalera, jugador))
+		   if (escaleras.bajarEscalera(jugador))
 			   jugador.setVely(-(jugador.getVelNormal() * jugador.getCoefVelx()));
 		   break;
 	   }
@@ -167,17 +172,16 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 		case GLUT_KEY_UP:
 		{
 			//Para que no pueda saltar en el aire
+			if (escaleras.subirEscalera(jugador))
+				jugador.setVely(0.0f);
 			if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario)||jugador.suelo())
 				jugador.salto();
-			break;
-			if (Interaccion::colisionEscalera(escalera, jugador))
-				jugador.subirEscalera();
 			break;
 		}
 		case GLUT_KEY_DOWN:
 		{
-			if (Interaccion::colisionEscalera(escalera, jugador))
-				jugador.bajarEscalera();
+			if (escaleras.bajarEscalera(jugador))
+				jugador.setVely(0.0f);
 			break;
 		}
 	}
