@@ -8,13 +8,17 @@ void Juego::inicializa()
 	x_ojo = 0;
 	y_ojo = 7.5;
 	z_ojo = 30;
+	nivel = 0;//establezco el nivel al principio de cada inicializa
+	jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
+	setVidas(1);//se establecen las vidas de nueva partida
+	cargarNivel();//cargo el nivel corrspondiente
 	impacto = false;//inicializo otra vez el impacto
+	//a partir de aqui todo tendria que estar en el nivel correspondiente
+
+
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
-	jugador.setNumBonus(0);
-	setVidas(1);
-	//bonus.setPos(5.0f, 5.0f);
-	jugador.setPos(0.0f, 0.0f);
+	jugador.setPos(0.0f, 0.0f);//origen del jugador
 	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 	escaleras.agregar(new Escalera(7.0f, 7.0f, 5.0f, 5.0f, 0.0f, 4.0f, 0.0f, 4.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
@@ -81,8 +85,6 @@ void Juego::mueve()
 	bonuses.rebote(jugador);
 	Interaccion::rebote(jugador, escenario);
 	//Interaccion::rebote(jugador, plataforma);
-	//Interaccion::rebote(bonus, plataforma);
-	//Interaccion::rebote(bonus, escenario);
 	for (int i = 0; i < plataformas.getNumero(); i++)
 	{
 		enemigos.rebote(*plataformas[i]);
@@ -126,8 +128,7 @@ void Juego::mueve()
 	}
 	bloques.rebote(jugador);
 	bloques.CrearBonus(bonuses, jugador);
-	//bonuses.rebote(enemigos, jugador);
-	setChances(jugador.GetNumBonus());
+	setChances(jugador.GetNumBonus());//refrescamos las chances que tiene el jugador continuamente
 }
 
 void Juego::teclaEspecial(unsigned char key)
@@ -184,7 +185,7 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 
 void Juego::tecla(unsigned char key)
 {
-	if (jugador.GetNumBonus() == 2) {
+	if (jugador.GetNumBonus() == 2) {//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
 		switch (key)
 		{
 		case 'm':
@@ -256,9 +257,38 @@ void Juego::tecla(unsigned char key)
 		}
 	}
 }
+bool Juego::cargarNivel() {
+	nivel++;
+	jugador.setPos(0, 0);
+	enemigos.destruirContenido();
+	disparos.destruirContenido();
+	if (nivel == 1) {
+		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
+		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
+		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
+		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
+	}
+	if (nivel == 2) {
+		//aqui se ponen con agregar lo que querais que haya en dicho nivel
+		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
+		plataformas.agregar(new Plataforma(4.0f, 8.0f, 2.0f, 1.0f));
+		plataformas.agregar(new Plataforma(-4.0f, 2.0f, 5.0f, 4.0f));
+		enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));*/
+	}
+	if (nivel == 3) {
+		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
+		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
+		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
+		//nivel del boss
+	}
+	if (nivel <= 3) {
+		return true;
+	}
+	return false;
+}
 Juego::~Juego()
 {
 	enemigos.destruirContenido();
 	disparos.destruirContenido();
-	bonuses.destruirContenido();
+	bonuses.destruirContenido();//destruyo correctamente los bonus
 }

@@ -53,6 +53,15 @@ void Coordinador::mueve() {
 	if (estado == JUEGO) {
 		juego.mueve();
 		//aqui falta el añadir cuando ganes
+		/*if(condicion de pasar de nivel){
+		cargarNivel();
+		}*/
+		/*if (condicion de ganar) {
+			if (!juego.cargarNivel()) {
+				estado = FIN;
+			}
+			*/
+		//}
 		if (juego.getChances() < 0) // no tengo bonus y muero
 		{
 			juego.setVidas(-1);// se descuenta una vida

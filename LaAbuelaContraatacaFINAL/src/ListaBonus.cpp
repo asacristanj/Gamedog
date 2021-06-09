@@ -29,7 +29,7 @@ void ListaBonus::mueve(float t)
 	for (int i = 0; i < numero; i++)
 		lista[i]->mueve(t);
 }
-void ListaBonus::rebote(Plataforma p)
+void ListaBonus::rebote(Plataforma p)//gestiono los rebotes de los diferentes bonus con las plataformas 
 {
 	for (int i = numero - 1; i >= 0; i--) {
 		int tipo = lista[i]->getTipo();
@@ -53,15 +53,10 @@ void ListaBonus::rebote(Plataforma p)
 			Pfizer* pfi = (Pfizer*)lista[i];
 			Interaccion::rebote(*pfi, p);
 		}
-		/*if (tipo == SPUTNIK) {
-			Sputnik* spu = (Sputnik*)lista[i];
-			Interaccion::rebote(*spu, p);
-		}*/
-
 	}
 }
 
-void ListaBonus::rebote(Escenario e)//elimino los bonuses si tocan el suelo
+void ListaBonus::rebote(Escenario e)//gestiono el rebote con el escenario de los bonus, que en esta caso es eliminarse si toca con el suelo
 {
 	for (int i = numero-1; i >=0; i--) {
 		int tipo = lista[i]->getTipo();
@@ -94,30 +89,19 @@ void ListaBonus::rebote(Escenario e)//elimino los bonuses si tocan el suelo
 			if (Interaccion::colision(*pfi, e)) {
 				eliminar(i);
 			}
-		}
-		/*if (tipo == SPUTNIK) {
-			Sputnik* spu = (Sputnik*)lista[i];
-			if (Interaccion::colision(*spu, e)) {
-				eliminar(i);
-			}
-		}*/
-		
+		}		
 	}
 }
-void ListaBonus::rebote(Jugador& j)
+void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entra en contacto con el bonus
 {
 	
 	for (int i = numero - 1; i >= 0; i--)
 	{
 		int tipo = lista[i]->getTipo();
-		//Bonus* bon = lista[i];
-		//if (Interaccion::colision(*bon, j)) {
-			//eliminar(i);
-		//}	
 		if (tipo == QUIRURGICA) {
 			Quirurgica* q = (Quirurgica*)lista[i];
 			if (Interaccion::colision(*q, j)) {
-				Factoria::CogerQuirurgica(j);
+				Factoria::CogerQuirurgica(j);//funcion que gobierna lo que pasa al coger la quirurgica
 				int punt = q->getPunt();
 				punt += 5;
 				q->setPunt(punt);
@@ -127,7 +111,7 @@ void ListaBonus::rebote(Jugador& j)
 		if (tipo == MATOCHA) {
 			MascarillaTocha* m = (MascarillaTocha*)lista[i];
 			if (Interaccion::colision(*m, j)) {
-				Factoria::CogerMascarillaTocha(j);
+				Factoria::CogerMascarillaTocha(j);//funcion que gobierna lo que pasa al coger la mascarilla tocha
 				int punt = m->getPunt();
 				punt += 10;
 				m->setPunt(punt);
@@ -139,12 +123,12 @@ void ListaBonus::rebote(Jugador& j)
 			Astrazeneca* a = (Astrazeneca*)lista[i];
 			if (Interaccion::colision(*a, j))
 			{
-				Factoria::CogerAstrazeneca(j);
+				Factoria::CogerAstrazeneca(j);//funcion que gobierna lo que pasa al coger la astrazeneca
 				int punt = a->getPunt();
 				punt += 15;
 				a->setPunt(punt);
 				eliminar(i);
-				if (j.getAstraActivo() == false)
+				if (j.getAstraActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
 					j.setAstraActivo(true);
 					j.sethInicioAstra(time(NULL));
@@ -155,12 +139,12 @@ void ListaBonus::rebote(Jugador& j)
 		{
 			Janssen* jan = (Janssen*)lista[i];
 			if (Interaccion::colision(*jan, j)) {
-				Factoria::CogerJanssen(j);
+				Factoria::CogerJanssen(j);//funcion que gobierna lo que pasa al coger la janssen
 				int punt = jan->getPunt();
 				punt += 15;
 				jan->setPunt(punt);
 				eliminar(i);
-				if (j.getJanssenActivo() == false)
+				if (j.getJanssenActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
 					j.setJanssenActivo(true);
 					j.sethInicioJanssen(time(NULL));
@@ -171,12 +155,12 @@ void ListaBonus::rebote(Jugador& j)
 		{
 			Pfizer* p = (Pfizer*)lista[i];
 			if(Interaccion::colision(*p,j)){
-				Factoria::CogerPfizer(j);
+				Factoria::CogerPfizer(j);//funcion que gobierna lo que pasa al coger la pfizer
 				int punt = p->getPunt();
 				punt += 15;
 				p->setPunt(punt);
 				eliminar(i);
-				if (j.getPfizerActivo() == false)
+				if (j.getPfizerActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
 					j.setPfizerActivo(true);
 					j.sethInicioPfizer(time(NULL));
@@ -185,20 +169,7 @@ void ListaBonus::rebote(Jugador& j)
 		}
 	}
  }
-/*void ListaBonus::rebote(ListaEnemigos& e, Jugador& j) {
-	for (int i = numero - 1; i >= 0; i--) {
-		int tipo = lista[i]->getTipo();
-		if (tipo == SPUTNIK) {
-			Sputnik* s = (Sputnik*)lista[i];
-			if (Interaccion::colision(*s, j)) {
-				Factoria::CogerSputnik(e, j);
-				eliminar(i);
-			}
-		}
-	}
-}*/
-
-Bonus* ListaBonus::colision(Jugador& j)
+Bonus* ListaBonus::colision(Jugador& j)//funcion que controla si el jugador colisiona con el bonus
 {
 	for (int i = 0; i < numero; i++)
 	{
@@ -207,13 +178,13 @@ Bonus* ListaBonus::colision(Jugador& j)
 	}
 	return 0; //no hay colisión
 }
-void ListaBonus::destruirContenido()
+void ListaBonus::destruirContenido()//destruir correctamente los bonus del juego
 {
 	for (int i = 0; i < numero; i++) // destrucción de bonus contenidas
 		delete lista[i];
 	numero = 0; // inicializa lista
 }
-Bonus* ListaBonus:: operator[] (int i)
+Bonus* ListaBonus:: operator[] (int i) //gestion del operador corchete
 {
 	if (i >= numero)//si me paso, devuelvo la ultima
 		i = numero - 1;
@@ -221,7 +192,7 @@ Bonus* ListaBonus:: operator[] (int i)
 		i = 0;
 	return lista[i];
 }
-void ListaBonus::eliminar(int index)
+void ListaBonus::eliminar(int index)//funcion que reordena correctamente el array tras eliminar el bonus de la lista
 {
 	if ((index < 0) || (index >= numero))
 		return;

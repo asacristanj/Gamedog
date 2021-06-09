@@ -117,54 +117,6 @@ bool Interaccion::colisionEscalera(Escalera e, Jugador j)
 }
 ///////////////////////////////////////////Funciones de interacción de los bonus con el resto de elementos///////////////////////////////////////////////////////////
 
-/*bool Interaccion::colision(Quirurgica q, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la quirurgica
-	Vector2D pos = j.getPos();
-	float distancia = (q.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(MascarillaTocha m, Jugador j) {//Funcion que manda true si el jugador entra en contacto con la mascarilla tocha
-	Vector2D pos = j.getPos();
-	float distancia = (m.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Astrazeneca a, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Astrazeneca
-	Vector2D pos = j.getPos();
-	float distancia = (a.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Janssen jan, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Janssen
-	Vector2D pos = j.getPos();
-	float distancia = (jan.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Pfizer pfi, Jugador j) {//Funcion que manda true si el jugador entra en contacto con Pfizer
-	Vector2D pos = j.getPos();
-	float distancia = (pfi.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}
-bool Interaccion::colision(Sputnik sp , Jugador j) {//Funcion que manda true si el jugador entra en contacto con Sputnik
-	Vector2D pos = j.getPos();
-	float distancia = (sp.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura)))) {
-		return true;
-	}
-	return false;
-}*/
 bool Interaccion::colision(Bonus b, Jugador j) //Función que manda true si el jugador entra en contacto con un bonus general
 {
 	Vector2D pos = j.getPos();

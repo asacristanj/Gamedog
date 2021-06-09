@@ -43,6 +43,7 @@ private:
 	bool impacto;//variable que es true si enemigo choca con jugador
 	int chances=jugador.GetNumBonus(); // veces que se puede recibir daño sin llegar a morir
 	int vidas=1; // veces que se puede reintentar el nivel tras morir
+	int nivel;//variable que encaja el nivel
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -56,5 +57,6 @@ public:
 	void setVidas(int vida) { vidas += vida; }
 	int getChances() { return chances; }
 	int getVidas() { return vidas; }
+	bool cargarNivel();
 	bool getImpacto() {	return impacto;}//funcion que lee el impacto
 };
