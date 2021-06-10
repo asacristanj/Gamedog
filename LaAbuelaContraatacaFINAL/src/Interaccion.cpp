@@ -558,3 +558,11 @@ void Interaccion::rebote(Llave& b, Escenario e) //Función que gestiona el rebote
 	float ymin = e.suelo.limite1.y;
 	if ((b.posicion.y - b.getLado()) < ymin) b.posicion.y = ymin + b.getLado() / 2;
 }
+bool Interaccion::colision(Llave b, Jugador j) {
+	Vector2D pos = j.getPos(), llave = b.getPos();
+	Vector2D aux = pos - llave;
+	float distancia = aux.modulo(),altura=j.getAltura(),lado=b.getLado();
+	if (distancia <= (lado + altura)/2.0f)
+		return true;
+	return false;
+}

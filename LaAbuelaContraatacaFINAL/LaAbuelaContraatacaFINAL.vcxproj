@@ -158,6 +158,7 @@
     <ClCompile Include="src\Factoria.cpp" />
     <ClCompile Include="src\ListaBloques.cpp" />
     <ClCompile Include="src\ListaEscaleras.cpp" />
+    <ClCompile Include="src\ListaLlaves.cpp" />
     <ClCompile Include="src\ListaPlataformas.cpp" />
     <ClCompile Include="src\Llave.cpp" />
     <ClCompile Include="src\MascarillaTocha.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="src\Factoria.h" />
     <ClInclude Include="src\ListaBloques.h" />
     <ClInclude Include="src\ListaEscaleras.h" />
+    <ClInclude Include="src\ListaLlaves.h" />
     <ClInclude Include="src\ListaPlataformas.h" />
     <ClInclude Include="src\Llave.h" />
     <ClInclude Include="src\MascarillaTocha.h" />

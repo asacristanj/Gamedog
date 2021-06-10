@@ -4,6 +4,10 @@ Llave::Llave() {
 	color.g = 233;
 	color.b = 0;
 	lado = 1.0f;
+	aceleracion.x = 0.0f;
+	aceleracion.y = 0.0f;
+	velocidad.x = 0.0f;
+	velocidad.y = 0.0f;
 }
 Llave::Llave(float l, float x, float y, float vx, float vy) {
 	lado = l;
@@ -11,6 +15,8 @@ Llave::Llave(float l, float x, float y, float vx, float vy) {
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
+	aceleracion.x = 0.0f;
+	aceleracion.y = 0.0f;
 	color.r = 233;
 	color.g = 233;
 	color.b = 233;
@@ -28,4 +34,8 @@ void Llave::dibuja() {
 }
 float Llave::getLado() {
 	return lado;
+}
+void Llave::mueve(float t) {
+	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
+	velocidad = velocidad + aceleracion * t;
 }

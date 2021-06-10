@@ -12,5 +12,6 @@ public:
 	virtual ~Llave();
 	void dibuja();
 	float getLado();
+	void mueve(float t);
 };
 
