@@ -25,6 +25,7 @@ private:
 	bool tocandosuelo,escalera;
 	bool astra_activo,pfizer_activo,janssen_activo;
 	time_t horaInicioAstra, horaInicioPfizer, horaInicioJanssen;
+	int numLlaves;
 
 public:
 	Jugador();
@@ -63,6 +64,7 @@ public:
 	bool suelo();
 	void setEscalera(int i);
 	bool getEscalera() {return escalera;}
+	void incrementaLlaves();
 	//void IncrementaNumBonus();
 
 	friend class Interaccion;

@@ -22,6 +22,7 @@ void Juego::inicializa()
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
 	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
+	llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 8));
@@ -56,7 +57,6 @@ void Juego::dibuja()
 	gluLookAt(x_ojo, y_ojo, z_ojo,  // posicion del ojo
 		0.0, y_ojo, 0.0,      // hacia que punto mira  (0,0,0) 
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
-
 	jugador.dibuja();
 	enemigos.dibuja();
 	disparos.dibuja();
@@ -65,6 +65,7 @@ void Juego::dibuja()
 	escaleras.dibuja();
 	plataformas.dibuja();
 	escenario.dibuja();
+	llaves.dibuja();
 }
 
 void Juego::mueve()
@@ -84,6 +85,8 @@ void Juego::mueve()
 	disparos.colision(escenario);
 	bonuses.rebote(escenario);
 	bonuses.rebote(jugador);
+	llaves.mueve(0.025f);
+	llaves.colision(jugador);
 	Interaccion::rebote(jugador, escenario);
 	//Interaccion::rebote(jugador, plataforma);
 	for (int i = 0; i < plataformas.getNumero(); i++)

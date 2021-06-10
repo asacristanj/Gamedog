@@ -22,6 +22,7 @@ Jugador::Jugador()
 	numbonus = 0;
 	astra_activo = pfizer_activo = janssen_activo = false;
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
+	numLlaves = 0;
 }
 void Jugador::dibuja()
 {
@@ -134,6 +135,9 @@ void Jugador::setEscalera(int i)
 		escalera = true;
 	else
 		escalera = false;
+}
+void Jugador::incrementaLlaves() {
+	numLlaves++;
 }
 Jugador :: ~Jugador()
 {

@@ -23,6 +23,7 @@
 #include "Sputnik.h"
 #include "Escalera.h"
 #include "Llave.h"
+#include "ListaLlaves.h"
 class Juego
 {
 private:
@@ -39,7 +40,7 @@ private:
 	ListaBloques bloques;
 	ListaPlataformas plataformas;
 	ListaEscaleras escaleras;
-	Escalera escalera;
+	ListaLlaves llaves;
 	bool impacto;//variable que es true si enemigo choca con jugador
 	bool bajarescaleras;
 	int chances=jugador.getNumBonus(); // veces que se puede recibir daño sin llegar a morir

@@ -69,4 +69,5 @@ public:
 	static bool colision(Llave b, Plataforma p);
 	static bool colision(Llave& b, Escenario e);
 	static void rebote(Llave& b, Escenario e);
+	static bool colision(Llave b, Jugador j);
 };
