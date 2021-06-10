@@ -19,6 +19,7 @@
 #include "Sputnik.h"
 #include "MascarillaTocha.h"
 #include "Escalera.h"
+#include "Llave.h"
 class Interaccion
 {
 public:
@@ -64,4 +65,8 @@ public:
 	static bool colision(DisparoGel d, Plataforma p);
 	static bool colision(DisparoGel d, Escenario e);
 	static bool colision(DisparoGel d, Enemigo enem);
+	//Llave
+	static bool colision(Llave b, Plataforma p);
+	static bool colision(Llave& b, Escenario e);
+	static void rebote(Llave& b, Escenario e);
 };

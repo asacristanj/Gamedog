@@ -13,7 +13,7 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 	Vector2D pos = j.getPos(); //la posicion de la base del jugador
 	pos.y += (j.getAltura());
 	float distancia = p.distancia(pos);
-	if (distancia <= j.getAltura())//compara la distancia de la plataforma al jugador con un valor pequeño
+	if (distancia <= j.getAltura()*0.5f)//compara la distancia de la plataforma al jugador con un valor pequeño
 		return true;
 	return false;
 }
@@ -111,7 +111,9 @@ bool Interaccion::colisionEscalerasubir(Escalera e, Jugador j)
 	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos();
-	if ((limites.y <= pos.x)&&(pos.x <= limites.x)&&(pos.y<=(e.limeny()+j.getAltura()/2.0f)))
+	Vector2D aux = pos - e.centro();
+	float distancia = aux.modulo();
+	if ((distancia<=j.getAltura()+2.0f)&&(limites.y <= pos.x)&&(pos.x <= limites.x)&&(pos.y<=(e.limeny()+j.getAltura()/2.0f)))
 		return true;
 	return false;
 }
@@ -120,7 +122,9 @@ bool Interaccion::colisionEscalerabajar(Escalera e, Jugador j)
 	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos();
-	if ((limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y <= (e.limeny() + j.getAltura())))
+	Vector2D aux = pos - e.centro();
+	float distancia = aux.modulo();
+	if ((distancia <= j.getAltura()+2.5f)&&(limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y <= (e.limeny() + j.getAltura())))
 		return true;
 	return false;
 }
@@ -513,4 +517,44 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
-
+//Funciones llave
+bool Interaccion::colision(Llave b, Plataforma p) //Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
+{
+	Vector2D pos = b.getPos();
+	pos.y += b.getLado() / 2;//Se le suma el lado para que se apoye en la superficie de abajo
+	float distancia = p.distancia(pos);
+	if (distancia <= 0.1f + b.getLado()) {
+		return true;
+	}
+	return false;
+}
+bool Interaccion::colision(Llave& b, Escenario e) //Funcion que manda true si hay colision entre bonus y escenario. Mide distancia entre ellas y compara. 
+{
+	float xmax = e.suelo.limite2.x;
+	float xmin = e.suelo.limite1.x;
+	if (b.posicion.x + b.getLado() > xmax) {
+		b.posicion.x = xmax - b.getLado();
+		b.velocidad.x = -4.0f;
+	}
+	if (b.posicion.x - b.getLado() < xmin) {
+		b.posicion.x = xmin + b.getLado();
+		b.velocidad.x = 4.0f;
+	}
+	Vector2D pos = b.getPos();
+	pos.y -= b.getLado() / 2;//se le resta el lado para que quede apoyado en a superficie de abajo
+	float distancia = e.suelo.distancia(pos);
+	if (distancia <= 0.1f) {
+		return true;
+	}
+	return false;
+}
+void Interaccion::rebote(Llave& b, Escenario e) //Función que gestiona el rebote de cualquier bonus con el escenario
+{
+	if (Interaccion::colision(b, e.suelo))
+	{
+		b.velocidad.y = 0;
+		b.aceleracion.y = 0;
+	}
+	float ymin = e.suelo.limite1.y;
+	if ((b.posicion.y - b.getLado()) < ymin) b.posicion.y = ymin + b.getLado() / 2;
+}

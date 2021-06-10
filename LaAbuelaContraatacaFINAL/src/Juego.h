@@ -22,6 +22,7 @@
 #include "Quirurgica.h"
 #include "Sputnik.h"
 #include "Escalera.h"
+#include "Llave.h"
 class Juego
 {
 private:

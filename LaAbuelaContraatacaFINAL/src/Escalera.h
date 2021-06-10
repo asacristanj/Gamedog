@@ -15,5 +15,6 @@ public:
 	void SetColor(unsigned char r, unsigned char b, unsigned char g);
 	void SetPos(float limizqx, float limderx, float ybase, float altura, float ancho);
 	Vector2D limenx();
+	Vector2D centro();
 	float limeny();
 };

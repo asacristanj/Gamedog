@@ -73,3 +73,10 @@ Vector2D Escalera::limenx() {
 }float Escalera::limeny() {
 	return limizq2.y;
 }
+Vector2D Escalera::centro() {
+	Vector2D aux;
+	float ancho = limder1.x - limizq1.x, altura = limizq2.y - limizq1.y;
+	aux.x = limder1.x - ancho * 0.5f;
+	aux.y = limder1.y + altura * 0.5f;
+	return aux;
+}

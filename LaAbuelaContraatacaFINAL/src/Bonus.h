@@ -6,6 +6,7 @@
 #define PFIZER 3
 #define QUIRURGICA 4
 #define SPUTNIK 5
+#define LLAVE 6
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
 #include "ColorRVA.h"
@@ -24,7 +25,7 @@ protected:
 	SpriteSequence sprite3{ "imagenes/pfizer.png", 1 };
 	SpriteSequence sprite4{ "imagenes/mascarilla.png", 1 };
 	SpriteSequence sprite5{ "imagenes/sputnik.png", 1 };
-
+	//SpriteSequence sprite6{ "imagenes/llaveinternet.png",1 };
 public:
 	friend class Interaccion;
 	Bonus();

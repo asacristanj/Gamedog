@@ -17,8 +17,6 @@ void Juego::inicializa()
 	bajarescaleras = false;
 	impacto = false;//inicializo otra vez el impacto
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
-
-
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
@@ -143,6 +141,8 @@ void Juego::teclaEspecial(unsigned char key)
 		if (escaleras.subirEscalera(jugador))
 		{
 			jugador.setVely(5.0f);
+			jugador.setVelx(0.0f);
+			jugador.setAcely(0.0f);
 			break;
 		}
 		break;
@@ -150,6 +150,7 @@ void Juego::teclaEspecial(unsigned char key)
 		if (escaleras.bajarEscalera(jugador)) //ponia bajar
 		{
 			jugador.setVely(-5.0f);//-(jugador.getVelNormal() * jugador.getCoefVelx())
+			jugador.setVelx(0.0f);
 			bajarescaleras = true;
 			break;
 		}
@@ -201,7 +202,7 @@ void Juego::tecla(unsigned char key)
 	{
 	case ' ':
 	{
-		if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())
+		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())&&escaleras.subirEscalera(jugador)==0)
 		{
 			jugador.salto();
 		}
