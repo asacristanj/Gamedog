@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "ColorRVA.h"
+#include "ETSIDI.h"
 class Escalera
 {
 private:

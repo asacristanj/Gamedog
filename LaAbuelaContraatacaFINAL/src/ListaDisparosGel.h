@@ -5,8 +5,7 @@
 class ListaDisparosGel
 {
 private:
-	DisparoGel* lista[MAX_DISPAROS];
-	int numero;
+	DisparoGel* lista[MAX_DISPAROS];	int numero;
 public:
 	ListaDisparosGel();
 	virtual ~ListaDisparosGel();

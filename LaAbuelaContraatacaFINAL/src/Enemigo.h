@@ -11,6 +11,7 @@
 #include "ColorRVA.h"
 #include "ObjetoMovil.h"
 #include "ETSIDI.h"
+
 using ETSIDI::SpriteSequence;
 
 class Enemigo: public ObjetoMovil
@@ -20,10 +21,6 @@ protected:
 	int vidas;
 	bool disparo_recibido; // se pone a true si es impactado por disparo de jugador
 	bool pisoton; // se pone a true cuando es pisado por el jugador
-	SpriteSequence spritebras{ "imagenes/sprite_brasilena.png", 5 };
-	SpriteSequence spritebrit{ "imagenes/sprite_britanica.png", 5 };
-	SpriteSequence spritechin{ "imagenes/sprite_china.png", 5 };
-	SpriteSequence spriteindi{ "imagenes/sprite_india.png", 5 };
 	ColorRVA color;
 	int tipo;
 

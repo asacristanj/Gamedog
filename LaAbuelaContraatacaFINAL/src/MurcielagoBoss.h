@@ -1,9 +1,11 @@
 #pragma once
 #include "Enemigo.h"
 #include <time.h>
+
 class MurcielagoBoss: public Enemigo
 {
 private:
+	SpriteSequence sprite{ "imagenes/murcielago.png", 4 };
 	float posicion_bajada;
 	float velocidad_bajada; // velocidad a la que baja al ser disparado
 	float velocidad_china;

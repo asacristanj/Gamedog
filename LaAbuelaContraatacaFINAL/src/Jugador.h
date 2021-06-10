@@ -9,6 +9,9 @@ class Jugador: public ObjetoMovil
 {
 private:
 	SpriteSequence sprite{ "imagenes/sprite_abuela.png", 6 };
+	SpriteSequence spritemasc{ "imagenes/abuela_mascarilla.png", 6 };
+	SpriteSequence spriteffp2{ "imagenes/abuela_ffp2.png", 6 };
+
 	int numbonus;
 	Vector2D posicion_inicial;
 	float altura;
@@ -40,7 +43,7 @@ public:
 	bool getAstraActivo() { return astra_activo; }
 	bool getPfizerActivo() { return pfizer_activo; }
 	bool getJanssenActivo() { return janssen_activo; }
-	int getNumBonus() { return numbonus; }
+	int GetNumBonus() { return numbonus; }
 	void setAltura(float nalt) { altura = nalt; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }
 	void setAstraActivo(bool act) { astra_activo = act; }

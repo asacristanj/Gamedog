@@ -16,6 +16,7 @@ Escalera::~Escalera() {
 
 }
 void Escalera::dibujar() {
+	/*
 	glDisable(GL_LIGHTING);
 	glColor3ub(color.r, color.g, color.b);
 	glBegin(GL_POLYGON);
@@ -25,6 +26,19 @@ void Escalera::dibujar() {
 	glVertex3d(limder2.x, limder2.y, -5);
 	glEnd();
 	glEnable(GL_LIGHTING);
+	*/
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/escaleras.png").id);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_POLYGON);
+	glColor3f(1, 1, 1);
+	glVertex3d(limder1.x, limder1.y, -5);
+	glVertex3d(limizq1.x, limizq1.y, -5);
+	glVertex3d(limizq2.x, limizq2.y, -5);
+	glVertex3d(limder2.x, limder2.y, -5);
+	glEnd();
+	glEnable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
 }
 void Escalera::SetColor(unsigned char r, unsigned char b, unsigned char g) {
 	color.r = r;
