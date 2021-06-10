@@ -22,6 +22,7 @@ void Juego::inicializa()
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
 	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
+	escaleras.agregar(new Escalera(-5.0f, -3.0f, 4.0f, 4.0f, 2.0f));
 	llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial

@@ -2,9 +2,11 @@
 #include "Vector2D.h"
 #include "ColorRVA.h"
 #include "ETSIDI.h"
+using ETSIDI::SpriteSequence;
 class Escalera
 {
 private:
+	SpriteSequence sprite{ "imagenes/escaleras.png", 1 };
 	Vector2D limder1,limder2, limizq1,limizq2;
 	ColorRVA color;
 public:
