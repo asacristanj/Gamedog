@@ -33,6 +33,7 @@ public:
 	void setColor(Byte r, Byte v, Byte a);
 	void setAltura(float alt);
 	void setDisparoRecibido(bool disparo) { disparo_recibido = disparo; }
+	void setVidas(int vida) { vidas += vida; }
 	int getTipo() { return tipo; }
 	float getAltura() { return altura; }
 	bool getDisparoRecibido() { return disparo_recibido; }

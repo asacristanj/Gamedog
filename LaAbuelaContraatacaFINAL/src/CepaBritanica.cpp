@@ -11,6 +11,7 @@ CepaBritanica::CepaBritanica()
 	posicion.y = 6.0f;
 	velocidad.x = 3.0f;
 	aceleracion.y = -9.8f;
+	vidas = 1;
 }
 CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
 {

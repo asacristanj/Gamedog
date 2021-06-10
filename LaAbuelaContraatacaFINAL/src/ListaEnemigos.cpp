@@ -303,7 +303,10 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 				j.setPos(j.getPos().x, murboss->getPos().y + murboss->getAltura());
 				j.setVel(j.getVel().x, j.getVelocidadRebote()); // el jugador rebota al pisar el boss
 				if (murboss->getVidas() > 1) // Le queda al menos una vida
+				{
+					murboss->setPisoton(true); // murcielago pisado
 					murboss->setVidas(-1); // Resto una vida
+				}
 				else
 				{
 					int punt = murboss->getPunt();

@@ -7,6 +7,7 @@ CepaIndia::CepaIndia()
 	sprite.setSize(altura, altura);
 	color.r = color.b = 200;
 	color.g = 0;
+	vidas = 1;
 }
 CepaIndia::CepaIndia(float alt, float x, float y, float vx, float vy)
 {

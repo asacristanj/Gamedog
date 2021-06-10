@@ -398,43 +398,45 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 	static const Vector2D velocidad_referencia = murboss.getVel(); // recibe la velocidad inicial del enemigo
 	float ymax = posicion_referencia + 0.5f;
 	float ymin = posicion_referencia - 0.5f;
-	// limites de movimiento en eje y
-	if (murboss.getPos().y > ymax)
+	if (murboss.getDisparoRecibido() == false)
 	{
-		murboss.setPos(murboss.getPos().x, ymax);
-		murboss.velocidad.y = -murboss.velocidad.y;
-	}
-	if (murboss.getPos().y < ymin)
-	{
-		murboss.setPos(murboss.getPos().x, ymin);
-		murboss.velocidad.y = -murboss.velocidad.y;
-	}
-	// limites relativos a escenario y jugador
+		// limites de movimiento en eje y
+		if (murboss.getPos().y > ymax)
+		{
+			murboss.setPos(murboss.getPos().x, ymax);
+			murboss.velocidad.y = -murboss.velocidad.y;
+		}
+		if (murboss.getPos().y < ymin)
+		{
+			murboss.setPos(murboss.getPos().x, ymin);
+			murboss.velocidad.y = -murboss.velocidad.y;
+		}
+		// limites relativos a escenario y jugador
 
-	if (murboss.getPos().x > xmax_escenario) // limite max escenario 
-	{
-		murboss.setPos(xmax_escenario, murboss.getPos().y);
-		murboss.velocidad.x = -murboss.velocidad.x;
+		if (murboss.getPos().x > xmax_escenario) // limite max escenario 
+		{
+			murboss.setPos(xmax_escenario, murboss.getPos().y);
+			murboss.velocidad.x = -murboss.velocidad.x;
+		}
+		if (murboss.getPos().x > xmax_jugador) // limite max jugador
+		{
+			murboss.setPos(xmax_jugador, murboss.getPos().y);
+			murboss.velocidad.x = -murboss.velocidad.x;
+		}
+		if (murboss.getPos().x < xmin_escenario) // limite min escenario
+		{
+			murboss.setPos(xmin_escenario, murboss.getPos().y);
+			murboss.velocidad.x = -murboss.velocidad.x;
+		}
+		if (murboss.getPos().x < xmin_jugador) // limite min jugador
+		{
+			murboss.setPos(xmin_jugador, murboss.getPos().y);
+			murboss.velocidad.x = -murboss.velocidad.x;
+		}
 	}
-	if (murboss.getPos().x > xmax_jugador) // limite max jugador
+	// secuencia de movimiento al recibir disparo
+	if (murboss.getDisparoRecibido() == true && murboss.getVidas() > 0) // si es disparado
 	{
-		murboss.setPos(xmax_jugador, murboss.getPos().y);
-		murboss.velocidad.x = -murboss.velocidad.x;
-	}
-	if (murboss.getPos().x < xmin_escenario) // limite min escenario
-	{
-		murboss.setPos(xmin_escenario, murboss.getPos().y);
-		murboss.velocidad.x = -murboss.velocidad.x;
-	}
-	if (murboss.getPos().x < xmin_jugador) // limite min jugador
-	{
-		murboss.setPos(xmin_jugador, murboss.getPos().y);
-		murboss.velocidad.x = -murboss.velocidad.x;
-	}
-
-	if (murboss.getDisparoRecibido() == true && murboss.getVidas() > -1) // si es disparado
-	{
-		murboss.setDisparoRecibido(false);
 		murboss.setVel(0.0f, murboss.getVelocidadBajada()); // baja
 		if (murboss.getPos().y < murboss.getPosicionBajada()) // si llego a la posicion de bajada
 		{
@@ -444,13 +446,11 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 		}
 		if (murboss.getPisoton() == true && murboss.getVidas() > 0) // si es pisado y aun le quedan vidas
 		{
-			murboss.setVel(0.0f, -murboss.getVelocidadBajada()); // sube
+			murboss.setPos(murboss.getPos().x, posicion_referencia);
+			murboss.setVel(velocidad_referencia.x, velocidad_referencia.y); // recupera el movimiento normal
+			//sentencias de salida
+			murboss.setDisparoRecibido(false); 
 			murboss.setPisoton(false);
-			if (murboss.getPos().y > posicion_referencia)
-			{
-				murboss.setPos(murboss.getPos().x, posicion_referencia);
-				murboss.setVel(velocidad_referencia.x, velocidad_referencia.y); // recupera el movimiento normal
-			}
 		}
 	}
 }

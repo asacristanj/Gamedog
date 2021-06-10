@@ -9,6 +9,7 @@ MurcielagoPequeño::MurcielagoPequeño()
 	velocidad = (4.0f, 4.0f);
 	aceleracion.y = 0.0f;
 	velocidad_china = -5.0f;
+	vidas = 1;
 }
 MurcielagoPequeño::MurcielagoPequeño(float alt, float x, float y, float vx, float vy)
 {

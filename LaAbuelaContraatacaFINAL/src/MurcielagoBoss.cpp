@@ -37,6 +37,7 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad_bajada = -5.0f;
 	velocidad_china = -5.0f;
 	horaIniciocaida = time(NULL);
+	vidas = 3;
 }
 void MurcielagoBoss::dibuja()
 {

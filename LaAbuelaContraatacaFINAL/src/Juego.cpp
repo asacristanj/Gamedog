@@ -2,6 +2,8 @@
 #include "freeglut.h"
 #include <math.h>
 #include "ETSIDI.h"
+#include <iostream>
+using namespace std;
 
 void Juego::inicializa()
 {
@@ -19,7 +21,7 @@ void Juego::inicializa()
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
-	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
+	//plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
@@ -32,7 +34,7 @@ void Juego::inicializa()
 	//bonuses.agregar(new Sputnik(0.5f,8.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
-	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 10.0f, 4.0f, 4.0f));
+	enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 11.0f, 4.0f, 4.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
@@ -110,20 +112,15 @@ void Juego::mueve()
 		{
 			if (Interaccion::colision(*disparos[i], *enemigos[i]))
 			{
-				if (enemigos[i]->getTipo() == MURCIELAGOBOSS)
-				{
-					enemigos[i]->setDisparoRecibido(true);
-					if (enemigos[i]->getVidas() < 0) // si no le quedan vidas muere
-					{
-						disparos.eliminar(disparos[i]);
-						enemigos.eliminar(enemigos[i]);
-					}
-				}
-				else
-				{
-					disparos.eliminar(disparos[i]);
+				disparos.eliminar(disparos[i]);
+				enemigos[i]->setDisparoRecibido(true); // disparo recibido
+				cout << endl << "disparo recibido: " << enemigos[i]->getDisparoRecibido() << endl;
+
+				if(enemigos[i]->getTipo() != MURCIELAGOBOSS) // EL BOSS SOLO PIERDE VIDA AL SER PISADO
+					enemigos[i]->setVidas(-1); // menos 1 vida
+
+				if (enemigos[i]->getVidas() < 1) // si no le quedan vidas muere
 					enemigos.eliminar(enemigos[i]);
-				}
 			}
 		}
 	}
@@ -210,7 +207,7 @@ void Juego::tecla(unsigned char key)
 			}
 
 			break;
-		*/
+			*/
 			DisparoGel* d = new DisparoGel();
 			Vector2D pos = jugador.getPos();
 			d->setPos(pos.x, pos.y);

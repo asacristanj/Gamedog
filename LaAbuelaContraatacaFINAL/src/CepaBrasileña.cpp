@@ -9,6 +9,7 @@ CepaBrasileña::CepaBrasileña()
 	color.b = 0;
 	aceleracion.y = -9.8f;
 	origenSalto = getPos();
+	vidas = 1;
 }
 CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 {
