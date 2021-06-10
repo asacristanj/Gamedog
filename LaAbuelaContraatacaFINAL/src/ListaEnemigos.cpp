@@ -116,8 +116,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			}
 			else if (Interaccion::colision(*ind, j))
 			{
-				j.setNumBonus(j.GetNumBonus() - 1); //si tiene algún bonus se lo quitamos
-				if (j.GetNumBonus() < 0) {
+				j.setNumBonus(j.getNumBonus() - 1); //si tiene algún bonus se lo quitamos
+				if (j.getNumBonus() < 0) {
 					j.morir(); //cuando no tenga bonus muere
 				}
 				else {
@@ -142,8 +142,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j)) //Si se tocan también afecta al jugador
 				{
 					eliminar(i);
-					j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
-					if (j.GetNumBonus() < 0) {
+					j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
+					if (j.getNumBonus() < 0) {
 						j.morir();
 					}
 					else {
@@ -154,8 +154,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					if (Interaccion::ratioExplosion(*brit, j)) //Si el jugador está dentro de la explosión
 					{
-						j.setNumBonus(j.GetNumBonus() - 1);//Disminuir el bonus
-						if (j.GetNumBonus() < 0)
+						j.setNumBonus(j.getNumBonus() - 1);//Disminuir el bonus
+						if (j.getNumBonus() < 0)
 						{
 							j.morir();
 						}
@@ -192,8 +192,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			}
 			else if (Interaccion::colision(*bra, j)) 
 			{
-				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) 
+				j.setNumBonus(j.getNumBonus() - 1);
+				if (j.getNumBonus() < 0) 
 				{
 					j.morir();
 				}
@@ -208,8 +208,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)) //Si hay colisión sea cual sea los dos mueren (si el jugador no tiene bonus obviamente)
 		 {
 			 eliminar(i);
-			 j.setNumBonus(j.GetNumBonus() - 1);//disminuir el bonus
-			 if (j.GetNumBonus() < 0) 
+			 j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
+			 if (j.getNumBonus() < 0) 
 			 {
 				 j.morir();
 			 }
@@ -234,8 +234,8 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			}
 			else if (Interaccion::colision(*murpeq, j))
 			{
-				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) 
+				j.setNumBonus(j.getNumBonus() - 1);
+				if (j.getNumBonus() < 0) 
 				{
 					j.morir();
 				}
@@ -317,8 +317,8 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 			}
 			else if (Interaccion::colision(*murboss, j))
 			{
-				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) {
+				j.setNumBonus(j.getNumBonus() - 1);
+				if (j.getNumBonus() < 0) {
 					j.morir();
 				}
 				else {

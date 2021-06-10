@@ -111,7 +111,7 @@ bool Interaccion::colisionEscalerasubir(Escalera e, Jugador j)
 	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos();
-	if ((limites.y <= pos.x)&&(pos.x <= limites.x)&&(pos.y<=e.limeny()))
+	if ((limites.y <= pos.x)&&(pos.x <= limites.x)&&(pos.y<=(e.limeny()+j.getAltura()/2.0f)))
 		return true;
 	return false;
 }
@@ -120,7 +120,7 @@ bool Interaccion::colisionEscalerabajar(Escalera e, Jugador j)
 	//Comprobamos que la posicion del jugador esta entre los limites de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos();
-	if ((limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y >= e.limeny()))
+	if ((limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y <= (e.limeny() + j.getAltura())))
 		return true;
 	return false;
 }

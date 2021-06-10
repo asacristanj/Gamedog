@@ -43,8 +43,9 @@ public:
 	bool getAstraActivo() { return astra_activo; }
 	bool getPfizerActivo() { return pfizer_activo; }
 	bool getJanssenActivo() { return janssen_activo; }
-	int GetNumBonus() { return numbonus; }
+	int getNumBonus() { return numbonus; }
 	void setAltura(float nalt) { altura = nalt; }
+	void setAcely(float gravedad) { aceleracion.y = gravedad; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }
 	void setAstraActivo(bool act) { astra_activo = act; }
 	void setPfizerActivo(bool act) { pfizer_activo = act; }

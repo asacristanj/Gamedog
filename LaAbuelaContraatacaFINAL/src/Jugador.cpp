@@ -33,7 +33,7 @@ void Jugador::dibuja()
 
 	
 	//ANIMACION DEL SPRITE DEL PERSONAJE:
-	if (GetNumBonus() == 0) { //SI NO TIENE BONUS, SKIN DEFAULT
+	if (getNumBonus() == 0) { //SI NO TIENE BONUS, SKIN DEFAULT
 	if (velocidad.x > 0.01)sprite.flip(false, false);
 	if (velocidad.x < -0.01)sprite.flip(true, false);
 	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
@@ -43,7 +43,7 @@ void Jugador::dibuja()
 	sprite.draw();
 	glPopMatrix();
 	}
-	if (GetNumBonus() == 1) { //SI TIENE BONUS, SKIN MASCARILLA
+	if (getNumBonus() == 1) { //SI TIENE BONUS, SKIN MASCARILLA
 		if (velocidad.x > 0.01)spritemasc.flip(false, false);
 		if (velocidad.x < -0.01)spritemasc.flip(true, false);
 		if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
@@ -53,7 +53,7 @@ void Jugador::dibuja()
 		spritemasc.draw();
 		glPopMatrix();
 	}
-	if (GetNumBonus() == 2) { //SI TIENE DOS BONUS, SKIN FFP2
+	if (getNumBonus() == 2) { //SI TIENE DOS BONUS, SKIN FFP2
 		if (velocidad.x > 0.01)spriteffp2.flip(false, false);
 		if (velocidad.x < -0.01)spriteffp2.flip(true, false);
 		if ((velocidad.x < 0.01) && (velocidad.x > -0.01))

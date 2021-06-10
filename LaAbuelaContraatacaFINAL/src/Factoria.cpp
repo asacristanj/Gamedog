@@ -3,19 +3,19 @@ Factoria::Factoria() {
 	
 }
 void Factoria::CogerQuirurgica(Jugador& j) {
-	j.setNumBonus(j.GetNumBonus() + 1);//aumento el estado de bonus
-	if (j.GetNumBonus() == 1) {//cambio a aspecto de quirugica
+	j.setNumBonus(j.getNumBonus() + 1);//aumento el estado de bonus
+	if (j.getNumBonus() == 1) {//cambio a aspecto de quirugica
 		//j.setAltura(j.getAltura() * 2.0f);
 		//j.crecer();
 		//sprite aqui raul chico
 	}
-	if (j.GetNumBonus() >= 2) {//cambio a aspecto de mascarilla tocha
+	if (j.getNumBonus() >= 2) {//cambio a aspecto de mascarilla tocha
 		j.setNumBonus(2);
 	}
 }
 
 void Factoria::CogerMascarillaTocha(Jugador& j) {
-	if (j.GetNumBonus() == 0) {//esto se podria comenta porque no crece, poner a continuacion el sprite de mascarilla tocha
+	if (j.getNumBonus() == 0) {//esto se podria comenta porque no crece, poner a continuacion el sprite de mascarilla tocha
 		//j.setAltura(j.getAltura() * 2.0f);
 	}
 	j.setNumBonus(2);
