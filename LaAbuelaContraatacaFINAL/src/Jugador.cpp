@@ -2,7 +2,7 @@
 #include "freeglut.h"
 Jugador::Jugador()
 {
-	altura = 1.0f;
+	altura = 1.2f;
 	posicion_inicial = (0.0f, 2.0f);
 
 	//TAMAÑO Y CENTRO SPRITE PERSONAJE:
@@ -27,7 +27,7 @@ Jugador::Jugador()
 void Jugador::dibuja()
 {
 	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
+	glTranslatef(posicion.x, posicion.y-0.1f, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
 
 	//glutSolidSphere(altura, 15, 15);

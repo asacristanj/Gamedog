@@ -6,16 +6,20 @@
 Plataforma::Plataforma()
 {
 	color.r = color.g = color.b = 255; //blanco 
+	sprite.setCenter((limite2.x - limite1.x) / 2.0f,  0.25f);
+	sprite.setSize(limite2.x - limite1.x, 0.5f);
 }
 Plataforma::Plataforma(float x1, float y1, float x2, float y2) {
 	limite1.x = x1;
 	limite1.y = y1;
 	limite2.x = x2;
 	limite2.y = y2;
+	sprite.setCenter((x2-x1) / 2.0f,  0.25f);
+	sprite.setSize(limite2.x - limite1.x, 0.5f);
 }
 void Plataforma::dibuja()
 {
-	
+	/*
 	glDisable(GL_LIGHTING);
 	glColor3ub(color.r, color.g, color.b);
 	glBegin(GL_POLYGON);
@@ -25,6 +29,7 @@ void Plataforma::dibuja()
 	glVertex3d(limite1.x, limite1.y, -5);
 	glEnd();
 	glEnable(GL_LIGHTING);
+	*/
 	/*/*
 	
 
@@ -55,7 +60,11 @@ void Plataforma::dibuja()
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
 	*/
-	
+	glPushMatrix();
+	glTranslatef(((limite2.x - limite1.x) / 2.0f) + limite1.x, limite2.y - 0.25f, 0);
+	glColor3f(0.0f, 0.0f, 250.0f);
+	sprite.draw();
+	glPopMatrix();
 }
 void Plataforma::setColor(Byte r, Byte v, Byte a)
 {

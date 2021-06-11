@@ -8,19 +8,6 @@ Bonus::Bonus()
 	lado = 1.0f;
 	aceleracion.y = -9.8f;
 
-	//TAMAÑO Y CENTRO SPRITE:
-	sprite0.setCenter(1, 1);
-	sprite0.setSize(2, 2);
-	sprite1.setCenter(1, 1);
-	sprite1.setSize(2, 2);
-	sprite2.setCenter(1, 1);
-	sprite2.setSize(2, 2);
-	sprite3.setCenter(1, 1);
-	sprite3.setSize(2, 2);
-	sprite4.setCenter(1, 1);
-	sprite4.setSize(2, 2);
-	sprite5.setCenter(1, 1);
-	sprite5.setSize(2, 2);
 }
 void Bonus::dibuja()
 {
