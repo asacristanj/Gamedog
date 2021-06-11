@@ -15,6 +15,7 @@ void Juego::inicializa()
 	setVidas(1);//se establecen las vidas de nueva partida
 	cargarNivel();//cargo el nivel corrspondiente
 	bajarescaleras=subirescaleras = false;
+	primeravez = true;
 	impacto = false;//inicializo otra vez el impacto
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
 	enemigos.destruirContenido();//limpio tras game over
@@ -145,10 +146,12 @@ void Juego::teclaEspecial(unsigned char key)
 		//Para que no pueda saltar en el aire
 		if (escaleras.subirEscalera(jugador))
 		{
-			jugador.setVely(5.0f);
-			jugador.setVelx(0.0f);
-			jugador.setAcely(0.0f);
 			subirescaleras = true;
+			jugador.setVely(7.0f);
+			jugador.setAcely(0.0f);
+			if (escaleras.bajarEscalera(jugador)) {
+				subirescaleras = false;
+			}
 			break;
 		}
 		break;
@@ -158,8 +161,12 @@ void Juego::teclaEspecial(unsigned char key)
 			jugador.setVely(-5.0f);//-(jugador.getVelNormal() * jugador.getCoefVelx())
 			jugador.setVelx(0.0f);
 			bajarescaleras = true;
+			if (escaleras.subirEscalera(jugador)) {
+				bajarescaleras = false;
+			}
 			break;
 		}
+		break;
 	}
 }
 void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
@@ -212,7 +219,7 @@ void Juego::tecla(unsigned char key)
 	{
 	case ' ':
 	{
-		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())&&escaleras.subirEscalera(jugador)==0)
+		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
 		{
 			jugador.salto();
 		}

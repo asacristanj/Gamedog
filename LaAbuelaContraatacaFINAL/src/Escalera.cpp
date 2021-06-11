@@ -55,3 +55,17 @@ Vector2D Escalera::centro() {
 	aux.y = limder1.y + altura * 0.5f;
 	return aux;
 }
+Vector2D Escalera::centroabajo() {
+	Vector2D aux;
+	float ancho = limder1.x - limizq1.x;
+	aux.x = limder1.x - (ancho / 2.0f);
+	aux.y = limder1.y;
+	return aux;
+}
+Vector2D Escalera::centroarriba() {
+	Vector2D aux;
+	float ancho = limder1.x-limizq1.x;
+	aux.x= limder2.x - (ancho / 2.0f);
+	aux.y = limder2.y;
+	return aux;
+}

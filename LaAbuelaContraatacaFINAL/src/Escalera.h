@@ -18,5 +18,7 @@ public:
 	void SetPos(float limizqx, float limderx, float ybase, float altura, float ancho);
 	Vector2D limenx();
 	Vector2D centro();
+	Vector2D centroabajo();
+	Vector2D centroarriba();
 	float limeny();
 };
