@@ -1,3 +1,4 @@
-﻿  Jugador.cpp
-C:\Users\Raul\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\Raul\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Interaccion.cpp
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(356,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\abelb\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe

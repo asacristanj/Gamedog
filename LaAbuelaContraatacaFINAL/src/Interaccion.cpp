@@ -11,7 +11,7 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 {
 	//Función que manda un booleano si ha habido contacto entre la plataforma y la cabeza del jugador (por debajo de la plataforma). Coge ambas posiciones y mide la distancia entre ellas.
 	float distancia = p.distancia(j.getPos());
-	if (distancia <= j.getAltura() + 0.5f)//compara la distancia de la plataforma al jugador con un valor pequeño
+	if ((distancia <= j.getAltura() + 0.5f && j.getPos().y <= p.limite1.y))
 		return true;
 	return false;
 }
@@ -56,8 +56,8 @@ bool Interaccion::colisionSuelo(Jugador j, Escenario e)
 void Interaccion::rebote(Jugador& j, Plataforma p)
 {
 	//Función para que el jugador no pueda atravesar las plataformas.Coge sus límites y dice que si choca por encima se quede arriba y se choca por debajo que se queda abajo frenándose debido al choque.
-	float xmax = p.limite2.x + (j.getAltura()/4.0f);
-	float xmin = p.limite1.x - (j.getAltura()/4.0f);;
+	float xmax = p.limite2.x + (j.getAltura()/2.0f);
+	float xmin = p.limite1.x - (j.getAltura()/2.0f);;
 	float y = p.limite1.y;
 	if (Interaccion::colisionEncima(j, p) && j.posicion.x < xmax && j.posicion.x > xmin && Interaccion::colisionLateralIzquierda(j, p) == false && Interaccion::colisionLateralDerecha(j, p) == false)
 	{
@@ -72,12 +72,12 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	{
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
 	}
-	if (Interaccion::colisionLateralDerecha(j, p))
+	if (Interaccion::colisionLateralDerecha(j, p) == true)
 	{
 		float xmin_derecha = p.limite1.x - j.getAltura()/3.5f;
 		j.setPos(xmin_derecha, j.getPos().y);
 	}
-	if (Interaccion::colisionLateralIzquierda(j, p))
+	if (Interaccion::colisionLateralIzquierda(j, p) == true)
 	{
 		float xmax_izquierda = p.limite2.x + j.getAltura()/3.5f;
 		j.setPos(xmax_izquierda, j.getPos().y);
