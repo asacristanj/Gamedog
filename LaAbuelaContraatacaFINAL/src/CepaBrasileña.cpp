@@ -15,7 +15,7 @@ CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 {
 	tipo = CEPABRASILEÑA;
 	altura = alt;
-	sprite.setCenter(altura / 2.0f, altura / 2.0f);
+	sprite.setCenter(altura/2.0f, altura/2.0f);
 	sprite.setSize(altura, altura);
 	posicion.x = x;
 	posicion.y = y;

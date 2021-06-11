@@ -87,8 +87,8 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 void Interaccion::rebote(Jugador& j, Escenario e)
 {
 	//Función para que el jugador no se pueda salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde del escenario
-	float xmax = e.suelo.limite2.x - j.getAltura();
-	float xmin = e.suelo.limite1.x + j.getAltura();
+	float xmax = e.suelo.limite2.x - j.getAltura()/2.0f;
+	float xmin = e.suelo.limite1.x + j.getAltura()/2.0f;
 	if (j.posicion.x > xmax)j.posicion.x = xmax;
 	if (j.posicion.x < xmin)j.posicion.x = xmin;
 
@@ -257,20 +257,20 @@ void Interaccion::rebote(Quirurgica& qui, Escenario e) //Funcion que hace el bon
 bool Interaccion::rebote(Enemigo enem, Plataforma p)
 {
 	//Función que manda un bool true si cualquier enemigo ha tocado una plataforma.
-	float xmax = p.limite2.x - (enem.getAltura() / 2.0f);
-	float xmin = p.limite1.x + (enem.getAltura() / 2.0f);
+	float xmax = p.limite2.x - (enem.getAltura() / 8.0f);
+	float xmin = p.limite1.x + (enem.getAltura() / 8.0f);
 	float ymin = p.limite1.y;
-	if (((enem.posicion.y - enem.altura) < ymin) && enem.posicion.x >= xmin && enem.posicion.x <= xmax)
+	if (((enem.posicion.y - enem.altura / 2.0f) < ymin) && enem.posicion.x >= xmin && enem.posicion.x <= xmax)
 		return true;
 	return false;
 }
 bool Interaccion::rebote(Enemigo enem, Escenario e)
 {
 	//Función que manda un bool true si cualquier enemigo ha tocado con el escenario.
-	float xmax = e.pared_dcha.limite2.x - (enem.getAltura() / 2.0f);
-	float xmin = e.pared_izq.limite2.x + (enem.getAltura() / 2.0f);
-	float ymin = e.suelo.limite1.y + enem.getAltura();
-	if (enem.posicion.x <= xmin || enem.posicion.x >= xmax || enem.getPos().y <= ymin)
+	float xmax = e.pared_dcha.limite2.x - (enem.getAltura() / 8.0f);
+	float xmin = e.pared_izq.limite2.x + (enem.getAltura() / 8.0f);
+	float ymin = e.suelo.limite1.y;
+	if (enem.posicion.x <= xmin || enem.posicion.x >= xmax || (enem.posicion.y - enem.altura / 2.0f) < ymin)
 		return true;
 	return false;
 }
@@ -279,7 +279,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 	//Función que manda un boole true si ha habido contacto entre un enemigo y el jugador de frente. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia < (enem.altura-(j.getAltura()/8.0f)) && (enem.posicion.y >= j.posicion.y)))
+	if ((distancia <= (enem.getAltura()/2.0f + j.getAltura()/2.0f) && (enem.posicion.y >= j.posicion.y)))
 		return true;
 	return false;
 }
@@ -288,15 +288,15 @@ bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador por encima del enemigo. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= (enem.altura -(j.getAltura()/8.0f)) && (enem.posicion.y < j.posicion.y)))
+	if (distancia <= (enem.getAltura()/2.0f+ (j.getAltura()/2.0f)) && (enem.posicion.y < j.posicion.y))//(enem.altura -(j.getAltura()/8.0f))
 		return true;
 	return false;
 }
 void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 {
 	//Función para que las CepasIndias no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = p.limite2.x - (ind.getAltura()/2.0f);
-	float xmin = p.limite1.x + (ind.getAltura()/2.0f);
+	float xmax = p.limite2.x - (ind.getAltura()/8.0f);
+	float xmin = p.limite1.x + (ind.getAltura()/8.0f);
 	if (ind.posicion.x > xmax)
 	{
 		ind.posicion.x = xmax;
@@ -309,14 +309,16 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 	}
 	 //Además como pasaba con el jugador, para que se mantenga encima de la plataforma
 	float ymin = p.limite1.y;
-	if ((ind.posicion.y - ind.getAltura()) < ymin) ind.posicion.y = ymin + ind.getAltura();
+	float dist=p.distancia(ind.getPos());
+	if ((dist<=(ind.getAltura()/2.0f)) && ind.posicion.x >= xmin && ind.posicion.x <= xmax)//&&((ind.posicion.y - ind.altura / 2.0f) < ymin)
+		ind.posicion.y = ymin + ind.getAltura() / 2.0f;
 }
 
 void Interaccion::rebote(CepaBritanica& brit, Plataforma p)
 {
 	//Función para que las CepasBritanicas no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = p.limite2.x - (brit.getAltura()/2.0f);
-	float xmin = p.limite1.x + (brit.getAltura() / 2.0f);
+	float xmax = p.limite2.x - (brit.getAltura()/8.0f);
+	float xmin = p.limite1.x + (brit.getAltura() / 8.0f);
 	if (brit.posicion.x > xmax)
 	{
 		brit.posicion.x = xmax;
@@ -329,14 +331,16 @@ void Interaccion::rebote(CepaBritanica& brit, Plataforma p)
 	}
 	//Además como pasaba con el jugador, para que se mantenga encima de la plataforma
 	float ymin = p.limite1.y;
-	if ((brit.posicion.y - brit.getAltura()) < ymin) brit.posicion.y = ymin + brit.getAltura();
+	float dist = p.distancia(brit.getPos());
+	if ((dist <= brit.getAltura() / 2.0f) && (brit.posicion.y - brit.getAltura() / 2.0f) < ymin) 
+		brit.posicion.y = ymin + brit.getAltura() / 2.0f;
 }
 
 void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 {
 	//Función para que las CepasBrasileñas no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = p.limite2.x - (bra.getAltura() / 2.0f);
-	float xmin = p.limite1.x + (bra.getAltura() / 2.0f);
+	float xmax = p.limite2.x - (bra.getAltura() / 8.0f);
+	float xmin = p.limite1.x + (bra.getAltura() / 8.0f);
 	float ymin = p.limite1.y;
 	if (bra.posicion.x > xmax)
 	{
@@ -349,12 +353,13 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 		bra.velocidad.x = 2.0f;
 	}
 	//Además, se le añade a esta Cepa que cuando toque el suelo toque con alturas aleatorias.
-	if ((bra.posicion.y - bra.getAltura()) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
+	float dist = p.distancia(bra.getPos());
+	if ((dist <= bra.getAltura() / 2.0f) && (bra.posicion.y - bra.getAltura()/2.0f) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)
 	{
-		bra.posicion.y = ymin + bra.getAltura();
+		bra.posicion.y = ymin + bra.getAltura()/2.0f;
 		int SemillaAl= rand();
 		srand(time(NULL) * SemillaAl); //Se crea semilla aleatoria para todas las CepasBrasileñas
-		int aleatorio, DESDE = 5, HASTA = 10;
+		int aleatorio, DESDE = 4, HASTA = 8;
 		aleatorio = rand() % (HASTA - DESDE + 1) + DESDE; //Se crea el numero aleatorio
 		bra.saltar((float)aleatorio); //La Cepa salta
 	}
@@ -362,8 +367,8 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 void Interaccion::rebote(CepaIndia& ind, Escenario e)
 {
 	//Función para que las CepasIndias no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x - (ind.getAltura() / 2.0f);
-	float xmin = e.pared_izq.limite2.x + (ind.getAltura() / 2.0f);
+	float xmax = e.pared_dcha.limite2.x - (ind.getAltura() / 8.0f);
+	float xmin = e.pared_izq.limite2.x + (ind.getAltura() / 8.0f);
 	if (ind.posicion.x > xmax)
 	{
 		ind.posicion.x = xmax;
@@ -378,8 +383,8 @@ void Interaccion::rebote(CepaIndia& ind, Escenario e)
 void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 {
 	//Función para que las CepasBritanicas no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x - (brit.getAltura() / 2.0f);
-	float xmin = e.pared_izq.limite2.x + (brit.getAltura() / 2.0f);;
+	float xmax = e.pared_dcha.limite2.x - (brit.getAltura() / 8.0f);
+	float xmin = e.pared_izq.limite2.x + (brit.getAltura() / 8.0f);;
 	if (brit.posicion.x > xmax)
 	{
 		brit.posicion.x = xmax;
@@ -394,8 +399,8 @@ void Interaccion::rebote(CepaBritanica& brit, Escenario e)
 void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERENTE. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que los Murcielagospequeños no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura());
-	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura());;
+	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura() / 8.0f);
+	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura() / 8.0f);;
 	static const float posicion_referencia = murpeq.getPos().y; // referencia del movimiento
 	float ymax = posicion_referencia + 0.25f;
 	float ymin = posicion_referencia - 0.25f;
@@ -423,8 +428,8 @@ void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MO
 void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que el MurcielagoBoss no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax_escenario = e.pared_dcha.limite2.x - (murboss.getAltura());
-	float xmin_escenario = e.pared_izq.limite2.x + (murboss.getAltura());;
+	float xmax_escenario = e.pared_dcha.limite2.x - (murboss.getAltura() / 8.0f);
+	float xmin_escenario = e.pared_izq.limite2.x + (murboss.getAltura() / 8.0f);;
 	float xmax_jugador = j.getPos().x + 2.0f; // limite relativo al jugador
 	float xmin_jugador = j.getPos().x - 2.0f; // lo mismo pero por el otro lado
 	static const float posicion_referencia = murboss.getPos().y; // recibe la posicion inicial del enemigo

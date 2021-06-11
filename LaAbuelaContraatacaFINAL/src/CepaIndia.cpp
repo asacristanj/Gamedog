@@ -13,7 +13,7 @@ CepaIndia::CepaIndia(float alt, float x, float y, float vx, float vy)
 {
 	tipo = CEPAINDIA;
 	altura = alt;
-	sprite.setCenter(altura / 2.0f, altura / 2.0f);
+	sprite.setCenter(altura/2.0f, altura/2.0f);
 	sprite.setSize(altura, altura);
 	posicion.x = x;
 	posicion.y = y;
@@ -21,7 +21,6 @@ CepaIndia::CepaIndia(float alt, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	color.r = color.b = 0;
 	color.g = 100;
-	aceleracion.y = -9.8f;
 }
 void CepaIndia::dibuja()
 {

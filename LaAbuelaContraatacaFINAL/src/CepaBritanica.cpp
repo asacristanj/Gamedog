@@ -8,7 +8,7 @@ CepaBritanica::CepaBritanica()
 	color.b = 200;
 	color.r = color.g = 0;
 	posicion.x = 1.0f;
-	posicion.y = 6.0f;
+	posicion.y = 5.0f;
 	velocidad.x = 3.0f;
 	aceleracion.y = -9.8f;
 	vidas = 1;

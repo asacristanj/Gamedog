@@ -20,17 +20,18 @@ void Juego::inicializa()
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
-	jugador.setPos(0.0f, 20.0f);//origen del jugador
-	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
+	jugador.setPos(0.0f, 0.0f);//origen del jugador
+	plataformas.agregar(new Plataforma(-8.0f, 4.0f, 2.0f, 4.0f));
 	plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
-	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
-	escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));
-	llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
+	//escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
+	//escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));
+	//llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
 	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 12.0f));
 	//bonuses.agregar(new Janssen(1.5f, -3.0f, 12.0f));
-	//bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 12.0f));
+	//bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 5.0f));
+	//enemigos.agregar(new CepaIndia(2.0f, 4.0f, 5.0f, 5.0f, 0.0f));
 	//bonuses.agregar(new Pfizer(0.5f, 3.0f, 12.0f, 0,0));
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, 0.0f, 0.0f));
 	//bonuses.agregar(new Quirurgica(1.0f, 5.0f, 12.0f, 0.0f, 0.0f));
@@ -38,12 +39,11 @@ void Juego::inicializa()
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 11.0f, 4.0f, 4.0f));
-	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBrasileña(0.0f, 0.0f, 5.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(1.0f, 0.0f, 0.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
+     //enemigos.agregar(new CepaBrasileña(2.0f, -2.0f, 9.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(2.0f, 1.0f, 9.0f, -2.0f, 0.0f));
+	enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBritanica(2.0f, 2.0f, 9.0f, -2.0f, 0.0f));
+	//enemigos.agregar(new CepaChina(2.0f, 0.0f, 15.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
@@ -224,6 +224,7 @@ void Juego::tecla(unsigned char key)
 		{
 			jugador.salto();
 		}
+		break;
 	}
 	if (jugador.getNumBonus() == 2) {//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
 	case 'w':

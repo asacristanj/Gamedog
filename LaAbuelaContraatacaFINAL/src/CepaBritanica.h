@@ -13,4 +13,3 @@ public:
 
 	friend class Interaccion;
 };
-
