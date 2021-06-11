@@ -14,16 +14,16 @@ void Juego::inicializa()
 	jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
 	setVidas(1);//se establecen las vidas de nueva partida
 	cargarNivel();//cargo el nivel corrspondiente
-	bajarescaleras = false;
+	bajarescaleras=subirescaleras = false;
 	impacto = false;//inicializo otra vez el impacto
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
 	plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
-	plataformas.agregar(new Plataforma(-10.0f, 8.0f, 0.0f, 8.0f));
+	plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
 	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
-	escaleras.agregar(new Escalera(-5.0f, -3.0f, 4.0f, 4.0f, 2.0f));
+	escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));
 	llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
@@ -80,7 +80,7 @@ void Juego::mueve()
 	enemigos.mueve(0.025f);
 	disparos.mueve(0.025f);
 	enemigos.rebote(escenario);
-	if ((escaleras.subirEscalera(jugador) == false) && bajarescaleras == false)
+	if ((subirescaleras == false) && bajarescaleras == false)
 		plataformas.rebote(jugador);
 	enemigos.rebote(jugador);
 	enemigos.reboteBoss(escenario, jugador);
@@ -148,6 +148,7 @@ void Juego::teclaEspecial(unsigned char key)
 			jugador.setVely(5.0f);
 			jugador.setVelx(0.0f);
 			jugador.setAcely(0.0f);
+			subirescaleras = true;
 			break;
 		}
 		break;
@@ -177,12 +178,15 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 		if (escaleras.subirEscalera(jugador))
 		{
 			jugador.setVely(0.0f);
+			jugador.setVelx(0.0f);
 			jugador.setAcely(0.0f);
+			subirescaleras = false;
 		}
 		if (escaleras.subirEscalera(jugador) == 0)
 		{
 			//jugador.setVely(0.0f);
 			jugador.setAcely(-30.0f);
+			subirescaleras = false;
 			break;
 		}
 		/*if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())
@@ -190,9 +194,10 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 	}
 	case GLUT_KEY_DOWN:
 	{
-		if (escaleras.bajarEscalera(jugador) || escaleras.subirEscalera(jugador) == 0) //ponia bajar
+		if (escaleras.bajarEscalera(jugador) || escaleras.subirEscalera(jugador) == 1) //ponia bajar
 		{
 			jugador.setVely(0.0f);
+			jugador.setVelx(0.0f);
 			jugador.setAcely(0.0f);
 			bajarescaleras = false;
 			break;

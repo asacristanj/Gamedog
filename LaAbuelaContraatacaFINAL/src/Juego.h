@@ -42,7 +42,7 @@ private:
 	ListaEscaleras escaleras;
 	ListaLlaves llaves;
 	bool impacto;//variable que es true si enemigo choca con jugador
-	bool bajarescaleras;
+	bool bajarescaleras,subirescaleras;
 	int chances=jugador.getNumBonus(); // veces que se puede recibir daño sin llegar a morir
 	int vidas=1; // veces que se puede reintentar el nivel tras morir
 	int nivel;//variable que encaja el nivel

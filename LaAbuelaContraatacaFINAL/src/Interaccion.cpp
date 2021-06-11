@@ -124,7 +124,7 @@ bool Interaccion::colisionEscalerabajar(Escalera e, Jugador j)
 	Vector2D pos = j.getPos();
 	Vector2D aux = pos - e.centro();
 	float distancia = aux.modulo();
-	if ((distancia <= j.getAltura()+2.5f)&&(limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y <= (e.limeny() + j.getAltura())))
+	if ((distancia <= j.getAltura()+2.5f)&&(limites.y <= pos.x) && (pos.x <= limites.x) && (pos.y >= (e.limeny() + j.getAltura())))
 		return true;
 	return false;
 }

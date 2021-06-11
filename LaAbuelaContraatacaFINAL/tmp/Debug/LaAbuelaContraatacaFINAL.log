@@ -1,3 +1,59 @@
-﻿  Jugador.cpp
-C:\Users\Raul\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\Raul\Documents\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
+﻿  Astrazeneca.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Astrazeneca.cpp(25,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  BloqueSorpresa.cpp
+  Bonus.cpp
+  CepaBrasileña.cpp
+  CepaBritanica.cpp
+  CepaChina.cpp
+  CepaIndia.cpp
+  Coordinador.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  DisparoGel.cpp
+  Enemigo.cpp
+  Escalera.cpp
+  Escenario.cpp
+  Factoria.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Interaccion.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Interaccion.cpp(327,20): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Janssen.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Janssen.cpp(26,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Juego.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Jugador.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  LaAbuelaContraataca.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaBloques.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaBonus.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Generando código...
+  Compilando...
+  ListaDisparosGel.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaEnemigos.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaEscaleras.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaLlaves.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  ListaPlataformas.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Jugador.h(22,23): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Llave.cpp
+  MascarillaTocha.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\MascarillaTocha.cpp(23,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  MurcielagoBoss.cpp
+  MurcielagoPequeño.cpp
+  ObjetoMovil.cpp
+  Pfizer.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Pfizer.cpp(25,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Plataforma.cpp
+  Quirurgica.cpp
+C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\src\Quirurgica.cpp(25,22): warning C4305: '=': truncamiento de 'double' a 'float'
+  Sputnik.cpp
+  Vector2D.cpp
+  Generando código...
+  LINK : no se encontró C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+  LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\dsanc\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
