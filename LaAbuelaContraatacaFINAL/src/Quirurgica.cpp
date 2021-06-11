@@ -3,9 +3,8 @@ Quirurgica::Quirurgica() {//constructor
 	tipo = QUIRURGICA;
 	color.b = 100;
 	color.g = color.r = 0;
-	lado = 2.0f;
-	sprite.setCenter(lado / 2.0f, lado / 2.0f);
-	sprite.setSize(lado, lado);
+	sprite.setCenter(lado/1.5f, lado / 2.0f);
+	sprite.setSize(lado*1.5f, lado);
 }
 Quirurgica::~Quirurgica(){//destructor
 
@@ -13,9 +12,8 @@ Quirurgica::~Quirurgica(){//destructor
 Quirurgica::Quirurgica(float l, float x, float y, float vx, float vy)
 {
 	tipo = QUIRURGICA;
-	lado = l;
-	sprite.setCenter(lado / 2.0f, lado / 2.0f);
-	sprite.setSize(lado, lado);
+	sprite.setCenter(lado / 1.5f, lado / 2.0f);
+	sprite.setSize(lado * 1.5f, lado);
 	posicion.x = x;
 	posicion.y = y;
 	velocidad.x = vx;
@@ -27,7 +25,7 @@ Quirurgica::Quirurgica(float l, float x, float y, float vx, float vy)
 void Quirurgica::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
-	glColor3f(0.0f, 0.0f, 100.0f);
+	//glColor3f(0.0f, 0.0f, 100.0f);
 	//glutSolidCube(lado);
 	sprite.draw();
 	glPopMatrix();

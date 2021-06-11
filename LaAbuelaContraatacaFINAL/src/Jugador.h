@@ -65,6 +65,7 @@ public:
 	void setEscalera(int i);
 	bool getEscalera() {return escalera;}
 	void incrementaLlaves();
+	void dañocaida();
 	//void IncrementaNumBonus();
 
 	friend class Interaccion;

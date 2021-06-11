@@ -1,5 +1,8 @@
 #include "Jugador.h"
 #include "freeglut.h"
+#include <iostream>
+using namespace std;
+
 Jugador::Jugador()
 {
 	altura = 1.2f;
@@ -23,16 +26,17 @@ Jugador::Jugador()
 	astra_activo = pfizer_activo = janssen_activo = false;
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
 	numLlaves = 0;
+
+	
 }
 void Jugador::dibuja()
 {
+	Jugador::dañocaida();
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y-0.1f, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
 
 	//glutSolidSphere(altura, 15, 15);
-
-	
 	//ANIMACION DEL SPRITE DEL PERSONAJE:
 	if (getNumBonus() == 0) { //SI NO TIENE BONUS, SKIN DEFAULT
 	if (velocidad.x > 0.01)sprite.flip(false, false);
@@ -70,6 +74,7 @@ void Jugador::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
+	
 	sprite.loop();
 	spritemasc.loop();
 	spriteffp2.loop();
@@ -138,6 +143,28 @@ void Jugador::setEscalera(int i)
 }
 void Jugador::incrementaLlaves() {
 	numLlaves++;
+}
+
+float aux1=0;
+int n = 0;
+void Jugador::dañocaida() {
+	//cin >> velocidad.y;
+	float aux2;
+	aux2 = aux1;
+	aux1 = posicion.y;
+	//cout<<"\npos: "<< posicion.y<<"";
+	//cout << "\naux1: " << aux1 << "";
+	//cout << "\naux2: " << aux2 << "";
+	
+	if ((aux2-aux1) > 0.5f)
+	{
+		n = 1;	
+	}
+	if ((n == 1) && (aux2 - aux1) < 0.5f) {
+		posicion = posicion_inicial;
+		n = 0;
+	}
+	
 }
 Jugador :: ~Jugador()
 {
