@@ -28,19 +28,19 @@ void Juego::inicializa()
 	llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
-	bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 9));
-	bonuses.agregar(new Janssen(1.5f,-4.0f,5));
-	bonuses.agregar(new MascarillaTocha(2.0f, 0.0f, 9));
-	bonuses.agregar(new Pfizer(0.5f,3.0f,6,0,0));
-	bonuses.agregar(new Quirurgica(2.0f, 4.0f, 10.0f, 0.0f, 0.0f));
+	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 12.0f));
+	//bonuses.agregar(new Janssen(1.5f, -3.0f, 12.0f));
+	bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 12.0f));
+	//bonuses.agregar(new Pfizer(0.5f, 3.0f, 12.0f, 0,0));
+	//bonuses.agregar(new Quirurgica(2.0f, 5.0f, 12.0f, 0.0f, 0.0f));
 	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, 0.0f, 0.0f));
 	bonuses.agregar(new Sputnik(0.5f,6.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
 	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 11.0f, 4.0f, 4.0f));
-	//enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	enemigos.agregar(new CepaBrasileña(1.0f, -2.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBrasileña(0.0f, 0.0f, 5.0f, -2.0f, 0.0f));
+	//enemigos.agregar(new CepaBritanica(1.0f, 0.0f, 0.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(1.0f, 0.0f, 15.0f, -8.0f, 0.0f));
 	//enemigos.agregar(new CepaIndia(1.5f, -4.0f, 10.0f, -1.0f, 0.0f));
@@ -73,6 +73,7 @@ void Juego::dibuja()
 
 void Juego::mueve()
 {
+	//cout << endl << "Posicion del jugador: " << jugador.getPos().x << ", " << jugador.getPos().y;
 	jugador.volverSalto();
 	jugador.volverVelocidadPfizer();
 	jugador.volverVelocidadJanssen();
@@ -114,9 +115,9 @@ void Juego::mueve()
 	{
 		for (int j = 0; j < disparos.getNumero(); j++)
 		{
-			if (Interaccion::colision(*disparos[i], *enemigos[i]))
+			if (Interaccion::colision(*disparos[j], *enemigos[i]))
 			{
-				disparos.eliminar(disparos[i]);
+				disparos.eliminar(disparos[j]);
 				enemigos[i]->setDisparoRecibido(true); // disparo recibido
 				cout << endl << "disparo recibido: " << enemigos[i]->getDisparoRecibido() << endl;
 

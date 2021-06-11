@@ -1,5 +1,6 @@
 #include "ListaEnemigos.h"
 #include <time.h>
+using namespace std;
 ListaEnemigos::ListaEnemigos() //Constructor de ListaEnemigos
 {
 	numero = 0;
@@ -83,7 +84,7 @@ void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción 
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
 			if (Interaccion::rebote(*chin, e))
-				eliminar(i);
+				eliminar(i);		
 		}
 		if (tipo ==  MURCIELAGOPEQUEÑO)
 		{
@@ -218,7 +219,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		if (tipo == MURCIELAGOPEQUEÑO) //En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
-			if (j.getPos().x > (murpeq->getPos().x - 0.02f) && j.getPos().x < (murpeq->getPos().x + 0.02f)) //Le disparan cuando estén en el mismo eje X
+			if (j.getPos().x >= (murpeq->getPos().x - 0.05f) && j.getPos().x <= (murpeq->getPos().x + 0.05f)) //Le disparan cuando estén en el mismo eje X
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(murpeq->getPos().x, murpeq->getPos().y); //Se dispara desde la posicion del murcielago
@@ -244,41 +245,6 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				}
 			}
 		}
-		/*
-		if (tipo == MURCIELAGOBOSS)//En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este (siempre que no le queden vidas, ya que tiene 3) y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
-		{
-			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
-			if (j.getPos().x > (murboss->getPos().x - 0.1f) && j.getPos().x < (murboss->getPos().x + 0.1f)) //Le disparan cuando estén en el mismo eje X
-			{
-				CepaChina* c = new CepaChina();
-				c->setPos(murboss->getPos().x, murboss->getPos().y);
-				c->setVel(0, murboss->getVelChina());
-				agregar(c);
-			}
-			if (Interaccion::colisionEncima(*murboss, j))
-			{
-				if (murboss->getVidas() > 1) // Le queda al menos una vida
-					murboss->setVidas(-1); // Resto una vida
-				else
-				{
-					int punt = murboss->getPunt();
-					punt += 50;
-					murboss->setPunt(punt);
-					eliminar(i);// Si no le quedan vidas muere
-				}
-			}
-			else if (Interaccion::colision(*murboss, j)) 
-			{
-				j.setNumBonus(j.GetNumBonus() - 1);
-				if (j.GetNumBonus() < 0) {
-					j.morir();
-				}
-				else {
-					eliminar(i);
-				}
-			}
-		}
-		*/
 	}
 }
 void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss con escenario y jugador
