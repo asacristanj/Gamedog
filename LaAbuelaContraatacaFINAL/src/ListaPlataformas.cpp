@@ -37,7 +37,7 @@ void ListaPlataformas::dibuja() {
 }
 void ListaPlataformas::rebote(Jugador& j)
 {
-	for (int i = 0; i < numero; i++)
+	for (int i = 0; i <numero; i++)
 		Interaccion::rebote(j, *(lista[i]));
 }
 

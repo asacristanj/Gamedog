@@ -3,7 +3,7 @@
 CepaChina::CepaChina()
 {
 	tipo = CEPACHINA;
-	altura = 2.0f;
+	altura = 1.5f;
 	sprite.setCenter(altura / 2.0f, altura / 2.0f); 
 	sprite.setSize(altura, altura); //DIMENSIONES DE UNA CEPA GENERICA
 	color.g = color.b = 0;
