@@ -66,7 +66,8 @@ void ListaLlaves::colision(Jugador& j) {
 	for (int i = 0; i < numero; i++) {
 		if (Interaccion::colision(*(lista[i]), j)) {
 			eliminar(i);
-			j.incrementaLlaves();
+			j.setNumLlaves(j.getNumLlaves()+1);
+			//j.incrementaLlaves();
 		}
 	}
 }

@@ -44,6 +44,7 @@ private:
 	bool impacto;//variable que es true si enemigo choca con jugador
 	bool bajarescaleras,subirescaleras,primeravez;
 	int chances=jugador.getNumBonus(); // veces que se puede recibir daño sin llegar a morir
+	int llaveJug = jugador.getNumLlaves();//llaves que tiene el jugador, a las 3 pasa el nivel
 	int vidas=1; // veces que se puede reintentar el nivel tras morir
 	int nivel;//variable que encaja el nivel
 public:
@@ -57,6 +58,8 @@ public:
 	void teclaEspecialUp(unsigned char key);
 	void setChances(int chance) { chances = chance; }
 	void setVidas(int vida) { vidas += vida; }
+	void setllaveJug(int llave) { llaveJug = llave; }
+	int getLlaves() { return llaveJug; }
 	int getChances() { return chances; }
 	int getVidas() { return vidas; }
 	bool cargarNivel();

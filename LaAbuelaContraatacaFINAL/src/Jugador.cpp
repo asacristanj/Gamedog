@@ -141,9 +141,9 @@ void Jugador::setEscalera(int i)
 	else
 		escalera = false;
 }
-void Jugador::incrementaLlaves() {
+/*void Jugador::incrementaLlaves() {
 	numLlaves++;
-}
+}*/
 
 float aux1=0;
 int n = 0;

@@ -2,6 +2,7 @@
 #include "freeglut.h"
 #include <math.h>
 #include "ETSIDI.h"
+#include <time.h>
 #include <iostream>
 using namespace std;
 
@@ -11,16 +12,11 @@ void Juego::inicializa()
 	y_ojo = 7.5;
 	z_ojo = 30;
 	nivel = 0;//establezco el nivel al principio de cada inicializa
-	jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
-	setVidas(1);//se establecen las vidas de nueva partida
 	cargarNivel();//cargo el nivel corrspondiente
-	bajarescaleras=subirescaleras = false;
-	primeravez = true;
-	impacto = false;//inicializo otra vez el impacto
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
-	enemigos.destruirContenido();//limpio tras game over
-	disparos.destruirContenido();//limpio tras game over
-	jugador.setPos(0.0f, 0.0f);//origen del jugador
+	//enemigos.destruirContenido();//limpio tras game over
+	//disparos.destruirContenido();//limpio tras game over
+	//jugador.setPos(0.0f, 0.0f);//origen del jugador
 	/*plataformas.agregar(new Plataforma(-8.0f, 4.0f, 2.0f, 4.0f));
 	plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
 	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
@@ -132,6 +128,7 @@ void Juego::mueve()
 	bloques.rebote(jugador);
 	bloques.CrearBonus(bonuses, jugador);
 	setChances(jugador.getNumBonus());//refrescamos las chances que tiene el jugador continuamente
+	setllaveJug(jugador.getNumLlaves());//refrescamos las llaves que tiene el jugador
 }
 void Juego::teclaEspecial(unsigned char key)
 {
@@ -296,14 +293,24 @@ void Juego::tecla(unsigned char key)
 bool Juego::cargarNivel() {
 	nivel++;
 	jugador.setPos(0, 0);
-	//enemigos.destruirContenido();
+	jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
+	jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
+	setVidas(1);//se establecen las vidas de nueva partida
+	bajarescaleras = subirescaleras = false;
+	primeravez = true;
+	impacto = false;//inicializo otra vez el impacto
+	enemigos.destruirContenido();
 	disparos.destruirContenido();
+	bonuses.destruirContenido();
+	bloques.destruirContenido();
+	escaleras.destruirContenido();
 	if (nivel == 1) {
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
 		enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
+		enemigos.agregar(new CepaIndia(2.0f, 10.0f, 8.0f, -1.0f, 0.0f));
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-4.0f, 6.0f, 0.0f, 6.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 9.0f, -6.0f, 9.0f));
@@ -311,6 +318,9 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-10.0f, 13.0f, -6.0f, 13.0f));
 		plataformas.agregar(new Plataforma(-1.0f, 16.0f, 6.0f, 16.0f));
 		bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
+		llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 
 	}
 	if (nivel == 2) {
@@ -319,11 +329,17 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(4.0f, 8.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-4.0f, 2.0f, 5.0f, 4.0f));
 		enemigos.agregar(new CepaBrasileña(1.0f, 2.0f, 5.0f, -2.0f, 0.0f));*/
+		llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	}
 	if (nivel == 3) {
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
+		llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
+		llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 		//nivel del boss
 	}
 	if (nivel <= 3) {

@@ -45,6 +45,7 @@ public:
 	bool getPfizerActivo() { return pfizer_activo; }
 	bool getJanssenActivo() { return janssen_activo; }
 	int getNumBonus() { return numbonus; }
+	int getNumLlaves() { return numLlaves; }
 	void setAltura(float nalt) { altura = nalt; }
 	void setAcely(float gravedad) { aceleracion.y = gravedad; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }
@@ -55,6 +56,7 @@ public:
 	void sethInicioPfizer(time_t tiempo) { horaInicioPfizer = tiempo; }
 	void sethInicioJanssen(time_t tiempo) { horaInicioJanssen = tiempo; }
 	void setNumBonus(int num) { numbonus = num; }
+	void setNumLlaves(int num) { numLlaves = num; }
 	void setImpulso(float imp) { impulso = imp; }
 	void volverSalto();
 	void volverVelocidadPfizer();
@@ -64,7 +66,7 @@ public:
 	bool suelo();
 	void setEscalera(int i);
 	bool getEscalera() {return escalera;}
-	void incrementaLlaves();
+	//void incrementaLlaves();
 	void dañocaida();
 	//void IncrementaNumBonus();
 

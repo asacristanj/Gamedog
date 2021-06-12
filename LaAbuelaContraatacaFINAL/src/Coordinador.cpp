@@ -1,6 +1,6 @@
 #include "Coordinador.h"
 Coordinador::Coordinador() {
-	estado=INICIO;
+	estado = INICIO;
 	contHist = 1;
 }
 Coordinador::~Coordinador() {
@@ -112,15 +112,11 @@ void Coordinador::mueve() {
 	if (estado == JUEGO) {
 		juego.mueve();
 		//aqui falta el añadir cuando ganes
-		/*if(condicion de pasar de nivel){
-		cargarNivel();
-		}*/
-		/*if (condicion de ganar) {
+		if (juego.getLlaves() == 3) {
 			if (!juego.cargarNivel()) {
 				estado = FIN;
 			}
-			*/
-		//}
+		}
 		if (juego.getChances() < 0) // no tengo bonus y muero
 		{
 			juego.setVidas(-1);// se descuenta una vida
@@ -173,16 +169,28 @@ void Coordinador::dibuja() {
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
 		ETSIDI::setTextColor(1, 0, 0);
-		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 32);
-		ETSIDI::printxy("GAME OVER", -5, 10);
-		ETSIDI::printxy("Pulsa -C- para continuar", -5, 5);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 60);
+		ETSIDI::printxy("GAME OVER", -7, 12);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 32);
+		ETSIDI::printxy("NEUMONIA BILATERAL", -7, 7);
+		ETSIDI::setTextColor(1, 0, 1);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
+		ETSIDI::printxy("PULSA -C- PARA IR AL MENU DE INICIO", -8, 1);
 		glPopMatrix();
 	}
 	else if (estado == FIN) {
-		juego.dibuja();
-		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 32);
-		ETSIDI::printxy("Chico estas mas dentro", -5, 10);
-		ETSIDI::printxy("Pulsa -C- para continuar", -5, 10);
+		//juego.dibuja();
+		gluLookAt(0, 7.5, 30,  // posicion del ojo
+			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
+			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
+		glPushMatrix();
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 50);
+		ETSIDI::printxy("ELIMINASTE EL COVID", -10, 10);
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
+		ETSIDI::printxy("PULSA C PARA CONTINUAR AL MENU DE INICIO", -8, 1);
+		glPopMatrix();
 	}
 	else if (estado == INSTRUCCIONES) {
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
