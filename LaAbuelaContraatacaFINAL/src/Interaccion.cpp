@@ -17,21 +17,21 @@ bool Interaccion::colisionDebajo(Jugador j, Plataforma p)
 }
 bool Interaccion::colisionLateralDerecha(Jugador j, Plataforma p)
 {
-	float ymin = p.limite1.y + j.getAltura();
-	float ymax = p.limite1.y - j.getAltura() - 0.5f;
-	float xmin = p.limite1.x + j.getAltura()/4.0f;
-	float distancia = p.distancia(j.getPos());
-	if (distancia <= j.getAltura() && j.getPos().y < ymin && j.getPos().y > ymax && j.getPos().x < xmin)//compara la distancia de la plataforma al jugador con un valor pequeño
+	Vector2D posj = j.getPos();
+	Vector2D limite1 = p.limite1;
+	Vector2D aux = posj - limite1;
+	float distancia = aux.modulo();
+	if (distancia < j.getAltura() && posj.y < j.getAltura() + limite1.y && j.getVel().x > 0.01f && Interaccion::colisionEncima(j, p) == false)
 		return true;
 	return false;
 }
 bool Interaccion::colisionLateralIzquierda(Jugador j, Plataforma p)
 {
-	float ymin = p.limite1.y + j.getAltura();
-	float ymax = p.limite1.y - j.getAltura() - 0.5f;
-	float xmax = p.limite2.x - j.getAltura()/4.0f;
-	float distancia = p.distancia(j.getPos());
-	if (distancia <= j.getAltura() && j.getPos().y < ymin && j.getPos().y > ymax && j.getPos().x > xmax)
+	Vector2D posj = j.getPos();
+	Vector2D limite2 = p.limite2;
+	Vector2D aux = posj - limite2;
+	float distancia = aux.modulo();
+	if (distancia < j.getAltura() && posj.y < j.getAltura() + limite2.y && j.getVel().x < 0.01f && Interaccion::colisionEncima(j, p) == false)
 		return true;
 	return false;
 }
