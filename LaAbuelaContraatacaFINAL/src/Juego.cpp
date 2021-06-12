@@ -309,6 +309,8 @@ bool Juego::cargarNivel() {
 		escaleras.agregar(new Escalera(-9.0f, -7.0f, 9.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 13.0f, -6.0f, 13.0f));
 		plataformas.agregar(new Plataforma(-1.0f, 16.0f, 6.0f, 13.0f));
+		bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
+
 	}
 	if (nivel == 2) {
 		//aqui se ponen con agregar lo que querais que haya en dicho nivel
