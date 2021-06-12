@@ -21,10 +21,10 @@ void Juego::inicializa()
 	enemigos.destruirContenido();//limpio tras game over
 	disparos.destruirContenido();//limpio tras game over
 	jugador.setPos(0.0f, 0.0f);//origen del jugador
-	//plataformas.agregar(new Plataforma(-8.0f, 4.0f, 2.0f, 4.0f));
-	//plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
-	//escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
-	//escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));
+	plataformas.agregar(new Plataforma(-8.0f, 4.0f, 2.0f, 4.0f));
+	plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
+	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
+	escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));
 	//llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
 	//Agregamos un bonus inicial
@@ -38,13 +38,13 @@ void Juego::inicializa()
 	//bonuses.agregar(new Sputnik(0.5f,6.5f,6));
 	//enemigos.agregar(new MurcielagoPequeño());
 	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
-	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 11.0f, 4.0f, 4.0f));
+	//enemigos.agregar(new MurcielagoBoss(2.0f, 0.0f, 16.0f, 4.0f, 4.0f));
      //enemigos.agregar(new CepaBrasileña(2.0f, -2.0f, 9.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(2.0f, 1.0f, 9.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(2.0f, 2.0f, 9.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(2.0f, 0.0f, 15.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(2.0f, -4.0f, 9.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
 
@@ -296,20 +296,21 @@ void Juego::tecla(unsigned char key)
 bool Juego::cargarNivel() {
 	nivel++;
 	jugador.setPos(0, 0);
-	enemigos.destruirContenido();
+	//enemigos.destruirContenido();
 	disparos.destruirContenido();
 	if (nivel == 1) {
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
+		/*enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-4.0f, 6.0f, 0.0f, 6.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 9.0f, -6.0f, 9.0f));
 		escaleras.agregar(new Escalera(-9.0f, -7.0f, 9.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 13.0f, -6.0f, 13.0f));
 		plataformas.agregar(new Plataforma(-1.0f, 16.0f, 6.0f, 13.0f));
-		bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
+		bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));*/
 
 	}
 	if (nivel == 2) {

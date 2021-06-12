@@ -21,4 +21,3 @@ protected:
 	Estado estado;
 	int contHist;
 };
-

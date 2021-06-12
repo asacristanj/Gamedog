@@ -9,6 +9,7 @@ Enemigo::Enemigo()
 	color.g = 100;
 	disparo_recibido = false;
 	pisoton = false;
+	vidas = 1;
 }
 Enemigo::Enemigo(float alt, float x, float y, float vx, float vy)
 {
@@ -21,6 +22,9 @@ Enemigo::Enemigo(float alt, float x, float y, float vx, float vy)
 	color.r = color.b = 0;
 	color.g = 100;
 	aceleracion.y = -9.8f;
+	vidas = 1;
+	pisoton = false;
+	disparo_recibido = false;
 }
 void Enemigo::dibuja()
 {
