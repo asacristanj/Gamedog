@@ -10,7 +10,7 @@ CepaBritanica::CepaBritanica()
 	posicion.x = 1.0f;
 	posicion.y = 5.0f;
 	velocidad.x = 3.0f;
-	aceleracion.y = -9.8f;
+	aceleracion.y = 0.0f;
 	vidas = 1;
 }
 CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
@@ -25,7 +25,7 @@ CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	color.r = color.b = 0;
 	color.g = 100;
-	aceleracion.y = -9.8f;
+	aceleracion.y = 0.0f;
 }
 void CepaBritanica::dibuja()
 {

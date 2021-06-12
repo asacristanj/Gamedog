@@ -279,7 +279,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 	//Función que manda un boole true si ha habido contacto entre un enemigo y el jugador de frente. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= (enem.getAltura()/2.0f + j.getAltura()/2.0f) && (enem.posicion.y >= j.posicion.y)))
+	if ((distancia <= (enem.getAltura()/2.0f) && (enem.posicion.y >= (j.posicion.y-(j.getAltura()/4.0f)))))
 		return true;
 	return false;
 }
@@ -288,7 +288,7 @@ bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador por encima del enemigo. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if (distancia <= (enem.getAltura()/2.0f+ (j.getAltura()/2.0f)) && (enem.posicion.y < j.posicion.y))//(enem.altura -(j.getAltura()/8.0f))
+	if (distancia <= (enem.getAltura()/2.0f) && (enem.posicion.y < (j.posicion.y -(j.getAltura()/4.0f))))//(enem.altura -(j.getAltura()/8.0f))
 		return true;
 	return false;
 }
@@ -297,12 +297,12 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 	//Función para que las CepasIndias no se puedan salir de las plataformas. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = p.limite2.x - (ind.getAltura()/8.0f);
 	float xmin = p.limite1.x + (ind.getAltura()/8.0f);
-	if (ind.posicion.x > xmax)
+	if (ind.posicion.x >= xmax)
 	{
 		ind.posicion.x = xmax;
 		ind.velocidad.x = -2.0f;
 	}
-	if (ind.posicion.x < xmin)
+	if (ind.posicion.x <= xmin)
 	{
 		ind.posicion.x = xmin;
 		ind.velocidad.x = 2.0f;
@@ -310,8 +310,10 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 	 //Además como pasaba con el jugador, para que se mantenga encima de la plataforma
 	float ymin = p.limite1.y;
 	float dist=p.distancia(ind.getPos());
-	if ((dist<=(ind.getAltura()/2.0f)) && ind.posicion.x >= xmin && ind.posicion.x <= xmax)//&&((ind.posicion.y - ind.altura / 2.0f) < ymin)
+	if ((dist <= (ind.getAltura())) && ind.posicion.x >= xmin && ind.posicion.x <= xmax)//&&((ind.posicion.y - ind.altura / 2.0f) < ymin)
+	{
 		ind.posicion.y = ymin + ind.getAltura() / 2.0f;
+	}
 }
 
 void Interaccion::rebote(CepaBritanica& brit, Plataforma p)

@@ -19,6 +19,7 @@ CepaIndia::CepaIndia(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
+	aceleracion.y = 0;
 	color.r = color.b = 0;
 	color.g = 100;
 }

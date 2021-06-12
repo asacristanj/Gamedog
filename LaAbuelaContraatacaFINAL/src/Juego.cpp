@@ -41,10 +41,10 @@ void Juego::inicializa()
 	//enemigos.agregar(new MurcielagoBoss(1.0f, 0.0f, 11.0f, 4.0f, 4.0f));
      //enemigos.agregar(new CepaBrasileña(2.0f, -2.0f, 9.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBrasileña(2.0f, 1.0f, 9.0f, -2.0f, 0.0f));
-	enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 5.0f, 2.0f, 0.0f));
+	//enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 5.0f, 2.0f, 0.0f));
 	//enemigos.agregar(new CepaBritanica(2.0f, 2.0f, 9.0f, -2.0f, 0.0f));
 	//enemigos.agregar(new CepaChina(2.0f, 0.0f, 15.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
+	enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
 	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
 }
 
