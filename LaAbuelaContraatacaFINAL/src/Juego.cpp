@@ -159,6 +159,7 @@ void Juego::teclaEspecial(unsigned char key)
 	case GLUT_KEY_DOWN:
 		if (escaleras.bajarEscalera(jugador)) //ponia bajar
 		{
+			jugador.setAcely(0.0f);
 			jugador.setVely(-5.0f);//-(jugador.getVelNormal() * jugador.getCoefVelx())
 			jugador.setVelx(0.0f);
 			bajarescaleras = true;

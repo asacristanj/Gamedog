@@ -36,6 +36,7 @@ public:
 	static void rebote(Jugador& j, BloqueSorpresa b);
 	static bool colisionEscalerasubir(Escalera e, Jugador j);
 	static bool colisionEscalerabajar(Escalera e, Jugador j);
+	static bool colisionEscalera(Escalera e, Jugador j);
 	//Bonus
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);
