@@ -50,8 +50,8 @@ public:
 	static void rebote(Bonus& b, Plataforma p);
 	static void rebote(Bonus& b, Escenario e);
 	//Enemigos
-	static bool rebote(Enemigo enem, Plataforma p);
-	static bool rebote(Enemigo enem, Escenario e);
+	static bool colision(Enemigo enem, Plataforma p);
+	static bool colision(Enemigo enem, Escenario e);
 	static bool colision(Enemigo enem, Jugador j);
 	static bool colisionEncima(Enemigo enem, Jugador j);
 	static bool ratio(CepaBritanica brit, Jugador j);
@@ -61,6 +61,7 @@ public:
 	static void rebote(CepaBrasileña& bra, Plataforma p);
 	static void rebote(CepaBritanica& brit, Escenario e);
 	static void rebote(CepaIndia& ind, Escenario e);
+	static void rebote(CepaBrasileña& bra, Escenario e);
 	static void rebote(MurcielagoPequeño& murpeq, Escenario e);
 	static void rebote(MurcielagoBoss& murboss, Escenario e, Jugador j);
 	static void rebote(Quirurgica& qui, Escenario e);

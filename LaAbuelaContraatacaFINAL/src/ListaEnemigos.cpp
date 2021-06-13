@@ -53,7 +53,7 @@ void ListaEnemigos::rebote(Plataforma p) // Método para gestionar la interacción
 		if (tipo == CEPACHINA)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-			if (Interaccion::rebote(*chin, p))
+			if (Interaccion::colision(*chin, p))
 				eliminar(i); //En este caso se quiere que si esta cepa toca la plataforma se elimine
 		}
 		//No están los murcielagos ya que nunca va a haber colisión entre ellos
@@ -77,13 +77,14 @@ void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción 
 		if (tipo == CEPABRASILEÑA)
 		{
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
-			if (Interaccion::rebote(*bra, e))
+			Interaccion::rebote(*bra, e);
+			if(Interaccion::colision(*bra, e))
 				eliminar(i);
 		}
 		if (tipo == CEPACHINA)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-			if (Interaccion::rebote(*chin, e))
+			if (Interaccion::colision(*chin, e))
 				eliminar(i);		
 		}
 		if (tipo ==  MURCIELAGOPEQUEÑO)

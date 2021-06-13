@@ -75,4 +75,3 @@ public:
 	void sonidos();
 	friend class Interaccion;
 };
-

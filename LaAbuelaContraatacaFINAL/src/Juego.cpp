@@ -312,19 +312,20 @@ bool Juego::cargarNivel() {
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
-		enemigos.agregar(new CepaIndia(2.0f, -4.0f, 10.0f, -1.0f, 0.0f));
-		enemigos.agregar(new CepaIndia(2.0f, 10.0f, 8.0f, -1.0f, 0.0f));
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
+		enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 5.0f, -6.0f, 0.0f));
 		bloques.agregar(new BloqueSorpresa(1.0f, 5.0f, 7.0f));
 		plataformas.agregar(new Plataforma(-4.0f, 6.0f, 0.0f, 6.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 9.0f, -6.0f, 9.0f));
+		enemigos.agregar(new CepaIndia(2.0f, -8.0f, 10.0f, -5.0f, 0.0f));
 		escaleras.agregar(new Escalera(-9.0f, -7.0f, 9.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 13.0f, -6.0f, 13.0f));
 		//bloques.agregar(new BloqueSorpresa(1.0f, -1.0f, 15.0f));
 		plataformas.agregar(new Plataforma(-1.0f, 15.0f, 10.0f, 15.0f));
-		//enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 16.0f, 0.0f, 0.0f));
+		enemigos.agregar(new CepaIndia(2.0f, 2.0f, 7.0f, 2.0f, 0.0f));
+		enemigos.agregar(new CepaBritanica(2.0f, 10.0f, 16.0f, 0.0f, 0.0f));
 		//bonuses.agregar(new Astrazeneca(1.0f, 2.0f, 18.0f, 0.0f, 0.0f));
-		bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
+		//bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
 		llaves.agregar(new Llave(1.0f, 6.0f, 17.0f));
 		escaleras.agregar(new Escalera(8.0f, 10.0f, 15.0f, 4.0f,0.0f));
 		//plataformas.agregar(new Plataforma(6.0f, 17.0f, 10.0f, 17.0f));
@@ -333,7 +334,7 @@ bool Juego::cargarNivel() {
 		escaleras.agregar(new Escalera(-3.0f, -1.0f, 21.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 25.0f, 10.0f, 25.0f));
 		enemigos.agregar(new CepaIndia(2.0f, 6.0f, 27.0f, -3.0f, 0.0f));
-		enemigos.agregar(new CepaBrasileña(1.0f, -5.0f, 26.0f, 0.0f, 0.0f));
+		enemigos.agregar(new CepaBrasileña(1.5f, -5.0f, 26.0f, -6.0f, 0.0f));
 		escaleras.agregar(new Escalera(-8.0f, -6.0f, 25.0f, 4.0f,0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 29.0f, -2.0f, 29.0f));
 		//plataformas y rama llave derecha
@@ -345,7 +346,7 @@ bool Juego::cargarNivel() {
 		//plataforma final de nivel
 		escaleras.agregar(new Escalera(-4.0f, -2.0f, 29.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 33.0f, 2.0f, 33.0f));
-		enemigos.agregar(new CepaBritanica(2.0f, -7.0f, 34.0f, 2.0f, 0.0f));
+		//enemigos.agregar(new CepaBritanica(2.0f, -7.0f, 34.0f, 2.0f, 0.0f));
 		bloques.agregar(new BloqueSorpresa(1.0f, -8.0f, 36.0f));
 		//parkour
 		plataformas.agregar(new Plataforma(0.0f, 36.0f, 3.0f, 36.0f));
@@ -354,10 +355,10 @@ bool Juego::cargarNivel() {
 		enemigos.agregar(new CepaIndia(2.0f, 0.0f, 43.0f, 2.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 45.0f, -8.0f, 45.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 49.0f, 10.0f, 49.0f));
-		enemigos.agregar(new CepaBritanica(2.0f, 4.0f, 50.0f, -1.0f, 0.0f));
+		//enemigos.agregar(new CepaBritanica(2.0f, 4.0f, 50.0f, -1.0f, 0.0f));
 		escaleras.agregar(new Escalera(5.0f, 7.0f, 49.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-7.0f, 53.0f, 7.0f, 53.0f));
-		enemigos.agregar(new CepaBrasileña(2.0f, -5.0f, 54.0f, 2.0f, 0.0f));
+		enemigos.agregar(new CepaBrasileña(2.0f, -5.0f, 54.0f, 6.0f, 0.0f));
 		enemigos.agregar(new CepaIndia(2.0f, -5.0f, 54.0f, -3.0f, 0.0f));
 		llaves.agregar(new Llave(1.0f, 7.0f, 56.0f, 0.0f, 0.0f));
 
