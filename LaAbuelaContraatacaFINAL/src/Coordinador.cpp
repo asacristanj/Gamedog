@@ -2,6 +2,7 @@
 Coordinador::Coordinador() {
 	estado = INICIO;
 	contHist = 1;
+	contInstr = 1;
 }
 Coordinador::~Coordinador() {
 
@@ -19,6 +20,21 @@ void Coordinador::teclaEspecial(unsigned char key) {
 		if (key == GLUT_KEY_LEFT && contHist != 1)
 		{
 			contHist--;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
+		}
+
+	}
+	if (estado == INSTRUCCIONES)
+	{
+
+		if (key == GLUT_KEY_RIGHT && contInstr != 2)
+		{
+			contInstr++;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
+		}
+		if (key == GLUT_KEY_LEFT && contInstr != 1)
+		{
+			contInstr--;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 
@@ -79,12 +95,21 @@ void Coordinador::tecla(unsigned char key) {
 		}
 	}
 	else if (estado == INSTRUCCIONES) {
-		if (key == 'i' || key == 'I') {
-			estado = INICIO;
-			key = 'Q';			//LIMPIAR BUFFER TECLADO
-		}
-		if (key == 'e' || key == 'E') {
-			estado = JUEGO;
+		if (contInstr == 2)
+		{
+			switch (key) {
+			case 'E': //empezar el juego
+			case 'e':
+				juego.inicializa();
+				estado = JUEGO;
+				break;
+			case 'I':  // volver al menú principal
+			case 'i':
+				contInstr = 1;
+				estado = INICIO;
+				break;
+			}
+
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
@@ -223,15 +248,40 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSA C PARA CONTINUAR AL MENU DE INICIO", -8, 1);
 		glPopMatrix();
 	}
-	else if (estado == INSTRUCCIONES) {
-		gluLookAt(0, 7.5, 30,  // posicion del ojo
-			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
+	else if (estado == INSTRUCCIONES && contInstr == 1) {
+		gluLookAt(2, 7.5, 37,  // posicion del ojo
+			2.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
+
 		ETSIDI::setTextColor(1, 0, 1);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 30);
-		ETSIDI::printxy("INSTRUCCIONES:", -5, 16);
+		ETSIDI::printxy("ENEMIGOS:", -5, 16);
 		ETSIDI::setTextColor(0, 0, 1);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/enemigos.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex3d(-14, -2, -0.1f);
+		glTexCoord2d(1, 1); glVertex3d(-9, -2, -0.1f);
+		glTexCoord2d(1, 0); glVertex3d(-9, 17, -0.1f);
+		glTexCoord2d(0, 0); glVertex3d(-14, 17, -0.1f);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 12);
+		ETSIDI::printxy("EN EL ULTIMO NIVEL ESTARA EL CULPABLE DEL COVID: EL GRAN MURCIELAGO.", -9, 13);
+		ETSIDI::printxy("¡ACABA CON EL Y ACABARA TODO!", -9, 12);
+		ETSIDI::printxy("CEPA BRITANICA: CUIDADO CON SUS EXPLOSIONES.", -9, 10);
+		ETSIDI::printxy("CEPA INDIA: PARECE INOFENSIVA PERO MATA IGUAL.", -9, 7);
+		ETSIDI::printxy("CEPA CHINA: SU HABILIDAD ESPECIAL ES HABER EMPEZADO TODO ESTO.", -9, 3);
+		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS SALTOS IMPREDECIBLES.", -9, -0.75f);
+
+		/*
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 		ETSIDI::printxy("PARA MOVER A LA ABUELA, USA LAS FLECHAS IZQUIERDA Y DERECHA", -13, 14);
 		ETSIDI::printxy("PARA SALTAR USA LA BARRA ESPACIADORA. PARA SUBIR Y BAJAR ESCALERAS LAS FLECHAS ARRIBA Y ABAJO", -13, 13);
@@ -249,9 +299,53 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PFIZER: ABUELA BOLT. AUMENTA SU VELOCIDAD", -11, 1);
 		ETSIDI::printxy("JANSSEN: PUEDE PASAR CUALQUIER COSA, MAS VELOCIDAD, MENOS VELOCIDAD O NADA", -11, 0);
 		ETSIDI::printxy("EN EL ULTIMO NIVEL ESTARA EL CULPABLE DEL COVID: EL GRAN MURCIELAGO. ¡ACABA CON EL Y ACABARA TODO!", -13, -1);
+		*/
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
-		ETSIDI::printxy("PULSA E PARA JUGAR, PULSA I PARA VOLVER AL INICIO",3, -2);
+		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
+		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", 3, -3);
+		ETSIDI::printxy("PULSA I PARA VOLVER AL INICIO", 3, -4);
+		glPopMatrix();
+	}
+	else if (estado == INSTRUCCIONES && contInstr == 2) {
+		//INSTRUCCIONES BONUSES
+		gluLookAt(2, 7.5, 37,  // posicion del ojo
+			2.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
+			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
+		glPushMatrix();
+		ETSIDI::setTextColor(1, 0, 1);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 30);
+		ETSIDI::printxy("BONUSES:", -5, 16);
+		ETSIDI::setTextColor(0, 0, 1);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/bonuses.png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex3d(-14, -2, -0.1f);
+		glTexCoord2d(1, 1); glVertex3d(-9, -2, -0.1f);
+		glTexCoord2d(1, 0); glVertex3d(-9, 17, -0.1f);
+		glTexCoord2d(0, 0); glVertex3d(-14, 17, -0.1f);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 12);
+		ETSIDI::printxy("MASCARILLA FFP2: PROPORCIONA 2 OPORTUNIDADES EXTRAS", -9, 13);
+		ETSIDI::printxy(" Y LA CAPACIDAD DE DISPARAR", -9, 12);
+		ETSIDI::printxy("MASCARILLA QUIRURGICA: PROPORCIONA UNA OPORTUNIDAD EXTRA.", -9, 10);
+		ETSIDI::printxy("SI COGES 2 ES IGUAL QUE UNA FFP2", -9, 9);
+		ETSIDI::printxy("PFIZER: ABUELA BOLT. AUMENTA SU VELOCIDAD.", -9, 7);
+		ETSIDI::printxy("ASTRAZENECA: AUMENTA EL SALTO DE LA ABUELA.", -9, 3);
+		ETSIDI::printxy("JANSSEN: PUEDE PASAR CUALQUIER COSA, MAS VELOCIDAD,", -9, -0.5f);
+		ETSIDI::printxy("MENOS VELOCIDAD O NADA", -9, -1.5f);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
+		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
+		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", 3, -3);
+		ETSIDI::printxy("PULSA E PARA JUGAR, PULSA I PARA VOLVER AL INICIO", 3, -4);
 		glPopMatrix();
 	}
 	else if (estado == HISTORIA && contHist == 1) {

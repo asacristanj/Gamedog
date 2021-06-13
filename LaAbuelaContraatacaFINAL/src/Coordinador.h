@@ -20,4 +20,5 @@ protected:
 	enum Estado {INICIO, JUEGO, PAUSA, GAMEOVER,FIN, INSTRUCCIONES, HISTORIA};
 	Estado estado;
 	int contHist;
+	int contInstr;
 };
