@@ -171,7 +171,7 @@ Bonus* ListaBonus::colision(Jugador& j)//funcion que controla si el jugador coli
 void ListaBonus::destruirContenido()//destruir correctamente los bonus del juego
 {
 	for (int i = 0; i < numero; i++) // destrucción de bonus contenidas
-		delete lista[i];
+		eliminar(i);
 	numero = 0; // inicializa lista
 }
 Bonus* ListaBonus:: operator[] (int i) //gestion del operador corchete

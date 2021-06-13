@@ -16,7 +16,7 @@
 #include "Astrazeneca.h"
 #include "Janssen.h"
 #include "Pfizer.h"
-#include "Sputnik.h"
+
 #include "MascarillaTocha.h"
 #include "Escalera.h"
 #include "Llave.h"

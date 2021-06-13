@@ -176,7 +176,6 @@
     <ClCompile Include="src\Pfizer.cpp" />
     <ClCompile Include="src\Plataforma.cpp" />
     <ClCompile Include="src\Quirurgica.cpp" />
-    <ClCompile Include="src\Sputnik.cpp" />
     <ClCompile Include="src\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +212,6 @@
     <ClInclude Include="src\Pfizer.h" />
     <ClInclude Include="src\Plataforma.h" />
     <ClInclude Include="src\Quirurgica.h" />
-    <ClInclude Include="src\Sputnik.h" />
     <ClInclude Include="src\Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
