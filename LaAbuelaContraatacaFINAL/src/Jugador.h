@@ -22,12 +22,11 @@ private:
 	float coef_vel_lenta = 1.0 / 3.0; // coeficiente para velocidad lenta
 	float acel_inicial = -30.0f;
 	float impulso = 17.0f; //impulso vertical inicial del salto
-	float aux1 = 0.0f; //variable auxiliar, daño por caida
 	bool tocandosuelo,escalera;
 	bool astra_activo,pfizer_activo,janssen_activo;
 	time_t horaInicioAstra, horaInicioPfizer, horaInicioJanssen;
 	int numLlaves;
-	int altura_max_caida = 9;
+	int altura_max_caida = 15;
 	bool daño_caida = false;
 	int puntuacion; // puntuacion de cada partida
 
@@ -41,7 +40,6 @@ public:
 	//void incrementaLlaves();
 	void dañocaida();
 	//void IncrementaNumBonus();
-	void sonidos();
 	//void crecer();
 	void volverSalto();
 	void volverVelocidadPfizer();
