@@ -12,6 +12,7 @@ CepaBritanica::CepaBritanica()
 	velocidad.x = 3.0f;
 	aceleracion.y = 0.0f;
 	vidas = 1;
+	inicializar_hora_inicio = false;
 }
 CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
 {
@@ -26,6 +27,7 @@ CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
 	color.r = color.b = 0;
 	color.g = 100;
 	aceleracion.y = 0.0f;
+	inicializar_hora_inicio = false;
 }
 void CepaBritanica::dibuja()
 {

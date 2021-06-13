@@ -135,9 +135,9 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			time_t horaActual = time(NULL); //Se coge todo el rato la hora actual
 			if (Interaccion::ratio(*brit, j)) //El juagdor entra en el ratio de explosión
 			{
-				if (inicializar_hora_inicio == false) //Si el temporizador ya ha sido usado
+				if (brit->getInicializarHora() == false) //Si el temporizador ya ha sido usado
 				{
-					inicializar_hora_inicio = true;
+					brit->setInicializarHora(true);
 					horaInicio = time(NULL); //Se actualiza hora de inicio para todos los enemigos CepaBritanica
 				}
 				brit->setVel(0, 0); //El enemigo se para
@@ -147,9 +147,6 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 					j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
 					if (j.getNumBonus() < 0) {
 						j.morir();
-					}
-					else {
-						eliminar(i);
 					}
 				}
 				else if ((horaActual - horaInicio) >= SEGUNDOS) //Momento de explosión
@@ -169,7 +166,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			}
 			else
 			{
-				if (inicializar_hora_inicio == true) //El temporizador se ha usado
+				if (brit->getInicializarHora() == true) //El temporizador se ha usado
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
@@ -177,7 +174,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 						punt += 30;
 						brit->setPunt(punt);
 						eliminar(i); //Se elimina el enemigo tras la explosion
-						inicializar_hora_inicio = false; //Se marca que se ha usado el temporizador
+						brit->setInicializarHora(false); //Se marca que se ha usado el temporizador
 					}
 				}
 			}

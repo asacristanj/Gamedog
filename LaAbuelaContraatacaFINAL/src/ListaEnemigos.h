@@ -7,7 +7,6 @@ class ListaEnemigos
 private:
 	Enemigo* lista[MAX_ENEMIGOS];
 	int numero;
-	bool inicializar_hora_inicio = false; //Variable que guarda si se ha usado el temporizador de la CepaBritanica
 public:
 	ListaEnemigos();
 	virtual ~ListaEnemigos();
