@@ -318,12 +318,12 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 		if (ind.posicion.x >= xmax)
 		{
 			ind.posicion.x = xmax;
-			ind.velocidad.x = -5.0f;
+			ind.velocidad.x = -ind.velocidad.x;
 		}
 		if (ind.posicion.x <= xmin)
 		{
 			ind.posicion.x = xmin;
-			ind.velocidad.x = 5.0f;
+			ind.velocidad.x = -ind.velocidad.x;
 		}
 	}
 	 //Además como pasaba con el jugador, para que se mantenga encima de la plataforma
