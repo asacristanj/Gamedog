@@ -1,8 +1,6 @@
 #include "Jugador.h"
 #include "freeglut.h"
-#include <iostream>
-using namespace std;
-
+using namespace ETSIDI;
 Jugador::Jugador()
 {
 	altura = 1.2f;
@@ -26,12 +24,12 @@ Jugador::Jugador()
 	astra_activo = pfizer_activo = janssen_activo = false;
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
 	numLlaves = 0;
-
+	
 	
 }
 void Jugador::dibuja()
 {
-	Jugador::dañocaida();
+	
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y-0.1f, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
@@ -74,13 +72,15 @@ void Jugador::mueve(float t)
 {
 	posicion = posicion + velocidad * t + aceleracion * (0.5f * t * t);
 	velocidad = velocidad + aceleracion * t;
-	
+	Jugador::sonidos();
+	Jugador::dañocaida();
 	sprite.loop();
 	spritemasc.loop();
 	spriteffp2.loop();
 }
 void Jugador::salto()
 {
+	play("sonidos/salto.wav");
 	setVel(velocidad.x, impulso);
 	tocandosuelo = false;
 }
@@ -145,27 +145,60 @@ void Jugador::setEscalera(int i)
 	numLlaves++;
 }*/
 
-float aux1=0;
-int n = 0;
 void Jugador::dañocaida() {
-	//cin >> velocidad.y;
+
+	float distmax = 0.0f;
 	float aux2;
 	aux2 = aux1;
 	aux1 = posicion.y;
-	//cout<<"\npos: "<< posicion.y<<"";
-	//cout << "\naux1: " << aux1 << "";
-	//cout << "\naux2: " << aux2 << "";
-	
-	if ((aux2-aux1) > 0.5f)
-	{
-		n = 1;	
+	//Aproximación de la distancia máxima entre frame y frame para que 
+	//la velocidad sea demasiado negativa como para que la abuela
+	//pueda soportarla cuando toque el suelo o una plataforma
+	if (altura_max_caida <= 5) //ok
+		distmax = 0.39f;
+	if (altura_max_caida == 6) //ok
+		distmax = 0.44f;
+	if (altura_max_caida == 7) //ok
+		distmax = 0.45f;
+	if (altura_max_caida == 8) //ok
+		distmax = 0.50f;
+	if (altura_max_caida == 9) //ok
+		distmax = 0.57f;
+	if (altura_max_caida == 10) //ok
+		distmax = 0.59f;
+	if (altura_max_caida == 11) //ok
+		distmax = 0.62f;
+	if (altura_max_caida == 12) //ok
+		distmax = 0.66f;
+	if (altura_max_caida == 13) //ok
+		distmax = 0.68f;
+	if (altura_max_caida == 14) //ok
+		distmax = 0.70f;
+	if (altura_max_caida == 15) //ok
+		distmax = 0.74f;
+	//A partir de aqui se puede aproximar a una linea recta
+	if (altura_max_caida >= 16)
+		distmax = 0.76f + 0.02f * (altura_max_caida - 16);
+
+	if ((aux2 - aux1) > distmax) //la velocidad en y ha sido durante un momeneto demasiado negativa, se activa el bool
+		daño_caida=true;
+
+	if ((daño_caida) && (aux2 - aux1) < 0.1f){ //se espera hasta que se vuelva a tocar el suelo para inflingir el daño
+		play("sonidos/caida.mp3");
+		numbonus--; //sufre daño por caida
+		daño_caida = false; //se resetea el bool
 	}
-	if ((n == 1) && (aux2 - aux1) < 0.5f) {
-		posicion = posicion_inicial;
-		n = 0;
-	}
-	
 }
+void Jugador::sonidos() {
+	bool playing = false;
+	//if (sprite.getState())
+		//play("sonidos/correr.mp3");
+	//if (spritemasc.getState())
+		//play("sonidos/correr.mp3");
+	//play("sonidos/caida.mp3");
+
+}
+
 Jugador :: ~Jugador()
 {
 

@@ -1,10 +1,14 @@
 #pragma once
 #include "ObjetoMovil.h"
 #include "ColorRVA.h"
+#include "ETSIDI.h"
+using ETSIDI::SpriteSequence;
+
 class Llave : public ObjetoMovil
 {private:
 	float lado;
 	ColorRVA color;
+	SpriteSequence sprite{ "imagenes/llave.png", 1 };
 public:
 	friend class Interaccion;
 	Llave();

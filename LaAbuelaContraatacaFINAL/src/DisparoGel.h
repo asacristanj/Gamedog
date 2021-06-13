@@ -9,7 +9,7 @@ class DisparoGel:public ObjetoMovil
 private:
 	float radio;
 	Vector2D origen;
-	SpriteSequence sprite{ "imagenes/disparo.png", 4 };
+	SpriteSequence sprite{ "imagenes/disparo.png", 1 };
 public:
 	DisparoGel();
 	virtual ~DisparoGel();

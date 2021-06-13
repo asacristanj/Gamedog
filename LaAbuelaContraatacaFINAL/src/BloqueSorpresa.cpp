@@ -6,12 +6,16 @@ BloqueSorpresa::BloqueSorpresa() {
 	color.b = 0;
 	posicion.x = posicion.y = 0;
 	lado = 1.0f;
+	sprite.setCenter(lado / 2.0f, lado / 2.0f);
+	sprite.setSize(lado, lado);
 	usado = false;
 }
 BloqueSorpresa::BloqueSorpresa(float l, float x, float y, unsigned char r,unsigned char g,unsigned char b){
 	posicion.x = x;
 	posicion.y = y;
 	lado = l;
+	sprite.setCenter(lado / 2.0f, lado / 2.0f);
+	sprite.setSize(lado, lado);
 	color.r = r;
 	color.g = g;
 	color.b = b;
@@ -23,9 +27,7 @@ BloqueSorpresa::~BloqueSorpresa() {
 void BloqueSorpresa::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
-	//glRotatef(30, 1, 1, 1);
-	glColor3f(color.r,color.g,color.b);//color aleatorio 
-	glutSolidCube(lado);
+	sprite.draw();
 	glPopMatrix();
 }
 float BloqueSorpresa::getlado() {
@@ -48,4 +50,7 @@ void BloqueSorpresa::setUsotrue() {
 }
 Vector2D BloqueSorpresa::getPos() {
 	return posicion;
+}
+void BloqueSorpresa::mueve(float t) {
+	sprite.loop();
 }

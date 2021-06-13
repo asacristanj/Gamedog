@@ -2,10 +2,13 @@
 #include "freeglut.h"
 #include "Vector2D.h"
 #include "ColorRVA.h"
+#include "ETSIDI.h"
+using ETSIDI::SpriteSequence;
 class BloqueSorpresa
 {
 private: 
 	ColorRVA color;
+	SpriteSequence sprite{ "imagenes/bloque.png", 1 };
 	float lado;
 	Vector2D posicion;
 	bool usado; // variable controla si el bloque ya ha sido usado 1, o si aún el jugador no lo ha usado 0
@@ -21,5 +24,6 @@ public:
 	bool getuso();
 	Vector2D getPos();
 	void setUsotrue();
+	void mueve(float t);
 };
 
