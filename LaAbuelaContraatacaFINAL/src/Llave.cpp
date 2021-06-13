@@ -29,6 +29,9 @@ Llave::~Llave() {
 
 }
 void Llave::dibuja() {
+	SpriteSequence sprite{ "imagenes/llave.png", 1 };
+	sprite.setCenter(lado / 2.0f, lado / 2.0f);
+	sprite.setSize(lado, lado);
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	sprite.draw();

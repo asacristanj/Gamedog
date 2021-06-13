@@ -91,7 +91,7 @@ void Juego::mueve()
 	bonuses.rebote(jugador);
 	llaves.mueve(0.025f);
 	llaves.colision(jugador);
-	//Interaccion::rebote(jugador, escenario);
+	Interaccion::rebote(jugador, escenario);
 	for (int i = 0; i < plataformas.getNumero(); i++)
 	{
 		enemigos.rebote(*plataformas[i]);
@@ -225,13 +225,13 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 		}
 		if (escaleras.subirEscalera(jugador) == 0)
 		{
-			//jugador.setVely(0.0f);
+			jugador.setVely(0.0f);
 			jugador.setAcely(-30.0f);
 			subirescaleras = false;
 			break;
 		}
-		/*if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())
-			jugador.salto();*/
+		if (plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo())
+			jugador.salto();
 	}
 	case GLUT_KEY_DOWN:
 	{
@@ -292,11 +292,11 @@ void Juego::tecla(unsigned char key)
 	{
 	case ' ':
 	{
-		//if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
-		//{
+		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
+		{
 			//cout << endl << "salta"<<jugador.getPos().y;
 			jugador.salto();
-		//}
+		}
 		break;
 	}
 	//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
@@ -354,6 +354,7 @@ bool Juego::cargarNivel() {
 	bloques.destruirContenido();
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
+	llaves.destruirContenido();
 	if (nivel == 1) 
 	{
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
@@ -488,10 +489,16 @@ bool Juego::cargarNivel() {
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
-		llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
-		llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
-		llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
+		//llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
+		//llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
+		//llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
 		//nivel del boss
+		escaleras.agregar(new Escalera(-1.0f, 1.0f, 0.0f, 4.0f, 2.0f));
+		plataformas.agregar(new Plataforma(-10.0f, 4.0f, 10.0f, 4.0f));
+		plataformas.agregar(new Plataforma(-6.0f, 8.0f, 6.0f, 8.0f));
+		plataformas.agregar(new Plataforma(-10.0f, 12.0f, -8.0f, 12.0f));
+		plataformas.agregar(new Plataforma(8.0f, 12.0f, 10.0f, 12.0f));
+		plataformas.agregar(new Plataforma(-4.0f, 15.0f, 4.0f, 15.0f));
 	}
 	if (nivel <= 3) {
 		return true;
