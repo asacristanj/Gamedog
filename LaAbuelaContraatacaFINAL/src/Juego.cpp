@@ -15,6 +15,7 @@ void Juego::inicializa()
 	//setRecordFile(10);
 	nivel = 0;//establezco el nivel al principio de cada inicializa
 	cargarNivel();//cargo el nivel corrspondiente
+	//enemigos.agregar(new MurcielagoPequeño(1.5f, -2.0f, 10.0f, -5.0f, 1.0f));
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
 	//enemigos.destruirContenido();//limpio tras game over
 	//disparos.destruirContenido();//limpio tras game over
@@ -90,8 +91,7 @@ void Juego::mueve()
 	bonuses.rebote(jugador);
 	llaves.mueve(0.025f);
 	llaves.colision(jugador);
-	Interaccion::rebote(jugador, escenario);
-	//Interaccion::rebote(jugador, plataforma);
+	//Interaccion::rebote(jugador, escenario);
 	for (int i = 0; i < plataformas.getNumero(); i++)
 	{
 		enemigos.rebote(*plataformas[i]);
@@ -292,11 +292,11 @@ void Juego::tecla(unsigned char key)
 	{
 	case ' ':
 	{
-		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
-		{
-			cout << endl << "salta"<<jugador.getPos().y;
+		//if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
+		//{
+			//cout << endl << "salta"<<jugador.getPos().y;
 			jugador.salto();
-		}
+		//}
 		break;
 	}
 	//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
@@ -354,11 +354,13 @@ bool Juego::cargarNivel() {
 	bloques.destruirContenido();
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
-	if (nivel == 1) {
+	if (nivel == 1) 
+	{
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
+		jugador.setPuntuacion(0);
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 5.0f, -6.0f, 0.0f)); //
 		bloques.agregar(new BloqueSorpresa(1.0f, 5.0f, 7.0f));
@@ -410,20 +412,18 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-5.0f, 49.0f, 10.0f, 49.0f));
 		//enemigos.agregar(new CepaBritanica(2.0f, 4.0f, 50.0f, -1.0f, 0.0f));
 		escaleras.agregar(new Escalera(5.0f, 7.0f, 49.0f, 4.0f, 0.0f));
-		plataformas.agregar(new Plataforma(-5.0f, 53.0f, 5.0f, 53.0f));
+		plataformas.agregar(new Plataforma(-10.0f, 53.0f, 10.0f, 53.0f));
 		enemigos.agregar(new CepaBrasileña(2.0f, -5.0f, 54.0f, 6.0f, 0.0f));
 		enemigos.agregar(new CepaIndia(2.0f, -5.0f, 54.0f, -3.0f, 0.0f));
 		bonuses.agregar(new Quirurgica(1.0f, 0.0f, 54.0f));
 		plataformas.agregar(new Plataforma(-8.0f, 57.0f, -6.0f, 57.0f));
 		plataformas.agregar(new Plataforma(6.0f, 57.0f, 8.0f, 57.0f));
-		enemigos.agregar(new MurcielagoPequeño(1.5f, 2.0f, 59.0f, 5.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 61.0f, -9.0f, 61.0f));
 		plataformas.agregar(new Plataforma(9.0f, 61.0f, 10.0f, 61.0f));
-		enemigos.agregar(new MurcielagoPequeño(1.5f, -2.0f, 63.0f, -5.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-8.0f, 65.0f, -6.0f, 65.0f));
 		plataformas.agregar(new Plataforma(6.0f, 65.0f, 8.0f, 65.0f));
-		enemigos.agregar(new MurcielagoPequeño(1.5f, -1.0f, 63.0f, -2.5f, 0.0f));
-		enemigos.agregar(new MurcielagoPequeño(1.5f, 1.0f, 63.0f, 2.5f, 0.0f));
+		enemigos.agregar(new MurcielagoPequeño(1.5f, -1.0f, 67.5f, -3.0f, 3.0f));
+		enemigos.agregar(new MurcielagoPequeño(1.5f, 1.0f, 67.5f, 3.0f, 3.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 70.0f, 5.0f, 70.0f));
 		enemigos.agregar(new CepaIndia(2.0f, 2.0f, 71.0f, 3.0f, 0.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 71.0f, -3.0f, 0.0f));

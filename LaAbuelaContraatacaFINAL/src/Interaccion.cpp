@@ -445,8 +445,8 @@ void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MO
 	float xmax = e.pared_dcha.limite2.x - (murpeq.getAltura() / 2.0f);
 	float xmin = e.pared_izq.limite2.x + (murpeq.getAltura() / 2.0f);;
 	static const float posicion_referencia = murpeq.getPos().y; // referencia del movimiento
-	float ymax = posicion_referencia + 0.25f;
-	float ymin = posicion_referencia - 0.25f;
+	float ymax = posicion_referencia + 1.0f;
+	float ymin = posicion_referencia - 1.0f;
 	if(murpeq.posicion.y > ymax)
 	{
 		murpeq.posicion.y = ymax;
@@ -544,7 +544,7 @@ bool Interaccion::ratio(CepaBritanica brit, Jugador j)
 	Vector2D posenemigo = brit.getPos();
 	posenemigo.y -= brit.getAltura();
 	float distancia = (brit.getPos() - j.getPos()).modulo();
-	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 2.0f))
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 1.0f))
 		return true;
 	return false;
 }
@@ -557,7 +557,7 @@ bool Interaccion::ratioExplosion(CepaBritanica brit, Jugador j)
 	posenemigo.y -= brit.getAltura();
 	//((posjugador.y+0.1f>=posenemigo.y) || (posenemigo.y + 0.1f >= posjugador.y))
 	float distancia = (brit.getPos() - j.getPos()).modulo();
-	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 3.0f))
+	if ((posjugador.y + 0.1f >= posenemigo.y) && distancia <= ((brit.getAltura() / 2.0f) + (j.getAltura() / 2.0f) + 4.0f))
 		return true;
 	return false;
 }

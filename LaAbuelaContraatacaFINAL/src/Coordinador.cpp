@@ -148,7 +148,8 @@ void Coordinador::teclaEspecialUp(unsigned char key) {
 	}
 }
 void Coordinador::mueve() {
-	if (estado == JUEGO) {
+	if (estado == JUEGO) 
+	{
 		juego.mueve();
 		//aqui falta el añadir cuando ganes
 		if (juego.getLlaves() == 3) {
@@ -162,6 +163,10 @@ void Coordinador::mueve() {
 			if(juego.getVidas() < 1) // si no quedan vidas
 				estado = GAMEOVER;
 		}
+	}
+	if (estado == INICIO)
+	{
+		juego.setPuntuacionJugador(0);
 	}
 }
 void Coordinador::dibuja() {
@@ -207,7 +212,6 @@ void Coordinador::dibuja() {
 		char record[10];
 		_itoa_s(juego.getPuntuacionJugador(), puntuacion, 10);
 		_itoa_s(juego.getRecord(), record, 10);
-
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 

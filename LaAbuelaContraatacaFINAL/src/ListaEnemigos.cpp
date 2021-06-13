@@ -141,11 +141,12 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				brit->setVel(0, 0); //El enemigo se para
 				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j)) //Si se tocan también afecta al jugador
 				{
-					eliminar(i);
 					j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
-					if (j.getNumBonus() < 0) {
+					if (j.getNumBonus() < 0) 
+					{
 						j.morir();
 					}
+					eliminar(i);
 				}
 				else if ((horaActual - horaInicio) >= SEGUNDOS) //Momento de explosión
 				{
@@ -156,10 +157,10 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 						{
 							j.morir();
 						}
-						else {
-							eliminar(i);
-						}
 					}
+					else
+						j.setPuntuacion(30); // +30 puntos
+					eliminar(i);
 				}
 			}
 			else
@@ -168,7 +169,16 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
-						j.setPuntuacion(30); // +30 puntos
+						if (Interaccion::ratioExplosion(*brit, j))
+						{
+							j.setNumBonus(j.getNumBonus() - 1);//Disminuir el bonus
+							if (j.getNumBonus() < 0)
+							{
+								j.morir();
+							}
+						}
+						else
+							j.setPuntuacion(30); // +30 puntos
 						eliminar(i); //Se elimina el enemigo tras la explosion
 						brit->setInicializarHora(false); //Se marca que se ha usado el temporizador
 					}
@@ -198,26 +208,28 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 		if (tipo == CEPACHINA)//En la CepaChina se quiere que si el jugador toca el enemigo los 2 mueran
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-		 if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)) //Si hay colisión sea cual sea los dos mueren (si el jugador no tiene bonus obviamente)
-		 {
-			 eliminar(i);
-			 j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
-			 if (j.getNumBonus() < 0) 
-			 {
-				 j.morir();
-			 }
-		 }
+		    if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)) //Si hay colisión sea cual sea los dos mueren (si el jugador no tiene bonus obviamente)
+		    {
+			    eliminar(i);
+			    j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
+			     if (j.getNumBonus() < 0) 
+			     {
+				     j.morir();
+			     }
+		    }
 		}
 		if (tipo == MURCIELAGOPEQUEÑO) //En el MurcielagoPEqueño se quiere que si el jugador salta por encima del enemigo se elimine este y si choca de frente que muera el jugador. Además, el Murcielago le disparará una CepaChina cada vez que esten uno encima de otro.
 		{
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
-			if (j.getPos().x >= (murpeq->getPos().x - 0.05f) && j.getPos().x <= (murpeq->getPos().x + 0.05f)) //Le disparan cuando estén en el mismo eje X
+			Vector2D pos= murpeq->getPos();
+			if ((pos.x > 7.95f && pos.x < 8.00f) || (pos.x > 4.95f && pos.x < 5.00f) || (pos.x < -7.95f && pos.x > -8.00f) || (pos.x < -4.95f && pos.x > -5.00f)) //Le disparan cuando estén en el mismo eje X //j.getPos().x >= (murpeq->getPos().x - 0.05f) && j.getPos().x <= (murpeq->getPos().x + 0.05f)
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(murpeq->getPos().x, murpeq->getPos().y); //Se dispara desde la posicion del murcielago
-				c->setVel(0.0f, murpeq->getVelChina()); //Se coge una velocidad que apunta al jugador dentro de las leyes de la física
+				c->setVel(0.0f, murpeq->getVelChina()); //Se coge una velocidad que apunta al jugador dentro de las leyes de la física //murpeq->getVelChina()
 				agregar(c);
 			}
+			//(pos.x > 7.45f && pos.x < 7.50f) || (pos.x > 3.95f && pos.x < 4.00f) || (pos.x > -1.05f && pos.x < 1.00f)|| (pos.x < -6.95f && pos.x > -7.00f) || (pos.x < -3.95f && pos.x > -4.00f)
 			if (Interaccion::colisionEncima(*murpeq, j))
 			{
 				j.setPuntuacion(35); // +35 puntos
@@ -230,14 +242,15 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					j.morir();
 				}
-				else {
+				else 
+				{
 					eliminar(i);
 				}
 			}
 		}
 	}
 }
-void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss con escenario y jugador
+void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss con escenario y jugador;;
 {
 	for (int i = numero - 1; i >= 0; i--)
 	{
