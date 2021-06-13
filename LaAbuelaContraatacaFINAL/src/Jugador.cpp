@@ -1,5 +1,7 @@
 #include "Jugador.h"
 #include "freeglut.h"
+#include <iostream>
+using namespace std;
 using namespace ETSIDI;
 Jugador::Jugador()
 {
@@ -20,6 +22,9 @@ Jugador::Jugador()
 	aceleracion.y = acel_inicial;
 	posicion.x = posicion_inicial.x;
 	posicion.y = posicion_inicial.y;
+	//condiciones iniciales de velocidad
+	velocidad.y = 0;
+	velocidad.x = 0;
 	numbonus = 0;
 	astra_activo = pfizer_activo = janssen_activo = false;
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
@@ -178,13 +183,13 @@ void Jugador::dañocaida() {
 	//A partir de aqui se puede aproximar a una linea recta
 	if (altura_max_caida >= 16)
 		distmax = 0.76f + 0.02f * (altura_max_caida - 16);
-
-	if ((aux2 - aux1) > distmax) //la velocidad en y ha sido durante un momeneto demasiado negativa, se activa el bool
-		daño_caida=true;
-
+	cout << velocidad.y << endl;
+	if ((aux2 - aux1) > distmax) { //la velocidad en y ha sido durante un momeneto demasiado negativa, se activa el bool
+		daño_caida = true;
+	}
 	if ((daño_caida) && (aux2 - aux1) < 0.1f){ //se espera hasta que se vuelva a tocar el suelo para inflingir el daño
 		play("sonidos/caida.mp3");
-		numbonus--; //sufre daño por caida
+		//numbonus--; //sufre daño por caida
 		daño_caida = false; //se resetea el bool
 	}
 }

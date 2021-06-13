@@ -56,6 +56,7 @@ public:
 	float getVelLenta() { return coef_vel_lenta; }
 	float getCoefVelx() { return coeficiente_velx; }
 	float getVelocidadRebote() { return velocidad_rebote; }
+	bool getDañoCaida() { return daño_caida; }
 	bool getAstraActivo() { return astra_activo; }
 	bool getPfizerActivo() { return pfizer_activo; }
 	bool getJanssenActivo() { return janssen_activo; }
@@ -64,6 +65,7 @@ public:
 	bool getEscalera() { return escalera; }
 	int getPuntuacion() { return puntuacion; }
 	// sets
+	void setDañoCaida(bool shik) { daño_caida = shik; }
 	void setAltura(float nalt) { altura = nalt; }
 	void setAcely(float gravedad) { aceleracion.y = gravedad; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }

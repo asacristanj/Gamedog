@@ -62,3 +62,12 @@ void ListaEscaleras::eliminar(int index)//Funcion para eliminar enemigos correct
 	for (int i = index; i < numero; i++)
 		lista[i] = lista[i + 1];
 }
+void ListaEscaleras::eliminar(Escalera* e)
+{
+	for (int i = 0; i < numero; i++)
+		if (lista[i] == e)
+		{
+			eliminar(i);
+			return;
+		}
+}

@@ -19,12 +19,14 @@ void Coordinador::teclaEspecial(unsigned char key) {
 		if (key == GLUT_KEY_LEFT && contHist != 1)
 		{
 			contHist--;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 
 	}
 
 	if (estado == JUEGO) {
 		juego.teclaEspecial(key);
+		key = 'Q';			//LIMPIAR BUFFER TECLADO
 	}
 }
 void Coordinador::tecla(unsigned char key) {
@@ -32,47 +34,58 @@ void Coordinador::tecla(unsigned char key) {
 		if (key == 'e' || key == 'E') {
 			juego.inicializa();
 			estado = JUEGO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 's' || key == 'S') {
 			exit(0);
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 'i' || key == 'I') {
 			estado = INSTRUCCIONES;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 'h' || key == 'H') {
 			estado = HISTORIA;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == JUEGO) {
 		juego.tecla(key);
 		if (key == 'p' || key == 'P') {
 			estado = PAUSA;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == PAUSA) {
 		if (key == 'c' || key == 'C') {
 			estado = JUEGO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 's' || key == 'S') {
 			estado = INICIO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == GAMEOVER) {
 		if (key == 'c' || key == 'C') {
 			estado = INICIO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == FIN) {
 		if (key == 'c' || key == 'C') {
 			estado = INICIO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == INSTRUCCIONES) {
 		if (key == 'i' || key == 'I') {
 			estado = INICIO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 'e' || key == 'E') {
 			estado = JUEGO;
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == HISTORIA) {
@@ -81,6 +94,7 @@ void Coordinador::tecla(unsigned char key) {
 			{
 				// saltar toda la historia e ir a la última página
 				contHist = 3;
+				key = 'Q';			//LIMPIAR BUFFER TECLADO
 			}
 			if (contHist == 3)
 			{

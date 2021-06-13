@@ -16,6 +16,8 @@ public:
 	int getNumero() { return numero; }
 	void destruirContenido();
 	void rebote(Jugador& j);
+	void eliminar(BloqueSorpresa* b);
+	void eliminar(int index);
 	void CrearBonus(ListaBonus& b, Jugador j);
 	BloqueSorpresa* operator [](int i);
 };

@@ -23,9 +23,28 @@ bool ListaBloques::agregar(BloqueSorpresa *b){
 		return false;
 	return true;
 }
+void ListaBloques::eliminar(int index)//funcion que reordena correctamente el array tras eliminar el bonus de la lista
+{
+	if ((index < 0) || (index >= numero))
+		return;
+	delete lista[index];
+	numero--;
+	for (int i = index; i < numero; i++)
+		lista[i] = lista[i + 1];
+}
+void ListaBloques::eliminar(BloqueSorpresa* b)
+{
+	for (int i = 0; i < numero; i++)
+		if (lista[i] == b)
+		{
+			eliminar(i);
+			return;
+		}
+}
 void ListaBloques::destruirContenido() {
-	for (int i = 0; i <numero; i++)
-		delete lista[i];
+	for (int i = 0; i < numero; i++)
+		//delete lista[i];
+		eliminar(i);
 }
 void ListaBloques::rebote(Jugador& j) {
 	for (int i = 0; i <numero; i++) {

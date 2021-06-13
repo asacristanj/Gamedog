@@ -16,6 +16,7 @@ public:
 	int getNumero() { return numero; }
 	void destruirContenido();
 	void eliminar(int index);
+	void eliminar(Plataforma* p);
 	void rebote(Jugador& j);
 	bool colisionEncima(Jugador j);
 	Plataforma* operator [](int i);

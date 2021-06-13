@@ -299,68 +299,41 @@ void Juego::tecla(unsigned char key)
 		}
 		break;
 	}
-	if (jugador.getNumBonus() == 2) {//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
+	//solo existen disparos cuando el jugador tiene 2 bonus que es la mascarilla tocha
 	case 'w':
-	{/*
-		//incorporo disparos dependiendo del bonus hacia arriba
-		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)){
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
-			d->setVel(0.0f, 6.0f);
+	{
+		if (jugador.getNumBonus() == 2) {
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
+			d->setVel(0, 6.0f);
 			disparos.agregar(d);
 		}
-
-		break;
-	*/
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(0, 6.0f);
-		disparos.agregar(d);
 		break;
 	}
 	case 'a':
-	{/*
-		//incorporo disparos dependiendo del bonus hacia izquierda
-		if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus() == 2)) {
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
+	{
+		//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
+		if (jugador.getNumBonus() == 2) {
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
 			d->setVel(-6.0f, 0);
 			disparos.agregar(d);
 		}
-		break;
-		*/
-		//Se crea un nuevo disparo y se dispara en la posición actual del jugador, para hacer la animación que la dispara él
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(-6.0f, 0);
-		disparos.agregar(d);
 		break;
 
 	}
 	case 'd':
 	{
-		//incorporo disparos dependiendo del bonus hacia derecha
-		/*if (disparos.getNumero() < MAX_DISPAROS && (jugador.GetNumBonus()==2)) {
-			DisparoGel* d = Factoria::CrearDisparo(jugador);
-			//Vector2D pos = jugador.getPos();
-			//d->setPos(pos.x, pos.y);
+		if (jugador.getNumBonus() == 2) {
+			DisparoGel* d = new DisparoGel();
+			Vector2D pos = jugador.getPos();
+			d->setPos(pos.x, pos.y);
 			d->setVel(6.0f, 0);
 			disparos.agregar(d);
 		}
 		break;
-		*/
-
-		DisparoGel* d = new DisparoGel();
-		Vector2D pos = jugador.getPos();
-		d->setPos(pos.x, pos.y);
-		d->setVel(6.0f, 0);
-		disparos.agregar(d);
-		break;
-	}
 	}
 	}
 }
@@ -372,6 +345,7 @@ bool Juego::cargarNivel() {
 	jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 	setVidas(1);//se establecen las vidas de nueva partida
 	bajarescaleras = subirescaleras = false;
+	jugador.setDañoCaida(false);
 	primeravez = true;
 	impacto = false;//inicializo otra vez el impacto
 	enemigos.destruirContenido();
@@ -466,4 +440,7 @@ Juego::~Juego()
 	enemigos.destruirContenido();
 	disparos.destruirContenido();
 	bonuses.destruirContenido();//destruyo correctamente los bonus
+	plataformas.destruirContenido();
+	escaleras.destruirContenido();
+	bloques.destruirContenido();
 }

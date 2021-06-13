@@ -1,5 +1,5 @@
 #pragma once
-#define MAX_DISPAROS 10
+#define MAX_DISPAROS 3
 #include "DisparoGel.h"
 #include "Interaccion.h"
 class ListaDisparosGel

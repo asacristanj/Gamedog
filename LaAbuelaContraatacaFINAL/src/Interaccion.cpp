@@ -68,7 +68,7 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 		j.tocandosuelo = true;
 	}
 	else
-		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial
+		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial// que la hemos cambiado por 30
 	if (Interaccion::colisionDebajo(j, p) && j.posicion.x < xmax && j.posicion.x > xmin)
 	{
 		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
@@ -95,8 +95,12 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 
 	//Para que el jugador se mantenga encima del escenario
 	float ymin = e.suelo.limite1.y;
-	if ((j.getPos().y - j.getAltura()) < ymin) 
+	if ((j.getPos().y - j.getAltura()) <= ymin) {
+		j.velocidad.y = 0.0f;
+		j.aceleracion.y = 0.0f;
 		j.posicion.y = ymin + j.getAltura();
+		// freno al personaje
+	}
 }
 
 bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)

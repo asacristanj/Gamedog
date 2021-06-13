@@ -56,3 +56,12 @@ Plataforma* ListaPlataformas:: operator[] (int i) //Funcion que ajusta el simbol
 		i = 0;
 	return lista[i];
 }
+void ListaPlataformas::eliminar(Plataforma* p)
+{
+	for (int i = 0; i < numero; i++)
+		if (lista[i] == p)
+		{
+			eliminar(i);
+			return;
+		}
+}
