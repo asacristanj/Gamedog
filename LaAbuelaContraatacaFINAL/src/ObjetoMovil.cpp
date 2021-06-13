@@ -30,6 +30,3 @@ void ObjetoMovil::setVelx(float vx)
 void ObjetoMovil::setVely(float vy) {
 	velocidad.y = vy;
 }
-void ObjetoMovil::setPunt(int punt) {
-	puntuacion= punt;
-}

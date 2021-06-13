@@ -25,6 +25,9 @@ BloqueSorpresa::~BloqueSorpresa() {
 
 }
 void BloqueSorpresa::dibuja() {
+	SpriteSequence sprite{ "imagenes/bloque.png", 1 };
+	sprite.setCenter(lado / 2.0f, lado / 2.0f);
+	sprite.setSize(lado, lado);
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	sprite.draw();

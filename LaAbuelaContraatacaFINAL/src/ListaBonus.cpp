@@ -102,9 +102,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			Quirurgica* q = (Quirurgica*)lista[i];
 			if (Interaccion::colision(*q, j)) {
 				Factoria::CogerQuirurgica(j);//funcion que gobierna lo que pasa al coger la quirurgica
-				int punt = q->getPunt();
-				punt += 5;
-				q->setPunt(punt);
+				j.setPuntuacion(5); // +5 puntos
 				eliminar(i);
 			}
 		}
@@ -112,9 +110,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			MascarillaTocha* m = (MascarillaTocha*)lista[i];
 			if (Interaccion::colision(*m, j)) {
 				Factoria::CogerMascarillaTocha(j);//funcion que gobierna lo que pasa al coger la mascarilla tocha
-				int punt = m->getPunt();
-				punt += 10;
-				m->setPunt(punt);
+				j.setPuntuacion(10); // +10 puntos
 				eliminar(i);
 			}
 		}
@@ -124,9 +120,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			if (Interaccion::colision(*a, j))
 			{
 				Factoria::CogerAstrazeneca(j);//funcion que gobierna lo que pasa al coger la astrazeneca
-				int punt = a->getPunt();
-				punt += 15;
-				a->setPunt(punt);
+				j.setPuntuacion(15); // +15 puntos
 				eliminar(i);
 				if (j.getAstraActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
@@ -140,9 +134,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			Janssen* jan = (Janssen*)lista[i];
 			if (Interaccion::colision(*jan, j)) {
 				Factoria::CogerJanssen(j);//funcion que gobierna lo que pasa al coger la janssen
-				int punt = jan->getPunt();
-				punt += 15;
-				jan->setPunt(punt);
+				j.setPuntuacion(15); // +15 puntos
 				eliminar(i);
 				if (j.getJanssenActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
@@ -156,9 +148,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			Pfizer* p = (Pfizer*)lista[i];
 			if(Interaccion::colision(*p,j)){
 				Factoria::CogerPfizer(j);//funcion que gobierna lo que pasa al coger la pfizer
-				int punt = p->getPunt();
-				punt += 15;
-				p->setPunt(punt);
+				j.setPuntuacion(15); // +15 puntos
 				eliminar(i);
 				if (j.getPfizerActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{

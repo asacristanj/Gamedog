@@ -24,6 +24,9 @@
 #include "Escalera.h"
 #include "Llave.h"
 #include "ListaLlaves.h"
+#include <iostream>
+#include <fstream> // ficheros
+#include <string>
 class Juego
 {
 private:
@@ -47,6 +50,9 @@ private:
 	int llaveJug = jugador.getNumLlaves();//llaves que tiene el jugador, a las 3 pasa el nivel
 	int vidas=1; // veces que se puede reintentar el nivel tras morir
 	int nivel;//variable que encaja el nivel
+	int record_puntuacion; // record de puntuacion general
+	int puntuacion_jugador = jugador.getPuntuacion();
+	bool record_superado;
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -54,14 +60,24 @@ public:
 	void moverOjo();
 	void mueve();
 	void dibuja();
+	bool cargarNivel();
 	void teclaEspecial(unsigned char key);
 	void teclaEspecialUp(unsigned char key);
+	// sets
 	void setChances(int chance) { chances = chance; }
 	void setVidas(int vida) { vidas += vida; }
 	void setllaveJug(int llave) { llaveJug = llave; }
+	void setRecord(int r) { record_puntuacion = r; }
+	void setRecordFile(int r);
+	void setPuntuacionJugador(int p) { puntuacion_jugador = p; }
+	void setRecordSuperado(bool r) { record_superado = r; }
+	// gets
 	int getLlaves() { return llaveJug; }
 	int getChances() { return chances; }
 	int getVidas() { return vidas; }
-	bool cargarNivel();
 	bool getImpacto() {	return impacto;}//funcion que lee el impacto
+	int getRecord() { return record_puntuacion; }
+	int getRecordFile();
+	int getPuntuacionJugador() { return puntuacion_jugador; }
+	bool getRecordSuperado() { return record_superado; }
 };

@@ -111,9 +111,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			CepaIndia* ind = (CepaIndia*)lista[i];
 			if (Interaccion::colisionEncima(*ind, j))
 			{
-				int punt = ind->getPunt();
-				punt += 20;
-				ind->setPunt(punt);
+				j.setPuntuacion(20); // +20 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*ind, j))
@@ -170,9 +168,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				{
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
-						int punt = brit->getPunt();
-						punt += 30;
-						brit->setPunt(punt);
+						j.setPuntuacion(30); // +30 puntos
 						eliminar(i); //Se elimina el enemigo tras la explosion
 						brit->setInicializarHora(false); //Se marca que se ha usado el temporizador
 					}
@@ -184,9 +180,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
 			{
-				int punt = bra->getPunt();
-				punt += 25;
-				bra->setPunt(punt);
+				j.setPuntuacion(25); // +25 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*bra, j)) 
@@ -226,9 +220,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			}
 			if (Interaccion::colisionEncima(*murpeq, j))
 			{
-				int punt = murpeq->getPunt();
-				punt += 35;
-				murpeq->setPunt(punt);
+				j.setPuntuacion(35); // +35 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*murpeq, j))
@@ -273,9 +265,7 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 				}
 				else
 				{
-					int punt = murboss->getPunt();
-					punt += 50;
-					murboss->setPunt(punt);
+					j.setPuntuacion(50); // +50 puntos
 					eliminar(i);// Si no le quedan vidas muere
 				}
 			}

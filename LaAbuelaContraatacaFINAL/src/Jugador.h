@@ -29,6 +29,7 @@ private:
 	int numLlaves;
 	int altura_max_caida = 9;
 	bool daño_caida = false;
+	int puntuacion; // puntuacion de cada partida
 
 public:
 	Jugador();
@@ -37,7 +38,18 @@ public:
 	void mueve(float t);
 	void salto();
 	void morir();
+	//void incrementaLlaves();
+	void dañocaida();
+	//void IncrementaNumBonus();
+	void sonidos();
 	//void crecer();
+	void volverSalto();
+	void volverVelocidadPfizer();
+	void volverVelocidadJanssen();
+	void subirEscalera();
+	void bajarEscalera();
+	bool suelo();
+	// gets
 	float getAltura() { return altura; }
 	float getVelNormal() { return vel_normal; }
 	float getVelRapida() { return coef_vel_rapida; }
@@ -49,6 +61,9 @@ public:
 	bool getJanssenActivo() { return janssen_activo; }
 	int getNumBonus() { return numbonus; }
 	int getNumLlaves() { return numLlaves; }
+	bool getEscalera() { return escalera; }
+	int getPuntuacion() { return puntuacion; }
+	// sets
 	void setAltura(float nalt) { altura = nalt; }
 	void setAcely(float gravedad) { aceleracion.y = gravedad; }
 	void setCoefVelx(float coef_vel) { coeficiente_velx = coef_vel; }
@@ -61,17 +76,8 @@ public:
 	void setNumBonus(int num) { numbonus = num; }
 	void setNumLlaves(int num) { numLlaves = num; }
 	void setImpulso(float imp) { impulso = imp; }
-	void volverSalto();
-	void volverVelocidadPfizer();
-	void volverVelocidadJanssen();
-	void subirEscalera();
-	void bajarEscalera();
-	bool suelo();
 	void setEscalera(int i);
-	bool getEscalera() {return escalera;}
-	//void incrementaLlaves();
-	void dañocaida();
-	//void IncrementaNumBonus();
-	void sonidos();
+	void setPuntuacion(int punt) { puntuacion += punt; }
+
 	friend class Interaccion;
 };

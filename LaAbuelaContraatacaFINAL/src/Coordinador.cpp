@@ -164,18 +164,35 @@ void Coordinador::dibuja() {
 	}
 	else if (estado == GAMEOVER) {
 		//juego.dibuja();
+		char puntuacion[10];
+		char record[10];
+		_itoa_s(juego.getPuntuacionJugador(), puntuacion, 10);
+		_itoa_s(juego.getRecord(), record, 10);
+
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
 		ETSIDI::setTextColor(1, 0, 0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
+		if (juego.getRecordSuperado())
+		{
+			ETSIDI::setTextColor(0, 1, 0);
+			ETSIDI::printxy("¡HAS SUPERADO EL RECORD! ", -5, 14);
+		}
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::printxy("TU PUNTUACION HA SIDO: ", -14, 17);
+		ETSIDI::printxy(puntuacion, -4, 17);
+		ETSIDI::printxy("RECORD ACTUAL: ", 5, 17);
+		ETSIDI::printxy(record, 12, 17);
+		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 60);
-		ETSIDI::printxy("GAME OVER", -7, 12);
-		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 32);
-		ETSIDI::printxy("NEUMONIA BILATERAL", -7, 7);
+		ETSIDI::printxy("GAME OVER", -7, 9);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 25);
+		ETSIDI::printxy("NEUMONIA BILATERAL", -7, 5);
 		ETSIDI::setTextColor(1, 0, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
-		ETSIDI::printxy("PULSA -C- PARA IR AL MENU DE INICIO", -8, 1);
+		ETSIDI::printxy("PULSA -C- PARA IR AL MENU DE INICIO", -6, 0);
 		glPopMatrix();
 	}
 	else if (estado == FIN) {

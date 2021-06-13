@@ -3,7 +3,6 @@
 #include <math.h>
 #include "ETSIDI.h"
 #include <time.h>
-#include <iostream>
 using namespace std;
 
 void Juego::inicializa()
@@ -11,6 +10,9 @@ void Juego::inicializa()
 	x_ojo = 0;
 	y_ojo = 7.5;
 	z_ojo = 30;
+	setRecordSuperado(false);
+	setRecord(getRecordFile()); // obtengo el record actual
+	//setRecordFile(10);
 	nivel = 0;//establezco el nivel al principio de cada inicializa
 	cargarNivel();//cargo el nivel corrspondiente
 	//a partir de aqui todo tendria que estar en el nivel correspondiente
@@ -118,8 +120,31 @@ void Juego::mueve()
 				enemigos[i]->setDisparoRecibido(true); // disparo recibido
 				cout << endl << "disparo recibido: " << enemigos[i]->getDisparoRecibido() << endl;
 
-				if(enemigos[i]->getTipo() != MURCIELAGOBOSS) // EL BOSS SOLO PIERDE VIDA AL SER PISADO
+				if (enemigos[i]->getTipo() != MURCIELAGOBOSS) // EL BOSS SOLO PIERDE VIDA AL SER PISADO
+				{
 					enemigos[i]->setVidas(-1); // menos 1 vida
+					// incremento de puntuaciones 
+					switch (enemigos[i]->getTipo())
+					{
+					case CEPAINDIA:
+						jugador.setPuntuacion(20);
+						break;
+					case CEPABRASILEÑA:
+						jugador.setPuntuacion(25);
+						break;
+					case CEPACHINA:
+						jugador.setPuntuacion(15);
+						break;
+					case CEPABRITANICA:
+						jugador.setPuntuacion(20);
+						break;
+					case MURCIELAGOPEQUEÑO:
+						jugador.setPuntuacion(35);
+						break;
+					default: // MURCIELAGO BOSS no puntua al ser disparado
+						break;
+					}
+				}
 
 				if (enemigos[i]->getVidas() < 1) // si no le quedan vidas muere
 					enemigos.eliminar(enemigos[i]);
@@ -130,6 +155,15 @@ void Juego::mueve()
 	bloques.CrearBonus(bonuses, jugador);
 	setChances(jugador.getNumBonus());//refrescamos las chances que tiene el jugador continuamente
 	setllaveJug(jugador.getNumLlaves());//refrescamos las llaves que tiene el jugador
+		// puntuacion
+
+	setPuntuacionJugador(jugador.getPuntuacion());
+	if (getRecord() < jugador.getPuntuacion()) // si se supera el record anterior
+	{
+		setRecordSuperado(true); // señal para el coordinador
+		setRecord(jugador.getPuntuacion()); // se actualiza el record
+		setRecordFile(getRecord());
+	}
 }
 void Juego::teclaEspecial(unsigned char key)
 {
@@ -211,6 +245,45 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 		}
 	}
 	}
+}
+
+void Juego::setRecordFile(int r)
+{
+	ofstream fichero("files/Record_puntuacion.txt", ios::out);
+	if (fichero.fail())
+	{
+		cout << endl << "No se pudo abrir el archivo." << endl;
+		exit(1);
+	}
+	else
+	{
+		fichero << r; // sobreescribo el archivo con el record actual
+	}
+	fichero.close();
+}
+
+int Juego::getRecordFile()
+{
+	int record;
+	string lectura;
+	ifstream fichero("files/Record_puntuacion.txt", ios::in);
+	if (fichero.fail())
+	{
+		cout << endl << "No se pudo abrir el archivo." << endl;
+		exit(1);
+	}
+	else
+	{
+		while (!fichero.eof())
+		{
+			getline(fichero, lectura);
+			cout << endl << lectura;
+		}
+		record = stoi(lectura); // stoi() convierte el string en un int
+		cout << endl << "Record guardado: " << record << endl;
+	}
+	fichero.close();
+	return record;
 }
 
 void Juego::tecla(unsigned char key)

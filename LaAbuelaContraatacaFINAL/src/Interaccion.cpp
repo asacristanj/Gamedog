@@ -517,7 +517,7 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 		murboss.setVel(0.0f, murboss.getVelocidadBajada()); // baja
 		if (murboss.getPos().y < murboss.getPosicionBajada()) // si llego a la posicion de bajada
 		{
-			// se queda quieto esperando que le den, como la madre del que está leyendo esto :D
+			// se queda quieto esperando que le den
 			murboss.setPos(murboss.getPos().x, murboss.getPosicionBajada());
 			murboss.setVel(0.0f, 0.0f);
 		}

@@ -24,8 +24,7 @@ Jugador::Jugador()
 	astra_activo = pfizer_activo = janssen_activo = false;
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
 	numLlaves = 0;
-	
-	
+	puntuacion = 0; // empieza con 0 puntos
 }
 void Jugador::dibuja()
 {
