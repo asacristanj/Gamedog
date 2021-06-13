@@ -9,7 +9,7 @@
 #include "MascarillaTocha.h"
 #include "Pfizer.h"
 #include "Quirurgica.h"
-#include "Sputnik.h"
+
 class Factoria
 {
 public:

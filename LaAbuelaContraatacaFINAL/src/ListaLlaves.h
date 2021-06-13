@@ -1,7 +1,7 @@
 #pragma once
 #include "Llave.h"
 #include "Interaccion.h"
-#define MAX_ELEM 3
+#define MAX_ELEM 6
 class ListaLlaves
 {
 private:

@@ -1,5 +1,5 @@
 #pragma once
-#define MAXNUMBER 3
+#define MAXNUMBER 20
 #include "BloqueSorpresa.h"
 #include "ListaBonus.h"
 class ListaBloques
