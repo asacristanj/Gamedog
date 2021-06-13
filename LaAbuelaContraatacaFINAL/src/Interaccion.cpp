@@ -63,8 +63,9 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	{
 		// freno al personaje
 		j.velocidad.y = 0.0f;
-		j.aceleracion.y = 0.0f;
+		//j.aceleracion.y = 0.0f;
 		j.posicion.y = y + j.getAltura();
+		j.tocandosuelo = true;
 	}
 	else
 		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial

@@ -2,7 +2,7 @@
 #include "Escalera.h"
 #include "Jugador.h"
 #include "Interaccion.h"
-#define MAX_NUM 30
+#define MAX_NUM 300
 class ListaEscaleras
 {
 private:
