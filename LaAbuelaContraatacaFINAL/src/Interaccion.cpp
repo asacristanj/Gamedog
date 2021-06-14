@@ -199,18 +199,18 @@ bool Interaccion::colision(Bonus& b, Escenario e) //Funcion que manda true si ha
 {
 	float xmax = e.suelo.limite2.x;
 	float xmin = e.suelo.limite1.x;
-	if (b.posicion.x + b.getlado() > xmax) {
-		b.posicion.x = xmax - b.getlado();
-		b.velocidad.x = -4.0f;
-	}
-	if (b.posicion.x - b.getlado() < xmin) {
-		b.posicion.x = xmin + b.getlado();
-		b.velocidad.x = 4.0f;
-	}
 	Vector2D pos = b.getPos();
 	pos.y -= b.getlado() / 2;//se le resta el lado para que quede apoyado en a superficie de abajo
 	float distancia = e.suelo.distancia(pos);
 	if (distancia <= 0.1f) {
+		if (b.posicion.x + b.getlado() > xmax) {
+			b.posicion.x = xmax - b.getlado();
+			b.velocidad.x = -4.0f;
+		}
+		if (b.posicion.x - b.getlado() < xmin) {
+			b.posicion.x = xmin + b.getlado();
+			b.velocidad.x = 4.0f;
+		}
 		return true;
 	}
 	return false;
