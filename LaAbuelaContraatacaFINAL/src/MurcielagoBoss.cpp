@@ -12,10 +12,11 @@ MurcielagoBoss::MurcielagoBoss()
 	velocidad = (2.0f, 2.0f);
 	aceleracion.y = 0.0f;
 	vidas = 3;
-	posicion_bajada = 1.0f;
+	posicion_bajada = 5.0f;
 	velocidad_bajada = -5.0f;
-	velocidad_china = -5.0f;
+	velocidad_china = -6.0f;
 	horaIniciocaida = time(NULL);
+	reset_posicion = false;
 }
 MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 {
@@ -28,12 +29,13 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad.x = vx;
 	velocidad.y = vy;
 	aceleracion.y = 0.0f;
-	velocidad_china = -5.0f;
-	posicion_bajada = 1.0f;
+	posicion_bajada = 5.0f;
 	velocidad_bajada = -5.0f;
-	velocidad_china = -5.0f;
+	velocidad_china = -6.0f;
 	horaIniciocaida = time(NULL);
 	vidas = 3;
+	velocidad = (2.0f, 2.0f);
+	reset_posicion = false;
 }
 void MurcielagoBoss::dibuja()
 {

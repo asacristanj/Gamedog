@@ -294,7 +294,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 	//Función que manda un boole true si ha habido contacto entre un enemigo y el jugador de frente. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= (enem.getAltura()) && (enem.posicion.y >= (j.posicion.y-(j.getAltura()/4.0f)))))
+	if ((distancia <= (enem.getAltura()) && (enem.posicion.y >= (j.getPos().y - j.getAltura()))))
 		return true;
 	return false;
 }
@@ -303,7 +303,7 @@ bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador por encima del enemigo. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if (distancia <= (enem.getAltura()) && (enem.posicion.y < (j.posicion.y -(j.getAltura()/4.0f))))//(enem.altura -(j.getAltura()/8.0f))
+	if ((distancia <= enem.getAltura()) && (enem.posicion.y < (j.posicion.y - j.getAltura())))
 		return true;
 	return false;
 }
@@ -471,14 +471,18 @@ void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MO
 void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que el MurcielagoBoss no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
-	float xmax_escenario = e.pared_dcha.limite2.x - (murboss.getAltura() / 2.0f);
-	float xmin_escenario = e.pared_izq.limite2.x + (murboss.getAltura() / 2.0f);;
-	float xmax_jugador = j.getPos().x + 4.0f; // limite relativo al jugador
-	float xmin_jugador = j.getPos().x - 4.0f; // lo mismo pero por el otro lado
+	float xmax = 4.0f;
+	float xmin = -4.0f;
 	static const float posicion_referencia = murboss.getPos().y; // recibe la posicion inicial del enemigo
 	static const Vector2D velocidad_referencia = murboss.getVel(); // recibe la velocidad inicial del enemigo
 	float ymax = posicion_referencia + 0.5f;
 	float ymin = posicion_referencia - 0.5f;
+	if (murboss.getReset())
+	{
+		murboss.setPos(murboss.getPos().x, posicion_referencia);
+		murboss.setVel(velocidad_referencia.x, velocidad_referencia.y);
+		murboss.setReset(false);
+	}
 	if (murboss.getDisparoRecibido() == false)
 	{
 		// limites de movimiento en eje y
@@ -492,46 +496,35 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 			murboss.setPos(murboss.getPos().x, ymin);
 			murboss.velocidad.y = -murboss.velocidad.y;
 		}
-		// limites relativos a escenario y jugador
-
-		if (murboss.getPos().x > xmax_escenario) // limite max escenario 
+		// limites relativos a escenario
+		if (murboss.getPos().x > xmax) // limite max escenario 
 		{
-			murboss.setPos(xmax_escenario, murboss.getPos().y);
+			murboss.setPos(xmax, murboss.getPos().y);
 			murboss.velocidad.x = -murboss.velocidad.x;
 		}
-		if (murboss.getPos().x > xmax_jugador) // limite max jugador
+		if (murboss.getPos().x < xmin) // limite min escenario
 		{
-			murboss.setPos(xmax_jugador, murboss.getPos().y);
-			murboss.velocidad.x = -murboss.velocidad.x;
-		}
-		if (murboss.getPos().x < xmin_escenario) // limite min escenario
-		{
-			murboss.setPos(xmin_escenario, murboss.getPos().y);
-			murboss.velocidad.x = -murboss.velocidad.x;
-		}
-		if (murboss.getPos().x < xmin_jugador) // limite min jugador
-		{
-			murboss.setPos(xmin_jugador, murboss.getPos().y);
+			murboss.setPos(xmin, murboss.getPos().y);
 			murboss.velocidad.x = -murboss.velocidad.x;
 		}
 	}
 	// secuencia de movimiento al recibir disparo
-	if (murboss.getDisparoRecibido() == true && murboss.getVidas() > 0) // si es disparado
+	if (murboss.getDisparoRecibido() == true) // si es disparado
 	{
 		murboss.setVel(0.0f, murboss.getVelocidadBajada()); // baja
-		if (murboss.getPos().y < murboss.getPosicionBajada()) // si llego a la posicion de bajada
+		if (murboss.getPos().y < murboss.getPosicionBajada()) // llega a la posicion de bajada
 		{
-			// se queda quieto esperando que le den
+			// se queda quieto esperando que le pisen
 			murboss.setPos(murboss.getPos().x, murboss.getPosicionBajada());
 			murboss.setVel(0.0f, 0.0f);
-		}
-		if (murboss.getPisoton() == true && murboss.getVidas() > 0) // si es pisado y aun le quedan vidas
-		{
-			murboss.setPos(murboss.getPos().x, posicion_referencia);
-			murboss.setVel(velocidad_referencia.x, velocidad_referencia.y); // recupera el movimiento normal
-			//sentencias de salida
-			murboss.setDisparoRecibido(false); 
-			murboss.setPisoton(false);
+			if (murboss.getPisoton() == true && murboss.getVidas() > 0) // si es pisado y aun le quedan vidas
+			{
+				murboss.setPos(murboss.getPos().x, posicion_referencia);
+				murboss.setVel(velocidad_referencia.x, velocidad_referencia.y); // recupera el movimiento normal
+				//sentencias de salida
+				murboss.setDisparoRecibido(false);
+				murboss.setPisoton(false);
+			}
 		}
 	}
 }

@@ -88,7 +88,6 @@ void Juego::mueve()
 			{
 				disparos.eliminar(disparos[j]);
 				enemigos[i]->setDisparoRecibido(true); // disparo recibido
-				cout << endl << "disparo recibido: " << enemigos[i]->getDisparoRecibido() << endl;
 
 				if (enemigos[i]->getTipo() != MURCIELAGOBOSS) // EL BOSS SOLO PIERDE VIDA AL SER PISADO
 				{
@@ -130,7 +129,6 @@ void Juego::mueve()
 	if (getReinicioJuego() == true)
 	{
 		jugador.setPuntuacion(-jugador.getPuntuacion()); // reinicio puntuacion
-		cout << endl << "PUNTUACION: " << jugador.getPuntuacion() << endl; //****
 		setReinicioJuego(false);
 	}
 	setPuntuacionJugador(jugador.getPuntuacion());
@@ -254,7 +252,6 @@ int Juego::getRecordFile()
 		while (!fichero.eof())
 		{
 			getline(fichero, lectura);
-			cout << endl << lectura;
 		}
 		record = stoi(lectura); // stoi() convierte el string en un int
 	}
@@ -498,10 +495,10 @@ bool Juego::cargarNivel() {
 		//idea 1
 		escaleras.agregar(new Escalera(2.0f, 4.0f, 0.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 4.0f, 10.0f, 4.0f));
-		plataformas.agregar(new Plataforma(-7.0f, 8.0f, -4.0f, 8.0f));
+		plataformas.agregar(new Plataforma(-7.0f, 8.0f, -5.0f, 8.0f));
 		enemigos.agregar(new CepaBrasileña(2.0f, -5.5f, 10.0f, -3.0f));
 		enemigos.agregar(new CepaBrasileña(2.0f, 6.1f, 10.0f, 2.0f));
-		plataformas.agregar(new Plataforma(4.0f, 8.0f, 7.0f, 8.0f));
+		plataformas.agregar(new Plataforma(5.0f, 8.0f, 7.0f, 8.0f));
 		plataformas.agregar(new Plataforma(8.0f, 11.0f, 10.0f,11.0f ));
 		plataformas.agregar(new Plataforma(-10.0f, 11.0f, -8.0f, 11.0f));
 		bonuses.agregar(new MascarillaTocha(1.5f, 9.0f, 12.0f));

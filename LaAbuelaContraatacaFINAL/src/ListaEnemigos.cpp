@@ -289,18 +289,31 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
 			Interaccion::rebote(*murboss, e, j); // patron de movimiento****
 			float pos_mur = murboss->getPos().x;
-
-			if (((pos_mur > 7.97f && pos_mur < 8.00f) || (pos_mur > 5.97f && pos_mur < 6.00f) || (pos_mur > 3.97f && pos_mur < 4.00f) ||
-				(pos_mur > 1.97f && pos_mur < 2.00f) || (pos_mur > -0.03f && pos_mur < 0.00f) || (pos_mur < -1.97f && pos_mur > -2.00f) ||
-				(pos_mur < -3.97f && pos_mur > -4.00f) || (pos_mur < -5.97f && pos_mur > -6.00f) || (pos_mur < -7.97f && pos_mur > -8.00f)) &&
-				murboss->getDisparoRecibido() == false)
+		
+			if (((pos_mur > 5.96f && pos_mur < 6.00f) || (pos_mur > 3.96f && pos_mur < 4.00f) || (pos_mur > 1.96f && pos_mur < 2.00f) || 
+				(pos_mur > -0.04f && pos_mur < 0.00f) || (pos_mur < -1.96f && pos_mur > -2.00f) || (pos_mur < -3.96f && pos_mur > -4.00f) || 
+				(pos_mur < -5.96f && pos_mur > -6.00f)) && murboss->getDisparoRecibido() == false && j.getPos().y > 4.0f)
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(murboss->getPos().x, murboss->getPos().y);
 				c->setVel(0.0f, murboss->getVelChina());
 				agregar(c);
 			}
-			if (Interaccion::colisionEncima(*murboss, j))
+
+			if (Interaccion::colision(*murboss, j))
+			{
+				play("sonidos/caida.mp3");
+				murboss->setReset(true);
+				murboss->setDisparoRecibido(false);
+				j.setNumBonus(j.getNumBonus() - 1);
+				if (j.getNumBonus() < 0) {
+					j.morir();
+				}
+				else
+					j.setPos(0.0f, 2.0f);
+			}
+
+			if (Interaccion::colisionEncima(*murboss, j) && murboss->getDisparoRecibido())
 			{
 				j.setPos(j.getPos().x, murboss->getPos().y + murboss->getAltura());
 				j.setVel(j.getVel().x, j.getVelocidadRebote()); // el jugador rebota al pisar el boss
@@ -314,17 +327,6 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 					play("sonidos/muerte_enemigo.mp3");
 					j.setPuntuacion(50); // +50 puntos
 					eliminar(i);// Si no le quedan vidas muere
-				}
-			}
-			else if (Interaccion::colision(*murboss, j))
-			{
-				play("sonidos/caida.mp3");
-				j.setNumBonus(j.getNumBonus() - 1);
-				if (j.getNumBonus() < 0) {
-					j.morir();
-				}
-				else {
-					eliminar(i);
 				}
 			}
 		}
