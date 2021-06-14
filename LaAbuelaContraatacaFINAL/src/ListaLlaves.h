@@ -2,6 +2,8 @@
 #include "Llave.h"
 #include "Interaccion.h"
 #define MAX_ELEM 3
+#include "ETSIDI.h"
+using ETSIDI::play;
 class ListaLlaves
 {
 private:

@@ -2,6 +2,9 @@
 #define MAX_ENEMIGOS 120
 #include "Enemigo.h"
 #include "Interaccion.h"
+#include "ETSIDI.h"
+//using ETSIDI::play;
+
 class ListaEnemigos
 {
 private:

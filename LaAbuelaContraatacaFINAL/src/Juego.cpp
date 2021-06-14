@@ -348,7 +348,7 @@ bool Juego::cargarNivel() {
 		enemigos.agregar(new CepaBritanica(2.0f, 7.0f, 15.0f, 2.0f, 0.0f)); //
 		//bonuses.agregar(new Astrazeneca(1.0f, 2.0f, 18.0f, 0.0f, 0.0f));
 		//bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 8.0f));
-		llaves.agregar(new Llave(1.0f, 6.0f, 17.0f));
+		llaves.agregar(new Llave(2.0f, 6.0f, 17.0f));
 		escaleras.agregar(new Escalera(8.0f, 10.0f, 15.0f, 4.0f, 0.0f));
 		//plataformas.agregar(new Plataforma(6.0f, 17.0f, 10.0f, 17.0f));
 		plataformas.agregar(new Plataforma(6.0f, 19.0f, 10.0f, 19.0f));
@@ -369,7 +369,7 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-10.0f, 29.0f, -3.0f, 29.0f));
 		bonuses.agregar(new Pfizer(1.0f, 6.0f, 30.0f));
 		plataformas.agregar(new Plataforma(7.0f, 33.0f, 10.0f, 33.0f));
-		llaves.agregar(new Llave(1.0f, 9.0f, 35.0f));
+		llaves.agregar(new Llave(2.0f, 9.0f, 35.0f));
 		//plataforma final de nivel
 		escaleras.agregar(new Escalera(-8.0f, -6.0f, 29.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 33.0f, 2.0f, 33.0f));
@@ -400,7 +400,7 @@ bool Juego::cargarNivel() {
 		enemigos.agregar(new CepaIndia(2.0f, 2.0f, 71.0f, 3.0f, 0.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 71.0f, -3.0f, 0.0f));
 		enemigos.agregar(new CepaIndia(2.0f, 4.0f, 71.0f, -3.0f, 0.0f));
-		llaves.agregar(new Llave(1.0f, 0.0f, 75.0f, 0.0f, 0.0f));
+		llaves.agregar(new Llave(2.0f, 0.0f, 75.0f, 0.0f, 0.0f));
 	}
 	if (nivel == 2) {
 		jugador.setPos(0, 0);
@@ -423,7 +423,7 @@ bool Juego::cargarNivel() {
 		//enemigos.agregar(new CepaIndia(2.0f, -7.0f, 15.0f, 2.0f, 0.0f));
 		escaleras.agregar(new Escalera(-10.0f, -8.0f, 13.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 17.0f, -8.0f, 17.0f));
-		llaves.agregar(new Llave(1.0f, -9.0f, 19.0f));
+		llaves.agregar(new Llave(2.0f, -9.0f, 19.0f));
 		plataformas.agregar(new Plataforma(1.0f, 16.0f, 3.0f, 16.0f));
 		plataformas.agregar(new Plataforma(7.0f, 19.0f, 10.0f, 19.0f));
 		plataformas.agregar(new Plataforma(2.0f, 23.0f, 3.0f, 23.0f));
@@ -433,7 +433,7 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-8.0f, 30.0f, -7.0f, 30.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 34.0f, -9.0f, 34.0f));
 		plataformas.agregar(new Plataforma(-7.0f, 37.0f, -4.0f, 37.0f));
-		llaves.agregar(new Llave(1.0f, -5.0f, 39.0f));
+		llaves.agregar(new Llave(2.0f, -5.0f, 39.0f));
 		plataformas.agregar(new Plataforma(3.0f, 29.0f, 6.0f, 29.0f));
 		plataformas.agregar(new Plataforma(8.0f, 33.0f, 10.0f, 33.0f));
 		escaleras.agregar(new Escalera(8.0f, 10.0f, 33.0f, 4.0f, 0.0f));
@@ -457,7 +457,7 @@ bool Juego::cargarNivel() {
 		enemigos.agregar(new CepaBritanica(2.0f, 6.0f, 63.0f, 2.0f));
 		enemigos.agregar(new CepaIndia(2.0f, 6.0f, 63.0f, -5.0f));
 		plataformas.agregar(new Plataforma(8.0f, 67.0f, 10.0f, 67.0f));
-		llaves.agregar(new Llave(1.0f, 9.0f, 69.0f));
+		llaves.agregar(new Llave(2.0f, 9.0f, 69.0f));
 	}
 	if (nivel == 3) {
 		jugador.setPos(0, 0);

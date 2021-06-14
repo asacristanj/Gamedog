@@ -1,6 +1,7 @@
 #include "ListaEnemigos.h"
 #include <time.h>
-using namespace std;
+using ETSIDI::play;
+
 ListaEnemigos::ListaEnemigos() //Constructor de ListaEnemigos
 {
 	numero = 0;
@@ -53,8 +54,10 @@ void ListaEnemigos::rebote(Plataforma p) // Método para gestionar la interacción
 		if (tipo == CEPACHINA)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-			if (Interaccion::colision(*chin, p))
+			if (Interaccion::colision(*chin, p)) {
 				eliminar(i); //En este caso se quiere que si esta cepa toca la plataforma se elimine
+			}
+			
 		}
 		//No están los murcielagos ya que nunca va a haber colisión entre ellos
 	}
@@ -84,8 +87,11 @@ void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción 
 		if (tipo == CEPACHINA)
 		{
 			CepaChina* chin = (CepaChina*)lista[i];
-			if (Interaccion::colision(*chin, e))
-				eliminar(i);		
+			if (Interaccion::colision(*chin, e)) {
+				play("sonidos/muerte_enemigo.mp3");
+				eliminar(i);
+			}
+					
 		}
 		if (tipo ==  MURCIELAGOPEQUEÑO)
 		{
@@ -111,11 +117,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			CepaIndia* ind = (CepaIndia*)lista[i];
 			if (Interaccion::colisionEncima(*ind, j))
 			{
+				play("sonidos/muerte_enemigo.mp3");
 				j.setPuntuacion(20); // +20 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*ind, j))
 			{
+				play("sonidos/caida.mp3");
 				j.setNumBonus(j.getNumBonus() - 1); //si tiene algún bonus se lo quitamos
 				if (j.getNumBonus() < 0) {
 					j.morir(); //cuando no tenga bonus muere
@@ -133,14 +141,17 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			time_t horaActual = time(NULL); //Se coge todo el rato la hora actual
 			if (Interaccion::ratio(*brit, j)) //El juagdor entra en el ratio de explosión
 			{
+		
 				if (brit->getInicializarHora() == false) //Si el temporizador ya ha sido usado
 				{
 					brit->setInicializarHora(true);
 					horaInicio = time(NULL); //Se actualiza hora de inicio para todos los enemigos CepaBritanica
 				}
 				brit->setVel(0, 0); //El enemigo se para
+				
 				if (Interaccion::colision(*brit, j) || Interaccion::colisionEncima(*brit, j)) //Si se tocan también afecta al jugador
 				{
+					play("sonidos/caida.mp3");
 					j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
 					if (j.getNumBonus() < 0) 
 					{
@@ -150,27 +161,35 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 				}
 				else if ((horaActual - horaInicio) >= SEGUNDOS) //Momento de explosión
 				{
+	
 					if (Interaccion::ratioExplosion(*brit, j)) //Si el jugador está dentro de la explosión
 					{
+						play("sonidos/caida.mp3");
 						j.setNumBonus(j.getNumBonus() - 1);//Disminuir el bonus
 						if (j.getNumBonus() < 0)
 						{
 							j.morir();
 						}
 					}
-					else
+					else {
+						play("sonidos/muerte_enemigo.mp3");
 						j.setPuntuacion(30); // +30 puntos
+					}
 					eliminar(i);
+						
 				}
 			}
 			else
 			{
 				if (brit->getInicializarHora() == true) //El temporizador se ha usado
 				{
+
 					if ((horaActual - horaInicio) >= SEGUNDOS)
 					{
+						play("sonidos/explosion.mp3");
 						if (Interaccion::ratioExplosion(*brit, j))
 						{
+							play("sonidos/caida.mp3");
 							j.setNumBonus(j.getNumBonus() - 1);//Disminuir el bonus
 							if (j.getNumBonus() < 0)
 							{
@@ -178,8 +197,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 							}
 						}
 						else
+						{
+							play("sonidos/muerte_enemigo.mp3");
 							j.setPuntuacion(30); // +30 puntos
-						eliminar(i); //Se elimina el enemigo tras la explosion
+						}
+							
+						
+						eliminar(i); //Se elimina el enemigo tras la explosion					
 						brit->setInicializarHora(false); //Se marca que se ha usado el temporizador
 					}
 				}
@@ -190,11 +214,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			CepaBrasileña* bra = (CepaBrasileña*)lista[i];
 			if (Interaccion::colisionEncima(*bra, j))
 			{
+				play("sonidos/muerte_enemigo.mp3");
 				j.setPuntuacion(25); // +25 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*bra, j)) 
 			{
+				play("sonidos/caida.mp3");
 				j.setNumBonus(j.getNumBonus() - 1);
 				if (j.getNumBonus() < 0) 
 				{
@@ -210,6 +236,7 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			CepaChina* chin = (CepaChina*)lista[i];
 		    if (Interaccion::colision(*chin, j) || Interaccion::colisionEncima(*chin, j)) //Si hay colisión sea cual sea los dos mueren (si el jugador no tiene bonus obviamente)
 		    {
+				play("sonidos/caida.mp3");
 			    eliminar(i);
 			    j.setNumBonus(j.getNumBonus() - 1);//disminuir el bonus
 			     if (j.getNumBonus() < 0) 
@@ -232,11 +259,13 @@ void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción d
 			//(pos.x > 7.45f && pos.x < 7.50f) || (pos.x > 3.95f && pos.x < 4.00f) || (pos.x > -1.05f && pos.x < 1.00f)|| (pos.x < -6.95f && pos.x > -7.00f) || (pos.x < -3.95f && pos.x > -4.00f)
 			if (Interaccion::colisionEncima(*murpeq, j))
 			{
+				play("sonidos/muerte_enemigo.mp3");
 				j.setPuntuacion(35); // +35 puntos
 				eliminar(i);
 			}
 			else if (Interaccion::colision(*murpeq, j))
 			{
+				play("sonidos/caida.mp3");
 				j.setNumBonus(j.getNumBonus() - 1);
 				if (j.getNumBonus() < 0) 
 				{
@@ -278,12 +307,14 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 				}
 				else
 				{
+					play("sonidos/muerte_enemigo.mp3");
 					j.setPuntuacion(50); // +50 puntos
 					eliminar(i);// Si no le quedan vidas muere
 				}
 			}
 			else if (Interaccion::colision(*murboss, j))
 			{
+				play("sonidos/caida.mp3");
 				j.setNumBonus(j.getNumBonus() - 1);
 				if (j.getNumBonus() < 0) {
 					j.morir();

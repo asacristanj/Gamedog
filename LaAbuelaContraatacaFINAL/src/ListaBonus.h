@@ -3,6 +3,8 @@
 #include "Bonus.h"
 #include "Interaccion.h"
 #include "Factoria.h"
+#include "ETSIDI.h"
+using ETSIDI::play;
 class ListaBonus
 {
 private:

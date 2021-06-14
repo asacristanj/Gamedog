@@ -103,6 +103,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			if (Interaccion::colision(*q, j)) {
 				Factoria::CogerQuirurgica(j);//funcion que gobierna lo que pasa al coger la quirurgica
 				j.setPuntuacion(5); // +5 puntos
+				play("sonidos/bonus.wav");
 				eliminar(i);
 			}
 		}
@@ -111,6 +112,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			if (Interaccion::colision(*m, j)) {
 				Factoria::CogerMascarillaTocha(j);//funcion que gobierna lo que pasa al coger la mascarilla tocha
 				j.setPuntuacion(10); // +10 puntos
+				play("sonidos/bonus.wav");
 				eliminar(i);
 			}
 		}
@@ -121,6 +123,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 			{
 				Factoria::CogerAstrazeneca(j);//funcion que gobierna lo que pasa al coger la astrazeneca
 				j.setPuntuacion(15); // +15 puntos
+				play("sonidos/bonus.wav");
 				eliminar(i);
 				if (j.getAstraActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
@@ -136,6 +139,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 				Factoria::CogerJanssen(j);//funcion que gobierna lo que pasa al coger la janssen
 				j.setPuntuacion(15); // +15 puntos
 				eliminar(i);
+				play("sonidos/bonus.wav");
 				if (j.getJanssenActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
 					j.setJanssenActivo(true);
@@ -150,6 +154,7 @@ void ListaBonus::rebote(Jugador& j)//gestiono lo que pasa cuando el jugador entr
 				Factoria::CogerPfizer(j);//funcion que gobierna lo que pasa al coger la pfizer
 				j.setPuntuacion(15); // +15 puntos
 				eliminar(i);
+				play("sonidos/bonus.wav");
 				if (j.getPfizerActivo() == false)//incorporacion del temporizador al bonus correspondiente
 				{
 					j.setPfizerActivo(true);

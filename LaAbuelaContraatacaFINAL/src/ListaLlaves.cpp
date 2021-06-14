@@ -65,6 +65,7 @@ void ListaLlaves::eliminar(Llave* l) {
 void ListaLlaves::colision(Jugador& j) {
 	for (int i = 0; i < numero; i++) {
 		if (Interaccion::colision(*(lista[i]), j)) {
+			play("sonidos/llave.wav");
 			eliminar(i);
 			j.setNumLlaves(j.getNumLlaves()+1);
 			//j.incrementaLlaves();

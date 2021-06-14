@@ -3,6 +3,7 @@ Coordinador::Coordinador() {
 	estado = INICIO;
 	contHist = 1;
 	contInstr = 1;
+	playMusica("sonidos/musica_inicio.mp3", true);
 }
 Coordinador::~Coordinador() {
 
@@ -48,6 +49,7 @@ void Coordinador::teclaEspecial(unsigned char key) {
 void Coordinador::tecla(unsigned char key) {
 	if (estado == INICIO) {
 		if (key == 'e' || key == 'E') {
+			playMusica("sonidos/musica_juego.mp3",true);
 			juego.inicializa();
 			estado = JUEGO;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
@@ -68,28 +70,33 @@ void Coordinador::tecla(unsigned char key) {
 	else if (estado == JUEGO) {
 		juego.tecla(key);
 		if (key == 'p' || key == 'P') {
+			playMusica("sonidos/musica_pausa.mp3",true);
 			estado = PAUSA;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == PAUSA) {
 		if (key == 'c' || key == 'C') {
+			playMusica("sonidos/musica_juego.mp3",true);
 			estado = JUEGO;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 		if (key == 's' || key == 'S') {
+			playMusica("sonidos/musica_inicio.mp3", true);
 			estado = INICIO;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == GAMEOVER) {
 		if (key == 'c' || key == 'C') {
+			playMusica("sonidos/musica_inicio.mp3", true);
 			estado = INICIO;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
 	else if (estado == FIN) {
 		if (key == 'c' || key == 'C') {
+			playMusica("sonidos/musica_inicio.mp3", true);
 			estado = INICIO;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
@@ -100,6 +107,7 @@ void Coordinador::tecla(unsigned char key) {
 			switch (key) {
 			case 'E': //empezar el juego
 			case 'e':
+				playMusica("sonidos/musica_juego.mp3", true);
 				juego.inicializa();
 				estado = JUEGO;
 				break;
@@ -126,6 +134,7 @@ void Coordinador::tecla(unsigned char key) {
 				switch (key) {
 				case 'E': //empezar el juego
 				case 'e':
+					playMusica("sonidos/musica_juego.mp3", true);
 					juego.inicializa();
 					estado = JUEGO;
 					break;
@@ -162,6 +171,7 @@ void Coordinador::mueve() {
 			juego.setVidas(-1);// se descuenta una vida
 			if(juego.getVidas() < 1) // si no quedan vidas
 				estado = GAMEOVER;
+			playMusica("sonidos/chupaste.mp3");
 		}
 	}
 }
@@ -189,6 +199,7 @@ void Coordinador::dibuja() {
 	}
 	else if (estado == PAUSA) {
 		//juego.dibuja();
+		
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
