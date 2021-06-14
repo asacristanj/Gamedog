@@ -329,7 +329,7 @@ bool Juego::cargarNivel() {
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
 	llaves.destruirContenido();
-	nivel = 3;
+	nivel = 1;
 	if (nivel == 1) 
 	{
 		jugador.setPos(0, 0);

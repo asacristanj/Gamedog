@@ -57,9 +57,9 @@ void ListaBloques::CrearBonus(ListaBonus& b,Jugador j) {
 		bool uso = lista[i]->getuso();
 		if (Interaccion::colisionDebajo(j, *(lista[i]))&&uso==false) {
 			//Generacion de un numero aleatorio para poder generar uno de los distintos tipos de bonus
+			lista[i]->setUsotrue();
 			int bonus = rand() % 5;
 			Vector2D posbloque = lista[i]->getPos();
-			lista[i]->setUsotrue();
 				switch (bonus) {
 				case 0: //Para el caso de que sea cero creamos una nueva mascarilla
 					b.agregar(new Quirurgica(2.0f, posbloque.x, posbloque.y, 0.0f, 5.0f));
