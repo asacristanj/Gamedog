@@ -374,6 +374,7 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", -13, 0);
 		ETSIDI::printxy("PARA OMITIR LA HISTORIA PULSE LA TECLA S", -13, -1);
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -2);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::printxy("NARRADOR: Esta es Dolores. Dolores ha pasado todo el confinamiento completamente ", -13.0, 5.0);
 		ETSIDI::printxy("sola, respetando la normativa impuesta por el gobierno.Pero su paciencia esta llegando a su limite", -13.0, 4.0);
@@ -402,7 +403,6 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("DOLORES: Hola David, ay madre mia que primor que estás hecho llamando a la abuela con tus dos añitos", -13.0, 5.0);
 		ETSIDI::printxy("Si, cariño la abuela tambien te echa mucho de menos.  Si, si ya mismo voy a ir a veros a todos, muy pronto", -13.0, 4.0);
 
-	}
 	}
 	else if (estado == HISTORIA && contHist == 3) {
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
