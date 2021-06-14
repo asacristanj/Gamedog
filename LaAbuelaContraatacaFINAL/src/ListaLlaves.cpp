@@ -9,7 +9,7 @@ ListaLlaves::~ListaLlaves(){
 }
 void ListaLlaves::dibuja() {
 	for (int i = 0; i < numero; i++)
-		lista[i]->dibuja();
+        lista[i]->dibuja();
 }
 void ListaLlaves::mueve(float t) {
 	for (int i = 0; i < numero; i++)

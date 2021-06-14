@@ -13,38 +13,9 @@ void Juego::inicializa()
 	setRecordSuperado(false);
 	setRecord(getRecordFile()); // obtengo el record actual
 	//setRecordFile(10);
+	jugador.setPuntuacion(0);
 	nivel = 0;//establezco el nivel al principio de cada inicializa
-	cargarNivel();//cargo el nivel corrspondiente
-	//enemigos.agregar(new MurcielagoPequeño(1.5f, -2.0f, 10.0f, -5.0f, 1.0f));
-	//a partir de aqui todo tendria que estar en el nivel correspondiente
-	//enemigos.destruirContenido();//limpio tras game over
-	//disparos.destruirContenido();//limpio tras game over
-	//jugador.setPos(0.0f, 0.0f);//origen del jugador
-	/*plataformas.agregar(new Plataforma(-8.0f, 4.0f, 2.0f, 4.0f));
-	plataformas.agregar(new Plataforma(-5.0f, 8.0f, 5.0f, 8.0f));
-	escaleras.agregar(new Escalera(3.0f,5.0f,0.0f,4.0f,2.0f));
-	escaleras.agregar(new Escalera(-1.0f, 1.0f, 4.0f, 4.0f, 2.0f));*/
-	//llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
-	//enemigos.agregar(new Enemigo(1.5f, 0.0f, 10.0f, -1.0f, 0.0f));
-	//Agregamos un bonus inicial
-	//bonuses.agregar(new Astrazeneca(1.0f, -5.0f, 12.0f));
-	//bonuses.agregar(new Janssen(1.5f, -3.0f, 12.0f));
-	//bonuses.agregar(new MascarillaTocha(2.0f, -3.0f, 5.0f));
-	//enemigos.agregar(new CepaIndia(2.0f, 4.0f, 5.0f, 5.0f, 0.0f));
-	//bonuses.agregar(new Pfizer(0.5f, 3.0f, 12.0f, 0,0));
-	//bonuses.agregar(new Quirurgica(1.0f, 2.0f, 10.0f, 0.0f, 0.0f));
-	//bonuses.agregar(new Quirurgica(1.0f, 5.0f, 12.0f, 0.0f, 0.0f));
-	//bonuses.agregar(new Sputnik(0.5f,6.5f,6));
-	//enemigos.agregar(new MurcielagoPequeño());
-	//enemigos.agregar(new MurcielagoPequeño(1.0f, -2.0f, 10.0f, 4.0f, 4.0f));
-	//enemigos.agregar(new MurcielagoBoss(2.0f, 0.0f, 16.0f, 4.0f, 4.0f));
-     //enemigos.agregar(new CepaBrasileña(2.0f, -2.0f, 9.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBrasileña(2.0f, 1.0f, 9.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(2.0f, 0.0f, 5.0f, 2.0f, 0.0f));
-	//enemigos.agregar(new CepaBritanica(2.0f, 2.0f, 9.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaChina(2.0f, 0.0f, 15.0f, -2.0f, 0.0f));
-	//enemigos.agregar(new CepaIndia(2.0f, -4.0f, 9.0f, -1.0f, 0.0f));
-	//bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 4.0f));
+	cargarNivel();//cargo el nivel corrspondiente donde se inicializa todo
 }
 
 void Juego::moverOjo()
@@ -156,7 +127,6 @@ void Juego::mueve()
 	setChances(jugador.getNumBonus());//refrescamos las chances que tiene el jugador continuamente
 	setllaveJug(jugador.getNumLlaves());//refrescamos las llaves que tiene el jugador
 		// puntuacion
-
 	setPuntuacionJugador(jugador.getPuntuacion());
 	if (getRecord() < jugador.getPuntuacion()) // si se supera el record anterior
 	{
@@ -340,9 +310,7 @@ void Juego::tecla(unsigned char key)
 
 bool Juego::cargarNivel() {
 	nivel++;
-	jugador.setPos(0, 0);
-	jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
-	jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
+	jugador.setPuntuacion(0);
 	setVidas(1);//se establecen las vidas de nueva partida
 	bajarescaleras = subirescaleras = false;
 	jugador.setDañoCaida(false);
@@ -357,11 +325,14 @@ bool Juego::cargarNivel() {
 	llaves.destruirContenido();
 	if (nivel == 1) 
 	{
+		jugador.setPos(0, 0);
+		jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
+		jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
-		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
-		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
-		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
-		jugador.setPuntuacion(0);
+		//llaves.agregar(new Llave(1.0f, 5.0f, 17.0f));
+		//llaves.agregar(new Llave(1.0f, 4.0f, 17.0f));
+		//llaves.agregar(new Llave(1.0f, 3.0f, 17.0f));
+		bonuses.agregar(new Astrazeneca(1.0f, 2.0f, 6.0f, 0.0f, 0.0f));
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 5.0f, -6.0f, 0.0f)); //
 		bloques.agregar(new BloqueSorpresa(1.0f, 5.0f, 7.0f));
@@ -432,6 +403,9 @@ bool Juego::cargarNivel() {
 		llaves.agregar(new Llave(1.0f, 0.0f, 75.0f, 0.0f, 0.0f));
 	}
 	if (nivel == 2) {
+		jugador.setPos(0, 0);
+		jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
+		jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 		//aqui se ponen con agregar lo que querais que haya en dicho nivel
 		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
 		plataformas.agregar(new Plataforma(4.0f, 8.0f, 2.0f, 1.0f));
@@ -486,12 +460,9 @@ bool Juego::cargarNivel() {
 		llaves.agregar(new Llave(1.0f, 9.0f, 69.0f));
 	}
 	if (nivel == 3) {
-		/*plataformas.agregar(new Plataforma(-5.0f, 4.0f, 5.0f, 4.0f));
-		plataformas.agregar(new Plataforma(-2.0f, 1.0f, 2.0f, 1.0f));
-		plataformas.agregar(new Plataforma(-5.0f, 4.0f, 7.0f, 8.0f));*/
-		//llaves.agregar(new Llave(1.0f, 2.0f, 2.0f));
-		//llaves.agregar(new Llave(1.0f, 4.0f, 2.0f));
-		//llaves.agregar(new Llave(1.0f, 7.0f, 2.0f));
+		jugador.setPos(0, 0);
+		jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
+		jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 		//nivel del boss
 		escaleras.agregar(new Escalera(-1.0f, 1.0f, 0.0f, 4.0f, 2.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 4.0f, 10.0f, 4.0f));
@@ -513,4 +484,5 @@ Juego::~Juego()
 	plataformas.destruirContenido();
 	escaleras.destruirContenido();
 	bloques.destruirContenido();
+	llaves.destruirContenido();
 }

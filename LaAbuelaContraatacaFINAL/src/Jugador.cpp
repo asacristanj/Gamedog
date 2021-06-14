@@ -93,16 +93,10 @@ void Jugador::morir()
 	posicion = posicion_inicial; // vuelve a una posición inicial
 }
 
-/*void Jugador::crecer(){
-	setAltura(2.0 * altura); // el doble de grande
-}*/
-//void Jugador::IncrementaNumBonus() {
-
-//}
 void Jugador::volverSalto()
 {
 	time_t horaActual = time(NULL);
-	if (astra_activo == true && (horaActual - horaInicioAstra) > 10)
+	if ((astra_activo == true) && (((horaActual - horaInicioAstra) > 10)|| numbonus < 0))
 	{
 		astra_activo = false;
 		setImpulso(15.0f);
@@ -111,7 +105,7 @@ void Jugador::volverSalto()
 void Jugador::volverVelocidadPfizer()
 {
 	time_t horaActual = time(NULL);
-	if (pfizer_activo == true && (horaActual - horaInicioPfizer) > 10)
+	if ((pfizer_activo == true) && (((horaActual - horaInicioPfizer) > 10) || numbonus < 0))
 	{
 		pfizer_activo = false;
 		setCoefVelx(1);
@@ -120,7 +114,7 @@ void Jugador::volverVelocidadPfizer()
 void Jugador::volverVelocidadJanssen()
 {
 	time_t horaActual = time(NULL);
-	if (janssen_activo == true && (horaActual - horaInicioJanssen) > 10)
+	if ((janssen_activo == true) && (((horaActual - horaInicioJanssen) > 10) || numbonus < 0))
 	{
 		janssen_activo = false;
 		setCoefVelx(1);
@@ -145,10 +139,6 @@ void Jugador::setEscalera(int i)
 	else
 		escalera = false;
 }
-/*void Jugador::incrementaLlaves() {
-	numLlaves++;
-}*/
-
 void Jugador::dañocaida() {
 
 	float velmaxy = sqrt(altura_max_caida*(-2.0f)*acel_inicial)*(-1.0f);
@@ -167,5 +157,5 @@ void Jugador::dañocaida() {
 
 Jugador :: ~Jugador()
 {
-
+	
 }

@@ -151,7 +151,7 @@ void Coordinador::mueve() {
 	if (estado == JUEGO) 
 	{
 		juego.mueve();
-		//aqui falta el añadir cuando ganes
+		//condicion de ganar
 		if (juego.getLlaves() == 3) {
 			if (!juego.cargarNivel()) {
 				estado = FIN;
@@ -163,10 +163,6 @@ void Coordinador::mueve() {
 			if(juego.getVidas() < 1) // si no quedan vidas
 				estado = GAMEOVER;
 		}
-	}
-	if (estado == INICIO)
-	{
-		juego.setPuntuacionJugador(0);
 	}
 }
 void Coordinador::dibuja() {

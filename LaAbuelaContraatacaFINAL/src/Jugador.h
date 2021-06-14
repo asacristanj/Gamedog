@@ -21,7 +21,7 @@ private:
 	float coef_vel_rapida = 2.0; // coeficiente para velocidad rapida
 	float coef_vel_lenta = 1.0 / 3.0; // coeficiente para velocidad lenta
 	float acel_inicial = -30.0f;
-	float impulso = 17.0f; //impulso vertical inicial del salto
+	float impulso = 15.0f; //impulso vertical inicial del salto
 	bool tocandosuelo,escalera;
 	bool astra_activo,pfizer_activo,janssen_activo;
 	time_t horaInicioAstra, horaInicioPfizer, horaInicioJanssen;
@@ -37,10 +37,7 @@ public:
 	void mueve(float t);
 	void salto();
 	void morir();
-	//void incrementaLlaves();
 	void dañocaida();
-	//void IncrementaNumBonus();
-	//void crecer();
 	void volverSalto();
 	void volverVelocidadPfizer();
 	void volverVelocidadJanssen();
