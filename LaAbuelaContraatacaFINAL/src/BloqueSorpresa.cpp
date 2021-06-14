@@ -1,9 +1,6 @@
 #include "BloqueSorpresa.h"
 
 BloqueSorpresa::BloqueSorpresa() {
-	color.r = 255;
-	color.g = 223;
-	color.b = 0;
 	posicion.x = posicion.y = 0;
 	lado = 1.0f;
 	sprite.setCenter(lado / 2.0f, lado / 2.0f);
@@ -16,9 +13,6 @@ BloqueSorpresa::BloqueSorpresa(float l, float x, float y, unsigned char r,unsign
 	lado = l;
 	sprite.setCenter(lado / 2.0f, lado / 2.0f);
 	sprite.setSize(lado, lado);
-	color.r = r;
-	color.g = g;
-	color.b = b;
 	usado = false;
 }
 BloqueSorpresa::~BloqueSorpresa() {
@@ -39,11 +33,6 @@ float BloqueSorpresa::getlado() {
 void BloqueSorpresa::setPos(float x, float y) {
 	posicion.x = x;
 	posicion.y = y;
-}
-void BloqueSorpresa::setColor(unsigned char r, unsigned char g, unsigned char b) {
-	color.r = r;
-	color.g = g;
-	color.b = b;
 }
 bool BloqueSorpresa::getuso() {
 	return usado;

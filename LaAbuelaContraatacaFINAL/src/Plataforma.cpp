@@ -5,7 +5,6 @@
 
 Plataforma::Plataforma()
 {
-	color.r = color.g = color.b = 255; //blanco 
 	sprite.setCenter((limite2.x - limite1.x) / 2.0f,  0.25f);
 	sprite.setSize(limite2.x - limite1.x, 0.5f);
 }
@@ -65,12 +64,6 @@ void Plataforma::dibuja()
 	glColor3f(0.0f, 0.0f, 250.0f);
 	sprite.draw();
 	glPopMatrix();
-}
-void Plataforma::setColor(Byte r, Byte v, Byte a)
-{
-	color.r = r;
-	color.g = v;
-	color.b = a;
 }
 void Plataforma::setPos(float x1, float y1, float x2, float y2)
 {

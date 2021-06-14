@@ -8,13 +8,11 @@
 #define SPUTNIK 5
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
-#include "ColorRVA.h"
 
 class Bonus: public ObjetoMovil
 {
 protected:
 	float lado;
-	ColorRVA color;
 	int tipo;
 public:
 	friend class Interaccion;

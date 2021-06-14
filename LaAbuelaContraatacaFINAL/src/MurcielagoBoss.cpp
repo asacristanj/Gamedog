@@ -11,8 +11,6 @@ MurcielagoBoss::MurcielagoBoss()
 	posicion.y = 10.0f;
 	velocidad = (2.0f, 2.0f);
 	aceleracion.y = 0.0f;
-	color.r = color.g = 255;
-	color.b = 0;
 	vidas = 3;
 	posicion_bajada = 1.0f;
 	velocidad_bajada = -5.0f;
@@ -31,8 +29,6 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad.y = vy;
 	aceleracion.y = 0.0f;
 	velocidad_china = -5.0f;
-	color.r = color.b = 0;
-	color.g = 100;
 	posicion_bajada = 1.0f;
 	velocidad_bajada = -5.0f;
 	velocidad_china = -5.0f;

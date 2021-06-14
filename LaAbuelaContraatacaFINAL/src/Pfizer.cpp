@@ -1,8 +1,6 @@
 #include "Pfizer.h"
 Pfizer::Pfizer() {//constructor
 	tipo = PFIZER;
-	color.r = 250;
-	color.g = color.b = 0;
 	lado = 0.5;
 	sprite.setCenter(lado / 2.0f, lado / 2.0f);
 	sprite.setSize(lado, lado);
@@ -20,8 +18,6 @@ Pfizer::Pfizer(float l, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = 250;
-	color.g = color.b = 0;
 	aceleracion.y = -9.8;
 }
 void Pfizer::dibuja() {

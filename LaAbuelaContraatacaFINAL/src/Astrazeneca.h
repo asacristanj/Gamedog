@@ -1,6 +1,6 @@
 #pragma once
-#include "Bonus.h"
 #include "ETSIDI.h"
+#include "Bonus.h"
 using ETSIDI::SpriteSequence;
 class Astrazeneca : public Bonus
 {

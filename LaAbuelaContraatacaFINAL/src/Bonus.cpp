@@ -7,7 +7,6 @@ Bonus::Bonus()
 	posicion.y = 1.0f;
 	lado = 1.0f;
 	aceleracion.y = -9.8f;
-
 }
 void Bonus::dibuja()
 {/*

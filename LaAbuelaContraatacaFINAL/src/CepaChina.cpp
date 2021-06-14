@@ -6,8 +6,6 @@ CepaChina::CepaChina()
 	altura = 1.5f;
 	sprite.setCenter(altura / 2.0f, altura / 2.0f); 
 	sprite.setSize(altura, altura); //DIMENSIONES DE UNA CEPA GENERICA
-	color.g = color.b = 0;
-	color.r = 100;
 	aceleracion = (0.0f, 0.0f);
 	vidas = 1;
 }
@@ -22,8 +20,6 @@ CepaChina::CepaChina(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = color.b = 0;
-	color.g = 100;
 	aceleracion.y = -9.8f;
 }
 void CepaChina::dibuja()

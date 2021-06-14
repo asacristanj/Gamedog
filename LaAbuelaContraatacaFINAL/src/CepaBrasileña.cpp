@@ -5,8 +5,6 @@ CepaBrasileña::CepaBrasileña()
 	altura = 0.4f;
 	sprite.setCenter(altura / 2.0f, altura / 2.0f);
 	sprite.setSize(altura, altura);
-	color.r = color.g = 100;
-	color.b = 0;
 	aceleracion.y = -9.8f;
 	origenSalto = getPos();
 	vidas = 1;
@@ -21,8 +19,6 @@ CepaBrasileña::CepaBrasileña(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = color.b = 0;
-	color.g = 100;
 	aceleracion.y = -9.8f;
 	origenSalto = getPos();
 }

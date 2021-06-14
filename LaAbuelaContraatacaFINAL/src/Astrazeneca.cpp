@@ -2,8 +2,6 @@
 Astrazeneca::Astrazeneca() {//constructor
 	tipo = ASTRAZENECA;
 	lado = 0.5;
-	color.r = color.b = 250;
-	color.g = 0;
 	sprite.setCenter(lado / 2.0f, lado / 2.0f);
 	sprite.setSize(lado, lado);
 }
@@ -20,8 +18,6 @@ Astrazeneca::Astrazeneca(float l, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = color.b = 250;
-	color.g = 0;
 	aceleracion.y = -9.8;
 }
 void Astrazeneca::dibuja() {

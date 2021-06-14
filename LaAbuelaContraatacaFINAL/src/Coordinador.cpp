@@ -367,6 +367,20 @@ void Coordinador::dibuja() {
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/abuela (6).png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex3d(-8, 8, -0.1f);
+		glTexCoord2d(1, 1); glVertex3d(-3, 8, -0.1f);
+		glTexCoord2d(1, 0); glVertex3d(-3, 16, -0.1f);
+		glTexCoord2d(0, 0); glVertex3d(-8, 16, -0.1f );
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 40);
 		ETSIDI::printxy("ESCENA 1", -4, 17);
@@ -391,6 +405,20 @@ void Coordinador::dibuja() {
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/abuela (6).png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex3d(-8, 8, -0.1f);
+		glTexCoord2d(1, 1); glVertex3d(-3, 8, -0.1f);
+		glTexCoord2d(1, 0); glVertex3d(-3, 16, -0.1f);
+		glTexCoord2d(0, 0); glVertex3d(-8, 16, -0.1f);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 40);
 		ETSIDI::printxy("ESCENA 2", -4, 17);
@@ -412,6 +440,20 @@ void Coordinador::dibuja() {
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
 		glPushMatrix();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/abuela (6).png").id);
+		glDisable(GL_LIGHTING);
+		glBegin(GL_POLYGON);
+		glColor3f(1, 1, 1);
+		glTexCoord2d(0, 1); glVertex3d(-8, 8, -0.1f);
+		glTexCoord2d(1, 1); glVertex3d(-3, 8, -0.1f);
+		glTexCoord2d(1, 0); glVertex3d(-3, 16, -0.1f);
+		glTexCoord2d(0, 0); glVertex3d(-8, 16, -0.1f);
+		glEnd();
+		glEnable(GL_LIGHTING);
+		glDisable(GL_TEXTURE_2D);
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 40);
 		ETSIDI::printxy("ESCENA 3", -4, 17);

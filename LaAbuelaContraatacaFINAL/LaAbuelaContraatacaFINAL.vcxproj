@@ -186,7 +186,6 @@
     <ClInclude Include="src\CepaBritanica.h" />
     <ClInclude Include="src\CepaChina.h" />
     <ClInclude Include="src\CepaIndia.h" />
-    <ClInclude Include="src\ColorRVA.h" />
     <ClInclude Include="src\Coordinador.h" />
     <ClInclude Include="src\DisparoGel.h" />
     <ClInclude Include="src\Enemigo.h" />

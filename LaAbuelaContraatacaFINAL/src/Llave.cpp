@@ -1,8 +1,6 @@
 #include "Llave.h"
 Llave::Llave() {
-	color.r = 233;
-	color.g = 233;
-	color.b = 0;
+
 	lado = 1.0f;
 	sprite.setCenter(lado / 2.0f, lado / 2.0f);
 	sprite.setSize(lado, lado);
@@ -21,9 +19,7 @@ Llave::Llave(float l, float x, float y, float vx, float vy) {
 	velocidad.y = vy;
 	aceleracion.x = 0.0f;
 	aceleracion.y = 0.0f;
-	color.r = 233;
-	color.g = 233;
-	color.b = 233;
+
 }
 Llave::~Llave() {
 

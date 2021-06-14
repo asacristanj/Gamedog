@@ -1,8 +1,6 @@
 #include "Janssen.h"
 Janssen::Janssen() {//constructor
 	tipo = JANSSEN;
-	color.b = 250;
-	color.g = color.r = 0;
 	lado = 0.5;
 	//TAMAÑO Y CENTRO SPRITE:
 	sprite.setCenter(lado/2.0f, lado / 2.0f);
@@ -21,8 +19,6 @@ Janssen::Janssen(float l, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.b=250;
-	color.g =color.r=0;
 	aceleracion.y = -9.8;
 }
 void Janssen::dibuja() {

@@ -1,13 +1,11 @@
 #pragma once
 #include "freeglut.h"
 #include "Vector2D.h"
-#include "ColorRVA.h"
 #include "ETSIDI.h"
 using ETSIDI::SpriteSequence;
 class BloqueSorpresa
 {
 private: 
-	ColorRVA color;
 	SpriteSequence sprite{ "imagenes/bloque.png", 1 };
 	float lado;
 	Vector2D posicion;
@@ -20,7 +18,6 @@ public:
 	virtual ~BloqueSorpresa();
 	float getlado();
 	void setPos(float x, float y);
-	void setColor(unsigned char r, unsigned char g, unsigned char b);
 	bool getuso();
 	Vector2D getPos();
 	void setUsotrue();

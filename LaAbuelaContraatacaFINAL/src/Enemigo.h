@@ -8,7 +8,6 @@
 #define MURCIELAGOBOSS 5
 
 #include "Vector2D.h"
-#include "ColorRVA.h"
 #include "ObjetoMovil.h"
 #include "ETSIDI.h"
 
@@ -21,7 +20,6 @@ protected:
 	int vidas;
 	bool disparo_recibido; // se pone a true si es impactado por disparo de jugador
 	bool pisoton; // se pone a true cuando es pisado por el jugador
-	ColorRVA color;
 	int tipo;
 
 public:
@@ -30,7 +28,6 @@ public:
 	virtual ~Enemigo();
 	virtual void dibuja();
 	void mueve(float t);
-	void setColor(Byte r, Byte v, Byte a);
 	void setAltura(float alt);
 	void setDisparoRecibido(bool disparo) { disparo_recibido = disparo; }
 	void setVidas(int vida) { vidas += vida; }

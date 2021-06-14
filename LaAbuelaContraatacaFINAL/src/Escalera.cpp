@@ -1,6 +1,5 @@
 #include "Escalera.h"
 Escalera::Escalera() {
-	color.r = color.g = color.b = 255;
 }
 Escalera::Escalera(float limizqx, float limderx,float ybase, float altura, float ancho) {
 	limder1.x = limderx;
@@ -24,11 +23,6 @@ void Escalera::dibujar() {
 	glColor3f(1.0f, 0.0f, 0.0f);
 	sprite.draw();
 	glPopMatrix();
-}
-void Escalera::SetColor(unsigned char r, unsigned char b, unsigned char g) {
-	color.r = r;
-	color.g = g;
-	color.b = b;
 }
 void Escalera::SetPos(float limizqx, float limderx, float ybase, float altura, float ancho) {
 	limder1.x = limderx;

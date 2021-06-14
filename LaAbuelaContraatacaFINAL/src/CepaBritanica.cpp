@@ -5,8 +5,6 @@ CepaBritanica::CepaBritanica()
 	altura = 1.9f;
 	sprite.setCenter(altura / 2.0f, altura / 2.0f);
 	sprite.setSize(altura, altura);
-	color.b = 200;
-	color.r = color.g = 0;
 	posicion.x = 1.0f;
 	posicion.y = 5.0f;
 	velocidad.x = 3.0f;
@@ -24,8 +22,6 @@ CepaBritanica::CepaBritanica(float alt, float x, float y, float vx, float vy)
 	posicion.y = y;
 	velocidad.x = vx;
 	velocidad.y = vy;
-	color.r = color.b = 0;
-	color.g = 100;
 	aceleracion.y = 0.0f;
 	inicializar_hora_inicio = false;
 }

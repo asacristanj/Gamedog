@@ -329,6 +329,7 @@ bool Juego::cargarNivel() {
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
 	llaves.destruirContenido();
+	nivel = 3;
 	if (nivel == 1) 
 	{
 		jugador.setPos(0, 0);
@@ -420,13 +421,13 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-2.0f, 3.0f, 0.0f, 3.0f));
 		plataformas.agregar(new Plataforma(3.0f, 6.0f, 10.0f, 6.0f));
 		bloques.agregar(new BloqueSorpresa(1.0f, 8.0f, 9.0f));
-		//enemigos.agregar(new CepaIndia(2.0f, 6.0f, 7.0f, 2.0f, 0.0f));
-		//enemigos.agregar(new CepaBritanica(2.0f, 6.0f, 7.0f, -3.0f, 0.0f));
+		enemigos.agregar(new CepaIndia(2.0f, 6.0f, 7.0f, 2.0f, 0.0f));
+		enemigos.agregar(new CepaBritanica(2.0f, 6.0f, 7.0f, -3.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-5.0f, 9.0f, 0.0f, 9.0f));
 		escaleras.agregar(new Escalera(-5.0f, -3.0f, 9.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 13.0f, -3.0f, 13.0f));
-		//enemigos.agregar(new CepaBrasileña(2.0f, -7.0f, 15.0f, -2.0f, 0.0f));
-		//enemigos.agregar(new CepaIndia(2.0f, -7.0f, 15.0f, 2.0f, 0.0f));
+		enemigos.agregar(new CepaBrasileña(2.0f, -7.0f, 15.0f, -2.0f, 0.0f));
+		enemigos.agregar(new CepaIndia(2.0f, -7.0f, 15.0f, 2.0f, 0.0f));
 		escaleras.agregar(new Escalera(-10.0f, -8.0f, 13.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 17.0f, -8.0f, 17.0f));
 		llaves.agregar(new Llave(1.0f, -9.0f, 19.0f));
@@ -490,6 +491,7 @@ bool Juego::cargarNivel() {
 		plataformas.agregar(new Plataforma(-10.0f, 8.0f, -9.0f, 8.0f));
 		plataformas.agregar(new Plataforma(-7.0f, 11.0f, -6.0f, 11.0f));
 		bonuses.agregar(new MascarillaTocha(2.0f, -6.5f, 12.0f));
+		enemigos.agregar(new MurcielagoBoss(4.0f, 0.0f, 25.0f, 2.0f, 0.0f));
 	}
 	if (nivel <= 3) {
 		return true;
