@@ -24,7 +24,7 @@ bool ListaEscaleras::agregar(Escalera* e) {
 }
 void ListaEscaleras::destruirContenido() {
 	for (int i = 0; i < numero; i++)
-		eliminar(i);
+		delete lista[i];
 	numero = 0;
 }
 bool ListaEscaleras::subirEscalera(Jugador j) {

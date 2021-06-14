@@ -9,7 +9,7 @@ ListaPlataformas::~ListaPlataformas() {
 }
 void ListaPlataformas::destruirContenido() {
 	for (int i = 0; i < numero; i++)
-		eliminar(i);
+		delete lista[i];
 	numero = 0;
 }
 void ListaPlataformas::eliminar(int index) {

@@ -28,7 +28,7 @@ bool ListaLlaves::agregar(Llave* l) {
 }
 void ListaLlaves::destruirContenido() {
 	for (int i = 0; i < numero; i++) {
-		eliminar(i);
+		delete lista[i];
 	}
 	numero = 0;
 }

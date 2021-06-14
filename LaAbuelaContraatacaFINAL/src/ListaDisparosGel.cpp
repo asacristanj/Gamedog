@@ -63,7 +63,7 @@ DisparoGel* ListaDisparosGel:: operator[] (int i)
 void ListaDisparosGel::destruirContenido()
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
-		eliminar(i);
+		delete lista[i];
 	numero = 0; // inicializa lista
 }
 void ListaDisparosGel::eliminar(int index)

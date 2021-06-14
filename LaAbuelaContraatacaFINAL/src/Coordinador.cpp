@@ -374,6 +374,11 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", -13, 0);
 		ETSIDI::printxy("PARA OMITIR LA HISTORIA PULSE LA TECLA S", -13, -1);
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -2);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::printxy("NARRADOR: Esta es Dolores. Dolores ha pasado todo el confinamiento completamente ", -13.0, 5.0);
+		ETSIDI::printxy("sola, respetando la normativa impuesta por el gobierno.Pero su paciencia esta llegando a su limite", -13.0, 4.0);
+		ETSIDI::printxy("(ring ring ring) Espera parece que le estan llamando", -13, 3.0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 
 		glPopMatrix();
 	}
@@ -392,6 +397,12 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", -13, 0);
 		ETSIDI::printxy("PARA OMITIR LA HISTORIA PULSE LA TECLA S", -13, -1);
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -2);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::printxy("DOLORES: Hola David, ay madre mia que primor que estás hecho llamando a la abuela con tus dos añitos", -13.0, 5.0);
+		ETSIDI::printxy("Si, cariño la abuela tambien te echa mucho de menos.  Si, si ya mismo voy a ir a veros a todos, muy pronto", -13.0, 4.0);
+
+	}
 	}
 	else if (estado == HISTORIA && contHist == 3) {
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
@@ -409,5 +420,12 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PARA OMITIR LA HISTORIA PULSE LA TECLA S", -13, 0);
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -1);
 		ETSIDI::printxy("PARA JUGAR PULSE LA TECLA E", -13, -2);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
+		ETSIDI::printxy("NARRADOR: Y así fue, con la idea de ver a su familia en mente, que Dolores empezo a plantearse  ", -13.0, 6.0);
+		ETSIDI::printxy("salir de casa y combatir el virus.Para poder hacerlo se preparo en casa entrenando ", -13.0, 5.0);
+		ETSIDI::printxy("con los videos de Patry Jordan durante el confinamiento.", -13.0, 4.0);
+		ETSIDI::printxy("Ahora al fin comienza su venganza...", -13.0, 3.0);
 	}
+
 }

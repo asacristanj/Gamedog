@@ -337,7 +337,7 @@ Enemigo* ListaEnemigos:: operator[] (int i) //Funcion que ajusta el simbolo [] p
 void ListaEnemigos::destruirContenido() //Funcion para eliminar enemigos correctamente
 {
 	for (int i = 0; i < numero; i++) // destrucción de esferas contenidas
-		eliminar(i);
+		delete lista[i];
 	numero = 0; // inicializa lista
 }
 void ListaEnemigos::eliminar(int index)//Funcion para eliminar enemigos correctamente del vector de enemigos

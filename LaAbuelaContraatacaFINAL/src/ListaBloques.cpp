@@ -44,7 +44,8 @@ void ListaBloques::eliminar(BloqueSorpresa* b)
 void ListaBloques::destruirContenido() {
 	for (int i = 0; i < numero; i++)
 		//delete lista[i];
-		eliminar(i);
+		delete lista[i];
+	numero = 0;
 }
 void ListaBloques::rebote(Jugador& j) {
 	for (int i = 0; i <numero; i++) {
