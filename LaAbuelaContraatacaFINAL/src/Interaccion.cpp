@@ -473,8 +473,8 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 	//Función para que el MurcielagoBoss no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax_escenario = e.pared_dcha.limite2.x - (murboss.getAltura() / 2.0f);
 	float xmin_escenario = e.pared_izq.limite2.x + (murboss.getAltura() / 2.0f);;
-	float xmax_jugador = j.getPos().x + 2.0f; // limite relativo al jugador
-	float xmin_jugador = j.getPos().x - 2.0f; // lo mismo pero por el otro lado
+	float xmax_jugador = j.getPos().x + 4.0f; // limite relativo al jugador
+	float xmin_jugador = j.getPos().x - 4.0f; // lo mismo pero por el otro lado
 	static const float posicion_referencia = murboss.getPos().y; // recibe la posicion inicial del enemigo
 	static const Vector2D velocidad_referencia = murboss.getVel(); // recibe la velocidad inicial del enemigo
 	float ymax = posicion_referencia + 0.5f;

@@ -39,12 +39,12 @@ Llave* ListaLlaves::operator[](int i) {
 		i = 0;
 	return lista[i];
 }
-void ListaLlaves::eliminar(int i) {
-	if (i >= numero || i < 0)
+void ListaLlaves::eliminar(int index) {
+	if (index >= numero || index < 0)
 		return;
-	delete lista[i];
+	delete lista[index];
 	numero--;
-	for (int i = 0; i < numero; i++) {
+	for (int i = index; i < numero; i++) {
 		lista[i] = lista[i + 1];
 	}
 }

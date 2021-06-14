@@ -288,8 +288,12 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 		{
 			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
 			Interaccion::rebote(*murboss, e, j); // patron de movimiento****
+			float pos_mur = murboss->getPos().x;
 
-			if (j.getPos().x > (murboss->getPos().x - 0.02f) && j.getPos().x < (murboss->getPos().x + 0.02f)) //Le disparan cuando estén en el mismo eje X
+			if (((pos_mur > 7.97f && pos_mur < 8.00f) || (pos_mur > 5.97f && pos_mur < 6.00f) || (pos_mur > 3.97f && pos_mur < 4.00f) ||
+				(pos_mur > 1.97f && pos_mur < 2.00f) || (pos_mur > -0.03f && pos_mur < 0.00f) || (pos_mur < -1.97f && pos_mur > -2.00f) ||
+				(pos_mur < -3.97f && pos_mur > -4.00f) || (pos_mur < -5.97f && pos_mur > -6.00f) || (pos_mur < -7.97f && pos_mur > -8.00f)) &&
+				murboss->getDisparoRecibido() == false)
 			{
 				CepaChina* c = new CepaChina();
 				c->setPos(murboss->getPos().x, murboss->getPos().y);
