@@ -142,7 +142,7 @@ void Jugador::setEscalera(int i)
 void Jugador::dañocaida() {
 
 	float velmaxy = sqrt(altura_max_caida*(-2.0f)*acel_inicial)*(-1.0f);
-	cout << velocidad.y << endl;
+	//cout << velocidad.y << endl;
 	if (velocidad.y<=velmaxy) { //la velocidad en y ha sido durante un momeneto demasiado negativa, se activa el bool
 		daño_caida = true;
 	}

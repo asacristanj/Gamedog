@@ -49,6 +49,7 @@ void Coordinador::teclaEspecial(unsigned char key) {
 void Coordinador::tecla(unsigned char key) {
 	if (estado == INICIO) {
 		if (key == 'e' || key == 'E') {
+			juego.setReinicioJuego(true);
 			playMusica("sonidos/musica_juego.mp3",true);
 			juego.inicializa();
 			estado = JUEGO;
@@ -159,6 +160,7 @@ void Coordinador::teclaEspecialUp(unsigned char key) {
 void Coordinador::mueve() {
 	if (estado == JUEGO) 
 	{
+		//juego.setPuntuacionJugador(0);
 		juego.mueve();
 		//condicion de ganar
 		if (juego.getLlaves() == 3) {
@@ -169,8 +171,9 @@ void Coordinador::mueve() {
 		if (juego.getChances() < 0) // no tengo bonus y muero
 		{
 			juego.setVidas(-1);// se descuenta una vida
-			if(juego.getVidas() < 1) // si no quedan vidas
+			if (juego.getVidas() < 1) // si no quedan vidas
 				estado = GAMEOVER;
+
 			playMusica("sonidos/chupaste.mp3");
 		}
 	}

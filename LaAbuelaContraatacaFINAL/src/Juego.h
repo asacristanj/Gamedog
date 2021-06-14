@@ -53,6 +53,7 @@ private:
 	int record_puntuacion; // record de puntuacion general
 	int puntuacion_jugador = jugador.getPuntuacion();
 	bool record_superado;
+	bool reinicio_juego = false; // si es true manda a reiniciar la puntuacion del jugador
 public:
 	virtual ~Juego();
 	void tecla(unsigned char key);
@@ -71,6 +72,7 @@ public:
 	void setRecordFile(int r);
 	void setPuntuacionJugador(int p) { puntuacion_jugador = p; }
 	void setRecordSuperado(bool r) { record_superado = r; }
+	void setReinicioJuego(bool reinicio) { reinicio_juego = reinicio; }
 	// gets
 	int getLlaves() { return llaveJug; }
 	int getChances() { return chances; }
@@ -80,4 +82,5 @@ public:
 	int getRecordFile();
 	int getPuntuacionJugador() { return puntuacion_jugador; }
 	bool getRecordSuperado() { return record_superado; }
+	bool getReinicioJuego() { return reinicio_juego; }
 };

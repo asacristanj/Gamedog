@@ -13,7 +13,6 @@ void Juego::inicializa()
 	setRecordSuperado(false);
 	setRecord(getRecordFile()); // obtengo el record actual
 	//setRecordFile(10);
-	jugador.setPuntuacion(0);
 	nivel = 0;//establezco el nivel al principio de cada inicializa
 	cargarNivel();//cargo el nivel corrspondiente donde se inicializa todo
 }
@@ -126,8 +125,16 @@ void Juego::mueve()
 	bloques.CrearBonus(bonuses, jugador);
 	setChances(jugador.getNumBonus());//refrescamos las chances que tiene el jugador continuamente
 	setllaveJug(jugador.getNumLlaves());//refrescamos las llaves que tiene el jugador
-		// puntuacion
+
+	// puntuacion
+	if (getReinicioJuego() == true)
+	{
+		jugador.setPuntuacion(-jugador.getPuntuacion()); // reinicio puntuacion
+		cout << endl << "PUNTUACION: " << jugador.getPuntuacion() << endl; //****
+		setReinicioJuego(false);
+	}
 	setPuntuacionJugador(jugador.getPuntuacion());
+
 	if (getRecord() < jugador.getPuntuacion()) // si se supera el record anterior
 	{
 		setRecordSuperado(true); // señal para el coordinador
@@ -250,7 +257,6 @@ int Juego::getRecordFile()
 			cout << endl << lectura;
 		}
 		record = stoi(lectura); // stoi() convierte el string en un int
-		cout << endl << "Record guardado: " << record << endl;
 	}
 	fichero.close();
 	return record;
