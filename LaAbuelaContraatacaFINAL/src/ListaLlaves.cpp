@@ -62,6 +62,7 @@ void ListaLlaves::eliminar(Llave* l) {
 	}
 	return false;
 }*/
+//Funcion que gestiona lo que sucede cuando el jugador colisiona con una de las llaves, se elimina la llave y se incrementa el numero de llaves que ha recogido el jugador
 void ListaLlaves::colision(Jugador& j) {
 	for (int i = 0; i < numero; i++) {
 		if (Interaccion::colision(*(lista[i]), j)) {

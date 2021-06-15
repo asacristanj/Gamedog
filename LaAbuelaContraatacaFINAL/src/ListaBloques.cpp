@@ -52,6 +52,7 @@ void ListaBloques::rebote(Jugador& j) {
 		Interaccion::rebote(j, *(lista[i]));
 	}
 }
+//Funcion que genera un bonus nuevo de manera aleatoria cuando se produce la colision desde debajo del jugador con el bloque ademas gestionando que solo se pueda utilizar una vez
 void ListaBloques::CrearBonus(ListaBonus& b,Jugador j) {
 	for (int i = 0; i < numero; i++) {
 		bool uso = lista[i]->getuso();

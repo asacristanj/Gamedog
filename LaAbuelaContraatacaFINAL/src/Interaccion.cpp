@@ -103,7 +103,7 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 	}
 }
 
-bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)
+bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) //Funcion que detecta la colision del Jugador con el BloqueSorpresa
 {
 	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
 	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
@@ -117,6 +117,7 @@ bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b)
 	else
 		return false;
 }
+//Funcion que detecta la colision del jugador con el Bloque Sorpresa cuando el jugador esta por encima
 bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b)
 {
 	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
@@ -127,7 +128,7 @@ bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b)
 		return true;
 	return false;
 }
-void Interaccion::rebote(Jugador& j, BloqueSorpresa b)
+void Interaccion::rebote(Jugador& j, BloqueSorpresa b) //Funcion que gestiona el rebote del jugador cuando choca con el bloque sorpresa
 {
 	//Si el choque se produce desde abajo
 	if (Interaccion::colisionDebajo(j, b)) {
@@ -154,6 +155,7 @@ bool Interaccion::colisionEscalerasubir(Escalera e, Jugador j)
 	return false;
 }
 bool Interaccion::colisionEscalera(Escalera e, Jugador j) {
+	//medimos la distancia del jugador con el centro de la escalera
 	Vector2D limites = e.limenx();
 	Vector2D pos = j.getPos(), esca = e.centro();
 	Vector2D aux = pos - esca;
@@ -587,7 +589,8 @@ bool Interaccion::colision(DisparoGel d, Enemigo enem)
 		return true;
 	return false;
 }
-//Funciones llave
+///////////////////////////////////////////Funciones de interacción de las llaves con el resto de elementos///////////////////////////////////////////////////////////
+
 bool Interaccion::colision(Llave b, Plataforma p) //Funcion que manda true si hay colision entre el bonus y una plataforma. Mide distancia entre ellas y compara
 {
 	Vector2D pos = b.getPos();
@@ -598,7 +601,7 @@ bool Interaccion::colision(Llave b, Plataforma p) //Funcion que manda true si ha
 	}
 	return false;
 }
-bool Interaccion::colision(Llave& b, Escenario e) //Funcion que manda true si hay colision entre bonus y escenario. Mide distancia entre ellas y compara. 
+bool Interaccion::colision(Llave& b, Escenario e) //Funcion que manda true si hay colision entre llave y escenario. Mide distancia entre ellas y compara. 
 {
 	float xmax = e.suelo.limite2.x;
 	float xmin = e.suelo.limite1.x;
@@ -618,7 +621,7 @@ bool Interaccion::colision(Llave& b, Escenario e) //Funcion que manda true si ha
 	}
 	return false;
 }
-void Interaccion::rebote(Llave& b, Escenario e) //Función que gestiona el rebote de cualquier bonus con el escenario
+void Interaccion::rebote(Llave& b, Escenario e) //Función que gestiona el rebote de cualquier llave con el escenario
 {
 	if (Interaccion::colision(b, e.suelo))
 	{

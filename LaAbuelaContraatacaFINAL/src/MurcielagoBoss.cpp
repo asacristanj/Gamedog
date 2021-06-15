@@ -29,7 +29,7 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad.x = vx;
 	velocidad.y = vy;
 	aceleracion.y = 0.0f;
-	posicion_bajada = 5.0f;
+	posicion_bajada = 24.0f;
 	velocidad_bajada = -5.0f;
 	velocidad_china = -6.0f;
 	horaIniciocaida = time(NULL);
