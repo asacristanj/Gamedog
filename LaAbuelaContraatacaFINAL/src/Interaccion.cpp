@@ -295,7 +295,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 {
 	//Función que manda un boole true si ha habido contacto entre un enemigo y el jugador de frente. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
-	float distancia = (enem.getPos() - pos).modulo();
+	float distancia = (enem.getPos() - pos).modulo()+1.0f;
 	if ((distancia <= (enem.getAltura()) && (enem.posicion.y >= (j.getPos().y - j.getAltura()))))
 		return true;
 	return false;
@@ -371,19 +371,6 @@ void Interaccion::rebote(CepaBrasileña& bra, Plataforma p)
 	srand(time(NULL) * SemillaAl); //Se crea semilla aleatoria para todas las CepasBrasileñas
 	int aleatorio, DESDE = 4, HASTA = 10;
 	aleatorio = rand() % (HASTA - DESDE + 1) + DESDE; //Se crea el numero aleatorio
-	/*if ((bra.posicion.y > ymin) && ((bra.posicion.y - bra.getAltura()) < ymin))
-	{
-		if (bra.posicion.x >= xmax)
-		{
-			bra.posicion.x = xmax;
-			bra.velocidad.x = -5.0f;
-		}
-		if (bra.posicion.x <= xmin)
-		{
-			bra.posicion.x = xmin;
-			bra.velocidad.x = 5.0f;
-		}
-	}*/
 	//Además, se le añade a esta Cepa que cuando toque el suelo toque con alturas aleatorias.
 	float dist = p.distancia(bra.getPos());
 	if ((dist <= bra.getAltura() / 2.0f) && (bra.posicion.y - bra.getAltura()/2.0f) < ymin && bra.posicion.x >= xmin && bra.posicion.x <= xmax)

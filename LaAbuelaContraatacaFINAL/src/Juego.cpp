@@ -163,6 +163,7 @@ void Juego::teclaEspecial(unsigned char key)
 			subirescaleras = true;
 			jugador.setVely(7.0f);
 			jugador.setAcely(0.0f);
+			//jugador.setVely(5.0f);
 			if (escaleras.bajarEscalera(jugador)) {
 				subirescaleras = false;
 			}

@@ -28,7 +28,7 @@ void Coordinador::teclaEspecial(unsigned char key) {
 	if (estado == INSTRUCCIONES)
 	{
 
-		if (key == GLUT_KEY_RIGHT && contInstr != 2)
+		if (key == GLUT_KEY_RIGHT && contInstr != 3)
 		{
 			contInstr++;
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
@@ -103,7 +103,7 @@ void Coordinador::tecla(unsigned char key) {
 		}
 	}
 	else if (estado == INSTRUCCIONES) {
-		if (contInstr == 2)
+		if (contInstr == 3)
 		{
 			switch (key) {
 			case 'E': //empezar el juego
@@ -119,6 +119,17 @@ void Coordinador::tecla(unsigned char key) {
 				break;
 			}
 
+			key = 'Q';			//LIMPIAR BUFFER TECLADO
+		}
+		if (contInstr >= 1)
+		{
+			switch (key) {
+			case 'I':  // volver al menú principal
+			case 'i':
+				contInstr = 1;
+				estado = INICIO;
+				break;
+			}
 			key = 'Q';			//LIMPIAR BUFFER TECLADO
 		}
 	}
@@ -148,7 +159,20 @@ void Coordinador::tecla(unsigned char key) {
 
 				key = 'Q';			//LIMPIAR BUFFER TECLADO
 			}
+			if (contHist >=1)
+			{
+				switch (key) {
+				case 'I':  // volver al menú principal
+				case 'i':
+					contHist = 1;
+					estado = INICIO;
+					break;
+				}
+
+				key = 'Q';			//LIMPIAR BUFFER TECLADO
+			}
 		}
+
 
 	}
 }
@@ -166,6 +190,7 @@ void Coordinador::mueve() {
 		if (juego.getLlaves() == 3) {
 			if (!juego.cargarNivel()) {
 				estado = FIN;
+				playMusica("sonidos/ganaste.mp3");
 			}
 		}
 		if (juego.getChances() < 0) // no tengo bonus y muero
@@ -267,6 +292,32 @@ void Coordinador::dibuja() {
 
 		ETSIDI::setTextColor(1, 0, 1);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 30);
+		ETSIDI::printxy("REGLAS BASICAS:", -5, 16);
+		ETSIDI::setTextColor(0, 1, 0);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 12);
+		ETSIDI::printxy("EL OBJETIVO ES ELMINAR EL TEMIBLE MURCIELAGO QUE TE ESPERA EN", -14, 13);
+		ETSIDI::printxy("EL EL ULTIMO NIVEL.", -14, 12);
+		ETSIDI::printxy("PARA LLEGAR HASTA EL, TENDRÁS QUE SUPERAR TODOS LOS NIVELES ANTERIORES", -14, 10);
+		ETSIDI::printxy("EN CADA UNO DE ESTOS, ENCONTRARAS TRES LLAVES QUE TIENES QUE COGER.", -14, 9);
+		ETSIDI::printxy("EL MOVIMIENTO DE IZQUIERDA A DERECHA SE REALIZA CON LAS FLECHAS,Y EL DE SALTAR", -14, 7);
+		ETSIDI::printxy("CON EL ESPACIO. PUEDES SUBIR Y BAJAR ESCALERAS CON LAS FLCEHAS ARRIBA Y ABAJO", -14, 6);
+		ETSIDI::printxy("PUEDES ELIMINAR LAS CEPAS PISANDOLAS O DISPARANDO GEL HISROALCOHOLICO.", -14, 3);
+		ETSIDI::printxy("PUEDES PAUSAR EL JUEGO EN CUALQUIER MOMENTO, PULSANDO LA P.", -14, -0.75f);
+		ETSIDI::setTextColor(1, 1, 1);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
+		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
+		ETSIDI::printxy("PULSE LAS FLECHAS IZQUIERDA Y DERECHA", 3, -3);
+		ETSIDI::printxy("PULSA I PARA VOLVER AL INICIO", 3, -4);
+		glPopMatrix();
+	}
+	else if (estado == INSTRUCCIONES && contInstr == 2) {
+		gluLookAt(2, 7.5, 37,  // posicion del ojo
+			2.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
+			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
+		glPushMatrix();
+
+		ETSIDI::setTextColor(1, 0, 1);
+		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 30);
 		ETSIDI::printxy("ENEMIGOS:", -5, 16);
 		ETSIDI::setTextColor(0, 0, 1);
 		glEnable(GL_BLEND);
@@ -285,12 +336,12 @@ void Coordinador::dibuja() {
 		glDisable(GL_TEXTURE_2D);
 		ETSIDI::setTextColor(0, 1, 0);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 12);
-		ETSIDI::printxy("EN EL ULTIMO NIVEL ESTARA EL CULPABLE DEL COVID: EL GRAN MURCIELAGO.", -9, 13);
-		ETSIDI::printxy("¡ACABA CON EL Y ACABARA TODO!", -9, 12);
-		ETSIDI::printxy("CEPA BRITANICA: CUIDADO CON SUS EXPLOSIONES.", -9, 10);
-		ETSIDI::printxy("CEPA INDIA: PARECE INOFENSIVA PERO MATA IGUAL.", -9, 7);
-		ETSIDI::printxy("CEPA CHINA: SU HABILIDAD ESPECIAL ES HABER EMPEZADO TODO ESTO.", -9, 3);
-		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS SALTOS IMPREDECIBLES.", -9, -0.75f);
+		ETSIDI::printxy("LOS MURCIELAGOS TE LANZARÁN CEPAS CHINAS. ¡TEN CUIDADO!", -9, 13);
+		ETSIDI::printxy("EL ENEMIGO FINAL SERA UN MURCIALAGO GIGANTE.", -9, 12);
+		ETSIDI::printxy("CEPA BRITANICA: NO TE ACERQUES MUCHO A ELLAS, PODRIAN EXPLOTAR.", -9, 10);
+		ETSIDI::printxy("CEPA INDIA: SE MUEVEN DE LADO A LADO SOBRE LAS PLATAFORMAS.", -9, 7);
+		ETSIDI::printxy("CEPA CHINA: SON LANZADAS POR MURCIELAGOS, INTENTA ESQUIVARLAS..", -9, 3);
+		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS REBOTES IMPREDECIBLES.", -9, -0.75f);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
 		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
@@ -298,7 +349,7 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PULSA I PARA VOLVER AL INICIO", 3, -4);
 		glPopMatrix();
 	}
-	else if (estado == INSTRUCCIONES && contInstr == 2) {
+	else if (estado == INSTRUCCIONES && contInstr == 3) {
 		//INSTRUCCIONES BONUSES
 		gluLookAt(2, 7.5, 37,  // posicion del ojo
 			2.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
@@ -325,7 +376,7 @@ void Coordinador::dibuja() {
 		ETSIDI::setTextColor(0, 1, 0);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 12);
 		ETSIDI::printxy("MASCARILLA FFP2: PROPORCIONA 2 OPORTUNIDADES EXTRAS", -9, 13);
-		ETSIDI::printxy(" Y LA CAPACIDAD DE DISPARAR", -9, 12);
+		ETSIDI::printxy(" Y LA CAPACIDAD DE DISPARAR CON W,A,S,D.", -9, 12);
 		ETSIDI::printxy("MASCARILLA QUIRURGICA: PROPORCIONA UNA OPORTUNIDAD EXTRA.", -9, 10);
 		ETSIDI::printxy("SI COGES 2 ES IGUAL QUE UNA FFP2", -9, 9);
 		ETSIDI::printxy("PFIZER: ABUELA BOLT. AUMENTA SU VELOCIDAD.", -9, 7);
