@@ -29,6 +29,7 @@ private:
 	int altura_max_caida = 15;
 	bool daño_caida = false;
 	int puntuacion; // puntuacion de cada partida
+	bool boss_muerto;
 
 public:
 	Jugador();
@@ -59,6 +60,7 @@ public:
 	int getNumLlaves() { return numLlaves; }
 	bool getEscalera() { return escalera; }
 	int getPuntuacion() { return puntuacion; }
+	bool getBossMuerto() { return boss_muerto; }
 	// sets
 	void setDañoCaida(bool shik) { daño_caida = shik; }
 	void setAltura(float nalt) { altura = nalt; }
@@ -75,6 +77,7 @@ public:
 	void setImpulso(float imp) { impulso = imp; }
 	void setEscalera(int i);
 	void setPuntuacion(int punt) { puntuacion += punt; }
+	void setBossMuerto(bool boss) { boss_muerto = boss; }
 
 	friend class Interaccion;
 };

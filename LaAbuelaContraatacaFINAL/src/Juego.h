@@ -83,4 +83,5 @@ public:
 	int getPuntuacionJugador() { return puntuacion_jugador; }
 	bool getRecordSuperado() { return record_superado; }
 	bool getReinicioJuego() { return reinicio_juego; }
+	
 };

@@ -31,6 +31,7 @@ Jugador::Jugador()
 	horaInicioAstra = horaInicioPfizer = horaInicioJanssen = time(NULL);
 	numLlaves = 0;
 	puntuacion = 0; // empieza con 0 puntos
+	boss_muerto = false;
 }
 void Jugador::dibuja()
 {

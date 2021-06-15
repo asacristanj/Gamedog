@@ -327,6 +327,7 @@ void ListaEnemigos::reboteBoss(Escenario e, Jugador& j) // Interaccion del boss 
 					play("sonidos/muerte_enemigo.mp3");
 					j.setPuntuacion(50); // +50 puntos
 					eliminar(i);// Si no le quedan vidas muere
+					j.setBossMuerto(true);
 				}
 			}
 		}

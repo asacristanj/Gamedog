@@ -12,7 +12,6 @@ void Juego::inicializa()
 	z_ojo = 30;
 	setRecordSuperado(false);
 	setRecord(getRecordFile()); // obtengo el record actual
-	//setRecordFile(10);
 	nivel = 0;//establezco el nivel al principio de cada inicializa
 	cargarNivel();//cargo el nivel corrspondiente donde se inicializa todo
 }
@@ -116,7 +115,9 @@ void Juego::mueve()
 				}
 
 				if (enemigos[i]->getVidas() < 1) // si no le quedan vidas muere
+				{
 					enemigos.eliminar(enemigos[i]);
+				}	
 			}
 		}
 	}
@@ -138,6 +139,12 @@ void Juego::mueve()
 		setRecordSuperado(true); // señal para el coordinador
 		setRecord(jugador.getPuntuacion()); // se actualiza el record
 		setRecordFile(getRecord());
+	}
+
+	if (jugador.getBossMuerto()) // ultima llave
+	{
+		llaves.agregar(new Llave(3.0f, 0.0f, 12.0f));
+		jugador.setBossMuerto(false);
 	}
 }
 void Juego::teclaEspecial(unsigned char key)
@@ -326,7 +333,7 @@ bool Juego::cargarNivel() {
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
 	llaves.destruirContenido();
-	nivel = 3;
+	nivel = 1;
 	if (nivel == 1) 
 	{
 		jugador.setVelx(0.0f);
