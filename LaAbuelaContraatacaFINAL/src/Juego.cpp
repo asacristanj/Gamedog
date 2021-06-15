@@ -42,7 +42,6 @@ void Juego::dibuja()
 
 void Juego::mueve()
 {
-	//cout << endl << "Posicion del jugador: " << jugador.getPos().x << ", " << jugador.getPos().y;
 	jugador.volverSalto();
 	jugador.volverVelocidadPfizer();
 	jugador.volverVelocidadJanssen();
@@ -333,7 +332,6 @@ bool Juego::cargarNivel() {
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
 	llaves.destruirContenido();
-	nivel = 3;
 	if (nivel == 1) 
 	{
 		jugador.setVelx(0.0f);
@@ -341,7 +339,6 @@ bool Juego::cargarNivel() {
 		jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
 		jugador.setNumLlaves(0);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 		//aqui se ponen con agregar lo que quereis que haya en dicho nivel
-		bonuses.agregar(new Astrazeneca(1.0f, 2.0f, 6.0f, 0.0f, 0.0f));
 		plataformas.agregar(new Plataforma(2.0f, 4.0f, 10.0f, 4.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 5.0f, -6.0f, 0.0f)); //
 		bloques.agregar(new BloqueSorpresa(1.0f, 5.0f, 7.0f));
@@ -487,7 +484,7 @@ bool Juego::cargarNivel() {
 		//nivel del boss
 		escaleras.agregar(new Escalera(-6.0f, -4.0f, 0.0f, 4.0f, 0.0f));
 		plataformas.agregar(new Plataforma(-10.0f, 4.0f, 10.0f, 4.0f));
-		bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 6.0f));
+		bloques.agregar(new BloqueSorpresa(1.0f, 7.0f, 8.0f));
 		enemigos.agregar(new CepaBritanica(2.0f, 5.0f, 5.0f, 3.0f));
 		enemigos.agregar(new CepaIndia(2.0f, 5.0f, 5.0f, -3.0f));
 		plataformas.agregar(new Plataforma(-8.0f, 8.0f, -5.0f, 8.0f));

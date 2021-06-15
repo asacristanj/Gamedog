@@ -27,7 +27,6 @@ void Enemigo::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
-	//glutSolidSphere(altura, 15, 15);
 	glPopMatrix();
 }
 void Enemigo::mueve(float t)

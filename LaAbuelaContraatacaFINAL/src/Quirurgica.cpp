@@ -21,8 +21,6 @@ Quirurgica::Quirurgica(float l, float x, float y, float vx, float vy)
 void Quirurgica::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
-	//glColor3f(0.0f, 0.0f, 100.0f);
-	//glutSolidCube(lado);
 	sprite.draw();
 	glPopMatrix();
 }

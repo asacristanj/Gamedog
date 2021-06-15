@@ -186,7 +186,7 @@ void Coordinador::dibuja() {
 		glPushMatrix();
 		ETSIDI::setTextColor(1, 1, 0);
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 50);
-		ETSIDI::printxy("LA ABUELA CONTRATACA", -12, 10);
+		ETSIDI::printxy("LA ABUELA CONTRAATACA", -12, 10);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
 		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR", -6, 4);
@@ -200,9 +200,7 @@ void Coordinador::dibuja() {
 	else if (estado == JUEGO) {
 		juego.dibuja();
 	}
-	else if (estado == PAUSA) {
-		//juego.dibuja();
-		
+	else if (estado == PAUSA) {		
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
@@ -217,7 +215,6 @@ void Coordinador::dibuja() {
 		glPopMatrix();
 	}
 	else if (estado == GAMEOVER) {
-		//juego.dibuja();
 		char puntuacion[10];
 		char record[10];
 		_itoa_s(juego.getPuntuacionJugador(), puntuacion, 10);
@@ -242,14 +239,14 @@ void Coordinador::dibuja() {
 		ETSIDI::setFont("fuentes/HUSKYSTA.TTF", 60);
 		ETSIDI::printxy("GAME OVER", -7, 9);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 25);
-		ETSIDI::printxy("NEUMONIA BILATERAL", -7, 5);
+		ETSIDI::printxy("SE ACABO EL CONTRAATAQUE", -7, 4);
+		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 25);
 		ETSIDI::setTextColor(1, 0, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 16);
 		ETSIDI::printxy("PULSA -C- PARA IR AL MENU DE INICIO", -6, 0);
 		glPopMatrix();
 	}
 	else if (estado == FIN) {
-		//juego.dibuja();
 		gluLookAt(0, 7.5, 30,  // posicion del ojo
 			0.0, 7.5, 0.0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);		// definimos hacia arriba (eje Y) 
@@ -294,26 +291,6 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("CEPA INDIA: PARECE INOFENSIVA PERO MATA IGUAL.", -9, 7);
 		ETSIDI::printxy("CEPA CHINA: SU HABILIDAD ESPECIAL ES HABER EMPEZADO TODO ESTO.", -9, 3);
 		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS SALTOS IMPREDECIBLES.", -9, -0.75f);
-
-		/*
-		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
-		ETSIDI::printxy("PARA MOVER A LA ABUELA, USA LAS FLECHAS IZQUIERDA Y DERECHA", -13, 14);
-		ETSIDI::printxy("PARA SALTAR USA LA BARRA ESPACIADORA. PARA SUBIR Y BAJAR ESCALERAS LAS FLECHAS ARRIBA Y ABAJO", -13, 13);
-		ETSIDI::printxy("PARA DISPARAR CUANDO LA ABUELA PUEDA HACERLO USA LAS TECLAS A(IZQUIERDA) ,W(ARRIBA), D(DERECHA)", -13, 12);
-		ETSIDI::printxy("CUANDO LA ABUELA CONSIGUE LAS 3 LLAVES, AVANZA HACIA EL SIGUIENTE NIVEL", -13, 11);
-		ETSIDI::printxy("LAS DISTINTAS CEPAS TIENEN HABILIDADES DIFERENTES, ¡ESQUÍVALAS!", -13, 10);
-		ETSIDI::printxy("CEPA INDIA: PARECE INOFENSIVA PERO MATA IGUAL", -11, 9);
-		ETSIDI::printxy("CEPA BRITANICA: CUIDADO CON SUS EXPLOSIONES", -11, 8);
-		ETSIDI::printxy("CEPA CHINA: SU HABILIDAD ESPECIAL ES HABER EMPEZADO TODO ESTO. SON DISPARADAS POR MURCIELAGOS", -11, 7);
-		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS SALTOS IMPREDECIBLES", -11, 6);
-		ETSIDI::printxy("AYUDA A LA ABUELA CON LAS MASCARILLAS Y VACUNAS PARA TENER HABILIDADES DIFERENTES", -13, 5);
-		ETSIDI::printxy("MASCARILLA QUIRURGICA: PROPORCIONA UNA OPORTUNIDAD EXTRA. SI COGES 2 ES IGUAL QUE UNA FFP2", -11, 4);
-		ETSIDI::printxy("MASCARILLA FFP2: PROPORCIONA 2 OPORTUNIDADES EXTRAS Y LA CAPACIDAD DE DISPARAR", -11, 3);
-		ETSIDI::printxy("ASTRAZENECA: AUMENTA EL SALTO DE LA ABUELA", -11, 2);
-		ETSIDI::printxy("PFIZER: ABUELA BOLT. AUMENTA SU VELOCIDAD", -11, 1);
-		ETSIDI::printxy("JANSSEN: PUEDE PASAR CUALQUIER COSA, MAS VELOCIDAD, MENOS VELOCIDAD O NADA", -11, 0);
-		ETSIDI::printxy("EN EL ULTIMO NIVEL ESTARA EL CULPABLE DEL COVID: EL GRAN MURCIELAGO. ¡ACABA CON EL Y ACABARA TODO!", -13, -1);
-		*/
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
 		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);

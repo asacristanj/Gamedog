@@ -18,47 +18,7 @@ Plataforma::Plataforma(float x1, float y1, float x2, float y2) {
 }
 void Plataforma::dibuja()
 {
-	/*
-	glDisable(GL_LIGHTING);
-	glColor3ub(color.r, color.g, color.b);
-	glBegin(GL_POLYGON);
-	glVertex3d(limite1.x, limite1.y, 5);
-	glVertex3d(limite2.x, limite2.y, 5);
-	glVertex3d(limite2.x, limite2.y, -5);
-	glVertex3d(limite1.x, limite1.y, -5);
-	glEnd();
-	glEnable(GL_LIGHTING);
-	*/
-	/*/*
 	
-
-
-	glEnable(GL_BLEND);     
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_TEXTURE_2D);
-/*
-	if (n==1)	
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/plataforma.png").id);
-	if (n==0)
-		glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture("imagenes/plataforma2.png").id);
-
-	glDisable(GL_LIGHTING);
-	glBegin(GL_POLYGON);
-	glColor3f(1, 1, 1);
-	/*
-	glTexCoord2d(0, 0); glVertex3d(limite1.x, limite1.y, 5);
-	glTexCoord2d(1, 0); glVertex3d(limite2.x, limite1.y, 5);
-	glTexCoord2d(1, 1); glVertex3d(limite2.x, limite2.y, -5);
-	glTexCoord2d(0, 1); glVertex3d(limite1.x, limite2.y, -5);
-
-	glVertex3d(limite1.x, limite1.y, 5);
-	glVertex3d(limite2.x, limite2.y, 5);
-	glVertex3d(limite2.x, limite2.y, -5);
-	glVertex3d(limite1.x, limite1.y, -5);
-	glEnd();
-	glEnable(GL_LIGHTING);
-	glDisable(GL_TEXTURE_2D);
-	*/
 	glPushMatrix();
 	glTranslatef(((limite2.x - limite1.x) / 2.0f) + limite1.x, limite2.y - 0.25f, 0);
 	glColor3f(0.0f, 0.0f, 250.0f);

@@ -8,8 +8,8 @@ private:
 	SpriteSequence sprite{ "imagenes/ffp2.png", 1 };
 public:
 	MascarillaTocha();
-	MascarillaTocha(float l, float x = 0.0f, float y = 0.0f, float vx = 0.0f, float vy = 0.0f);
+	MascarillaTocha(float l, float x = 0.0f, float y = 0.0f, float vx = 0.0f, float vy = 0.0f);//Constructor sobrecargado para agregarlas posteriormente
 	virtual ~MascarillaTocha();
-	void dibuja();
+	void dibuja();//Dibujo individual del sprite
 };
 

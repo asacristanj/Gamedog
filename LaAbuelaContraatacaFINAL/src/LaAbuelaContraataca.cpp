@@ -38,7 +38,6 @@ int main(int argc, char* argv[])
 	glutSpecialFunc(onSpecialKeyboardDown); //gestión de los recursos pulsados
 	glutSpecialUpFunc(onSpecialKeyboardUp); //gestión de los recursos cuando se deja de pulsar
 
-	//juego.inicializa();
 
 	//pasarle el control a GLUT,que llamara a los callbacks
 	glutMainLoop();
@@ -55,7 +54,6 @@ void OnDraw(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//juego.dibuja();
 	abuela.dibuja();
 	//no borrar esta linea ni poner nada despues
 	glutSwapBuffers();
@@ -63,14 +61,12 @@ void OnDraw(void)
 void OnKeyboardDown(unsigned char key, int x_t, int y_t)
 {
 	//poner aqui el código de teclado
-	//juego.tecla(key);
 	abuela.tecla(key);
 
 	glutPostRedisplay();
 }
 void onSpecialKeyboardDown(int key, int x, int y)
 {
-	//juego.teclaEspecial(key);
 	abuela.teclaEspecial(key);
 }
 void onSpecialKeyboardUp(int key, int x, int y)
@@ -80,9 +76,7 @@ void onSpecialKeyboardUp(int key, int x, int y)
 void OnTimer(int value)
 {
 	//poner aqui el código de animacion
-	//juego.mueve();
 	abuela.mueve();
-	//juego.moverOjo();
 	//no borrar estas lineas
 	glutTimerFunc(25, OnTimer, 0);
 	glutPostRedisplay();

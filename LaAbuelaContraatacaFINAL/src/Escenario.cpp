@@ -31,12 +31,7 @@ void Escenario::dibuja()
 	glDisable(GL_LIGHTING);
 	glBegin(GL_POLYGON);
 	glColor3f(1, 1, 1);
-	/*
-	glTexCoord2d(0, 1); glVertex2f(-10, 0);
-	glTexCoord2d(1, 1); glVertex2f(10, 0);
-	glTexCoord2d(1, 0); glVertex2f(10, 15);
-	glTexCoord2d(0, 0); glVertex2f(-10, 15);
-	*/
+	
 	glTexCoord2d(0, 1); glVertex3d(-10, -0.5f, -0.1f);
 	glTexCoord2d(1, 1); glVertex3d(10, -0.5f, -0.1f);
 	glTexCoord2d(1, 0); glVertex3d(10, 100, -0.1f);

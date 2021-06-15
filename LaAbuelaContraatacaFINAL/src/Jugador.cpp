@@ -40,7 +40,6 @@ void Jugador::dibuja()
 	glTranslatef(posicion.x, posicion.y-0.1f, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
 
-	//glutSolidSphere(altura, 15, 15);
 	//ANIMACION DEL SPRITE DEL PERSONAJE:
 	if (getNumBonus() == 0) { //SI NO TIENE BONUS, SKIN DEFAULT
 	if (velocidad.x > 0.01)sprite.flip(false, false);
@@ -143,7 +142,6 @@ void Jugador::setEscalera(int i)
 void Jugador::dañocaida() {
 
 	float velmaxy = sqrt(altura_max_caida*(-2.0f)*acel_inicial)*(-1.0f);
-	//cout << velocidad.y << endl;
 	if (velocidad.y<=velmaxy) { //la velocidad en y ha sido durante un momeneto demasiado negativa, se activa el bool
 		daño_caida = true;
 	}

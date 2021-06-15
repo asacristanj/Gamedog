@@ -98,13 +98,6 @@ void ListaEnemigos::rebote(Escenario e) // Método para gestionar la interacción 
 			MurcielagoPequeño* murpeq = (MurcielagoPequeño*)lista[i];
 			Interaccion::rebote(*murpeq, e);
 		}
-		/*
-		if (tipo == MURCIELAGOBOSS)
-		{
-			MurcielagoBoss* murboss = (MurcielagoBoss*)lista[i];
-			Interaccion::rebote(*murboss, e);
-		}
-		*/
 	}
 }
 void ListaEnemigos::rebote(Jugador& j) // Método para gestionar la interacción de todos los enemigos con el jugador

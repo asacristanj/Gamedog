@@ -24,7 +24,6 @@ void Astrazeneca::dibuja() {
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(250.0f, 0.0f, 250.0f);
-	//glutSolidCube(lado);
 	sprite.draw();
 	glPopMatrix();
 }
