@@ -33,7 +33,7 @@ MurcielagoBoss::MurcielagoBoss(float alt, float x, float y, float vx, float vy)
 	velocidad_bajada = -5.0f;
 	velocidad_china = -6.0f;
 	horaIniciocaida = time(NULL);
-	vidas = 1;
+	vidas = 3;
 	velocidad = (2.0f, 2.0f);
 	reset_posicion = false;
 }

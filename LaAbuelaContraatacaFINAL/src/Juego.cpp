@@ -274,7 +274,6 @@ void Juego::tecla(unsigned char key)
 	{
 		if ((plataformas.colisionEncima(jugador) || Interaccion::colisionSuelo(jugador, escenario) || jugador.suelo()))
 		{
-			//cout << endl << "salta"<<jugador.getPos().y;
 			jugador.salto();
 		}
 		break;
