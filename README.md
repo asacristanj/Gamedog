@@ -1,7 +1,7 @@
 # Gamedog
 LA ABUELA CONTRAATACA
 
-Dolores, una mujer mayor, hastiada de las normativas sanitarias del gobierno de Perro Sánchez.
+Dolores, una mujer mayor, hastiada de las normativas sanitarias del gobierno.
 Decide prepararse y enfretarse al virus ella misma para poder verse con su familia.
 Esta es la historia de su venganza.
 
