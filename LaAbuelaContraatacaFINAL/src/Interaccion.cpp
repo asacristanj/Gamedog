@@ -56,9 +56,9 @@ bool Interaccion::colisionSuelo(Jugador j, Escenario e)
 void Interaccion::rebote(Jugador& j, Plataforma p)
 {
 	//Función para que el jugador no pueda atravesar las plataformas.Coge sus límites y dice que si choca por encima se quede arriba y se choca por debajo que se queda abajo frenándose debido al choque.
-	float xmax = p.limite2.x + (j.getAltura()/2.0f);
-	float xmin = p.limite1.x - (j.getAltura()/2.0f);;
-	float y = p.limite1.y;
+	float xmax = p.getPosxder() + (j.getAltura()/2.0f);
+	float xmin = p.getPosxizq() - (j.getAltura()/2.0f);;
+	float y = p.getPosy();
 	if (Interaccion::colisionEncima(j, p) && j.posicion.x < xmax && j.posicion.x > xmin && Interaccion::colisionLateralIzquierda(j, p) == false && Interaccion::colisionLateralDerecha(j, p) == false)
 	{
 		// freno al personaje
@@ -228,9 +228,9 @@ bool Interaccion::colision(Bonus& b, Escenario e) //Funcion que manda true si ha
 void Interaccion::rebote(Bonus& b, Plataforma p) //Función que gestiona el rebote de cualquier bonus con als plataformas
 {
 	//Se meto el esceneario para que haya aceleracion de plataforma a escenario y no haya en el escenario
-	float xmax = p.limite2.x;
-	float xmin = p.limite1.x;
-	float y = p.limite1.y + b.getlado() / 2.0f; 
+	float xmax = p.getPosxder();
+	float xmin = p.getPosxizq();
+	float y = p.getPosy() + b.getlado() / 2.0f;
 	if (Interaccion::colision(b, p)) 
 	{
 		b.setPos(b.getPos().x, y);

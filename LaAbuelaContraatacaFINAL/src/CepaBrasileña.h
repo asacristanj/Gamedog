@@ -13,7 +13,5 @@ public:
 	void dibuja();
 	void saltar(float salto);
 	void mueve(float t);
-	
-	friend class Interaccion;
 };
 

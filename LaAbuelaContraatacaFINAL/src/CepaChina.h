@@ -15,7 +15,5 @@ public:
 	void dibuja();
 	float getTiempo() { return tiempo_disparo; }
 	void mueve(float t);
-
-	friend class Interaccion;
 };
 

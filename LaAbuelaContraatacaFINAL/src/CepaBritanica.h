@@ -14,6 +14,5 @@ public:
 	void dibuja();
 	void mueve(float t);
 	bool getInicializarHora() {return inicializar_hora_inicio; }
-	void setInicializarHora(bool horaIn) { inicializar_hora_inicio = horaIn; }
-	friend class Interaccion;
+	void setInicializarHora(bool horaIn) { inicializar_hora_inicio = horaIn;}
 };

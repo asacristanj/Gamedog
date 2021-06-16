@@ -1,15 +1,2 @@
-﻿  Coordinador.cpp
-  Escenario.cpp
-  Factoria.cpp
-  Interaccion.cpp
-  Juego.cpp
-  ListaBloques.cpp
-  ListaBonus.cpp
-  ListaDisparosGel.cpp
-  ListaEnemigos.cpp
-  ListaEscaleras.cpp
-  ListaLlaves.cpp
-  ListaPlataformas.cpp
-  Plataforma.cpp
-  Generando código...
+﻿  Interaccion.cpp
   LaAbuelaContraatacaFINAL.vcxproj -> C:\Users\david\OneDrive\Documentos\GitHub\Gamedog\LaAbuelaContraatacaFINAL\bin\LaAbuelaContraatacaFINAL.exe
