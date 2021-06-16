@@ -43,7 +43,6 @@ void ListaBloques::eliminar(BloqueSorpresa* b)
 }
 void ListaBloques::destruirContenido() {
 	for (int i = 0; i < numero; i++)
-		//delete lista[i];
 		delete lista[i];
 	numero = 0;
 }

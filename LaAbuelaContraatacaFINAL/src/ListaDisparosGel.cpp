@@ -36,7 +36,6 @@ void ListaDisparosGel::colision(Plataforma p)
 		if (Interaccion::colision(*(lista[i]), p))
 		{
 			//eliminamos el disparo al impactar con la plataforma
-			//delete lista[i];
 			eliminar(i);
 			numero--;
 		}
@@ -47,7 +46,6 @@ void ListaDisparosGel::colision(Escenario e)
 		if (Interaccion::colision(*(lista[i]), e))
 		{
 			//eliminamos el disparo cuando se impacta con la pared
-			//delete lista[i];
 			eliminar(i);
 			numero--;
 		}

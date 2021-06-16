@@ -14,7 +14,6 @@ public:
 	Escenario();
 	virtual ~Escenario();
 	void dibuja();
-
 	friend class Interaccion;
 };
 

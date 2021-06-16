@@ -1,7 +1,7 @@
 #include "Escalera.h"
 Escalera::Escalera() {
 }
-Escalera::Escalera(float limizqx, float limderx,float ybase, float altura, float ancho) {
+Escalera::Escalera(float limizqx, float limderx,float ybase, float altura) {
 	limder1.x = limderx;
 	limder1.y = ybase;
 	limder2.x = limderx;
@@ -24,7 +24,7 @@ void Escalera::dibujar() {
 	sprite.draw();
 	glPopMatrix();
 }
-void Escalera::SetPos(float limizqx, float limderx, float ybase, float altura, float ancho) {
+void Escalera::SetPos(float limizqx, float limderx, float ybase, float altura) {
 	limder1.x = limderx;
 	limder1.y = ybase;
 	limder2.x = limderx;

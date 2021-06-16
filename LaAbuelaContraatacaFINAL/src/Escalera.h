@@ -9,10 +9,10 @@ private:
 	Vector2D limder1,limder2, limizq1,limizq2;
 public:
 	Escalera();
-	Escalera(float limizqx, float limderx, float ybase, float altura, float ancho);
+	Escalera(float limizqx, float limderx, float ybase, float altura);
 	virtual ~Escalera();
 	void dibujar();
-	void SetPos(float limizqx, float limderx, float ybase, float altura, float ancho);
+	void SetPos(float limizqx, float limderx, float ybase, float altura);
 	Vector2D limenx();
 	Vector2D centro();
 	Vector2D centroabajo();

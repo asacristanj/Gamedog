@@ -35,6 +35,5 @@ public:
 	float getAltura() { return altura; }
 	bool getDisparoRecibido() { return disparo_recibido; }
 	int getVidas() { return vidas; }
-
 	friend class Interaccion;
 };
