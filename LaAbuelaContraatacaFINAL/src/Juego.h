@@ -30,9 +30,9 @@
 class Juego
 {
 private:
-	float x_ojo;
-	float y_ojo;
-	float z_ojo;
+	float x_ojo=0;
+	float y_ojo=0;
+	float z_ojo=0;
 	DisparoGel disparogel;
 	Jugador jugador;
 	Escenario escenario;
@@ -44,15 +44,15 @@ private:
 	ListaPlataformas plataformas;
 	ListaEscaleras escaleras;
 	ListaLlaves llaves;
-	bool impacto;//variable que es true si enemigo choca con jugador
-	bool bajarescaleras,subirescaleras,primeravez;
+	bool impacto=false;//variable que es true si enemigo choca con jugador
+	bool bajarescaleras=false,subirescaleras = false,primeravez = true;
 	int chances=jugador.getNumBonus(); // veces que se puede recibir daño sin llegar a morir
 	int llaveJug = jugador.getNumLlaves();//llaves que tiene el jugador, a las 3 pasa el nivel
 	int vidas=1; // veces que se puede reintentar el nivel tras morir
-	int nivel;//variable que encaja el nivel
-	int record_puntuacion; // record de puntuacion general
+	int nivel=0;//variable que encaja el nivel
+	int record_puntuacion=0; // record de puntuacion general
 	int puntuacion_jugador = jugador.getPuntuacion();
-	bool record_superado;
+	bool record_superado=false;
 	bool reinicio_juego = false; // si es true manda a reiniciar la puntuacion del jugador
 public:
 	virtual ~Juego();
@@ -83,5 +83,4 @@ public:
 	int getPuntuacionJugador() { return puntuacion_jugador; }
 	bool getRecordSuperado() { return record_superado; }
 	bool getReinicioJuego() { return reinicio_juego; }
-	
 };

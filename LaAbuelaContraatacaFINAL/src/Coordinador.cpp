@@ -302,7 +302,7 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("EL MOVIMIENTO DE IZQUIERDA A DERECHA SE REALIZA CON LAS FLECHAS,Y EL DE SALTAR", -14, 7);
 		ETSIDI::printxy("CON EL ESPACIO. PUEDES SUBIR Y BAJAR ESCALERAS CON LAS FLCEHAS ARRIBA Y ABAJO", -14, 6);
 		ETSIDI::printxy("PUEDES ELIMINAR LAS CEPAS PISANDOLAS O DISPARANDO GEL HISROALCOHOLICO.", -14, 3);
-		ETSIDI::printxy("PUEDES PAUSAR EL JUEGO EN CUALQUIER MOMENTO, PULSANDO LA P.", -14, -0.75f);
+		ETSIDI::printxy("PUEDES PAUSAR EL JUEGO EN CUALQUIER MOMENTO, PULSANDO LA P.", -14, -1);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
 		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
@@ -341,7 +341,7 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("CEPA BRITANICA: NO TE ACERQUES MUCHO A ELLAS, PODRIAN EXPLOTAR.", -9, 10);
 		ETSIDI::printxy("CEPA INDIA: SE MUEVEN DE LADO A LADO SOBRE LAS PLATAFORMAS.", -9, 7);
 		ETSIDI::printxy("CEPA CHINA: SON LANZADAS POR MURCIELAGOS, INTENTA ESQUIVARLAS..", -9, 3);
-		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS REBOTES IMPREDECIBLES.", -9, -0.75f);
+		ETSIDI::printxy("CEPA BRASILEÑA: CUIDADO CON SUS REBOTES IMPREDECIBLES.", -9, -1);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
 		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
@@ -381,8 +381,8 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("SI COGES 2 ES IGUAL QUE UNA FFP2", -9, 9);
 		ETSIDI::printxy("PFIZER: ABUELA BOLT. AUMENTA SU VELOCIDAD.", -9, 7);
 		ETSIDI::printxy("ASTRAZENECA: AUMENTA EL SALTO DE LA ABUELA.", -9, 3);
-		ETSIDI::printxy("JANSSEN: PUEDE PASAR CUALQUIER COSA, MAS VELOCIDAD,", -9, -0.5f);
-		ETSIDI::printxy("MENOS VELOCIDAD O NADA", -9, -1.5f);
+		ETSIDI::printxy("JANSSEN: PUEDE PASAR CUALQUIER COSA, MAS VELOCIDAD,", -9, 0);
+		ETSIDI::printxy("MENOS VELOCIDAD O NADA", -9, -1);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 8);
 		ETSIDI::printxy("PARA AVANZAR Y VOLVER EN LAS INSTRUCCIONES", 3, -2);
@@ -421,9 +421,9 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -2);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::printxy("NARRADOR: Esta es Dolores. Dolores ha pasado todo el confinamiento completamente ", -13.0, 5.0);
-		ETSIDI::printxy("sola, respetando la normativa impuesta por el gobierno.Pero su paciencia esta llegando a su limite", -13.0, 4.0);
-		ETSIDI::printxy("(ring ring ring) Espera parece que le estan llamando", -13, 3.0);
+		ETSIDI::printxy("NARRADOR: Esta es Dolores. Dolores ha pasado todo el confinamiento completamente ", -13, 5);
+		ETSIDI::printxy("sola, respetando la normativa impuesta por el gobierno.Pero su paciencia esta llegando a su limite", -13, 4);
+		ETSIDI::printxy("(ring ring ring) Espera parece que le estan llamando", -13, 3);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 
 		glPopMatrix();
@@ -459,8 +459,8 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PARA VOLVER AL MENÚ DE INICIO PULSE LA TECLA I", -13, -2);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
 		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::printxy("DOLORES: Hola David, ay madre mia que primor que estás hecho llamando a la abuela con tus dos añitos", -13.0, 5.0);
-		ETSIDI::printxy("Si, cariño la abuela tambien te echa mucho de menos.  Si, si ya mismo voy a ir a veros a todos, muy pronto", -13.0, 4.0);
+		ETSIDI::printxy("DOLORES: Hola David, ay madre mia que primor que estás hecho llamando a la abuela con tus dos añitos", -13, 5);
+		ETSIDI::printxy("Si, cariño la abuela tambien te echa mucho de menos.  Si, si ya mismo voy a ir a veros a todos, muy pronto", -13, 4);
 
 	}
 	else if (estado == HISTORIA && contHist == 3) {
@@ -495,10 +495,10 @@ void Coordinador::dibuja() {
 		ETSIDI::printxy("PARA JUGAR PULSE LA TECLA E", -13, -2);
 		ETSIDI::setTextColor(1, 1, 1);
 		ETSIDI::setFont("fuentes/Roboto-Bold.TTF", 10);
-		ETSIDI::printxy("NARRADOR: Y así fue, con la idea de ver a su familia en mente, que Dolores empezo a plantearse  ", -13.0, 6.0);
-		ETSIDI::printxy("salir de casa y combatir el virus.Para poder hacerlo se preparo en casa entrenando ", -13.0, 5.0);
-		ETSIDI::printxy("con los videos de Patry Jordan durante el confinamiento.", -13.0, 4.0);
-		ETSIDI::printxy("Ahora al fin comienza su venganza...", -13.0, 3.0);
+		ETSIDI::printxy("NARRADOR: Y así fue, con la idea de ver a su familia en mente, que Dolores empezo a plantearse  ", -13, 6);
+		ETSIDI::printxy("salir de casa y combatir el virus.Para poder hacerlo se preparo en casa entrenando ", -13, 5);
+		ETSIDI::printxy("con los videos de Patry Jordan durante el confinamiento.", -13, 4);
+		ETSIDI::printxy("Ahora al fin comienza su venganza...", -13, 3);
 	}
 
 }

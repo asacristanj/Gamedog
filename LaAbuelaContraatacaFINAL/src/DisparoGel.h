@@ -17,7 +17,7 @@ public:
 	void mueve(float t);
 	void setPos(float ix, float iy);
 	float getRadio() { return radio; }
-
+	Vector2D getOrigen() { return origen; }
 	friend class Interaccion;
 };
 

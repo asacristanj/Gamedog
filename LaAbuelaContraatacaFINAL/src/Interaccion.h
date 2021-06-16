@@ -16,7 +16,6 @@
 #include "Astrazeneca.h"
 #include "Janssen.h"
 #include "Pfizer.h"
-
 #include "MascarillaTocha.h"
 #include "Escalera.h"
 #include "Llave.h"
@@ -65,7 +64,5 @@ public:
 	static bool colision(DisparoGel d, Enemigo enem);
 	//Llave
 	static bool colision(Llave b, Plataforma p);
-	static bool colision(Llave& b, Escenario e);
-	static void rebote(Llave& b, Escenario e);
 	static bool colision(Llave b, Jugador j);
 };
