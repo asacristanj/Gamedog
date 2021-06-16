@@ -17,7 +17,7 @@ public:
 	void dibuja();
 protected:
 	Juego juego;
-	enum Estado {INICIO, JUEGO, PAUSA, GAMEOVER,FIN, INSTRUCCIONES, HISTORIA};
+	enum Estado {INICIO, JUEGO, PAUSA, GAMEOVER, FIN, INSTRUCCIONES, HISTORIA};
 	Estado estado;
 	int contHist;
 	int contInstr;

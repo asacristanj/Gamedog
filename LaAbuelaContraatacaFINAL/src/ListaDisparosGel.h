@@ -14,10 +14,8 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(DisparoGel* d);
-
 	void mueve(float t);
 	void dibuja();
-
 	void colision(Plataforma p);
 	void colision(Escenario e);
 

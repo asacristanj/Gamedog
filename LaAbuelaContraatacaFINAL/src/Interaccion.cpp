@@ -62,22 +62,24 @@ void Interaccion::rebote(Jugador& j, Plataforma p)
 	if (Interaccion::colisionEncima(j, p) && j.posicion.x < xmax && j.posicion.x > xmin && Interaccion::colisionLateralIzquierda(j, p) == false && Interaccion::colisionLateralDerecha(j, p) == false)
 	{
 		// freno al personaje
-		j.velocidad.y = 0.0f;
-		//j.aceleracion.y = 0.0f;
-		j.posicion.y = y + j.getAltura();
+		j.setVel(j.getVel().x, 0.0f);
+		j.setPos(j.getPos().x, y + j.getAltura());
 		j.tocandosuelo = true;
 	}
 	else
-		j.aceleracion.y = j.acel_inicial; // vuelvo a recuperar la aceleracion inicial// que la hemos cambiado por 30
-	if (Interaccion::colisionDebajo(j, p) && j.posicion.x < xmax && j.posicion.x > xmin)
+		j.setAcel(j.getAcel().x, j.getAcelInicial()); // vuelvo a recuperar la aceleracion inicial// que la hemos cambiado por 30
+
+	if (Interaccion::colisionDebajo(j, p) && j.getPos().x < xmax && j.getPos().x > xmin)
 	{
-		j.velocidad.y = -5.0f; // el jugador rebota ligeramente al tocar la plataforma
+		j.setVel(j.getVel().x, -5.0f); // el jugador rebota ligeramente al tocar la plataforma
 	}
+
 	if (Interaccion::colisionLateralDerecha(j, p) == true)
 	{
 		float xmin_derecha = p.limite1.x - j.getAltura()/3.5f;
 		j.setPos(xmin_derecha, j.getPos().y);
 	}
+
 	if (Interaccion::colisionLateralIzquierda(j, p) == true)
 	{
 		float xmax_izquierda = p.limite2.x + j.getAltura()/3.5f;
@@ -90,24 +92,25 @@ void Interaccion::rebote(Jugador& j, Escenario e)
 	//Función para que el jugador no se pueda salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde del escenario
 	float xmax = e.suelo.limite2.x - j.getAltura()/2.0f;
 	float xmin = e.suelo.limite1.x + j.getAltura()/2.0f;
-	if (j.posicion.x > xmax)j.posicion.x = xmax;
-	if (j.posicion.x < xmin)j.posicion.x = xmin;
+	if (j.getPos().x > xmax) j.setPos(xmax, j.getPos().y);
+	if (j.getPos().x < xmin) j.setPos(xmin, j.getPos().y);
 
 	//Para que el jugador se mantenga encima del escenario
 	float ymin = e.suelo.limite1.y;
-	if ((j.getPos().y - j.getAltura()) <= ymin) {
-		j.velocidad.y = 0.0f;
-		j.aceleracion.y = 0.0f;
-		j.posicion.y = ymin + j.getAltura();
+	if ((j.getPos().y - j.getAltura()) <= ymin) 
+	{
 		// freno al personaje
+		j.setVel(j.getVel().x, 0.0f);
+		j.setAcel(j.getAcel().x, 0.0f);
+		j.setPos(j.getPos().x, ymin + j.getAltura());
 	}
 }
 
 bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) //Funcion que detecta la colision del Jugador con el BloqueSorpresa
 {
 	//Calculamos la distancia entre el bloque y el jugador para detectar si hay colision;
-	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
-	float radio = (j.getAltura()), l = b.lado * 0.5f,lim1=bloque.x-l,lim2=bloque.x+l;
+	Vector2D aux, bloque = b.getPos(), jugador = j.getPos();
+	float radio = (j.getAltura()), l = b.getlado() * 0.5f,lim1=bloque.x-l,lim2=bloque.x+l;
 	aux = bloque - jugador;
 	float distancia = aux.modulo();
 	if ((distancia <= radio+l) && (jugador.y <= bloque.y)&&(lim1<=jugador.x)&&(jugador.x<=lim2)) 
@@ -120,8 +123,8 @@ bool Interaccion::colisionDebajo(Jugador j, BloqueSorpresa b) //Funcion que dete
 //Funcion que detecta la colision del jugador con el Bloque Sorpresa cuando el jugador esta por encima
 bool Interaccion::colisionEncima(Jugador j, BloqueSorpresa b)
 {
-	Vector2D aux, bloque = b.posicion, jugador = j.getPos();
-	float radio = (j.getAltura()), l = b.lado * 0.5f, lim1 = bloque.x - l, lim2 = bloque.x + l;
+	Vector2D aux, bloque = b.getPos(), jugador = j.getPos();
+	float radio = (j.getAltura()), l = b.getlado() * 0.5f, lim1 = bloque.x - l, lim2 = bloque.x + l;
 	aux = bloque - jugador;
 	float distancia = aux.modulo();
 	if ((distancia <= radio + l) && (jugador.y >= bloque.y) && (lim1 <= jugador.x)&&(jugador.x <= lim2))
@@ -132,14 +135,14 @@ void Interaccion::rebote(Jugador& j, BloqueSorpresa b) //Funcion que gestiona el
 {
 	//Si el choque se produce desde abajo
 	if (Interaccion::colisionDebajo(j, b)) {
-		j.velocidad.y = -5.0f;
-		
+		j.setVel(j.getVel().x, -5.0f);
 	}
+
 	if (Interaccion::colisionEncima(j, b)) {
-		float y = b.posicion.y + b.getlado() * 0.5f;
-		j.velocidad.y = 0.0f;
-		j.aceleracion.y = 0.0f;
-		j.posicion.y = y + j.altura;
+		float y = b.getPos().y + b.getlado() * 0.5f;
+		j.setVel(j.getVel().x, 0.0f);
+		j.setAcel(j.getAcel().x, 0.0f);
+		j.setPos(j.getPos().x, y + j.getAltura());
 		j.tocandosuelo = true;
 	}
 }
@@ -182,7 +185,7 @@ bool Interaccion::colision(Bonus b, Jugador j) //Función que manda true si el ju
 {
 	Vector2D pos = j.getPos();
 	float distancia = (b.getPos() - pos).modulo();
-	if ((distancia <= ((j.altura))))
+	if (distancia <= j.getAltura())
 	{
 		return true;
 	}
@@ -204,14 +207,18 @@ bool Interaccion::colision(Bonus& b, Escenario e) //Funcion que manda true si ha
 	Vector2D pos = b.getPos();
 	pos.y -= b.getlado() / 2;//se le resta el lado para que quede apoyado en a superficie de abajo
 	float distancia = e.suelo.distancia(pos);
-	if (distancia <= 0.1f) {
-		if (b.posicion.x + b.getlado() > xmax) {
-			b.posicion.x = xmax - b.getlado();
-			b.velocidad.x = -4.0f;
+
+	if (distancia <= 0.1f) 
+	{
+		if (b.getPos().x + b.getlado() > xmax) 
+		{
+			b.setPos(xmax - b.getlado(), b.getPos().y);
+			b.setVel(-4.0f, b.getVel().y);
 		}
-		if (b.posicion.x - b.getlado() < xmin) {
-			b.posicion.x = xmin + b.getlado();
-			b.velocidad.x = 4.0f;
+
+		if (b.getPos().x - b.getlado() < xmin) {
+			b.setPos(xmin + b.getlado(), b.getPos().y);
+			b.setVel(4.0f, b.getVel().y);
 		}
 		return true;
 	}
@@ -227,12 +234,8 @@ void Interaccion::rebote(Bonus& b, Plataforma p) //Función que gestiona el rebot
 	if (Interaccion::colision(b, p)) 
 	{
 		b.setPos(b.getPos().x, y);
-		b.velocidad.y = 0.0f;
-		b.aceleracion.y = 0.0f;
-	}
-	else 
-	{
-		//b.aceleracion.y = -2.0f;
+		b.setVel(b.getVel().x, 0.0f);
+		b.setAcel(b.getAcel().x, 0.0f);
 	}
 }
 
@@ -240,11 +243,13 @@ void Interaccion::rebote(Bonus& b, Escenario e) //Función que gestiona el rebote
 {
 	if (Interaccion::colision(b, e.suelo)) 
 	{
-		b.velocidad.y = 0;
-		b.aceleracion.y = 0;
+		b.setVel(b.getVel().x, 0.0f);
+		b.setAcel(b.getAcel().x, 0.0f);;
 	}
 	float ymin = e.suelo.limite1.y;
-	if ((b.posicion.y - b.getlado()) < ymin) b.posicion.y = ymin + b.getlado() /2;
+
+	if ((b.getPos().y - b.getlado()) < ymin)
+		b.setPos(b.getPos().x, ymin + b.getlado() / 2.0f);
 }
 
 void Interaccion::rebote(Quirurgica& qui, Escenario e) //Funcion que hace el bonus de quirurgica circule por el escenario y si choca con una pared rebote
@@ -277,17 +282,15 @@ bool Interaccion::colision(Enemigo enem, Plataforma p)
 	float xmax = p.limite2.x - (enem.getAltura() / 8.0f);
 	float xmin = p.limite1.x + (enem.getAltura() / 8.0f);
 	float ymin = p.limite1.y;
-	if (((enem.posicion.y - enem.altura / 2.0f) < ymin) && enem.posicion.x >= xmin && enem.posicion.x <= xmax)
+	if (((enem.getPos().y - enem.getAltura() / 2.0f) < ymin) && enem.getPos().x >= xmin && enem.getPos().x <= xmax)
 		return true;
 	return false;
 }
 bool Interaccion::colision(Enemigo enem, Escenario e)
 {
 	//Función que manda un bool true si cualquier enemigo ha tocado con el escenario.
-	//float xmax = e.pared_dcha.limite2.x - (enem.getAltura() / 8.0f);
-	//float xmin = e.pared_izq.limite2.x + (enem.getAltura() / 8.0f);
 	float ymin = e.suelo.limite1.y;
-	if ((enem.posicion.y - enem.altura / 2.0f) < ymin) //enem.posicion.x <= xmin || enem.posicion.x >= xmax ||
+	if ((enem.getPos().y - enem.getAltura() / 2.0f) < ymin)
 		return true;
 	return false;
 }
@@ -296,7 +299,7 @@ bool Interaccion::colision(Enemigo enem, Jugador j)
 	//Función que manda un boole true si ha habido contacto entre un enemigo y el jugador de frente. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo()+1.0f;
-	if ((distancia <= (enem.getAltura()) && (enem.posicion.y >= (j.getPos().y - j.getAltura()))))
+	if ((distancia <= (enem.getAltura()) && (enem.getPos().y >= (j.getPos().y - j.getAltura()))))
 		return true;
 	return false;
 }
@@ -305,7 +308,7 @@ bool Interaccion::colisionEncima(Enemigo enem, Jugador j)
 	//Función que manda un booleano si ha habido contacto entre un enemigo y el jugador por encima del enemigo. Coge ambas posiciones y mide la distancia entre ellas.
 	Vector2D pos = j.getPos(); //la posicion de la base del hombre
 	float distancia = (enem.getPos() - pos).modulo();
-	if ((distancia <= enem.getAltura()) && (enem.posicion.y < (j.posicion.y - j.getAltura())))
+	if ((distancia <= enem.getAltura()) && (enem.getPos().y < (j.getPos().y - j.getAltura())))
 		return true;
 	return false;
 }
@@ -315,7 +318,7 @@ void Interaccion::rebote(CepaIndia& ind, Plataforma p)
 	float xmax = p.limite2.x - (ind.getAltura()/8.0f);
 	float xmin = p.limite1.x + (ind.getAltura()/8.0f);
 	float ymin = p.limite1.y;
-	if ((ind.posicion.y > ymin) && ((ind.posicion.y - ind.getAltura()) < ymin))
+	if ((ind.posicion.y > ymin) && ((ind.getPos().y - ind.getAltura()) < ymin))
 	{
 		if (ind.posicion.x >= xmax)
 		{
@@ -436,34 +439,34 @@ void Interaccion::rebote(MurcielagoPequeño& murpeq, Escenario e) // PATRON DE MO
 	static const float posicion_referencia = murpeq.getPos().y; // referencia del movimiento
 	float ymax = posicion_referencia + 1.0f;
 	float ymin = posicion_referencia - 1.0f;
-	if(murpeq.posicion.y > ymax)
+	if(murpeq.getPos().y > ymax)
 	{
-		murpeq.posicion.y = ymax;
-		murpeq.velocidad.y = -murpeq.velocidad.y;
+		murpeq.setPos(murpeq.getPos().x, ymax);
+		murpeq.setVel(murpeq.getVel().x, -murpeq.getVel().y);
 	}
-	if (murpeq.posicion.y < ymin)
+	if (murpeq.getPos().y < ymin)
 	{
-		murpeq.posicion.y = ymin;
-		murpeq.velocidad.y = -murpeq.velocidad.y;
+		murpeq.setPos(murpeq.getPos().x, ymin);
+		murpeq.setVel(murpeq.getVel().x, -murpeq.getVel().y);
 	}
-	if (murpeq.posicion.x > xmax)
+	if (murpeq.getPos().x > xmax)
 	{
-		murpeq.posicion.x = xmax;
-		murpeq.velocidad.x = -murpeq.velocidad.x;
+		murpeq.setPos(xmax, murpeq.getPos().y);
+		murpeq.setVel(-murpeq.getVel().x, murpeq.getVel().y);
 	}
-	if (murpeq.posicion.x < xmin)
+	if (murpeq.getPos().x < xmin)
 	{
-		murpeq.posicion.x = xmin;
-		murpeq.velocidad.x = -murpeq.velocidad.x;
+		murpeq.setPos(xmin, murpeq.getPos().y);
+		murpeq.setVel(-murpeq.getVel().x, murpeq.getVel().y);
 	}
 }
-void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO DIFERETE. SE MUEVE HACIENDO ONDAS
+void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PATRON DE MOVIMIENTO DEL MURCIÉLAGO BOSS. SE MUEVE HACIENDO ONDAS
 {
 	//Función para que el MurcielagoBoss no se puedan salir del escenario. Coge sus límites y dice que si sobrepasa estos se quede en el borde y además que vayan al sentido contrario.
 	float xmax = 4.0f;
 	float xmin = -4.0f;
-	static const float posicion_referencia = murboss.getPos().y; // recibe la posicion inicial del enemigo
-	static const Vector2D velocidad_referencia = murboss.getVel(); // recibe la velocidad inicial del enemigo
+	static const float posicion_referencia = murboss.getPos().y; // posicion inicial del enemigo
+	static const Vector2D velocidad_referencia = murboss.getVel(); // velocidad inicial del enemigo
 	float ymax = posicion_referencia + 0.5f;
 	float ymin = posicion_referencia - 0.5f;
 	if (murboss.getReset())
@@ -478,23 +481,23 @@ void Interaccion::rebote(MurcielagoBoss& murboss, Escenario e, Jugador j) // PAT
 		if (murboss.getPos().y > ymax)
 		{
 			murboss.setPos(murboss.getPos().x, ymax);
-			murboss.velocidad.y = -murboss.velocidad.y;
+			murboss.setVel(murboss.getVel().x, -murboss.getVel().y);
 		}
 		if (murboss.getPos().y < ymin)
 		{
 			murboss.setPos(murboss.getPos().x, ymin);
-			murboss.velocidad.y = -murboss.velocidad.y;
+			murboss.setVel(murboss.getVel().x, -murboss.getVel().y);
 		}
 		// limites relativos a escenario
 		if (murboss.getPos().x > xmax) // limite max escenario 
 		{
 			murboss.setPos(xmax, murboss.getPos().y);
-			murboss.velocidad.x = -murboss.velocidad.x;
+			murboss.setVel(-murboss.getVel().x, murboss.getVel().y);
 		}
 		if (murboss.getPos().x < xmin) // limite min escenario
 		{
 			murboss.setPos(xmin, murboss.getPos().y);
-			murboss.velocidad.x = -murboss.velocidad.x;
+			murboss.setVel(-murboss.getVel().x, murboss.getVel().y);
 		}
 	}
 	// secuencia de movimiento al recibir disparo

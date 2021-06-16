@@ -10,8 +10,8 @@ void Juego::inicializa()
 	x_ojo = 0;
 	y_ojo = 7.5;
 	z_ojo = 30;
-	setRecordSuperado(false);
-	setRecord(getRecordFile()); // obtengo el record actual
+	record_superado = false;
+	record_puntuacion = getRecordFile(); // obtengo el record actual
 	nivel = 0;//establezco el nivel al principio de cada inicializa
 	cargarNivel();//cargo el nivel corrspondiente donde se inicializa todo
 }
@@ -20,7 +20,7 @@ void Juego::moverOjo()
 {
 	//Se coge la posicion actual del jugador para centrarla en él y se suma una cantidad para ajustarlo al escenario
 	Vector2D pos = jugador.getPos();
-	y_ojo = pos.y+5.0f;
+	y_ojo = pos.y + 5.0f;
 }
 
 void Juego::dibuja()
@@ -29,6 +29,7 @@ void Juego::dibuja()
 		0.0, y_ojo, 0.0,      // hacia que punto mira  (0,0,0) 
 		0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)  
 	moverOjo();
+
 	jugador.dibuja();
 	enemigos.dibuja();
 	bonuses.dibuja();
@@ -60,6 +61,7 @@ void Juego::mueve()
 	llaves.mueve(0.025f);
 	llaves.colision(jugador);
 	Interaccion::rebote(jugador, escenario);
+
 	for (int i = 0; i < plataformas.getNumero(); i++)
 	{
 		enemigos.rebote(*plataformas[i]);
@@ -140,7 +142,7 @@ void Juego::mueve()
 		setRecordFile(getRecord());
 	}
 
-	if (jugador.getBossMuerto()) // ultima llave
+	if (jugador.getBossMuerto()) // ultima llave del nivel 3
 	{
 		llaves.agregar(new Llave(3.0f, 0.0f, 27.0f));
 		jugador.setBossMuerto(false);
@@ -151,19 +153,19 @@ void Juego::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		jugador.setVelx(-(jugador.getVelNormal() * jugador.getCoefVelx())); // velocidad normal * coeficiente de velocidad
+		jugador.setVel(-(jugador.getVelNormal() * jugador.getCoefVelx()), jugador.getVel().y); // velocidad normal * coeficiente de velocidad
 		break;
 	case GLUT_KEY_RIGHT:
-		jugador.setVelx((jugador.getVelNormal() * jugador.getCoefVelx()));
+		jugador.setVel((jugador.getVelNormal() * jugador.getCoefVelx()), jugador.getVel().y);
 		break;
 	case GLUT_KEY_UP:
 		//Para que no pueda saltar en el aire
 		if (escaleras.subirEscalera(jugador))
 		{
 			subirescaleras = true;
-			jugador.setVely(7.0f);
-			jugador.setAcely(0.0f);
-			//jugador.setVely(5.0f);
+			jugador.setVel(jugador.getVel().x , 7.0f);
+			jugador.setAcel(jugador.getAcel().x, 0.0f);
+	
 			if (escaleras.bajarEscalera(jugador)) {
 				subirescaleras = false;
 			}
@@ -173,9 +175,8 @@ void Juego::teclaEspecial(unsigned char key)
 	case GLUT_KEY_DOWN:
 		if (escaleras.bajarEscalera(jugador)) //ponia bajar
 		{
-			jugador.setAcely(0.0f);
-			jugador.setVely(-5.0f);//-(jugador.getVelNormal() * jugador.getCoefVelx())
-			jugador.setVelx(0.0f);
+			jugador.setAcel(jugador.getAcel().x, 0.0f);
+			jugador.setVel(0.0f, -5.0f);
 			bajarescaleras = true;
 			if (escaleras.subirEscalera(jugador)) {
 				bajarescaleras = false;
@@ -185,30 +186,28 @@ void Juego::teclaEspecial(unsigned char key)
 		break;
 	}
 }
-void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
+void Juego::teclaEspecialUp(unsigned char key) // al dejar de pulsar la tecla
 {
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		jugador.setVelx(0.0f); // ESTO NO FUNCIONA!!???
+		jugador.setVel(0.0f, jugador.getVel().y);
 		break;
 	case GLUT_KEY_RIGHT:
-		jugador.setVelx(0.0f);
+		jugador.setVel(0.0f, jugador.getVel().y);
 		break;
 	case GLUT_KEY_UP:
 	{
-		//Para que no pueda saltar en el aire
 		if (escaleras.subirEscalera(jugador))
 		{
-			jugador.setVely(0.0f);
-			jugador.setVelx(0.0f);
-			jugador.setAcely(0.0f);
+			jugador.setVel(0.0f, 0.0f);
+			jugador.setAcel(jugador.getAcel().x, 0.0f);
 			subirescaleras = false;
 		}
 		if (escaleras.subirEscalera(jugador) == 0)
 		{
-			jugador.setVely(0.0f);
-			jugador.setAcely(-30.0f);
+			jugador.setVel(jugador.getVel().x, 0.0f);
+			jugador.setAcel(jugador.getAcel().x, -30.0f);
 			subirescaleras = false;
 			break;
 		}
@@ -219,9 +218,8 @@ void Juego::teclaEspecialUp(unsigned char key) //al dejar de pulsar la tecla
 	{
 		if (escaleras.bajarEscalera(jugador) || escaleras.subirEscalera(jugador) == 1) //ponia bajar
 		{
-			jugador.setVely(0.0f);
-			jugador.setVelx(0.0f);
-			jugador.setAcely(0.0f);
+			jugador.setVel(0.0f, 0.0f);
+			jugador.setAcel(jugador.getAcel().x, 0.0f);
 			bajarescaleras = false;
 			break;
 		}
@@ -285,7 +283,7 @@ void Juego::tecla(unsigned char key)
 			DisparoGel* d = new DisparoGel();
 			Vector2D pos = jugador.getPos();
 			d->setPos(pos.x, pos.y);
-			d->setVel(0, 6.0f);
+			d->setVel(0.0f, 6.0f);
 			disparos.agregar(d);
 		}
 		break;
@@ -297,7 +295,7 @@ void Juego::tecla(unsigned char key)
 			DisparoGel* d = new DisparoGel();
 			Vector2D pos = jugador.getPos();
 			d->setPos(pos.x, pos.y);
-			d->setVel(-6.0f, 0);
+			d->setVel(-6.0f, 0.0f);
 			disparos.agregar(d);
 		}
 		break;
@@ -309,7 +307,7 @@ void Juego::tecla(unsigned char key)
 			DisparoGel* d = new DisparoGel();
 			Vector2D pos = jugador.getPos();
 			d->setPos(pos.x, pos.y);
-			d->setVel(6.0f, 0);
+			d->setVel(6.0f, 0.0f);
 			disparos.agregar(d);
 		}
 		break;
@@ -332,6 +330,7 @@ bool Juego::cargarNivel() {
 	escaleras.destruirContenido();
 	plataformas.destruirContenido();
 	llaves.destruirContenido();
+
 	if (nivel == 1) 
 	{
 		jugador.setVelx(0.0f);
@@ -402,6 +401,7 @@ bool Juego::cargarNivel() {
 		enemigos.agregar(new CepaIndia(2.0f, 4.0f, 71.0f, -3.0f, 0.0f));
 		llaves.agregar(new Llave(2.0f, 0.0f, 75.0f, 0.0f, 0.0f));
 	}
+
 	if (nivel == 2) {
 		jugador.setVelx(0.0);
 		jugador.setPos(0, 0);
@@ -476,9 +476,10 @@ bool Juego::cargarNivel() {
 		llaves.agregar(new Llave(2.0f, 4.5f, 81.0f));
 		llaves.agregar(new Llave(2.0f, -4.5f, 81.0f));
 	}
+
 	if (nivel == 3) {
-		jugador.setVelx(0.0f);
-		jugador.setPos(0, 0);
+		jugador.setVel(0.0f, jugador.getVel().y);
+		jugador.setPos(0.0f, 0.0f);
 		jugador.setNumBonus(0);//cada vez que empieza el juego, el jugador tiene 0 bonus
 		jugador.setNumLlaves(2);//cada vez que empieza el nivel, el jugador tiene 0 llaves
 		//nivel del boss
@@ -512,6 +513,7 @@ bool Juego::cargarNivel() {
 		bonuses.agregar(new MascarillaTocha(1.5f, -9.0f, 30.0f));
 		enemigos.agregar(new MurcielagoBoss(4.0f, 0.0f, 35.0f));
 	}
+
 	if (nivel <= 3) {
 		return true;
 	}

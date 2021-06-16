@@ -19,7 +19,6 @@ public:
 	Llave* operator[](int i);
 	void eliminar(int index);
 	void eliminar(Llave* l);
-	//bool colision(Jugador j);
 	void colision(Jugador& j);
 };
 

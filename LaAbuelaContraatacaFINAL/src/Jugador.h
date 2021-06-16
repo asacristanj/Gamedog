@@ -52,6 +52,7 @@ public:
 	float getVelLenta() { return coef_vel_lenta; }
 	float getCoefVelx() { return coeficiente_velx; }
 	float getVelocidadRebote() { return velocidad_rebote; }
+	float getAcelInicial() { return acel_inicial; }
 	bool getDañoCaida() { return daño_caida; }
 	bool getAstraActivo() { return astra_activo; }
 	bool getPfizerActivo() { return pfizer_activo; }

@@ -16,11 +16,11 @@ public:
 	BloqueSorpresa();
 	BloqueSorpresa(float l, float x, float y, unsigned char r = 255, unsigned char g = 223, unsigned char b = 0);
 	virtual ~BloqueSorpresa();
-	float getlado();
+	float getlado() { return lado; }
+	bool getuso() { return usado; }
+	Vector2D getPos() { return posicion; }
 	void setPos(float x, float y);
-	bool getuso();
-	Vector2D getPos();
-	void setUsotrue();
+	void setUsotrue() { usado = true; }
 	void mueve(float t);
 };
 

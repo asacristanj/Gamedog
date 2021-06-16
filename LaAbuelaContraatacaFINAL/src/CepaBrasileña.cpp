@@ -28,7 +28,6 @@ void CepaBrasileña::dibuja()
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 200.0f, 200.0f);
 	
-	//glutSolidSphere(altura, 15, 15);
 	//ANIMACION DEL SPRITE DEL PERSONAJE:
 
 	if (velocidad.x > 0.01)sprite.flip(false, false);

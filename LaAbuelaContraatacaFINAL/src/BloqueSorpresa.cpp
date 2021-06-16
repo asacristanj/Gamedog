@@ -27,22 +27,12 @@ void BloqueSorpresa::dibuja() {
 	sprite.draw();
 	glPopMatrix();
 }
-float BloqueSorpresa::getlado() {
-	return lado;
-}
+
 void BloqueSorpresa::setPos(float x, float y) {
 	posicion.x = x;
 	posicion.y = y;
 }
-bool BloqueSorpresa::getuso() {
-	return usado;
-}
-void BloqueSorpresa::setUsotrue() {
-	usado = true;
-}
-Vector2D BloqueSorpresa::getPos() {
-	return posicion;
-}
+
 void BloqueSorpresa::mueve(float t) {
 	sprite.loop();
 }

@@ -31,9 +31,9 @@ public:
 	static bool colisionSuelo(Jugador j, Escenario e);
 	static void rebote(Jugador& j, Plataforma p);
 	static void rebote(Jugador& j, Escenario e);
+	static void rebote(Jugador& j, BloqueSorpresa b);
 	static bool colisionDebajo(Jugador j, BloqueSorpresa b);
 	static bool colisionEncima(Jugador j, BloqueSorpresa b);
-	static void rebote(Jugador& j, BloqueSorpresa b);
 	static bool colisionEscalerasubir(Escalera e, Jugador j);
 	static bool colisionEscalerabajar(Escalera e, Jugador j);
 	static bool colisionEscalera(Escalera e, Jugador j);
@@ -41,12 +41,6 @@ public:
 	static bool colision(Bonus b, Plataforma p);
 	static bool colision(Bonus& b, Escenario e);
 	static bool colision(Bonus b, Jugador j);
-	/*static bool colision(Pfizer b, Jugador j);
-	static bool colision(Quirurgica q, Jugador j);
-	static bool colision(MascarillaTocha m, Jugador j);
-	static bool colision(Astrazeneca a, Jugador j);
-	static bool colision(Janssen jan, Jugador j);
-	static bool colision(Sputnik sp, Jugador j);*/
 	static void rebote(Bonus& b, Plataforma p);
 	static void rebote(Bonus& b, Escenario e);
 	//Enemigos

@@ -24,7 +24,6 @@ void CepaIndia::dibuja()
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(0.0f, 255.0f, 0.0f);
-	//glutSolidSphere(altura, 15, 15);
 	if (velocidad.x > 0.01)sprite.flip(false, false);
 	if (velocidad.x < -0.01)sprite.flip(true, false);
 	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))

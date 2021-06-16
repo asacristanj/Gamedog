@@ -23,6 +23,12 @@ void ObjetoMovil::setVel(float vx, float vy)
 	velocidad.y = vy;
 }
 
+void ObjetoMovil::setAcel(float ax, float ay)
+{
+	aceleracion.x = ax;
+	aceleracion.y = ay;
+}
+
 void ObjetoMovil::setVelx(float vx)
 {
 	velocidad.x = vx;
